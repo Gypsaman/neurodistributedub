@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/neuro.css" />
+  </head>
+  <title>DNA</title>
+  <body>
+    <div class="neuro-flex">
+      
+      <div class="neuro-menu">{% include 'navbar.html' %} {% block head %}{% endblock %}</div>
+      
+      <div class="neuro-main">{% block body %}{% endblock %}</div>
+
+      <div id="footer" class="neuro-footer">
+        <p>Copyright 2022 NeuroDistributed</p>
+      </div>
+    </div>
+    <script src="/static/css/bootstrap.bundle.js"></script>
+  </body>
+</html>
+

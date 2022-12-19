@@ -1,0 +1,131 @@
+body {
+  background-color: black;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.neuro-flex {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+select {
+  background-color: rgb(125, 116, 116)
+ 
+}
+input {
+  background-color: rgb(125, 116, 116)
+}
+.neuro-edit,
+.neuro-delete {
+  color: rgb(25, 191, 55);
+}
+.neuro-table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.neuro-table th{
+  /* border: 1px solid white; */
+  border-radius: 10px;
+  padding: 2px;
+  background-color: rgb(72, 72, 133);
+  text-align: center;
+}
+.neuro-table td{
+  padding: 0 15px;
+}
+.neuro-menu {
+  height: 50px;
+}
+.neuro-main {
+  flex: 1;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.neuro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5px;
+}
+
+.neuro-view-nft-collection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-top: 20px;
+
+}
+.neuro-view-nft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 20px;
+  border-width: 1px;
+  background-color: rgb(39, 37, 37);
+}
+  borcer-color: gray;
+  border-style: solid; 
+  margin: 10px
+}
+.neuro-login-form {
+
+  margin-top: 20px;
+  padding: 8px;
+}
+.neuro-login-form input {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 5px;
+  
+}
+
+.neuro-nft-attribute-label {
+  background-color: rgb(65, 65, 170);
+  color:white;
+  padding: 2px;
+}
+
+.neuro-nft-attribute-value {
+  background-color: rgb(86, 92, 181);
+   color: white;
+     padding: 2px;
+     margin-right: 5px;
+
+}
+.neuro-form-section {
+    border-style: solid;
+    border-color: gray;
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: rgb(39, 37, 37);
+    padding: 15px;
+    margin: 10px;
+
+    
+}
+.neuro-form-section h3 {
+    color:rgb(25, 25, 219)
+}
+
+.neuro-footer {
+  height: 20px;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

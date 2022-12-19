@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <form class="neuro-login-form"  method="POST" action="/addassets">
+        
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}. Go to
+            <a href="{{ url_for('main.profile') }}">Profile Page</a>
+        </div>
+        {% endif %} {% endwith %}
+        <div class="neuro-form-section">
+            <h3>Add Asset</h3>
+            <div>
+                <label for="asset_type">Asset Type</label><br>
+                <select name="asset_type" id="asset_type" style="width:200px">
+                    <option value="1">Token</option>
+                    <option value="2">NFT</option>
+                </select>
+
+            </div>
+            <div class="">
+                <label for="network">Network</label>
+                <input name="network" type="text" size=10 value="goerli">
+            </div>
+            <div class="">
+                <label for="asset_adddress">Asset Address</label>
+                <input name="asset_address" type="text" size=50 >
+            </div>
+            <div class="col d-flex justify-content-center mt-5">
+                <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Update</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

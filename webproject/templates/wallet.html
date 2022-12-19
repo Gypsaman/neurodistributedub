@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <form class="neuro-login-form"  method="POST" action="/wallet">
+        
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}. Go to
+            <a href="{{ url_for('main.profile') }}">Profile Page</a>
+        </div>
+        {% endif %} {% endwith %}
+        <div class="neuro-form-section">
+            <h3>Wallet Info</h3>
+            <div class="">
+                <label for="walletaddress">Wallet Address</label>
+                <input name="wallet_address" type="text" size="100" value={{ wallet.wallet }} >
+            </div>
+            <div class="">
+                <label for="privatekey">Private Key</label>
+                <input name="private_key" type="text" size=100 value={{ wallet.privatekey }}>
+            </div>
+            <div class="col d-flex justify-content-center mt-5">
+                <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Update</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

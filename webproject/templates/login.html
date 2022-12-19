@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block body %} 
+
+
+<div class="neuro-content">
+  <h1>Log In</h1>
+  <form class="neuro-login-form" action="/login" method="POST">
+    <div class="neuro-form-section">
+      {% with messages = get_flashed_messages() %} 
+          {% if messages %}
+          <div style="color:red">{{ messages[0] }}</div>
+
+          {% endif %} 
+      {% endwith %}
+
+      <!-- Email input -->
+      <div class=" mb-4">
+        <input type="email" id="form2Example1" name="email" class="form-control" placeholder="Email Address"/>
+        <!-- <label class="form-label" for="form2Example1">Email address</label> -->
+      </div>
+
+      <!-- Password input -->
+      <div class=" mb-4">
+        <input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password" />
+        <!-- <label class="form-label" for="form2Example2">Password</label> -->
+      </div>
+
+      <!-- 2 column grid layout for inline styling -->
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <!-- Checkbox -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              name="remember"
+              type="checkbox"
+              value=""
+              id="form2Example31"
+              checked
+            />
+            <label class="form-check-label" for="form2Example31">
+              Remember me
+            </label>
+          </div>
+        </div>
+
+        <div class="col">
+          <!-- Simple link -->
+          <a href="#!">Forgot password?</a>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="col d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-block mb-4">
+        Sign in
+      </button>
+    </div>
+
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>Not a member? <a href="\register">Register</a></p>
+      </div>
+    </div>
+  </form>
+
+</div>
+{% endblock %}
