@@ -78,21 +78,26 @@ input {
   border-width: 1px;
   background-color: rgb(39, 37, 37);
 }
-  borcer-color: gray;
-  border-style: solid; 
-  margin: 10px
-}
-.neuro-login-form {
 
-  margin-top: 20px;
-  padding: 8px;
-}
-.neuro-login-form input {
-    display: flex;
-    flex-direction: row;
-
-    margin-bottom: 5px;
+.neuro-view-asset-nft,
+.neuro-view-asset-token {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 40px;
+  border-width: 1px;
   
+}
+.neuro-view-asset-token  {
+  background-color: rgb(113, 86, 86);
+}
+.neuro-view-asset-nft {
+  background-color: rgb(39,37,37);
 }
 
 .neuro-nft-attribute-label {
@@ -108,6 +113,20 @@ input {
      margin-right: 5px;
 
 }
+.neuro-login-form {
+
+  margin-top: 20px;
+  padding: 8px;
+}
+.neuro-login-form input {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 5px;
+  
+}
+
+
 .neuro-form-section {
     border-style: solid;
     border-color: gray;

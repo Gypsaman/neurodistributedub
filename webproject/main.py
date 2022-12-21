@@ -48,6 +48,12 @@ def assets():
     assets = Assets.query.filter_by(student_id=current_user.student_id).all()
     return render_template('assets.html',assets=assets)
 
+@main.route('/assets_old')
+@login_required
+def assets_old():
+    assets = Assets.query.filter_by(student_id=current_user.student_id).all()
+    return render_template('assets_copy.html',assets=assets)
+
 @main.route('/assetdelete/<int:id>')
 def assets_delete(id):
     addr = id
