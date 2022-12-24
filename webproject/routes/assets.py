@@ -14,8 +14,8 @@ assets = Blueprint("assets", __name__)
 @assets.route("/assets")
 @login_required
 def assets_list():
-    assets = Assets.query.filter_by(student_id=current_user.student_id).all()
-    return render_template("assets.html", assets=assets)
+    assets_table = Assets.query.filter_by(student_id=current_user.student_id).all()
+    return render_template("assets.html", assets=assets_table)
 
 
 @assets.route("/assets_table")
@@ -61,9 +61,9 @@ def add_assets_post():
         flash("Asset already exists")
         return redirect(url_for("assets.assets"))
 
-    asset = Assets(**record)
+    asset_record = Assets(**record)
 
-    db.session.add(asset)
+    db.session.add(asset_record)
     db.session.commit()
 
     return redirect(url_for("assets.profile"))
