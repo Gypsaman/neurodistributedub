@@ -21,8 +21,8 @@ def assets_list():
 @assets.route("/assets_table")
 @login_required
 def assets_table():
-    assets = Assets.query.filter_by(student_id=current_user.student_id).all()
-    return render_template("assets_table.html", assets=assets)
+    assets_table = Assets.query.filter_by(student_id=current_user.student_id).all()
+    return render_template("assets_table.html", assets=assets_table)
 
 
 @assets.route("/assetdelete/<int:id>")
