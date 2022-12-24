@@ -1,8 +1,9 @@
 from flask import Blueprint,render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
-from flask_login import login_user, login_required, logout_user
-from . import db
+from webproject.models import User
+from flask_login import login_user, logout_user
+from webproject import db
+from . import login_required
 
 auth = Blueprint('auth',__name__)
 
@@ -35,19 +36,24 @@ def register():
 
 @auth.route('/register',methods=['POST'])
 def register_post():
-    email = request.form.get('email')
-    first_name = request.form.get('firstname')
-    last_name = request.form.get('lastname')
-    student_id = request.form.get('studentid')
-    password = request.form.get('password')
-
+    
+    email =  request.form.get('email')
     curr_User = User.query.filter_by(email=email).first()
 
     if curr_User:
         flash('Email exists already')
         return redirect(url_for('auth.register'))
-
-    new_usr = User(email=email,first_name=first_name,last_name=last_name,student_id=student_id, password=generate_password_hash(password,method='sha256'))
+    
+    record = {
+        'email': email,
+        'first_name' : request.form.get('firstname'),
+        'last_name' : request.form.get('lastname'),
+        'student_id' : request.form.get('studentid'),
+        'password' : generate_password_hash(request.form.get('password'),method='sha256'),
+        'role'  : 'admin' if email=='gypsaman@gmail.com' else 'student'
+    }
+    
+    new_usr = User(**record)
 
     db.session.add(new_usr)
     db.session.commit()

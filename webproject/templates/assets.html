@@ -1,6 +1,20 @@
 {% extends 'base.html' %} {% block body %}
 
 <div class="neuro-content">
+  <div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <div>
+      <h1>Assets</h1>
+    </div>
+    <div>
+      <button
+      class="btn btn-primary"
+      style="width: 100px; margin: 20px"
+      onclick="window.location.href='/assets_table'"
+    >
+      Change View
+    </button>
+    </div>
+  </div>
   {% for asset in assets %}
     {% if asset.asset_type == 1 %}
         <div class="neuro-view-asset-token">
@@ -38,6 +52,9 @@
         >{{ asset.asset_address }}</a
       >
       {% else %} {{ asset.asset_address }} {% endif %}
+    </div>
+    <div>
+      <p>Added on: {{asset.time_added}}</p>
     </div>
 
 

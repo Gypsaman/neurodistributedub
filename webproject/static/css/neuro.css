@@ -3,10 +3,14 @@ body {
   padding-top: 0px;
   padding-bottom: 0px;
 }
-.neuro-flex {
+.neuro-flex-column {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+.neuro-flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
 select {

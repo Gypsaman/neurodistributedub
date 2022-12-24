@@ -1,7 +1,7 @@
 from webproject.models import User, Assets, Wallet
-from webproject import db, create_app
+from webproject.routes import db, create_app
 import json
-
+import os
 
 def save_data(table,destination:str):
     with create_app().app_context():
@@ -25,11 +25,12 @@ def populate_data(table,source:str):
         db.session.commit()
 
 def save_all_data(destination:str=""):
-    save_data(User,destination + 'users.json')
-    save_data(Assets,destination + 'assets.json')
-    save_data(Wallet,destination + 'wallets.json')
+    save_data(User,os.path.join(destination,'users.json'))
+    save_data(Assets,os.path.join(destination,'assets.json'))
+    save_data(Wallet,os.path.join(destination + 'wallets.json'))
     
 if __name__ == '__main__':
-
+    # save_all_data('.data/')
+    
     
     

@@ -13,9 +13,10 @@
             <span class="navbar-toggle-icon"></span>
         </button>
     </div>
-    <div class="collapse navbar-collapse" id="navmenu">
+    <div class="collapse navbar-collapse" id="navmenu" >
         <ul class="navbar-nav ms-auto">
             {% if current_user.is_authenticated %}
+
             <li class="nav-item">
                 <a href="/profile" class="nav-link">Profile</a>
             </li>
@@ -34,13 +35,16 @@
             <li class="nav-item">
                 <a href="/assets" class="nav-link">Assets</a>
             </li>
+
             <li class="nav-item">
-                <a href="/assets_old" class="nav-link">Assets II</a>
+                <a href="/assignments" class="nav-link">Assignments</a>
             </li>
 
-
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Log out</a>
+                <a href="/grades" class="nav-link">Grades</a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">LogOut</a>
             </li>
             {% else %}
             <li class="nav-item">

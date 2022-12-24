@@ -1,10 +1,11 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from flask_login import login_required,current_user
-from .models import User,Wallet,Assets
-from .web3_interface import get_nft_uri
+from flask_login import current_user
+from webproject.models import User,Wallet,Assets
+from webproject.web3_interface import get_nft_uri
 import requests
 import json
-from . import db
+from webproject import db
+from . import login_required
 
 nfts = Blueprint('nfts',__name__)
 
