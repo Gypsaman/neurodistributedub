@@ -5,7 +5,7 @@ from webproject.web3_interface import get_nft_uri
 import requests
 import json
 from webproject import db
-from . import login_required
+from flask_login import login_required
 
 nfts = Blueprint('nfts',__name__)
 

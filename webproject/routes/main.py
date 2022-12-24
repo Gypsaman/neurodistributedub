@@ -4,7 +4,7 @@ from webproject.models import User,Wallet,Assets,Transactions,Assignments
 from webproject.web3_interface import get_eth_balance 
 from webproject import db
 from datetime import datetime as dt
-from . import login_required
+from flask_login import login_required
 
 main = Blueprint('main',__name__)
 

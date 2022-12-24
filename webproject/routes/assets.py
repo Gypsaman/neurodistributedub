@@ -4,9 +4,9 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user
 
 from webproject import db
-from webproject.models import Assets
+from webproject.models import Assets,Assignments
 from webproject.web3_interface import get_eth_balance
-from . import login_required
+from flask_login import login_required
 
 assets = Blueprint("assets", __name__)
 
@@ -14,15 +14,15 @@ assets = Blueprint("assets", __name__)
 @assets.route("/assets")
 @login_required
 def assets_list():
-    assets_table = Assets.query.filter_by(student_id=current_user.student_id).all()
-    return render_template("assets.html", assets=assets_table)
+    assets_t = Assets.query.filter_by(student_id=current_user.student_id).all()
+    return render_template("assets.html", assets=assets_t)
 
 
 @assets.route("/assets_table")
 @login_required
 def assets_table():
-    assets_table = Assets.query.filter_by(student_id=current_user.student_id).all()
-    return render_template("assets_table.html", assets=assets_table)
+    assets_t = Assets.query.filter_by(student_id=current_user.student_id).all()
+    return render_template("assets_table.html", assets=assets_t)
 
 
 @assets.route("/assetdelete/<int:id>")

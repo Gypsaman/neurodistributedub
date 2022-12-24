@@ -10,6 +10,9 @@ class User(UserMixin,db.Model):
     student_id = db.Column(db.String(10),unique=True)
     role = db.Column(db.String(10))
     
+    def get_urole(self):
+        return self.role
+    
     def __repr__(self):
         return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role}'
     
@@ -57,6 +60,7 @@ class Transactions(db.Model):
     confirmations = db.Column(db.String)
     methodId = db.Column(db.String)
     functionName = db.Column(db.String)
+    
     
     def __repr__(self):
         return f'wallet: {self.wallet}, blockNumber: {self.blockNumber}, timeStamp: {self.timeStamp}, hash: {self.hash}, from: {self.trans_from}, to: {self.trans_to}'
