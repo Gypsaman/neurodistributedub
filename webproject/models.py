@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from . import db
+from datetime import datetime
 
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,12 +10,20 @@ class User(UserMixin,db.Model):
     last_name = db.Column(db.String(50))
     student_id = db.Column(db.String(10),unique=True)
     role = db.Column(db.String(10))
+    password_phrase = db.Column(db.Integer)
+    phrase_expires = db.Column(db.DateTime)
     
     def get_urole(self):
         return self.role
     
+    def get_password_phrase(self):
+        return self.password_phrase
+    
+    def get_password_phrase_expiry(self) -> datetime:
+        return self.phrase_expires
+    
     def __repr__(self):
-        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role}'
+        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role} password_phrase: {self.password_phrase}, phrase_expires: {self.phrase_expires}'
     
 class Wallet(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -60,7 +60,9 @@ def profile():
     wallet = Wallet.query.filter_by(student_id=curr_usr.student_id).first()
     tokens = Assets.query.filter_by(student_id=curr_usr.student_id, asset_type=1).count()
     nfts = Assets.query.filter_by(student_id=curr_usr.student_id, asset_type=2).count()
-    eth_balance = f'{get_eth_balance(wallet.wallet):0.4f}'
+    
+    eth_balance = f'{get_eth_balance(wallet.wallet):0.4f}' if wallet else 0
+    
     return render_template('profile.html',user=curr_usr,wallet=wallet,tokens=tokens,nfts=nfts,eth_balance=eth_balance)
 
 @main.route('/assignments')

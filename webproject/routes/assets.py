@@ -42,7 +42,7 @@ def assets_delete(id):
 @login_required
 def add_assets():
     assignments = Assignments.query.all()
-    return render_template("addassets.html", assignments=assignments)
+    return render_template("assets/addassets.html", assignments=assignments)
 
 
 @assets.route("/addassets", methods=["POST"])

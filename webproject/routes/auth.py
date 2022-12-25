@@ -1,15 +1,19 @@
 from flask import Blueprint,render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from webproject.models import User
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 from webproject import db
 from flask_login import login_required
+from webproject.routes import admin_required
+from datetime import datetime as dt
+import random
+from webproject.ubemail import UBEmail
 
 auth = Blueprint('auth',__name__)
 
 @auth.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 @auth.route('/login',methods=['POST'])
 def login_post():
@@ -17,8 +21,6 @@ def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
-
-
 
     curr_usr = User.query.filter_by(email=email).first()
 
@@ -31,7 +33,7 @@ def login_post():
 
 @auth.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 
 @auth.route('/register',methods=['POST'])
@@ -65,3 +67,54 @@ def register_post():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/passwordreset', methods=['GET','POST'])
+def password_reset():
+    if request.method == "POST":
+        user = User.query.filter_by(email=request.form.get('email')).first()
+        
+        if not user:
+            flash('Email does not exist')
+            return redirect(url_for('auth.password_reset'))
+        
+        user.password_phrase = random.randint(100000,999999)
+        user.phrase_expires = dt.now().replace(minute=dt.now().minute+5)
+        db.session.commit()
+        
+        email = UBEmail()
+        body = f'Your password reset link is http://neurodistributed/passwordupdate/{user.password_phrase}'
+        body += f'\n\nThis link will expire in 5 minutes'
+        
+        email.send_email(user.email,'Password Reset',body)
+        
+        flash('Password reset link has been sent to your email')
+        
+        return redirect(url_for('auth.login'))
+    return render_template('auth/password_reset.html')
+
+
+
+@auth.route('/passwordupdate/<int:id>')
+def password_update(id):
+    user = User.query.filter_by(password_phrase=id).first()
+    if not user or dt.now() > user.get_password_phrase_expiry():
+        flash('You are not authorized to update the password')
+        # flash(f'{id} {dt.now()}')
+        return redirect(url_for('auth.login'))
+    
+    return render_template('auth/update_password.html',user=user)
+
+@auth.route('/passwordupdate/<int:id>',methods=['POST'])
+def password_update_post(id):
+    if request.form.get('new_password') != request.form.get('confirm_password'):
+        flash('Passwords do not match')
+        return redirect(url_for('auth.password_update',id=id))
+    
+    user = User.query.filter_by(password_phrase=id).first()
+    user.password = generate_password_hash(request.form.get('new_password'),method='sha256')
+    user.password_phrase = None
+    user.password_phrase_expiry = None
+    
+    db.session.commit()
+    
+    return redirect(url_for('auth.login'))
