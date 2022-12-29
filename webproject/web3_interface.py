@@ -53,6 +53,8 @@ def get_nft_uri(token_addr, top=10):
         if tokenURI.find("?filename") != -1:
             tokenURI = tokenURI.split("?filename")[0]
         response = requests.get(tokenURI)
+        if response.status_code != 200:
+            break
         content = json.loads(response.content.decode())
 
         nfts.append(

@@ -16,6 +16,10 @@ def nfts_view(asset_id):
     asset = Assets.query.filter_by(id=asset_id).first()
     metadatas = get_nft_uri(asset.asset_address)
     
-
     
-    return render_template('nfts.html',metadatas=metadatas)
+    return render_template('nfts/nfts.html',metadatas=metadatas)
+
+
+@nfts.route('/test')
+def test():
+    return render_template('nfts/test.html')

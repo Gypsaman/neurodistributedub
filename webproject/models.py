@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from . import db
+from .extensions import db
 from datetime import datetime
 
 class User(UserMixin,db.Model):
@@ -10,11 +10,17 @@ class User(UserMixin,db.Model):
     last_name = db.Column(db.String(50))
     student_id = db.Column(db.String(10),unique=True)
     role = db.Column(db.String(10))
-    password_phrase = db.Column(db.Integer)
-    phrase_expires = db.Column(db.DateTime)
     
     def get_urole(self):
         return self.role
+    
+    def __repr__(self):
+        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role} '
+
+class PasswordReset(db.Model):
+    user_id = db.Column(db.Integer, primary_key=True)
+    password_phrase = db.Column(db.Integer)
+    phrase_expires = db.Column(db.DateTime)
     
     def get_password_phrase(self):
         return self.password_phrase
@@ -23,11 +29,11 @@ class User(UserMixin,db.Model):
         return self.phrase_expires
     
     def __repr__(self):
-        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role} password_phrase: {self.password_phrase}, phrase_expires: {self.phrase_expires}'
-    
+        return f'password_phrase: {self.password_phrase}, phrase_expires: {self.phrase_expires}'
+
 class Wallet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.String(10))
+    user_id = db.Column(db.Integer)
     wallet = db.Column(db.Integer)
     privatekey = db.Column(db.Integer)
     
@@ -36,7 +42,7 @@ class Wallet(db.Model):
     
 class Assets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.String(10))
+    user_id = db.Column(db.Integer)
     asset_type = db.Column(db.Integer)
     network = db.Column(db.String(10))
     asset_address = db.Column(db.Integer,unique=True)
@@ -48,6 +54,7 @@ class Assets(db.Model):
     
 class Transactions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
     wallet = db.Column(db.Integer)
     blockNumber = db.Column(db.Integer)
     timeStamp = db.Column(db.DateTime)
@@ -86,6 +93,7 @@ class Assignments(db.Model):
     
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
     assignment = db.Column(db.Integer)
     grade = db.Column(db.Integer)
     dategraded = db.Column(db.DateTime)

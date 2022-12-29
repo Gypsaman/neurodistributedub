@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="neuro-view-nfts">
+<div class="neuro-content">
     {% for metadata in metadatas %}
         <div class="neuro-view-nft">
             <img src="https://ipfs.io/ipfs/{{metadata['image']}}" alt="NFTs" style="height:300px">
             <h1 class="title">{{ metadata['name'] }}</h1>
             <p>{{ metadata['description'] }}</p>
 
-            <div style="display:flex; flex-direction:row; justify-content:space-between; margin: 2px">
+            <div class="neuro-nft-metadata">
             {% for attribute in metadata['attributes'] %}
 
                 <div class style="display:flex; flex-direction:row; justify-content:space-between; margin:10px 0px;">

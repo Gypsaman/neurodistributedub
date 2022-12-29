@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>Grades</h1>
+    {% if grades | length == 0 %}
+        <p>No grades yet!</p>
+    {% else %}
+        {% for grade in grades %}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

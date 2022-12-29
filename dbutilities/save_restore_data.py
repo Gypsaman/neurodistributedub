@@ -1,5 +1,5 @@
-from webproject.models import User, Assets, Wallet
-from webproject.routes import db, create_app
+from webproject.models import User, Assets, Wallet, Transactions, Grades, Assignments
+from webproject import db, create_app
 import json
 import os
 
@@ -13,9 +13,9 @@ def save_data(table,destination:str):
                 del record_dict['_sa_instance_state']
             table_dump.append(record_dict)
         with open(destination, 'w') as f:
-            json.dump(table_dump, f)
+            json.dump(table_dump, f,default=str)
     
-def populate_data(table,source:str):
+def restore_data(table,source:str):
     with create_app().app_context():
         with open(source, 'r') as f:
             table_dump = json.load(f)
@@ -28,9 +28,12 @@ def save_all_data(destination:str=""):
     save_data(User,os.path.join(destination,'users.json'))
     save_data(Assets,os.path.join(destination,'assets.json'))
     save_data(Wallet,os.path.join(destination + 'wallets.json'))
+    save_data(Transactions,os.path.join(destination + 'transactions.json'))
+    save_data(Grades,os.path.join(destination + 'grades.json'))
+    save_data(Assignments,os.path.join(destination + 'assignments.json'))
     
 if __name__ == '__main__':
-    # save_all_data('.data/')
+    save_all_data('data/')
     
     
     
