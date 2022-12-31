@@ -1,10 +1,12 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
 from flask_login import current_user
 from webproject.models import User,Wallet,Assets,Transactions,Assignments,Grades
-from webproject.web3_interface import get_eth_balance 
+from webproject.web3_interface import get_eth_balance, getEthTrans
+from webproject.table_creator import table_creator
 from webproject import db
 from datetime import datetime as dt
 from flask_login import login_required
+
 
 main = Blueprint('main',__name__)
 
@@ -47,12 +49,36 @@ def welcome():
 def tokens():
     return render_template('main/tokens.html')
 
-@main.route('/transactions')
-def transactions():
-    transactions = Transactions.query.all()
-    return render_template('main/transactions.html',transactions=transactions)
+@main.route('/transactions/<int:page_num>')
+def transactions(page_num):
+    items_per_page = 30
+    transactions = Transactions.query.filter_by(user_id=current_user.id).all()
+    table = table_creator('Transactions',transactions,items_per_page,page_num)
+    
+    
+    return render_template('main/transactions.html',table=table)
 
+@main.route('/addtransaction',methods=["GET","POST"])
+def add_transaction():
+    if request.method == "POST":
+        pass
+    
+    return render_template('main/transactions_add.html')
 
+@main.route('/addethtransactions')
+def add_eth_transaction():
+    wallet = Wallet.query.filter_by(user_id=current_user.id).first()
+    trans = getEthTrans(wallet.wallet)
+    for tran in trans:
+        tran['user_id'] = current_user.id
+        tran['wallet'] = wallet.wallet
+        exists = Transactions.query.filter_by(hash=tran['hash']).first()
+        if exists:
+            continue
+        transaction = Transactions(**tran)
+        db.session.add(transaction)
+        db.session.commit()
+    return render_template('main/transactions.html')
 
 @main.route('/profile')
 def profile():

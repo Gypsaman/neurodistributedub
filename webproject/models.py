@@ -38,7 +38,7 @@ class Wallet(db.Model):
     privatekey = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'student_id: {self.student_id}, wallet: {self.wallet}, privatekey: {self.privatekey}'
+        return f'student_id: {self.user_id}, wallet: {self.wallet}, privatekey: {self.privatekey}'
     
 class Assets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,7 +50,7 @@ class Assets(db.Model):
     assignment = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'student_id: {self.student_id}, asset_type: {self.asset_type}, network: {self.network}, asset_address: {self.asset_address}, time_added: {self.time_added}, assignment: {self.assignment}'
+        return f'student_id: {self.user_id}, asset_type: {self.asset_type}, network: {self.network}, asset_address: {self.asset_address}, time_added: {self.time_added}, assignment: {self.assignment}'
     
 class Transactions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -80,6 +80,7 @@ class Transactions(db.Model):
     
     def __repr__(self):
         return f'wallet: {self.wallet}, blockNumber: {self.blockNumber}, timeStamp: {self.timeStamp}, hash: {self.hash}, from: {self.trans_from}, to: {self.trans_to}'
+    
     
 class Assignments(db.Model):
     id = db.Column(db.Integer, primary_key=True)

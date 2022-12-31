@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, request
 from flask_login import LoginManager
 
-from webproject.extensions import db
+from webproject.extensions import db, migrate
 
 
 def create_app():
@@ -10,6 +10,7 @@ def create_app():
     app.config["SECRET_KEY"] = "ABC"
 
     db.init_app(app)
+    migrate.init_app(app,db)
 
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"

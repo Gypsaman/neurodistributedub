@@ -1,19 +1,21 @@
 {% extends 'base.html' %} {% block body %}
 <div class="neuro-content">
   <h1>Transactions</h1>
-    {% if transactions | length ==0 %}
-        <p>No transactions added yet</p>
-    {% else %}
-        {% for transaction in transactions %} transaction.blocknumber {% endfor %}
-    {% endif %}
-    <div>
-        <button
-        class="btn btn-primary"
-        style="width: 100px; margin: 20px"
-        onclick="window.location.href='/addtransaction'"
-        >
-        Add Transaction
-        </button>
+    {{ table | safe }}
+    <div class="neuro-flex-row">
+
+        <div>
+            <button
+            class="btn btn-primary"
+            style="width: 100px; margin: 20px"
+            onclick="window.location.href='/addethtransactions'"
+            >
+            Add Tx from ETH
+            </button>
+        </div>  
+
+        </div>
+
     </div>
 
 </div>

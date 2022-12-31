@@ -22,4 +22,5 @@ def nfts_view(asset_id):
 
 @nfts.route('/test')
 def test():
-    return render_template('nfts/test.html')
+
+    return render_template('nfts/test.html',html_text=html_text)

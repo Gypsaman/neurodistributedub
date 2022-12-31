@@ -1,4 +1,5 @@
 import json
+from datetime import datetime as dt
 
 import requests
 from web3 import Web3
@@ -27,6 +28,25 @@ nft_abi = [
         "outputs": [{"internalType": "string", "name": "", "type": "string"}],
         "stateMutability": "view",
         "type": "function",
+    },
+        {
+        "constant": True,
+        "inputs": [
+            {
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "name": "balance",
+                "type": "uint256"
+            }
+        ],
+        "payable": False,
+        "stateMutability": "view",
+        "type": "function"
     },
 ]
 
@@ -92,24 +112,58 @@ def getEthTrans(account):
 
     EtherQuery = "https://api-goerli.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey={}"
 
+    #without offset (limit 10)
+    EtherQuery = "https://api-goerli.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&sort=asc&apikey={}"
+
     accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
     transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
     if transinfo["message"] == "NOTOK":
         return -1
 
     transhist = transinfo["result"]
+    transhist = conform_eth_trans(transhist)
+    return transhist
 
+
+def conform_eth_trans(transhist):
+    for tran in transhist:
+        tran["trans_from"] = tran["from"]
+        del tran["from"]
+        tran["trans_to"] = tran["to"]
+        del tran["to"]
+        tran["timeStamp"] = dt.fromtimestamp(int(tran["timeStamp"]))
+        tran["isError"] = tran["isError"] != "0"
+        tran["txreceipt_status"] = tran["txreceipt_status"] != "0"
     return transhist
 
 
 def getContracts(account):
-
+    w3 = Web3(Web3.HTTPProvider(PROVIDER))
+    
     transhist = getEthTrans(account)
     contracts = []
 
     for tran in transhist:
-        if tran["contractAddress"] > "":
-            contracts.append(tran["contractAddress"])
+        contract = tran["contractAddress"]
+        contract_type = 'NFT'
+        if contract > "":
+            try:
+                tokenContract = w3.eth.contract(
+                    address=w3.toChecksumAddress(contract), abi=nft_abi
+                )
+            except:
+                continue
+            
+            try:
+                tokenContract.functions.tokenURI(0).call()
+            except:
+                try:
+                    bal = tokenContract.functions.balanceOf(w3.toChecksumAddress(contract)).call()
+                    contract_type = 'ERC20'
+                except Exception as e:
+                    contract_type = 'DAPP'
+
+            contracts.append({"contract":contract,"type":contract_type})
 
     return contracts
 
@@ -124,3 +178,10 @@ def getContractCreator(contract):
     for tran in transactions:
         if tran["contractAddress"].lower() == contract.lower():
             return tran["from"]
+
+
+def CallContractFunction(contract, func, args):
+    w3 = Web3(Web3.HTTPProvider(PROVIDER))
+    contract = w3.eth.contract(address=contract, abi=nft_abi)
+    func = getattr(contract.functions, func)
+    return func(*args).call()

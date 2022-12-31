@@ -7,7 +7,7 @@
     </div>
     <div>
       <button
-      class="btn btn-primary"
+      class="btn btn-secondary btn-sm"
       style="width: 100px; margin: 20px"
       onclick="window.location.href='/assets_table'"
     >
@@ -20,52 +20,59 @@
         <p>No assets added yet</p>
     </div>
   {% endif %}
+  <div style="display: flex;  flex-direction: row; flex-wrap: wrap;">
   {% for asset in assets %}
     {% if asset.asset_type == 1 %}
         <div class="neuro-view-asset-token">
-    {% else %}
+    {% elif asset.asset_type == 2 %}
         <div class="neuro-view-asset-nft">
+    {% else %}
+      <div class="neuro-view-asset-dapp">
+    
     {% endif %}
 
-    <div id="type">
+    
       {% if asset.asset_type == 1 %}
         <div>Token</div>
-        {% else %}
+      {% elif asset.asset_type == 3 %}
+        <div>Dapp</div>
+      
+      {% else %}
         <div style="display:flex; flex-direction: row; justify-content: space-between; "> 
             <div style="margin-right:5px">NFT</div>
-            <div>
-            <a href="/viewnfts/{{asset.id}}"><img src="/static/imgs/binoculars.svg" ></a>
+            <div><a href="/viewnfts/{{asset.id}}"><img src="/static/imgs/binoculars.svg" ></a></div>
+        </div>
+      {% endif %}
+      
+
+      <div id="address">
+        {% if asset.network== "goerli" %}
+        <a href="https://goerli.etherscan.io/address/{{asset.asset_address}}"
+          >{{ asset.asset_address }}</a
+        >
+        {% else %} {{ asset.asset_address }} {% endif %}
+      </div>
+      <div style="margin: 5px;">
+        <p>Added on: {{asset.time_added.strftime('%m-%d-%Y %H:%M')}}</p>
+      </div>
+
+
+      <div style="display:flex; flex-direction: row; justify-content: space-evenly; width:100%">
+          <div>
+              <a href="/assetdelete/{{asset.id}}">
+                <img src="/static/imgs/trash.svg" alt="delete" width="16" height="16"/>
+              </a>
           </div>
-        </div>
-        {% endif %}
-    </div>
-
-    <div id="address">
-      {% if asset.network== "goerli" %}
-      <a href="https://goerli.etherscan.io/address/{{asset.asset_address}}"
-        >{{ asset.asset_address }}</a
-      >
-      {% else %} {{ asset.asset_address }} {% endif %}
-    </div>
-    <div style="margin: 5px;">
-      <p>Added on: {{asset.time_added.strftime('%m-%d-%Y %H:%M')}}</p>
-    </div>
-
-
-    <div style="display:flex; flex-direction: row; justify-content: space-evenly; width:100%">
-        <div>
-            <a href="/assetdelete/{{asset.id}}">
-              <img src="/static/imgs/trash.svg" alt="delete" width="16" height="16"/>
-            </a>
-         </div>
-        <div>
-            <a href="/assets/update/{{asset.id}}"
-                ><img src="/static/imgs/pen.svg" alt="edit" width="16" height="16"/>
-            </a>
-        </div>
-    </div>
+          <div>
+              <a href="/assets/update/{{asset.id}}"
+                  ><img src="/static/imgs/pen.svg" alt="edit" width="16" height="16"/>
+              </a>
+          </div>
+      </div>
+    
 </div>  
   {% endfor %}
+</div>
 
   <div class="neuro-flex-row">
     <button

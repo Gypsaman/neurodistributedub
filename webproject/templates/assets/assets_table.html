@@ -10,7 +10,7 @@
             </div>
             <div>
               <button
-              class="btn btn-primary"
+              class="btn btn-secondary btn-sm"
               style="width: 100px; margin: 20px"
               onclick="window.location.href='/assets'"
             >
@@ -38,7 +38,7 @@
             <tbody>
                 {% for asset in assets %}
                 <tr>
-                    <td>{% if asset.asset_type == 1 %}Token{% else %}NFT{% endif %}</td>
+                    <td>{% if asset.asset_type == 1 %}Token{% elif asset.asset_type == 2%}NFT{%else%}Dapp{% endif %}</td>
                     <td>{{ asset.network }}</td>
                     
                     <td>
