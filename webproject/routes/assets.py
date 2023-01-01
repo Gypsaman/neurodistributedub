@@ -7,18 +7,24 @@ from webproject import db
 from webproject.models import Assets,Assignments,Wallet
 from webproject.web3_interface import get_eth_balance, getContracts
 from flask_login import login_required
+from webproject.table_creator import table_creator
 
 assets = Blueprint("assets", __name__)
 
-asset_types = {"NFT" : 1, "ERC20" : 2,"DAPP": 3}
+asset_types = {"NFT" : 2, "ERC20" : 1,"DAPP": 3}
 
 # Asset Management
-@assets.route("/assets")
+@assets.route("/assets/<int:page_num>")
 @login_required
-def assets_list():
+def assets_list(page_num):
     assets_t = Assets.query.filter_by(user_id=current_user.id).all()
-    return render_template("assets/assets.html", assets=assets_t)
+    items_per_page = 15
+    table = table_creator("Assets", assets_t, items_per_page, page_num, actions=["View", "Delete","Edit"])
+    return render_template("assets/assets.html", table=table)
 
+@assets.route("/assets/noview/<int:page_num>")
+def noview(page_num):
+    return render_template("assets/noview.html",page_num=page_num)
 
 @assets.route('/addethassets')
 def add_eth_assets():
@@ -38,12 +44,6 @@ def add_eth_assets():
         db.session.commit()
         
     return render_template('assets/assets_table.html')
-
-@assets.route("/assets_table")
-@login_required
-def assets_table():
-    assets_t = Assets.query.filter_by(user_id=current_user.id).all()
-    return render_template("assets/assets_table.html", assets=assets_t)
 
 
 @assets.route("/assetdelete/<int:id>")

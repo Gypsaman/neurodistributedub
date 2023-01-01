@@ -3,9 +3,13 @@ from datetime import datetime as dt
 
 import requests
 from web3 import Web3
+import os
+from dotenv import load_dotenv
 
-PROVIDER = "https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881"
-ETHERSCAN_TOKEN = "KIHSQV61IF94K6KXEKQRJJQA41ZMK4BTR2"
+load_dotenv()
+
+PROVIDER = os.getenv("PROVIDER")
+ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
 
 nft_abi = [
     {
@@ -29,7 +33,7 @@ nft_abi = [
         "stateMutability": "view",
         "type": "function",
     },
-        {
+    {
         "constant": True,
         "inputs": [
             {
@@ -67,11 +71,13 @@ def get_nft_uri(token_addr, top=10):
     for token in range(top):
         try:
             tokenURI = tokenContract.functions.tokenURI(token).call()
-        except:
+        except Exception as e:
             break
 
         if tokenURI.find("?filename") != -1:
             tokenURI = tokenURI.split("?filename")[0]
+        else:
+            tokenURI = tokenURI.split("filename")[0]
         response = requests.get(tokenURI)
         if response.status_code != 200:
             break

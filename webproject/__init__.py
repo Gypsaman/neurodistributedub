@@ -1,13 +1,18 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask
 from flask_login import LoginManager
 
 from webproject.extensions import db, migrate
+from dotenv import load_dotenv
+import os
 
 
 def create_app():
+    
+    load_dotenv()
+    
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blockhain.db"
-    app.config["SECRET_KEY"] = "ABC"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
+    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
     db.init_app(app)
     migrate.init_app(app,db)
@@ -33,5 +38,11 @@ def create_app():
 
     from webproject.routes.assets import assets as assets_blueprint
     app.register_blueprint(assets_blueprint)
+    
+    from webproject.routes.transactions import trans as trans_blueprint
+    app.register_blueprint(trans_blueprint)
+    
+    from webproject.routes.assignments import assignments as assignments_blueprint
+    app.register_blueprint(assignments_blueprint)
 
     return app

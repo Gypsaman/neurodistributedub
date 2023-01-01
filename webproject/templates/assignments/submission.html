@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <div class="neuro-form-section">
+        <form action="\submission\{{assignment.id}}" method="POST" class="neuro-form" enctype="multipart/form-data">
+            <h1>Submission for: {{assignment.name}}</h1>
+            <div>
+                {% if assignment.inputtype == "text" %}
+                    <label for="submission">Submission</label>
+                    <input type="text" name="submission" placeholder="Enter your answer here" required>
+                {% elif assignment.inputtype == "file" %}
+                    <input type="file" name="submission" required>
+                {% endif %}
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="neuro-form-section">
+        <h3>Submission History</h3>
+        {{ table | safe }}
+    </div>
+</div>
+{% endblock %}

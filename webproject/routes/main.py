@@ -4,7 +4,6 @@ from webproject.models import User,Wallet,Assets,Transactions,Assignments,Grades
 from webproject.web3_interface import get_eth_balance, getEthTrans
 from webproject.table_creator import table_creator
 from webproject import db
-from datetime import datetime as dt
 from flask_login import login_required
 
 
@@ -49,36 +48,6 @@ def welcome():
 def tokens():
     return render_template('main/tokens.html')
 
-@main.route('/transactions/<int:page_num>')
-def transactions(page_num):
-    items_per_page = 30
-    transactions = Transactions.query.filter_by(user_id=current_user.id).all()
-    table = table_creator('Transactions',transactions,items_per_page,page_num)
-    
-    
-    return render_template('main/transactions.html',table=table)
-
-@main.route('/addtransaction',methods=["GET","POST"])
-def add_transaction():
-    if request.method == "POST":
-        pass
-    
-    return render_template('main/transactions_add.html')
-
-@main.route('/addethtransactions')
-def add_eth_transaction():
-    wallet = Wallet.query.filter_by(user_id=current_user.id).first()
-    trans = getEthTrans(wallet.wallet)
-    for tran in trans:
-        tran['user_id'] = current_user.id
-        tran['wallet'] = wallet.wallet
-        exists = Transactions.query.filter_by(hash=tran['hash']).first()
-        if exists:
-            continue
-        transaction = Transactions(**tran)
-        db.session.add(transaction)
-        db.session.commit()
-    return render_template('main/transactions.html')
 
 @main.route('/profile')
 def profile():
@@ -93,36 +62,7 @@ def profile():
     
     return render_template('main/profile.html',user=curr_usr,wallet=wallet,tokens=tokens,nfts=nfts,eth_balance=eth_balance)
 
-@main.route('/assignments')
-def assignments():
-    assignments = Assignments.query.all()
-    return render_template('main/assignments.html',assignments=assignments)
-
-@main.route('/addassignment')
-def add_assignment():
-    return render_template('main/assignments_add.html')
-
-@main.route('/addassignment',methods=["POST"])
-def add_assignment_post():
-    
-    due_str = request.form.get('due_date').replace('T',' ')
-    due_date = dt.strptime(due_str, '%Y-%m-%d %H:%M')
-    record = {
-        "name" : request.form.get('assignment_name'),
-        "due" : due_date,
-    }
-    assignment = Assignments.query.filter_by(name=record['name']).first()
-    if assignment:
-        flash("Assignment already exists")
-        return redirect(url_for('main.add_assignment'))
-    assignment = Assignments(**record)
-    db.session.add(assignment)
-    db.session.commit()
-    
-    return redirect('/main/assignments')
 
 
-@main.route('/grades')
-def grades():
-    grades = Grades.query.filter_by(user_id=current_user.id).all()
-    return render_template('main/grades.html',grades=grades)
+
+

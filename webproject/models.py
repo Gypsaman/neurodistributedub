@@ -89,6 +89,7 @@ class Assignments(db.Model):
     inputtype = db.Column(db.String(10))
     grader = db.Column(db.String(50))
     
+    
     def __repr__(self):
         return f'name: {self.name}, due: {self.due}, inputtype: {self.inputtype}, grader: {self.grader}'
     
@@ -99,8 +100,20 @@ class Grades(db.Model):
     grade = db.Column(db.Integer)
     dategraded = db.Column(db.DateTime)
     
+    
+    
     def __repr__(self):
         return f'assignment: {self.assignment}, grade: {self.grade}, dategraded: {self.dategraded}'
     
     
+class Submissions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    assignment = db.Column(db.Integer)
+    submission = db.Column(db.String(50))
+    date_submitted = db.Column(db.DateTime)
+    grade = db.Column(db.Integer)
+    
+    def __repr__(self):
+        return f'assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}'   
     

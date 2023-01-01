@@ -2,6 +2,10 @@
 
 {% block body %}
 <div class="neuro-content">
+    <h1>NFT Collection Viewer</h1>
+    {% if metadatas | length == 0 %}
+        <p>There are no NFTs in this collection.</p>
+    {% endif %}
     {% for metadata in metadatas %}
         <div class="neuro-view-nft">
             <img src="https://ipfs.io/ipfs/{{metadata['image']}}" alt="NFTs" style="height:300px">
@@ -22,5 +26,8 @@
             </div>
         </div>
     {% endfor %}
+    <div>
+        <button class="neuro-button" onclick="window.location.href='/assets/{{ page_num }}'">return</button>
+    </div>
 </div>
 {% endblock %}
