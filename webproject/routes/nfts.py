@@ -25,4 +25,4 @@ def nfts_view(page_num,asset_id):
 @nfts.route('/test')
 def test():
 
-    return os.getcwd()
+    return os.getenv("DATABASE")
