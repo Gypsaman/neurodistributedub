@@ -10,6 +10,7 @@ from os.path import join
 
 from flask_login import login_required
 
+UPLOADPATH = os.getenv('UPLOADPATH')
 assignments = Blueprint('assignments',__name__)
 
 @assignments.route('/assignments/<int:page_num>')
@@ -63,7 +64,7 @@ def submission_post(submission_id):
     if assignment.inputtype == 'file':
         file_data = request.files['submission']
         file_name = werkzeug.utils.secure_filename(f'{submission_id}_{current_user.id}_{dt.now().strftime("%Y%m%d%H%M%S")}_{file_data.filename}')
-        file_data.save(join('C:\\Users\\gypsa\\websites\\neurodistributedub','uploads',file_name))
+        file_data.save(join(UPLOADPATH,file_name))
         upload_name=file_name
     else:
         upload_name = request.form['submission']
