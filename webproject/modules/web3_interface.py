@@ -6,7 +6,7 @@ from web3 import Web3
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv('../../.env')
 
 PROVIDER = os.getenv("PROVIDER")
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
