@@ -11,8 +11,8 @@ def create_app():
     load_dotenv("/home/neurodistributed/neurodistributedub/.env")
     
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blockhain.db" #os.getenv("DATABASE")
-    app.config["SECRET_KEY"] = "ABC" #os.getenv("SECRET_KEY")
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
     db.init_app(app)
     migrate.init_app(app,db)
