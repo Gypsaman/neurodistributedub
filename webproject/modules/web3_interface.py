@@ -4,9 +4,9 @@ from datetime import datetime as dt
 import requests
 from web3 import Web3
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv,find_dotenv
 
-load_dotenv('../../.env')
+load_dotenv(find_dotenv())
 
 PROVIDER = os.getenv("PROVIDER")
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")

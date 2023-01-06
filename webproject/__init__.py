@@ -2,13 +2,13 @@ from flask import Flask
 from flask_login import LoginManager
 
 from webproject.modules.extensions import db, migrate
-from dotenv import load_dotenv
+from dotenv import load_dotenv,find_dotenv
 import os
 
 
 def create_app():
     
-    load_dotenv('..\.env')
+    load_dotenv(find_dotenv())
     
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
