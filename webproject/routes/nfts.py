@@ -4,6 +4,7 @@ from webproject.models import User,Wallet,Assets
 from webproject.modules.web3_interface import get_nft_uri
 from webproject import db
 from flask_login import login_required
+import os
 
 nfts = Blueprint('nfts',__name__)
 
@@ -24,4 +25,4 @@ def nfts_view(page_num,asset_id):
 @nfts.route('/test')
 def test():
 
-    return render_template('nfts/test.html')
+    return os.getcwd()

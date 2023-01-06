@@ -8,8 +8,8 @@ from dotenv import load_dotenv,find_dotenv
 
 load_dotenv(find_dotenv())
 
-PROVIDER = os.getenv("PROVIDER")
-ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
+PROVIDER = "https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881" #os.getenv("PROVIDER")
+ETHERSCAN_TOKEN ="KIHSQV61IF94K6KXEKQRJJQA41ZMK4BTR2" # os.getenv("ETHERSCAN_TOKEN")
 
 nft_abi = [
     {
