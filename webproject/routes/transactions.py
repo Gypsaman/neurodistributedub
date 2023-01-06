@@ -1,8 +1,8 @@
 from flask import Blueprint,render_template,request
 from flask_login import current_user
 from webproject.models import User,Wallet,Transactions
-from webproject.web3_interface import  getEthTrans
-from webproject.table_creator import table_creator
+from webproject.modules.web3_interface import  getEthTrans
+from webproject.modules.table_creator import table_creator
 from webproject import db
 
 from flask_login import login_required

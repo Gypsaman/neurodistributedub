@@ -47,57 +47,10 @@ select {
 }
 .neuro-edit,
 .neuro-delete {
-  /* color: rgb(25, 191, 55); */
+
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 /* 
-.neuro-table {
-  display: table;
-
-  
-  border-bottom: 5px;
-  border-bottom-style: solid;
-  border-color: gray;
-  border-spacing: 15px;
-
-  
-}
-.neuro-table tbody {
-  vertical-align: top;
-}
-.neuro-table thead {
-  margin-bottom: 5px;
-} 
-.neuro-table th {
-
-  border-radius: 10px;
-  padding: 0 15px;
-  background-color: rgb(72, 72, 133);
-  text-align: center;
-
-
-}
-
-.neuro-table td {
-  padding: 8px;
-}
-.neuro-table-nav {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: top;
-  padding: 5px;
-  margin: 5px;
-  
-}
-.neuro-table-row-main{
-  background-color: rgb(77, 71, 71);
-  
-}
-.neuro-table-row-alt{
-  background-color: rgb(39, 37, 37);
-}
 
 .neuro-back {
   justify-content: right;
@@ -201,7 +154,7 @@ select {
   padding: 8px;
 }
 input,textarea {
-  /* background-color: rgb(125, 116, 116); */
+  background-color: rgb(233, 230, 230);
   
 }
 
@@ -253,6 +206,7 @@ input,textarea {
 .neuro-footer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   height: 25px;
   color: rgb(94, 90, 90);
   margin-top: 5px;

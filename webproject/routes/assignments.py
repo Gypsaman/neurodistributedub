@@ -2,8 +2,7 @@ from flask import Blueprint,render_template,request,redirect,url_for,flash
 import werkzeug
 from flask_login import current_user
 from webproject.models import User,Wallet,Assignments,Grades,Submissions
-from webproject.web3_interface import  getEthTrans
-from webproject.table_creator import table_creator
+from webproject.modules.table_creator import table_creator
 from webproject import db
 from datetime import datetime as dt
 

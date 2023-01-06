@@ -7,7 +7,7 @@ from flask_login import login_required
 from webproject.routes import admin_required
 from datetime import datetime as dt
 import random
-from webproject.ubemail import UBEmail
+from webproject.modules.ubemail import UBEmail
 
 auth = Blueprint('auth',__name__)
 

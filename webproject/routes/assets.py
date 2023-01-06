@@ -5,9 +5,9 @@ from flask_login import current_user
 
 from webproject import db
 from webproject.models import Assets,Assignments,Wallet
-from webproject.web3_interface import get_eth_balance, getContracts
+from webproject.modules.web3_interface import get_eth_balance, getContracts
 from flask_login import login_required
-from webproject.table_creator import table_creator
+from webproject.modules.table_creator import table_creator
 
 assets = Blueprint("assets", __name__)
 
