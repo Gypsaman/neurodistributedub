@@ -8,7 +8,7 @@ import os
 
 def create_app():
     
-    load_dotenv("/home/neurodistributed/neurodistributedub/")
+    load_dotenv("/home/neurodistributed/neurodistributedub/.env")
     
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blockhain.db" #os.getenv("DATABASE")
