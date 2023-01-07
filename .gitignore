@@ -6,4 +6,4 @@ test.html
 blockchainenv
 data
 .env
-instance
+instance/
