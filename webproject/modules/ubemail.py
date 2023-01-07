@@ -12,10 +12,10 @@ servers = {
 class UBEmail:
     
     def __init__(self) -> None:
-        self.emailServer = servers["DNA"]['emailServer'] #smtp.office365.com
-        self.emailPort = servers["DNA"]['emailPort'] #587
+        self.emailServer = "smtp.ionos.com" # servers["DNA"]['emailServer'] #smtp.office365.com
+        self.emailPort = 587 #servers["DNA"]['emailPort'] #587
 
-        self.password = os.environ.get(servers["DNA"]['password_source'])
+        self.password = "NeuroDistributed33##" #os.environ.get(servers["DNA"]['password_source'])
         self.emailAccount = servers["DNA"]['emailAccount']
 
         self.context = ssl.create_default_context()

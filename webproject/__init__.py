@@ -9,6 +9,7 @@ import os
 def create_app():
     
     load_dotenv("/home/neurodistributed/neurodistributedub/.env")
+    # load_dotenv()
     
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
