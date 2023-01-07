@@ -6,13 +6,6 @@ import os
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
-
-graders= {
-    "SHA256": sha256_grader,
-    "ECC": ecc_grader,
-    "Wallet": wallet_grader,
-}
-
 myaccount = os.getenv("MYWALLET")
 
 
@@ -27,10 +20,6 @@ def get_contract(contractAddress,abiFile):
         contract = None
     
     return contract
-
-def call_grader(assignment:str,submission:str) -> None:
-    graders[assignment](submission)
-    
 def rentCar_Grader(contractAddress):
 
     rentCar = get_contract(contractAddress,'rentCar_ABI.json')
@@ -125,26 +114,31 @@ def payUB_Grader(contractAddress):
     return grade
 
 def sha256_grader(submission:str) -> None:
-    
-    from webproject.modules.graders.SHAIMPORT import SHA256
-    
-    shutil.copy(os.path.join(UPLOADPATH,submission),os.path.join(os.getcwd(),'SHAIMPORT.py'))
-    shutil.move(os.path.join(UPLOADPATH,submission),os.path.join(STOREPATH,submission))
-    
+    cwd = os.getcwd()
+    cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\home\neurodistributed' else cwd
+    shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
+    from SHAIMPORT import SHA256
     correcthash = "3f24ef2774456a4aad63f8b1f8772c89a0b498965b400e09a869be5769e514f8"
-    
     try:
         hash = SHA256('Cesar Garcia')
     except:
         hash = "" 
-    
     if isinstance(hash,list):
         hash = ''.join(hash)
-    
     if hash == correcthash:
         return 100
-    
     if len(hash) == len(correcthash):
         return 90
 
     return 80
+
+graders= {
+    "SHA256": sha256_grader,
+    # "ECC": ecc_grader,
+    # "Wallet": wallet_grader,
+}
+def call_grader(assignment:str,submission:str) -> int:
+   
+   return graders[assignment](submission)
+    
+    

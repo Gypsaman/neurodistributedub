@@ -4,12 +4,16 @@ from flask_login import LoginManager
 from webproject.modules.extensions import db, migrate
 from dotenv import load_dotenv,find_dotenv
 import os
+import subprocess
 
 
 def create_app():
     
-    load_dotenv("/home/neurodistributed/neurodistributedub/.env")
-    # load_dotenv()
+    cwd = os.getcwd()
+    cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
+    
+    load_dotenv(os.path.join(cwd, '.env'))
+    
     
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")

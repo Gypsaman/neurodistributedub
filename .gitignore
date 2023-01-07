@@ -1,7 +1,6 @@
 __pycache__
 start_flask_server.bat
-test_db.py
-test_module.py
+pythontest_module.py
 test.html
 blockchainenv
 data
