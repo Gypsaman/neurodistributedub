@@ -95,7 +95,7 @@ def password_reset():
         db.session.commit()
         
         email = UBEmail()
-        body = f'Your password reset link is http://neurodistributed/passwordupdate/{password_phrase}'
+        body = f'Your password reset link is http://neurodistributed.com/passwordupdate/{password_phrase}'
         body += f'\n\nThis link will expire in 5 minutes'
         
         email.send_email(user.email,'Password Reset',body)
