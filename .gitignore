@@ -1,8 +1,8 @@
 __pycache__
 start_flask_server.bat
-pythontest_module.py
-test.html
 blockchainenv
 data
 .env
-instance/
+blockchain.db
+uploads/
+uploads_history/
