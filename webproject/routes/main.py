@@ -2,7 +2,6 @@ from flask import Blueprint,render_template,request,redirect,flash,url_for
 from flask_login import current_user
 from webproject.models import User,Wallet,Assets,Transactions,Assignments,Grades
 from webproject.modules.web3_interface import get_eth_balance
-from webproject.modules.table_creator import table_creator
 from webproject import db
 from flask_login import login_required
 

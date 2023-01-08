@@ -7,7 +7,8 @@ from webproject import db
 from webproject.models import Assets,Assignments,Wallet
 from webproject.modules.web3_interface import get_eth_balance, getContracts
 from flask_login import login_required
-from webproject.modules.table_creator import table_creator
+
+from webproject.modules.table_creator import TableCreator, Field,asset_type_string,timestamp_to_date
 
 assets = Blueprint("assets", __name__)
 
@@ -17,9 +18,19 @@ asset_types = {"NFT" : 2, "ERC20" : 1,"DAPP": 3}
 @assets.route("/assets/<int:page_num>")
 @login_required
 def assets_list(page_num):
-    assets_t = Assets.query.filter_by(user_id=current_user.id).all()
-    items_per_page = 15
-    table = table_creator("Assets", assets_t, items_per_page, page_num, actions=["View", "Delete","Edit"])
+    fields = {
+        'id': Field(None,0),
+        'asset_type': Field(asset_type_string,1),
+        'network': Field(None,2),
+        'asset_address': Field(None,3),
+        'time_added': Field(timestamp_to_date,4),
+        'assignment': Field(None,5)
+    }
+    table_creator = TableCreator("Assets", fields, actions=["View", "Delete","Edit"])
+    table_creator.set_items_per_page(15)
+    table_creator.view(db.session.query(Assets.id,Assets.asset_type,Assets.network,Assets.asset_address,Assets.time_added,Assets.assignment).filter_by(user_id=current_user.id).all())
+    table = table_creator.create(page_num)
+    
     return render_template("assets/assets.html", table=table)
 
 @assets.route("/assets/noview/<int:page_num>")

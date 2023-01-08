@@ -28,7 +28,7 @@ def check_submissions():
                 grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
                 db.session.add(grade)
             else:
-                grade.grade = submission.grade
+                grade.grade = max(submission.grade,grade.grade)
             db.session.commit()
             email = UBEmail()
             user = User.query.filter_by(id=submission.user_id).first()

@@ -96,14 +96,12 @@ class Assignments(db.Model):
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    assignment = db.Column(db.Integer)
+    assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
     grade = db.Column(db.Integer)
     dategraded = db.Column(db.DateTime)
     
+    assignmentR = db.relationship('Assignments', backref='grades', lazy=True)
    
-    
-    
-    
     def __repr__(self):
         return f'assignment: {self.assignment}, grade: {self.grade}, dategraded: {self.dategraded}'
     
@@ -111,10 +109,11 @@ class Grades(db.Model):
 class Submissions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    assignment = db.Column(db.Integer)
+    assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
     submission = db.Column(db.String(50))
     date_submitted = db.Column(db.DateTime)
     grade = db.Column(db.Integer)
+    
     
     def __repr__(self):
         return f'assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}'   

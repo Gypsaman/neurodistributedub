@@ -6,3 +6,4 @@ data
 instance
 uploads
 uploads_history/
+table_creator copy.py
