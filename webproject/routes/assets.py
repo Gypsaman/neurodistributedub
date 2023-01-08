@@ -19,16 +19,16 @@ asset_types = {"NFT" : 2, "ERC20" : 1,"DAPP": 3}
 @login_required
 def assets_list(page_num):
     fields = {
-        'id': Field(None,0),
-        'asset_type': Field(asset_type_string,1),
-        'network': Field(None,2),
-        'asset_address': Field(None,3),
-        'time_added': Field(timestamp_to_date,4),
-        'assignment': Field(None,5)
+        'id': Field(None,None),
+        'asset_type': Field(asset_type_string,'Type'),
+        'network': Field(None,'Network'),
+        'asset_address': Field(None,'Address'),
+        'time_added': Field(timestamp_to_date,'Added On'),
+        'assignment': Field(None,'Assignment')
     }
     table_creator = TableCreator("Assets", fields, actions=["View", "Delete","Edit"])
     table_creator.set_items_per_page(15)
-    table_creator.view(db.session.query(Assets.id,Assets.asset_type,Assets.network,Assets.asset_address,Assets.time_added,Assets.assignment).filter_by(user_id=current_user.id).all())
+    table_creator.create_view()
     table = table_creator.create(page_num)
     
     return render_template("assets/assets.html", table=table)

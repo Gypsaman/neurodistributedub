@@ -1,10 +1,17 @@
-
+from webproject import db
 
 def wei_to_eth(wei):
     return wei / 1000000000000000000
 
+def true_false(value):
+    return 'True' if value == 1 else 'False'
+
+def yes_no(value):
+    return 'Yes' if value == 1 else 'No'
+
 def timestamp_to_date(timeStamp):
-    return timeStamp.strftime('%Y-%m-%d %H:%M')
+    # return timeStamp.strftime('%Y-%m-%d %H:%M')
+    return timeStamp[:-10]
     
 def asset_type_string(asset_type):
     if asset_type == 1:
@@ -15,78 +22,50 @@ def asset_type_string(asset_type):
         return 'Dapp'
     
 def short_hash(hash):
+    hash = str(hash)
     return hash[:10] + '...' if len(hash) > 10 else hash
 
 class Field:
-    def __init__(self,format,offset):
+    def __init__(self,format,display):
         self.Format = format
-        self.Offset = offset
+        self.Display = display
     def format(self,value):
         if self.Format is None:
             return value
         else:
             return self.Format(value)
         
-table_columns = {
-    'Transactions': 
-        {
-            'blockNumber': None, 
-            'timeStamp': timestamp_to_date,
-            'hash':short_hash, 
-            'nonce':None, 
-            'blockHash':short_hash,
-            'transactionIndex':None, 
-            'trans_from':short_hash, 
-            'trans_to':short_hash,
-            'value':wei_to_eth, 
-            'gas':wei_to_eth, 
-            'gasPrice':wei_to_eth,
-            'isError':None,
-            'contractAddress':short_hash
-        },
-    # 'Assignments':
-    #     {
-    #         'name': None,
-    #         'due': timestamp_to_date,
-    #         'inputtype': None,
-    #         'grader': None
-    #     },
-    # 'Submissions':
-    #     {
-    #         'assignment':None,
-    #         'submission':None,
-    #         'date_submitted':timestamp_to_date,
-    #         'grade':None
-    #     },
-    # 'Assets':
-    #     {
-    #         'asset_type': asset_type_string,
-    #         'network': None,
-    #         'asset_address': None,
-    #         'time_added': timestamp_to_date,
-    #         'assignment': None
-    #     },
-    # 'Grades':
-    #     {
-    #         'id' : Field(None,0),
-    #         'Assignment': Field(None,1),
-    #         'Grade': Field(None,2),
-    #         'Date Graded': Field(timestamp_to_date,3)
-    #         # {'Format': timestamp_to_date, 'Offset':3}
-    #     }
-    }
-
 class TableCreator:
-    def __init__(self,table_name,fields,actions=["Edit", "Delete","View"]):
+    def __init__(self,table_name,fields,condition=None,actions=["Edit", "Delete","View"]):
         self.table_name = table_name
+        self.join_table = None
+        self.condition = condition
+        self.join_condition = None
         self.actions = actions
-        self.fields = {column:field for column,field in fields.items() if column != 'id'}
-        self.id = fields['id'] if 'id' in fields else None
-        if self.id is None and len(actions) > 0:
+        self.fields = {column:field for column,field in fields.items()}
+
+        if 'id' not in self.fields and len(actions) > 0:
             raise Exception('TableCreator: id field is required for actions')
         
     def set_items_per_page(self,items_per_page):
         self.items_per_page = items_per_page
+        
+    def join(self,table_name,condition):
+        self.join_table = table_name
+        self.join_condition = condition
+        
+    def create_view(self):
+        fieldlist = ""
+        for field in self.fields.keys():
+            fieldlist += f"{field},"
+        fieldlist = fieldlist[:-1]
+        stmt = f"Select {fieldlist} from {self.table_name} "
+        if self.join_table:
+            stmt += f"join {self.join_table} on {self.join_condition} "
+        if self.condition:
+            stmt += f"where {self.condition}"
+                    
+        self.items = list(db.session.execute(stmt))
         
     def view(self,view):
         self.items = view
@@ -101,7 +80,7 @@ class TableCreator:
             pages += 1
         start = (page_num -1) * self.items_per_page
         end = start + self.items_per_page
-        columns = [field for field in self.fields.keys() if field != 'id']
+        columns = [self.fields[field].Display for field in self.fields if self.fields[field].Display]
         html = '<table class="neuro-table">'
         html += '<thead>'
         html += '<tr>'    
@@ -115,13 +94,16 @@ class TableCreator:
         html += '<tbody>'
         for item in self.items[start:end]:
             html += '<tr>'
-            for column in columns:
-                field = self.fields[column]
-                value = item[field.Offset]
+            for idx,field in enumerate([field_ for field_ in self.fields ]):
+                field = self.fields[field]
+                if not field.Display:
+                    continue
+                value = item[idx]
                 value = field.format(value)
                 html += f'<td>{value}</td>'
             html += '<td><div class="neuro-flex-row">'
             
+            self.id = item[0]
             if "Edit" in self.actions:
                 html += f'<a href="/{self.table_name.lower()}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
             if "Delete" in self.actions:

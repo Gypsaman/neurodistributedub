@@ -2,7 +2,7 @@ from flask import Blueprint,render_template,request
 from flask_login import current_user
 from webproject.models import User,Wallet,Transactions
 from webproject.modules.web3_interface import  getEthTrans
-from webproject.modules.table_creator import TableCreator,Field,timestamp_to_date,short_hash,wei_to_eth
+from webproject.modules.table_creator import TableCreator,Field,timestamp_to_date,short_hash,wei_to_eth,true_false,yes_no
 from webproject import db
 
 from flask_login import login_required
@@ -13,38 +13,25 @@ trans = Blueprint('trans',__name__)
 @trans.route('/transactions/<int:page_num>')
 def transactions(page_num):
     fields = {
-            'id': Field(None,0),
-            'blockNumber': Field(None, 1),
-            'timeStamp': Field(timestamp_to_date,2),
-            'hash': Field(short_hash, 3),
-            'nonce': Field(None, 4),
-            'blockHash': Field(short_hash,5),
-            'transactionIndex':Field(None, 6),
-            'trans_from': Field(short_hash, 7),
-            'trans_to': Field(short_hash,8),
-            'value': Field(wei_to_eth, 9),
-            'gas': Field(wei_to_eth, 10),
-            'gasPrice': Field(wei_to_eth,11),
-            'isError': Field(None,12),
-            'contractAddress': Field(short_hash,13)
+            'id': Field(None,None),
+            'blockNumber': Field(None, 'Block Number'),
+            'timeStamp': Field(timestamp_to_date, 'Date'),
+            'hash': Field(short_hash, 'Hash'),
+            'nonce': Field(None, 'Nonce'),
+            'blockHash': Field(short_hash, 'Block Hash'),
+            'transactionIndex':Field(None, 'Transaction Index'),
+            'trans_from': Field(short_hash, 'From'),
+            'trans_to': Field(short_hash, 'To'),
+            'value': Field(wei_to_eth, 'Value'),
+            'gas': Field(wei_to_eth, 'Gas'),
+            'gasPrice': Field(wei_to_eth, 'Gas Price'),
+            'isError': Field(yes_no, 'Is Error'),
+            'contractAddress': Field(short_hash, 'Contract Address')
     }
     table_creator = TableCreator('Transactions',fields,actions=['View'])
     table_creator.set_items_per_page(15)
-    table_creator.view(db.session.query(
-        Transactions.id,
-        Transactions.blockNumber,
-        Transactions.timeStamp,
-        Transactions.hash,
-        Transactions.nonce,
-        Transactions.blockHash,
-        Transactions.transactionIndex,
-        Transactions.trans_from,
-        Transactions.trans_to,
-        Transactions.value,
-        Transactions.gas,
-        Transactions.gasPrice,
-        Transactions.isError,
-        Transactions.contractAddress).all())
+
+    table_creator.create_view()
     table = table_creator.create(page_num)
     
     return render_template('trans/transactions.html',table=table)

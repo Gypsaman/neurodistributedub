@@ -23,16 +23,16 @@ assignments = Blueprint('assignments',__name__)
 @assignments.route('/assignments/<int:page_num>')
 def assingments(page_num):
     fields = {
-            'id': Field(None,0),
-            'name': Field(None,1),
-            'due': Field(timestamp_to_date,2),
-            'inputtype': Field(None,3),
-            'grader': Field(None,4)
+            'id': Field(None,None),
+            'name': Field(None,'Assignment'),
+            'due': Field(timestamp_to_date,'Due Date'),
+            'inputtype': Field(None,'Input Type'),
+            'grader': Field(None,'Grader'),
     }
     
-    table_creator = TableCreator('Assignments',fields,actions=['View','Edit','Delete'])
+    table_creator = TableCreator('Assignments',fields,actions=['Edit','Delete'])
     table_creator.set_items_per_page(30)
-    table_creator.view(db.session.query(Assignments.id,Assignments.name,Assignments.due,Assignments.inputtype,Assignments.grader).all())
+    table_creator.create_view()
     table = table_creator.create(page_num)
 
     
@@ -70,14 +70,14 @@ def submission_select_post():
         
     assignment = Assignments.query.filter_by(name=request.form['assignmentName']).first()
     fields = {
-            'assignment':Field(None,0),
-            'submission':Field(None,1),
-            'date_submitted':Field(timestamp_to_date,2),
-            'grade': Field(None,3)
+            'submission':Field(None,'Submission'),
+            'date_submitted':Field(timestamp_to_date,'Date Submitted'),
+            'grade': Field(None,'Grade')
     }
-    table_creator = TableCreator('Submissions',fields,actions=[])
+    table_creator = TableCreator('Submissions',fields,condition=f"assignment={assignment.id}",actions=[])
     table_creator.set_items_per_page(15)
-    table_creator.view(db.session.query(Submissions.assignment,Submissions.submission,Submissions.date_submitted,Submissions.grade).all())
+    table_creator.create_view()
+    # table_creator.view(db.session.query(Submissions.assignment,Submissions.submission,Submissions.date_submitted,Submissions.grade).all())
     table = table_creator.create(1)
     
     return render_template('assignments/submission.html',assignment=assignment,table=table)
@@ -112,17 +112,16 @@ def submission_post(submission_id):
 def grades(page_num):
     
     fields = {
-        'id' : Field(None,0),
-        'Assignment': Field(None,1),
-        'Grade': Field(None,2),
-        'Date Graded': Field(timestamp_to_date,3)
+        'assignments.name': Field(None,'Assignment'),
+        'grade': Field(None,'Grade'),
+        'dategraded': Field(timestamp_to_date,'Date Graded'),
 
     }
     
-    
     table_creator = TableCreator('Grades',fields,actions=[])
+    table_creator.join('Assignments','Grades.assignment = Assignments.id')
     table_creator.set_items_per_page(30)
-    table_creator.view(db.session.query(Grades.id,Assignments.name,Grades.grade,Grades.dategraded).join(Assignments).all())
+    table_creator.create_view()
     table = table_creator.create(page_num)
     
     return render_template('assignments/grades.html',table=table)
