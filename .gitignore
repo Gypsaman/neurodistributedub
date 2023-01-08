@@ -3,6 +3,6 @@ start_flask_server.bat
 blockchainenv
 data
 .env
-
+instance
 uploads
 uploads_history/

@@ -55,6 +55,12 @@ table_columns = {
             'asset_address': None,
             'time_added': timestamp_to_date,
             'assignment': None
+        },
+    'Grades':
+        {
+            'assignment': None,
+            'grade': None,
+            'dategraded': timestamp_to_date,
         }
     }
 

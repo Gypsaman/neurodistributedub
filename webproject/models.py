@@ -100,6 +100,8 @@ class Grades(db.Model):
     grade = db.Column(db.Integer)
     dategraded = db.Column(db.DateTime)
     
+   
+    
     
     
     def __repr__(self):

@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
-
-{% block body %}
+{% extends 'base.html' %} {% block body %}
 <div class="neuro-content">
-    <h1>Grades</h1>
-    {% if grades | length == 0 %}
-        <p>No grades yet!</p>
-    {% else %}
-        {% for grade in grades %}
-        {% endfor %}
-    {% endif %}
+  <h1>Grades</h1>
+    {{ table | safe }}
+    <div class="neuro-flex-row" style="margin-top: 10px;">
+        <div>
+            <button class="btn btn-primary" onclick="window.location.href='/addassignment'">
+                Add
+            </button>
+        </div>  
+    </div>
 </div>
 {% endblock %}

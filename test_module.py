@@ -1,3 +1,9 @@
-from graders import check_submissions
+from webproject import create_app, db
+from webproject.models import Assignments,Submissions,Grades, User
 
-check_submissions.check_submissions()
+with create_app().app_context():
+    
+    gradeqry = db.session.query(Grades,Assignments).join(Assignments).all()
+    
+    for grade, assignment in gradeqry:
+        print(grade,assignment)

@@ -81,3 +81,12 @@ def submission_post(submission_id):
     db.session.commit()
         
     return render_template('assignments/submissionconfirm.html',assignment=assignment,submission=upload_name)
+
+@assignments.route('/grades/<int:page_num>')
+def grades(page_num):
+    items_per_page = 30
+    grades = Grades.query.filter_by(user_id=current_user.id).all()
+    
+    table = table_creator('Grades',grades,items_per_page,page_num,actions=[])
+    
+    return render_template('assignments/grades.html',table=table)
