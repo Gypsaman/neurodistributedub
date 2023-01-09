@@ -11,11 +11,6 @@ from os.path import join
 
 from flask_login import login_required
 
-class AttributeDict(dict):
-    def __getattr__(self, attr):
-        return self[attr]
-    def __setattr__(self, attr, value):
-        self[attr] = value
 
 UPLOADPATH = os.getenv('UPLOADPATH')
 assignments = Blueprint('assignments',__name__)
@@ -37,10 +32,24 @@ def assingments(page_num):
 
     
     return render_template('assignments/assignments.html',table=table)
-@assignments.route('/assignments/edit/<int:id>')
+
+
+@assignments.route('/assignments/update/<int:id>')
 def assignments_edit(id):
     assignment = Assignments.query.filter_by(id=id).first()
     return render_template('assignments/assignments_edit.html',assignment=assignment)
+
+@assignments.route('/assignments/update/<int:id>',methods=['POST'])
+def assigments_edit_post(id):
+    assignment = Assignments.query.filter_by(id=id).first()
+    assignment.name = request.form['assignmentName']
+    assignment.due = dt.strptime(request.form['due'].replace('T',' '),'%Y-%m-%d %H:%M')
+    assignment.inputtype = request.form['inputtype']
+    assignment.grader = request.form['grader']
+    
+    db.session.commit()
+    
+    return redirect(url_for('assignments.assingments',page_num=1))
 
 @assignments.route('/addassignment',methods=['GET','POST'])
 def add_assignment():
@@ -59,7 +68,7 @@ def add_assignment():
         assignment = Assignments(**record)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for('assignments.assignments'))
+        return redirect(url_for('assignments.assingments'))
     return render_template('assignments/assignments_add.html')
 
 

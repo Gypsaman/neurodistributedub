@@ -17,25 +17,26 @@ def check_submissions():
     STORE_FOLDER = os.getenv('STOREPATH')
 
     with create_app().app_context():
-        submissions = Submissions.query.filter_by(grade=None).all()
-        for submission in submissions:
-            submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
-            assignment = Assignments.query.filter_by(id=submission.assignment).first()
-            grade = call_grader(assignment.name,submissionPath)
-            submission.grade = grade
-            grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
-            if grade is None:
-                grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
-                db.session.add(grade)
-            else:
-                grade.grade = max(submission.grade,grade.grade)
-            db.session.commit()
-            email = UBEmail()
-            user = User.query.filter_by(id=submission.user_id).first()
-            body = f'Your grade for {assignment.name} is {grade.grade}'
-            email.send_email(user.email,f'Grade for {assignment.name}',body)
-            shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
-        time.sleep(30)
+        while True:
+            submissions = Submissions.query.filter_by(grade=None).all()
+            for submission in submissions:
+                submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
+                assignment = Assignments.query.filter_by(id=submission.assignment).first()
+                grade = call_grader(assignment.name,submissionPath)
+                submission.grade = grade
+                grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
+                if grade is None:
+                    grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
+                    db.session.add(grade)
+                else:
+                    grade.grade = max(submission.grade,grade.grade)
+                db.session.commit()
+                email = UBEmail()
+                user = User.query.filter_by(id=submission.user_id).first()
+                body = f'Your grade for {assignment.name} is {grade.grade}'
+                email.send_email(user.email,f'Grade for {assignment.name}',body)
+                shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
+            time.sleep(30)
             
             
 

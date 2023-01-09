@@ -118,7 +118,7 @@ def sha256_grader(submission:str) -> None:
     cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\home\neurodistributed' else cwd
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
     from SHAIMPORT import SHA256
-    correcthash = "3f24ef2774456a4aad63f8b1f8772c89a0b498965b400e09a869be5769e514f8"
+    correcthash = "d6e8f9655184c6f96b24dc3df0c8eb88678181c79f4d7f809b51e88288976f7d"
     try:
         hash = SHA256('Cesar Garcia')
     except:

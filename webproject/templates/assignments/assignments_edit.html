@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="neuro-content">
-    <h3>Add Assignment</h3>
+    <h3>Edit Assignment</h3>
     {% with messages = get_flashed_messages() %} {% if messages %}
     <div class="notification is-danger">
         {{ messages[0] }}. Go to
@@ -10,25 +10,25 @@
     </div>
     {% endif %} {% endwith %}
     <div class="neuro-form-section">
-        <form class="neuro-form"  method="POST" action="/addassignment">
+        <form class="neuro-form"  method="POST" action="/assignments/update/{{assignment.id}}">
             <div class="neuro-form-entry-row">
                 <label for="assignmentName">Assignment Name</label>
-                <input type="text" id="assignmentName" name="assignmentName" placeholder="Assignment Name" required>
+                <input type="text" id="assignmentName" name="assignmentName" value=" {{ assignment.name }}" required>
             </div>
             <div class="neuro-form-entry-row">
                 <label for="due">Due Date</label>
-                <input type="datetime-local" id="due" name="due" placeholder="Due Date" required>
+                <input type="datetime-local" id="due" name="due" value = "{{ assignment.due }}" required>
             </div>
             <div class="neuro-form-entry-row">
                 <label for ="inputtype" >Submissions Type</label>
-                <select id="inputtype" name="inputtype" required>
-                    <option value="text">Text</option>
-                    <option value="file">File</option>
+                <select id="inputtype" name="inputtype" required style="min-width:200px">
+                    <option value="text" {% if assignment.inputtype == 'text' %}selected{% endif %}>Text</option>
+                    <option value="file" {% if assignment.inputtype == 'file' %}selected{% endif %}>File</option>
                 </select>
             </div>
             <div class="neuro-form-entry-row">
                 <label for="grader">Grader</label>
-                <input id="grader" name="grader" placeholder="Grader" required>
+                <input id="grader" name="grader" value=" {{ assignment.grader }}" required>
             </div>
             <div class="col d-flex justify-content-center mt-5">
                 <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Update</button>
@@ -37,4 +37,5 @@
     </div>
 
 </div>
+
 {% endblock %}
