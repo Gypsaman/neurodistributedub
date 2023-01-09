@@ -37,6 +37,10 @@ def assingments(page_num):
 
     
     return render_template('assignments/assignments.html',table=table)
+@assignments.route('/assignments/edit/<int:id>')
+def assignments_edit(id):
+    assignment = Assignments.query.filter_by(id=id).first()
+    return render_template('assignments/assignments_edit.html',assignment=assignment)
 
 @assignments.route('/addassignment',methods=['GET','POST'])
 def add_assignment():
