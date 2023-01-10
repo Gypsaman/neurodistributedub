@@ -60,10 +60,10 @@ def assigments_edit_post(id):
 def add_assignment():
     if request.method == 'POST':
         record = {
-            'name':request.form['assignmentName'],
+            'name':request.form['assignmentName'].strip(),
             'due': dt.strptime(request.form['due'],'%Y-%m-%d'),
             'inputtype' : request.form['inputtype'],
-            'grader' : request.form['grader'],
+            'grader' : request.form['grader'].strip(),
         }
         assignment = Assignments.query.filter_by(name=record['name']).first()
         if assignment:
@@ -94,7 +94,9 @@ def submission_select_post():
             'date_submitted':Field(timestamp_to_date,'Date Submitted'),
             'grade': Field(None,'Grade')
     }
-    table_creator = TableCreator('Submissions',fields,condition=f"assignment={assignment.id}",actions=[])
+    table_creator = TableCreator('Submissions',fields,
+                                 condition=f"assignment={assignment.id} and user_id={current_user.id}",
+                                 actions=[])
     table_creator.set_items_per_page(15)
     table_creator.create_view()
     # table_creator.view(db.session.query(Submissions.assignment,Submissions.submission,Submissions.date_submitted,Submissions.grade).all())

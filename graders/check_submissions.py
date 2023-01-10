@@ -22,7 +22,8 @@ def check_submissions():
             for submission in submissions:
                 submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
                 assignment = Assignments.query.filter_by(id=submission.assignment).first()
-                grade = call_grader(assignment.name,submissionPath)
+                grade,comments = call_grader(assignment.name,submissionPath)
+                
                 submission.grade = grade
                 grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
                 if grade is None:
@@ -31,9 +32,10 @@ def check_submissions():
                 else:
                     grade.grade = max(submission.grade,grade.grade)
                 db.session.commit()
+                
                 email = UBEmail()
                 user = User.query.filter_by(id=submission.user_id).first()
-                body = f'Your grade for {assignment.name} is {grade.grade}'
+                body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:{comments}'
                 email.send_email(user.email,f'Grade for {assignment.name}',body)
                 shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
             time.sleep(30)

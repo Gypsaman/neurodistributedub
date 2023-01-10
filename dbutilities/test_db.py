@@ -1,6 +1,6 @@
 from webproject.models import User, Wallet, Assets, Transactions, Assignments,Submissions, Grades
 from webproject import create_app, db
-from webproject.modules.table_creator import table_creator
+
 from datetime import datetime as dt
 
 def print_data():
@@ -55,7 +55,13 @@ def print_data():
         for grade in grades:
             print(f'\t{grade}')
             
-            
+def update_assignments():
+    with create_app().app_context():
+        assignments = Assignments.query.all()
+        for assignment in assignments:
+            assignment.name = assignment.name.strip()
+            assignment.grader = assignment.grader.strip()
+            db.session.commit()       
 def update_timestamp():
     with create_app().app_context():
         assets = Assets.query.all()
@@ -78,10 +84,7 @@ def get_column(table,column):
             col.append(getattr(row,column))
             break
         return col
-def test_table_creator():
-    with create_app().app_context():
-        table,pages = table_creator('Transactions',Transactions.query.all(),30,1)
-    return table,pages
+
     
 def temp_update_asset_type():
     with create_app().app_context():
@@ -94,6 +97,4 @@ def temp_update_asset_type():
                     
             db.session.commit()
 if __name__ == '__main__':
-    delete_rows(Submissions)
-    delete_rows(Grades)
-    print_data()
+    update_assignments()

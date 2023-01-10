@@ -3,6 +3,7 @@ from web3 import Web3,HTTPProvider
 import json
 import shutil
 import os
+from typing import Tuple
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -113,28 +114,38 @@ def payUB_Grader(contractAddress):
     
     return grade
 
-def sha256_grader(submission:str) -> None:
+def sha256_grader(submission:str) :
+    
+    correcthash = "d6e8f9655184c6f96b24dc3df0c8eb88678181c79f4d7f809b51e88288976f7d"
+    
     cwd = os.getcwd()
     cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\home\neurodistributed' else cwd
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
-    from SHAIMPORT import SHA256
-    correcthash = "d6e8f9655184c6f96b24dc3df0c8eb88678181c79f4d7f809b51e88288976f7d"
+    
+    try:
+        from SHAIMPORT import SHA256
+    except Exception as e:
+        return 0, f"Submission does not compile correctly or SHA256 function not defined.\n{str(e).replace('SHAIMPORT.py',os.path.basename(submission))} "
+    
     try:
         hash = SHA256('Cesar Garcia')
-    except:
-        hash = "" 
+    except Exception as e:
+        return 0, f"SHA256 does not run correctly\n{str(e).replace('SHAIMPORT.py',os.path.basename(submission))}"
+        
     if isinstance(hash,list):
         hash = ''.join(hash)
+    
     if hash == correcthash:
-        return 100
+        return 100, f'Hash "{hash}" is correct'
+    
     if len(hash) == len(correcthash):
-        return 90
+        return 90,f'Hash "{hash}" is not correct, it should be "{correcthash}"'
 
-    return 80
+    return 80,f'Hash "{hash}" is not correct lenght or content, it should be "{correcthash}"'
 
 graders= {
     "SHA256": sha256_grader,
-    "ECC": ecc_grader,
+    # "ECC": ecc_grader,
     # "Wallet": wallet_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
