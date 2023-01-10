@@ -34,10 +34,12 @@ def assets_list(page_num):
     return render_template("assets/assets.html", table=table)
 
 @assets.route("/assets/noview/<int:page_num>")
+@login_required
 def noview(page_num):
     return render_template("assets/noview.html",page_num=page_num)
 
 @assets.route('/addethassets')
+@login_required
 def add_eth_assets():
     
     wallet = Wallet.query.filter_by(user_id=current_user.id).first()
@@ -58,6 +60,7 @@ def add_eth_assets():
 
 
 @assets.route("/assetdelete/<int:id>")
+@login_required
 def assets_delete(id):
     addr = id
     asset_to_delete = Assets.query.get_or_404(id)

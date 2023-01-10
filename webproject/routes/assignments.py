@@ -10,12 +10,14 @@ from os.path import join
 
 
 from flask_login import login_required
+from webproject.routes import admin_required
 
 
 UPLOADPATH = os.getenv('UPLOADPATH')
 assignments = Blueprint('assignments',__name__)
 
 @assignments.route('/assignments/<int:page_num>')
+@admin_required
 def assingments(page_num):
     fields = {
             'id': Field(None,None),
@@ -35,11 +37,13 @@ def assingments(page_num):
 
 
 @assignments.route('/assignments/update/<int:id>')
+@admin_required
 def assignments_edit(id):
     assignment = Assignments.query.filter_by(id=id).first()
     return render_template('assignments/assignments_edit.html',assignment=assignment)
 
 @assignments.route('/assignments/update/<int:id>',methods=['POST'])
+@admin_required
 def assigments_edit_post(id):
     assignment = Assignments.query.filter_by(id=id).first()
     assignment.name = request.form['assignmentName']
@@ -52,6 +56,7 @@ def assigments_edit_post(id):
     return redirect(url_for('assignments.assingments',page_num=1))
 
 @assignments.route('/addassignment',methods=['GET','POST'])
+@admin_required
 def add_assignment():
     if request.method == 'POST':
         record = {
@@ -73,12 +78,14 @@ def add_assignment():
 
 
 @assignments.route('/submissionselect')
+@login_required
 def submission_select():
 
     assignments = Assignments.query.all()
     return render_template('assignments/submission_select.html',assignments=assignments)
 
 @assignments.route('/submissionselect',methods=['POST'])
+@login_required
 def submission_select_post():
         
     assignment = Assignments.query.filter_by(name=request.form['assignmentName']).first()
@@ -96,6 +103,7 @@ def submission_select_post():
     return render_template('assignments/submission.html',assignment=assignment,table=table)
     
 @assignments.route('/submission/<int:submission_id>',methods=['POST'])
+@login_required
 def submission_post(submission_id):
 
     assignment = Assignments.query.filter_by(id=submission_id).first()
@@ -122,6 +130,7 @@ def submission_post(submission_id):
     return render_template('assignments/submissionconfirm.html',assignment=assignment,submission=upload_name)
 
 @assignments.route('/grades/<int:page_num>')
+@login_required
 def grades(page_num):
     
     fields = {

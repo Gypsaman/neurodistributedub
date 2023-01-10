@@ -19,6 +19,7 @@ def wallet():
     return render_template('main/wallet.html',wallet=wallet)
 
 @main.route('/wallet',methods=["POST"])
+@login_required
 def wallet_post():
 
     wallet_address = request.form.get('wallet_address')
@@ -38,17 +39,14 @@ def wallet_post():
     return redirect(url_for('main.profile'))
 
 @main.route('/welcome')
+@login_required
 def welcome():
     return render_template('main/welcome.html',first_name=current_user.first_name,last_name=current_user.last_name)
 
 
 
-@main.route('/tokens')
-def tokens():
-    return render_template('main/tokens.html')
-
-
 @main.route('/profile')
+@login_required
 def profile():
 
     usr_email = current_user.email

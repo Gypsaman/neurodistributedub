@@ -11,6 +11,7 @@ from flask_login import login_required
 trans = Blueprint('trans',__name__)
 
 @trans.route('/transactions/<int:page_num>')
+@login_required
 def transactions(page_num):
     fields = {
             'id': Field(None,None),
@@ -37,6 +38,7 @@ def transactions(page_num):
     return render_template('trans/transactions.html',table=table)
 
 @trans.route('/transactions/view/<int:page_num>/<int:tran_id>')
+@login_required
 def transactions_view(page_num,tran_id):
     transaction = Transactions.query.filter_by(id=tran_id).first()
     return render_template('/trans/view_transaction.html',transaction=transaction,page_num=page_num)

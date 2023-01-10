@@ -8,6 +8,7 @@ from webproject.routes import admin_required
 from datetime import datetime as dt
 import random
 from webproject.modules.ubemail import UBEmail
+from webproject.modules.table_creator import TableCreator, Field
 
 auth = Blueprint('auth',__name__)
 
@@ -132,3 +133,23 @@ def password_update_post(id):
     db.session.commit()
     
     return redirect(url_for('auth.login'))
+
+@auth.route('/users/<int:page_num>')
+@admin_required
+def users(page_num):
+    
+    fields = {
+        'id': Field(None,None),
+        'first_name': Field(None,'First Name'),
+        'last_name': Field(None,'Last Name'),
+        'email': Field(None,'Email'),
+        'student_id': Field(None,'Student ID'),
+        'role': Field(None,'Role'),
+
+    }
+    
+    table_creator = TableCreator('User',fields,actions=['Edit','Delete'])
+    table_creator.set_items_per_page(30)
+    table_creator.create_view()
+    table = table_creator.create(page_num)
+    return render_template('auth/users.html',table=table)

@@ -13,23 +13,16 @@ with create_app().app_context():
         
     
     fields = {
-            'id': Field(None,None),
-            'blockNumber': Field(None, 'Block Number'),
-            'timeStamp': Field(timestamp_to_date, 'Date'),
-            'hash': Field(short_hash, 'Hash'),
-            'nonce': Field(None, 'Nonce'),
-            'blockHash': Field(short_hash, 'Block Hash'),
-            'transactionIndex':Field(None, 'Transaction Index'),
-            'trans_from': Field(short_hash, 'From'),
-            'trans_to': Field(short_hash, 'To'),
-            'value': Field(wei_to_eth, 'Value'),
-            'gas': Field(wei_to_eth, 'Gas'),
-            'gasPrice': Field(wei_to_eth, 'Gas Price'),
-            'isError': Field(yes_no, 'Is Error'),
-            'contractAddress': Field(short_hash, 'Contract Address')
-    }
-    table_creator = TableCreator('Transactions',fields,actions=['View'])
-    table_creator.set_items_per_page(15)
+        'id': Field(None,None),
+        'first_name': Field(None,'First Name'),
+        'last_name': Field(None,'Last Name'),
+        'email': Field(None,'Email'),
+        'student_id': Field(None,'Student ID'),
+        'role': Field(None,'Role'),
 
+    }
+    
+    table_creator = TableCreator('User',fields,actions=['Edit','Delete'])
+    table_creator.set_items_per_page(30)
     table_creator.create_view()
-    table = table_creator.create(1)
+    table = table_creator.create(page_num)

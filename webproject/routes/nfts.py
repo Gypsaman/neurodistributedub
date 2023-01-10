@@ -10,6 +10,7 @@ nfts = Blueprint('nfts',__name__)
 
 
 @nfts.route('/assets/view/<int:page_num>/<int:asset_id>')
+@login_required
 def nfts_view(page_num,asset_id):
     
     asset = Assets.query.filter_by(id=asset_id).first()
