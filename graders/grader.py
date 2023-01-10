@@ -123,7 +123,7 @@ def sha256_grader(submission:str) :
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
     
     try:
-        from SHAIMPORT import SHA256
+        from imports.SHAIMPORT import SHA256
     except Exception as e:
         return 0, f"Submission does not compile correctly or SHA256 function not defined.\n{str(e).replace('SHAIMPORT.py',os.path.basename(submission))} "
     
