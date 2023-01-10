@@ -142,7 +142,7 @@ def grades(page_num):
 
     }
     
-    table_creator = TableCreator('Grades',fields,actions=[])
+    table_creator = TableCreator('Grades',fields,condition=f'user_id={current_user.id}',actions=[])
     table_creator.join('Assignments','Grades.assignment = Assignments.id')
     table_creator.set_items_per_page(30)
     table_creator.create_view()

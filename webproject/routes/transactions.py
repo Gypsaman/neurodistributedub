@@ -29,7 +29,7 @@ def transactions(page_num):
             'isError': Field(yes_no, 'Is Error'),
             'contractAddress': Field(short_hash, 'Contract Address')
     }
-    table_creator = TableCreator('Transactions',fields,actions=['View'])
+    table_creator = TableCreator('Transactions',fields,condition=f'user_id={current_user.id}',actions=['View'])
     table_creator.set_items_per_page(15)
 
     table_creator.create_view()
