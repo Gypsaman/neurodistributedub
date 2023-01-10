@@ -7,6 +7,10 @@ from graders.grader import call_grader
 import os
 from dotenv import load_dotenv
 import shutil
+import os
+import time
+os.environ["TZ"] = "America/New_York"
+time.tzset()
 
 def check_submissions():
     cwd = os.getcwd()
