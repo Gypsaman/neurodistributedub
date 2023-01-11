@@ -1,0 +1,22 @@
+{% extends 'admin_base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h3>Add Assignment</h3>
+    <div class="neuro-form-section">
+        <form action="{{sendto}}" method="POST" class="neuro-form">
+            <div class="neuro-form-entry-row">
+                <label for="assignmentName">Assignment Name</label>
+                <select id="assignmentName" name="assignmentName" required>
+                    {% for assignment in assignments %}
+                    <option value="{{ assignment.name }}">{{ assignment.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Select</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

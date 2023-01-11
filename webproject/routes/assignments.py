@@ -90,16 +90,17 @@ def submission_select_post():
         
     assignment = Assignments.query.filter_by(name=request.form['assignmentName']).first()
     fields = {
+            'id': Field(None,None),
             'submission':Field(None,'Submission'),
             'date_submitted':Field(timestamp_to_date,'Date Submitted'),
             'grade': Field(None,'Grade')
     }
+    actions =  []
     table_creator = TableCreator('Submissions',fields,
                                  condition=f"assignment={assignment.id} and user_id={current_user.id}",
-                                 actions=[])
+                                 actions=actions)
     table_creator.set_items_per_page(15)
     table_creator.create_view()
-    # table_creator.view(db.session.query(Submissions.assignment,Submissions.submission,Submissions.date_submitted,Submissions.grade).all())
     table = table_creator.create(1)
     
     return render_template('assignments/submission.html',assignment=assignment,table=table)
@@ -136,13 +137,14 @@ def submission_post(submission_id):
 def grades(page_num):
     
     fields = {
+        'grades.id': Field(None,None),
         'assignments.name': Field(None,'Assignment'),
         'grade': Field(None,'Grade'),
         'dategraded': Field(timestamp_to_date,'Date Graded'),
 
     }
-    
-    table_creator = TableCreator('Grades',fields,condition=f'user_id={current_user.id}',actions=[])
+    actions =  []
+    table_creator = TableCreator('Grades',fields,condition=f'user_id={current_user.id}',actions=actions)
     table_creator.join('Assignments','Grades.assignment = Assignments.id')
     table_creator.set_items_per_page(30)
     table_creator.create_view()

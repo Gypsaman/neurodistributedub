@@ -44,7 +44,7 @@ class TableCreator:
         self.actions = actions
         self.fields = {column:field for column,field in fields.items()}
 
-        if 'id' not in self.fields and len(actions) > 0:
+        if 'id' not in list(self.fields.keys())[0] and len(actions) > 0:
             raise Exception('TableCreator: id field is required for actions')
         
     def set_items_per_page(self,items_per_page):
@@ -101,16 +101,17 @@ class TableCreator:
                 value = item[idx]
                 value = field.format(value)
                 html += f'<td>{value}</td>'
-            html += '<td><div class="neuro-flex-row">'
-            
-            self.id = item[0]
-            if "Edit" in self.actions:
-                html += f'<a href="/{self.table_name.lower()}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
-            if "Delete" in self.actions:
-                html += f'<a href="/{self.table_name.lower()}/delete/{self.id}"><img src="\static\imgs\\trash.svg"></a>'
-            if "View" in self.actions:
-                html += f'<a href="/{self.table_name.lower()}/view/{page_num}/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
-            html += '</div></td>'
+            if len(self.actions) != 0:
+                html += '<td><div class="neuro-flex-row">'
+                
+                self.id = item[0]
+                if "Edit" in self.actions:
+                    html += f'<a href="/{self.table_name.lower()}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
+                if "Delete" in self.actions:
+                    html += f'<a href="/{self.table_name.lower()}/delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
+                if "View" in self.actions:
+                    html += f'<a href="/{self.table_name.lower()}/view/{page_num}/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
+                html += '</div></td>'
             html += '</tr>'
 
         next_button = True if pages > page_num else False

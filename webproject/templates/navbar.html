@@ -15,14 +15,7 @@
       </button>
       <ul class="neuro-flex-row ">
       {% if current_user.is_authenticated %}
-        {%if current_user.role == 'admin' %}
-          <li class="neuro-nav-item">
-            <a href="/assignments/1" class="nav-link">Assignments</a>
-          </li>
-          <li class="neuro-nav-item">
-            <a href="/Users/1" class="nav-link">Users</a>
-          </li>
-        {% endif %}
+
         <li class="neuro-nav-item">
           <a href="/profile" class="nav-link">Profile</a>
         </li>
@@ -35,7 +28,7 @@
 
 
         <li class="neuro-nav-item">
-          <a href="/submissionselect" class="nav-link">Submissions</a>
+          <a href="/submissionselect" class="nav-link">Submission</a>
         </li>
         <li class="neuro-nav-item">
           <a href="/transactions/1" class="nav-link">Transactions</a>
@@ -44,6 +37,11 @@
         <li class="neuro-nav-item">
           <a href="/grades/1" class="nav-link">Grades</a>
         </li>
+        {%if current_user.role == 'admin' %}
+          <li class="neuro-nav-item">
+            <a href="/admin" class="nav-link">Admin</a>
+          </li>
+        {% endif %}
         <li class="neuro-nav-item">
           <a href="/logout" class="nav-link">LogOut</a>
         </li>
