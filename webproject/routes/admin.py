@@ -27,7 +27,7 @@ def submission_select():
     )
     
 @admin.route("/admin/submissionselect", methods=["POST"])
-@login_required
+@admin_required
 def submission_select_post():
 
     assignment = Assignments.query.filter_by(
@@ -65,7 +65,7 @@ def grades_select():
     )
     
 @admin.route("/admin/gradesselect", methods=["POST"])
-@login_required
+@admin_required
 def grades_select_post():
 
     assignment = Assignments.query.filter_by(
