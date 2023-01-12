@@ -143,7 +143,7 @@ def sha256_grader(submission:str) :
         return 100, f'Hash "{hash}" is correct'
     
     if len(hash) == len(correcthash):
-        return 90,f'Hash "{hash}" is not correct, it should be "{correcthash}"'
+        return 90, f'Hash "{hash}" is not correct, it should be "{correcthash}"'
 
     return 80,f'Hash "{hash}" is not correct lenght or content, it should be "{correcthash}"'
 

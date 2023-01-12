@@ -53,6 +53,14 @@ def submission_select_post():
         "admin/admin_submissions.html", assignment=assignment, table=table
     )
 
+@admin.route('/submissions/delete/<int:id>')
+@admin_required
+def del_submissions(id):
+    submission = Submissions.query.filter_by(id=id).first()
+    db.session.delete(submission)
+    db.session.commit()
+    return redirect(url_for('admin.submission_select'))
+
 @admin.route("/admin/gradesselect")
 @admin_required
 def grades_select():
@@ -64,6 +72,14 @@ def grades_select():
         sendto='/admin/gradesselect'
     )
     
+@admin.route('/grades/delete/<int:id>')
+@admin_required
+def grades_del(id):
+    grade = Grades.query.filter_by(id=id).first()
+    db.session.delete(grade)
+    db.session.commit()
+    
+    return redirect(url_for('admin.grades_select'))
 @admin.route("/admin/gradesselect", methods=["POST"])
 @admin_required
 def grades_select_post():
@@ -109,4 +125,4 @@ def users(page_num):
     table_creator.set_items_per_page(30)
     table_creator.create_view()
     table = table_creator.create(page_num)
-    return render_template('auth/users.html',table=table)
+    return render_template('admin/users.html',table=table)
