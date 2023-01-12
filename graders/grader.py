@@ -3,7 +3,7 @@ from web3 import Web3,HTTPProvider
 import json
 import shutil
 import os
-from typing import Tuple
+import numpy as np
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -120,17 +120,21 @@ def sha256_grader(submission:str) :
     
     cwd = os.getcwd()
     cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\home\neurodistributed' else cwd
+    cwd = os.path.join(cwd,'graders','imports')
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
     
     try:
-        from imports.SHAIMPORT import SHA256
+        from graders.imports.SHAIMPORT import SHA256
     except Exception as e:
-        return 0, f"Submission does not compile correctly or SHA256 function not defined.\n{str(e).replace('SHAIMPORT.py',os.path.basename(submission))} "
+        error_msg = str(e).replace('SHAIMPORT.py','')
+        if 'from' in error_msg:
+            error_msg = error_msg[:error_msg.find('from')]
+        return 0, f"Submission does not compile correctly or SHA256 function not defined.\nError:\n{error_msg} "
     
     try:
         hash = SHA256('Cesar Garcia')
     except Exception as e:
-        return 0, f"SHA256 does not run correctly\n{str(e).replace('SHAIMPORT.py',os.path.basename(submission))}"
+        return 0, f"SHA256 does not run correctly\nError:\n{str(e).replace('SHAIMPORT.py','')}"
         
     if isinstance(hash,list):
         hash = ''.join(hash)
@@ -143,9 +147,85 @@ def sha256_grader(submission:str) :
 
     return 80,f'Hash "{hash}" is not correct lenght or content, it should be "{correcthash}"'
 
+
+def ecc_grader(submission:str) :
+    
+    def sumPoints(Cm):
+
+        sum = 0
+        try:
+            for c in Cm:
+                sum += np.sum([p1+p2 for p1,p2 in c])
+        except:
+            sum = 0
+        return sum
+    
+    def grade_ecc():
+        
+        
+        try:
+            from graders.imports.ECCIMPORT import EllipticCurve
+        except Exception as e:
+            return 0, f'Error importing ECCIMPORT\n\n{str(e).replace("ECCIMPORT.py",os.path.basename(submission))}'
+        
+
+        
+        # Elliptic Curve 224  2^224
+        p = 26959946667150639794667015087019630673557916260026308143510066298881
+        a = -3
+        b = 18958286285566608000408668544493926415504680968679321075787234672564
+        Gx = 19277929113566293071110308034699488026831934219452440156649784352033
+        Gy = 19926808758034470970197974370888749184205991990603949537637343198772
+        n = 26959946667150639794667015087019625940457807714424391721682722368061
+
+        try:
+            ec = EllipticCurve(p, a, b)
+
+            ec.set_G((Gx, Gy))  # starting point, all points defined from here
+
+            # Get the private and public keys
+            ec.set_private_key(131071)  #random prime
+            ec.get_public_key()
+
+
+            message = 'UB'
+
+
+            Cm = ec.encode(message,k=17)
+
+            m = ec.decode(Cm)
+        except Exception as e:
+            Cm = ((0,0),(0,0))
+            m = ""
+
+
+        Cm_expected = [((19399464229459456007477471411003978864755290924325272939384776426428, 26863117366256785198219971769961599705632546399319105640204669897254), (22366613121329198004288806282357461654303397783183087425218549613485, 22170808050464581101203449810735905866030401314162623049009791623290)), ((19399464229459456007477471411003978864755290924325272939384776426428, 26863117366256785198219971769961599705632546399319105640204669897254), (26151281380560056398891667785380074997817010130475655082194580013230, 1379490757570207481338776245190580867813158616047458270168072031140))]
+        correct_sum = sumPoints(Cm_expected)
+            
+        student_sum = sumPoints(Cm)
+        
+        if correct_sum == student_sum and m == "UB":
+            return 100, f'Encryption succesfull'
+        
+        if correct_sum == student_sum:
+            return 90, f'Encryptions do not match\n\nYour Encryption:\n{Cm}\n\nExpected Encryption:\n{Cm_expected} '
+        
+        if student_sum == 0:
+            return 70, f'Encryption failed\n\n{str(e).replace("ECCIMPORT.py",os.path.basename(submission))}'
+
+        return 80,f'Your Encryption:\n{Cm}\n\nExpected Encryption:\n{Cm_expected} '
+
+    cwd = os.getcwd()
+    cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\\home\\neurodistributed' else cwd
+    cwd = os.path.join(cwd,'graders','imports')
+    shutil.copy(submission,os.path.join(cwd,'ECCIMPORT.py'))
+    points,comment = grade_ecc()
+    
+    return points, comment
+    
 graders= {
     "SHA256": sha256_grader,
-    # "ECC": ecc_grader,
+    "ECC": ecc_grader,
     # "Wallet": wallet_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:

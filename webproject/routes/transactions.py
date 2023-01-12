@@ -13,6 +13,8 @@ trans = Blueprint('trans',__name__)
 @trans.route('/transactions/<int:page_num>')
 @login_required
 def transactions(page_num):
+    wallet = Wallet.query.filter_by(user_id=current_user.id).first()
+    button_enabled = True if wallet else False
     fields = {
             'id': Field(None,None),
             'blockNumber': Field(None, 'Block Number'),
@@ -35,7 +37,7 @@ def transactions(page_num):
     table_creator.create_view()
     table = table_creator.create(page_num)
     
-    return render_template('trans/transactions.html',table=table)
+    return render_template('trans/transactions.html',table=table,button_enabled=button_enabled)
 
 @trans.route('/transactions/view/<int:page_num>/<int:tran_id>')
 @login_required

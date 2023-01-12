@@ -1,24 +1,27 @@
 from webproject import create_app, db
 from webproject.models import Assignments,Submissions,Grades, User
 from webproject.modules.ubemail import UBEmail
-import time
 from datetime import datetime as dt
 from graders.grader import call_grader
-import os
 from dotenv import load_dotenv
 import shutil
 import os
 import time
-os.environ["TZ"] = "America/New_York"
-time.tzset()
+
+
 
 def check_submissions():
+    
     cwd = os.getcwd()
     cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
     
     load_dotenv(os.path.join(cwd, '.env'))
     UPLOAD_FOLDER = os.getenv('UPLOADPATH')
     STORE_FOLDER = os.getenv('STOREPATH')
+    
+    if os.getenv('ENV') == 'prod':
+        os.environ["TZ"] = "America/New_York"
+        time.tzset()
 
     with create_app().app_context():
         while True:
@@ -39,7 +42,7 @@ def check_submissions():
                 
                 email = UBEmail()
                 user = User.query.filter_by(id=submission.user_id).first()
-                body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:{comments}'
+                body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:\n{comments}'
                 email.send_email(user.email,f'Grade for {assignment.name}',body)
                 shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
             time.sleep(30)

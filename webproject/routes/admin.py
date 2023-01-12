@@ -89,3 +89,24 @@ def grades_select_post():
     return render_template(
         "admin/admin_submissions.html", assignment=assignment, table=table
     )
+
+
+@admin.route('/admin/users/<int:page_num>')
+@admin_required
+def users(page_num):
+    
+    fields = {
+        'id': Field(None,None),
+        'first_name': Field(None,'First Name'),
+        'last_name': Field(None,'Last Name'),
+        'email': Field(None,'Email'),
+        'student_id': Field(None,'Student ID'),
+        'role': Field(None,'Role'),
+
+    }
+    
+    table_creator = TableCreator('User',fields,actions=['Edit','Delete'])
+    table_creator.set_items_per_page(30)
+    table_creator.create_view()
+    table = table_creator.create(page_num)
+    return render_template('auth/users.html',table=table)

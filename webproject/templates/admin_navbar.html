@@ -17,10 +17,10 @@
         {% if current_user.is_authenticated %}
           {%if current_user.role == 'admin' %}
             <li class="neuro-nav-item">
-              <a href="/assignments/1" class="nav-link">Assignments</a>
+              <a href="assignments/1" class="nav-link">Assignments</a>
             </li>
             <li class="neuro-nav-item">
-              <a href="/Users/1" class="nav-link">Users</a>
+              <a href="/admin/users/1" class="nav-link">Users</a>
             </li>
             <li class="neuro-nav-item">
               <a href="/admin/submissionselect" class="nav-link">Submissions</a>
