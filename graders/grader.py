@@ -162,11 +162,12 @@ def ecc_grader(submission:str) :
     
     def grade_ecc():
         
-        
+        exception_error = ''
         try:
             from graders.imports.ECCIMPORT import EllipticCurve
         except Exception as e:
-            return 0, f'Error importing ECCIMPORT\n\n{str(e).replace("ECCIMPORT.py",os.path.basename(submission))}'
+            exception_error = e
+            return 0, f'Error importing ECCIMPORT\n\n{str(exception_error).replace("ECCIMPORT.py",os.path.basename(submission))}'
         
 
         
@@ -197,6 +198,7 @@ def ecc_grader(submission:str) :
         except Exception as e:
             Cm = ((0,0),(0,0))
             m = ""
+            exception_error=e
 
 
         Cm_expected = [((19399464229459456007477471411003978864755290924325272939384776426428, 26863117366256785198219971769961599705632546399319105640204669897254), (22366613121329198004288806282357461654303397783183087425218549613485, 22170808050464581101203449810735905866030401314162623049009791623290)), ((19399464229459456007477471411003978864755290924325272939384776426428, 26863117366256785198219971769961599705632546399319105640204669897254), (26151281380560056398891667785380074997817010130475655082194580013230, 1379490757570207481338776245190580867813158616047458270168072031140))]
@@ -211,7 +213,7 @@ def ecc_grader(submission:str) :
             return 90, f'Encryptions do not match\n\nYour Encryption:\n{Cm}\n\nExpected Encryption:\n{Cm_expected} '
         
         if student_sum == 0:
-            return 70, f'Encryption failed\n\n{str(e).replace("ECCIMPORT.py",os.path.basename(submission))}'
+            return 70, f'Encryption failed\n\n{str(exception_error).replace("ECCIMPORT.py",os.path.basename(submission))}'
 
         return 80,f'Your Encryption:\n{Cm}\n\nExpected Encryption:\n{Cm_expected} '
 
