@@ -225,7 +225,7 @@ def ecc_grader(submission:str) :
     
 graders= {
     "SHA256": sha256_grader,
-    "ECC": ecc_grader,
+    "ECC_Curve": ecc_grader,
     # "Wallet": wallet_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
