@@ -18,6 +18,17 @@ body {
 
 
 }
+.neuro-main-button {
+  color: white;
+  opacity: 1;
+  font: 55px;
+  background-color: #2560b9;
+  border-radius: 10px;
+  border-style:none;
+  min-height: 25px;
+  min-width: 100px;
+  margin: 10px;
+}
 .neuro-flex-body {
   display: flex;
   flex-direction: column;
@@ -181,22 +192,12 @@ select {
   padding: 2px;
   margin-right: 5px;
 }
-.neuro-login-form {
-  margin-top: 20px;
-  padding: 8px;
-}
+
 input,textarea {
   background-color: rgb(233, 230, 230);
   
 }
 
-.neuro-login-form input,textarea {
-  display: flex;
-  flex-direction: row;
-
-
-  margin-bottom: 5px;
-}
 
 .neuro-form-section {
   border-style: solid;
@@ -247,15 +248,7 @@ input,textarea {
   font-family: rubik;
 }
 
-.neuro-button-login {
-  margin-top: 30px;
-  background-color:#2560B9;
-  color:white;
-  font-size: 30px;
-  border-radius: 10px;
-  border-style: none;
-  padding: 10px 80px;
-}
+
 
 
 .neuro-dashboard {
