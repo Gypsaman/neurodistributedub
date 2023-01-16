@@ -63,5 +63,9 @@ def create_app():
     from webproject.routes.assignments import assignments as assignments_blueprint
 
     app.register_blueprint(assignments_blueprint)
+    
+    from webproject.routes.dashboard import dashb as dashb_blueprint
+    
+    app.register_blueprint(dashb_blueprint)
 
     return app

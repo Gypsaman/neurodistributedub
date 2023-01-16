@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <style>
+        @font-face {
+            font-family: rubik;
+            src: url('https://fonts.google.com/specimen/Rubik') format('truetype');
+          }
+          * {
+            font-family: rubik;
+          
+          }
+          body {
+            
+            background-image: url('/static/imgs/DNA_Icon-white.png');
+            background-size: cover;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            color: black;
+            background-color: #F5F5F5;
+            font-family: rubik;
+          
+          }
+          
+          .neuro-logo {
+            width: 200px; 
+            padding-bottom: 10px;
+          }
+          
+          .neuro-flex-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content: space-between;
+            height: 98vh;
+          }
+          .neuro-flex-row {
+            display: flex;
+            flex-direction: row;
+            align-content: space-between;
+            gap: 5px;
+            padding-top: 10px;
+          }
+          .neuro-flex-right {
+            align-items: right;
+          }
+          
+          .neuro-navbar {
+          
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            padding-left: 100px;
+            padding-right: 100px;
+            background-color: #00002F;
+          }
+          
+          .neuro-nav-item {
+            
+            color: white;
+            padding-right: 5px;
+            padding-top: 20px;
+            list-style-type: none;
+          }
+          
+          .neuro-nav-item  > a:hover {
+            color: rgb(25, 191, 55);
+          }
+          .neuro-nav-link {
+            color: white;
+            text-decoration: none;
+          }
+          
+          select {
+            background-color: rgb(222, 210, 210);
+          }
+          
+          .neuro-debug-border {
+            border-style: solid;
+            border-color: red;
+          }
+          .neuro-edit,
+          .neuro-delete {
+          
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+          }
+           
+          
+          .neuro-menu {
+            height: 50px;
+          }
+          .neuro-main {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 5px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            padding-top: 5px;
+          
+          }
+          .neuro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 5px;
+          
+          }
+          
+          .neuro-view-nft-collection {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin-top: 20px;
+          }
+          .neuro-view-nft {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 5px;
+            border-style: solid;
+            border-color: gray;
+            border-radius: 20px;
+            border-width: 1px;
+            /* background-color: rgb(39, 37, 37); */
+            
+          }
+          .neuro-nft-metadata {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 2px;
+            flex-wrap: wrap;
+          }
+          .neuro-view-asset-nft,
+          .neuro-view-asset-token,
+          .neuro-view-asset-dapp {
+            display: flex;
+            flex-direction:column;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 5px;
+            border-style: solid;
+            border-color: gray;
+            border-radius: 40px;
+            border-width: 1px;
+            min-width: 400px;
+          }
+          .neuro-view-asset-token {
+            /* background-color: rgb(67, 77, 86); */
+          }
+          .neuro-view-asset-nft {
+            /* background-color: rgb(29, 43, 58); */
+          }
+          .neuro-view-asset-dapp {
+            /* background-color: rgb(38, 60, 57);; */
+          }
+          
+          .neuro-nft-attribute-label {
+            /* background-color: rgb(65, 65, 170); */
+            color: white;
+            padding: 2px;
+          }
+          
+          .neuro-nft-attribute-value {
+            /* background-color: rgb(86, 92, 181); */
+            color: white;
+            padding: 2px;
+            margin-right: 5px;
+          }
+          .neuro-login-form {
+            margin-top: 20px;
+            padding: 8px;
+          }
+          input,textarea {
+            background-color: rgb(233, 230, 230);
+            
+          }
+          
+          .neuro-login-form input,textarea {
+            display: flex;
+            flex-direction: row;
+          
+          
+            margin-bottom: 5px;
+          }
+          
+          .neuro-form-section {
+            border-style: solid;
+            border-color: gray;
+            border-radius: 20px;
+            border-width: 1px;
+            /* background-color: rgb(39, 37, 37); */
+            padding: 15px;
+            margin: 10px;
+          }
+          .neuro-form-section h3 {
+            color: rgb(25, 25, 219);
+          }
+          .neuro-form-entry-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 2px;
+            padding: 2px;
+          }
+          .neuro-form-entry-row > label {
+            margin-right: 10px;
+          }
+          .neuro-tran-view {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: left;
+            padding: 5px;
+            margin: 5px;
+          
+            /* background-color: rgb(39, 37, 37); */
+            
+          }
+          .neuro-tran-view > input,textarea {
+            min-width: 600px;
+          }
+          
+          .neuro-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 45px;
+            color: white;
+            background-color: #00002F;
+            padding: 10px 30px ;  /* top/bottom left/right */
+            font-size: 8pt;
+            font-family: rubik;
+          }
+          
+          .neuro-button-login {
+            margin-top: 30px;
+            background-color:#2560B9;
+            color:white;
+            font-size: 30px;
+            border-radius: 10px;
+            border-style: none;
+            padding: 10px 80px;
+          }
+          
+          
+          .neuro-dashboard {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            height: 100%;
+          }
+          .neuro-dashboard-profile{
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 5px;
+            border-style: solid;
+            border-color: gray;
+            border-radius: 20px;
+            border-width: 1px;
+            background-color: #D6E3E9;
+            opacity: 0.5;
+            min-height: 400px;
+          }
+          .neuro-dashboard-content{
+            display: flex;
+            flex: 4;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 5px;
+            border-style: solid;
+            border-color: gray;
+            border-radius: 20px;
+            border-width: 1px;
+            background-color: white;
+            min-height: 400px;
+          }
+    </style> 
+
+  </head>
+
+  <title>DNA</title>
+  <body>
+    <div class="neuro-flex-column">
+      
+      <div class="neuro-menu">
+
+         
+    </div>
+      
+      <div class="neuro-main"> 
+
+      </div>
+
+      <div id="footer" class="neuro-footer">
+        <p> NeuroDistributed <span>&copy</span> 2022</p>
+        <p>Welcome <span style="font-weight:bold; font-size: 1.1em">{{current_user.first_name}}</span></p>
+      </div>
+    </div>
+    <script src="/static/css/bootstrap.bundle.js"></script>
+  </body>
+</html>
+

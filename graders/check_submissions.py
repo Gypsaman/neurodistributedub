@@ -38,6 +38,7 @@ def check_submissions():
                     db.session.add(grade)
                 else:
                     grade.grade = max(submission.grade,grade.grade)
+                    grade.dategraded = dt.now()
                 db.session.commit()
                 
                 email = UBEmail()

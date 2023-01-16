@@ -31,7 +31,7 @@ def login_post():
         flash('Incorrect email/password combination')
         return redirect(url_for('auth.login'))
     login_user(curr_usr,remember=remember)
-    return redirect(url_for('main.welcome'))
+    return redirect(url_for('dashb.dashboard'))
 
 
 @auth.route('/register')

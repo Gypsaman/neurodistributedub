@@ -1,55 +1,40 @@
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="padding-right: 20px; padding-left: 20px; height: 60px">
+<nav class="neuro-navbar" >
   <div class="neuro-flex-row ">
-    <a href="/" class="navbar-brand">
+    <a href="/" >
       <img class="neuro-logo" src="/static/imgs/DNA_Secondary-white.png" />
     </a>
   </div>
   <div class="neuro-flex-row  neuro-flex-right ms-auto">
-      <button 
-          class="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navmenu"
-      >
-          <span class="navbar-toggle-icon"></span>
-      </button>
+
       <ul class="neuro-flex-row ">
       {% if current_user.is_authenticated %}
 
         <li class="neuro-nav-item">
-          <a href="/profile" class="nav-link">Profile</a>
-        </li>
-        <li class="neuro-nav-item">
-          <a href="/wallet" class="nav-link">Wallet</a>
-        </li>
-        <li class="neuro-nav-item">
-          <a href="/assets/1" class="nav-link">Assets</a>
+          <a href="/assets/1" class="neuro-nav-link">Assets</a>
         </li>
 
 
         <li class="neuro-nav-item">
-          <a href="/submissionselect" class="nav-link">Submission</a>
+          <a href="/submissionselect" class="neuro-nav-link">Submission</a>
         </li>
         <li class="neuro-nav-item">
-          <a href="/transactions/1" class="nav-link">Transactions</a>
+          <a href="/transactions/1" class="neuro-nav-link">Transactions</a>
         </li>
 
-        <li class="neuro-nav-item">
-          <a href="/grades/1" class="nav-link">Grades</a>
-        </li>
+
         {%if current_user.role == 'admin' %}
           <li class="neuro-nav-item">
-            <a href="/admin" class="nav-link">Admin</a>
+            <a href="/admin" class="neuro-nav-link">Admin</a>
           </li>
         {% endif %}
         <li class="neuro-nav-item">
-          <a href="/logout" class="nav-link">LogOut</a>
+          <a href="/logout" class="neuro-nav-link">LogOut</a>
         </li>
 
       
       {% else %}
         <li class="neuro-nav-item">
-          <a href="/login" class="nav-link">Log in</a>
+          <a href="/login" class="neuro-nav-link">Log in</a>
         </li>
       {% endif %}
     </ul>

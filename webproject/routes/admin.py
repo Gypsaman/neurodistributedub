@@ -80,6 +80,7 @@ def grades_del(id):
     db.session.commit()
     
     return redirect(url_for('admin.grades_select'))
+
 @admin.route("/admin/gradesselect", methods=["POST"])
 @admin_required
 def grades_select_post():
