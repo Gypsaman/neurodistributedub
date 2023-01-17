@@ -4,7 +4,8 @@
 <div class="neuro-content">
     <div class="neuro-form-section">
         <form action="\submission\{{assignment.id}}" method="POST" class="neuro-form" enctype="multipart/form-data">
-            <h1>Submission for: {{assignment.name}}</h1>
+            <h1>Submission </h1>
+            <h2>{{ assignment.name }}</h2>
             <div>
                 {% if assignment.inputtype == "text" %}
                     <label for="submission">Submission</label>
@@ -14,7 +15,7 @@
                 {% endif %}
             </div>
             <div class="neuro-form-entry-row" style="margin: 20px">
-                <button class="btn btn-primary btn-block mb-4 btn-center" type="submit">Submit</button>
+                <button class="neuro-button-main" type="submit">Submit</button>
             </div>
         </form>
     </div>

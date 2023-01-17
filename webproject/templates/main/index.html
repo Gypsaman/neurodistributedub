@@ -9,9 +9,11 @@
         <h1 style="color: #00002f; font-family: rubik; font-size: 40px;">Distributed Neural Applications</h1>
 
     </div>
+    {% if current_user.is_authenticated == False %}
     <div>
         <button class="neuro-button-login" onclick="window.location.href='/login'">Log In</button>
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}

@@ -49,6 +49,11 @@ def register_post():
         flash('Email exists already')
         return redirect(url_for('auth.register'))
     
+    curr_user = User.query.filter_by(student_id=request.form.get('studentid')).first()
+    if curr_user:
+        flash('Student ID exists already')
+        return redirect(url_for('auth.register'))
+    
     record = {
         'email': email,
         'first_name' : request.form.get('firstname'),
