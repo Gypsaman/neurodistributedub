@@ -9,6 +9,7 @@ class User(UserMixin,db.Model):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     student_id = db.Column(db.String(10),unique=True)
+    section = db.Column(db.String(10))
     role = db.Column(db.String(10))
     
     def get_urole(self):

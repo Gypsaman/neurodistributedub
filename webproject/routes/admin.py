@@ -123,7 +123,7 @@ def users(page_num):
     }
     
     table_creator = TableCreator('User',fields,actions=['Edit','Delete'])
-    table_creator.set_items_per_page(30)
+    table_creator.set_items_per_page(12)
     table_creator.create_view()
     table = table_creator.create(page_num)
     return render_template('admin/users.html',table=table)
