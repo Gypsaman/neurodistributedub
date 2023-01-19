@@ -107,10 +107,17 @@ def update_student_section():
         
         students = User.query.filter_by(role='student').all()
         for student in students:
+            if student.student_id not in roster:
+                print(f'{student.student_id} not in roster')
+                continue
             section = Sections.query.filter_by(section=roster[student.student_id]['Course']).first()
+            if section is None:
+                print(f'{roster[student.student_id]["Course"]} not in sections')
+                continue
             student.section = section.id
             db.session.commit()
 
 if __name__ == '__main__':
 
-    print_data()
+    add_sections()
+    update_student_section()
