@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required,current_user
 
 from webproject import db
-from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades
+from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades, Sections
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
 
 
@@ -41,6 +41,7 @@ def dashboard():
     submissions_table = table_creator.create(1)
 
     user = User.query.filter_by(id=current_user.id).first()
+    section = Sections.query.filter_by(id=user.section).first()
     wallet = Wallet.query.filter_by(user_id=current_user.id).first()
     tokens = Assets.query.filter_by(user_id=current_user.id, asset_type=1).count()
     nfts = Assets.query.filter_by(user_id=current_user.id, asset_type=2).count()
@@ -52,6 +53,7 @@ def dashboard():
                            grades_table=grades_table,
                            submissions_table=submissions_table,
                            user=user,
+                           section=section,
                            wallet=wallet,
                            tokens=tokens,nfts=nfts,
                            assigments_count=assigments_count,

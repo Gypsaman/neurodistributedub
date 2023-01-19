@@ -6,11 +6,13 @@
         <form action="\submission\{{assignment.id}}" method="POST" class="neuro-form" enctype="multipart/form-data">
             <h1>Submission </h1>
             <h2>{{ assignment.name }}</h2>
+            <p> due on: {{duedate.duedate}}</p>
             <div>
                 {% if assignment.inputtype == "text" %}
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" placeholder="Enter your answer here" required>
                 {% elif assignment.inputtype == "file" %}
+
                     <input type="file" name="submission" required>
                 {% endif %}
             </div>

@@ -10,73 +10,47 @@
   </div>
   {% endif %} {% endwith %}
   <form class="neuro-login-form" method="POST" action="/register">
-    <div class="neuro-form-section">
-      <!-- 2 column grid layout with text inputs for the first and last names -->
+ 
+        <div><br></div>
+
+        <div class="">
+          <input type="text" id="formFirstName" name="firstname"  placeholder="First Name"/>
+        </div>
+
+
+        <div class="">
+          <input type="text" id="FormLastName" name="lastname"  placeholder="Last Name"/>
+        </div>
       
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="">
-            <input
-              type="text"
-              id="formFirstName"
-              name="firstname"
-              class="form-control"
-              placeholder="First Name"
-            />
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="">
-            <input
-              type="text"
-              id="FormLastName"
-              name="lastname"
-              class="form-control"
-              placeholder="Last Name"
-            />
-          </div>
-        </div>
+
+
+      <div class="">
+          <input  type="text" id="FormStudentID" name="studentid" placeholder="Student ID"/>
       </div>
 
-      <!-- student ID input -->
-      <div class="mb-4">
-          <input
-              type="text"
-              id="FormStudentID"
-              name="studentid"
-              class="form-control"
-              placeholder="Student ID"
-          />
-          </div>
-      <!-- Email input -->
-      <div class="mb-4">
-        <input
-          type="email"
-          id="FormEmail"
-          name="email"
-          class="form-control"
-          placeholder="Email Address"
-        />
+      <div>
+        <label for= "sectionid">Section</label>
+        <select name="sectionid" id="sectionid">
+          {% for section in sections %}
+          <option value="{{ section.id }}">{{ section.section }}</option>
+          {% endfor %}
+        </select>
       </div>
 
-      <!-- Password input -->
-      <div class="mb-4">
-        <input
-          type="password"
-          id="FormPassword"
-          name="password"
-          class="form-control"
-          placeholder="Password"
-        />
+      <div class="">
+        <input type="email" id="FormEmail" name="email" placeholder="Email Address"/>
       </div>
 
-      <!-- Submit button -->
-      <div class="col d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">
+      <div class="">
+        <input type="password" id="FormPassword" name="password" placeholder="Password"/>
+      </div>
+
+      <div class="">
+        <button type="submit" class="neuro-button-main">
           Sign up
         </button>
       </div>
-  </div>
+
   </form>
 </div>
 

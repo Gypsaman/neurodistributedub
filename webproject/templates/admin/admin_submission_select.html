@@ -6,10 +6,10 @@
     <div class="neuro-form-section">
         <form action="{{sendto}}" method="POST" class="neuro-form">
             <div class="neuro-form-entry-row">
-                <label for="assignmentName">Assignment Name</label>
-                <select id="assignmentName" name="assignmentName" required>
+                <label for="assignment">Assignment Name</label>
+                <select id="assignment" name="assignment" required>
                     {% for assignment in assignments %}
-                    <option value="{{ assignment.name }}">{{ assignment.name }}</option>
+                    <option value="{{ assignment.id }}">{{ assignment.name }}</option>
                     {% endfor %}
                 </select>
             </div>

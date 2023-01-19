@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template,request,redirect,url_for,flash
 import werkzeug
 from flask_login import current_user
-from webproject.models import User,Wallet,Assignments,Grades,Submissions
+from webproject.models import User,Wallet,Assignments,Grades,Submissions, DueDates
 from webproject.modules.table_creator import TableCreator, Field,timestamp_to_date,short_hash,wei_to_eth,asset_type_string
 from webproject import db
 from datetime import datetime as dt
@@ -22,7 +22,6 @@ def assingments(page_num):
     fields = {
             'id': Field(None,None),
             'name': Field(None,'Assignment'),
-            'due': Field(timestamp_to_date,'Due Date'),
             'inputtype': Field(None,'Input Type'),
             'grader': Field(None,'Grader'),
     }
@@ -77,11 +76,14 @@ def add_assignment():
     return render_template('assignments/assignments_add.html')
 
 
+
+
 @assignments.route('/submissionselect')
 @login_required
 def submission_select():
 
     assignments = Assignments.query.all()
+    
     return render_template('assignments/submission_select.html',assignments=assignments)
 
 @assignments.route('/submissionselect',methods=['POST'])
@@ -89,6 +91,7 @@ def submission_select():
 def submission_select_post():
         
     assignment = Assignments.query.filter_by(name=request.form['assignmentName']).first()
+    duedate = DueDates.query.filter_by(assignment=assignment.id,section=current_user.section).first()
     fields = {
             'id': Field(None,None),
             'submission':Field(None,'Submission'),
@@ -103,7 +106,7 @@ def submission_select_post():
     table_creator.create_view()
     table = table_creator.create(1)
     
-    return render_template('assignments/submission.html',assignment=assignment,table=table)
+    return render_template('assignments/submission.html',assignment=assignment,table=table,duedate=duedate)
     
 @assignments.route('/submission/<int:submission_id>',methods=['POST'])
 @login_required

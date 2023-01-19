@@ -2,6 +2,14 @@ from flask_login import UserMixin
 from webproject.modules.extensions import db
 from datetime import datetime
 
+class Sections(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    section = db.Column(db.String(10), unique=True)
+    active = db.Column(db.Boolean)
+    
+    def __repr__(self):
+        return f'section: {self.section}, active: {self.active}'
+
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True)
@@ -9,14 +17,14 @@ class User(UserMixin,db.Model):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     student_id = db.Column(db.String(10),unique=True)
-    section = db.Column(db.String(10))
+    section = db.Column(db.Integer, db.ForeignKey('sections.id'))
     role = db.Column(db.String(10))
     
     def get_urole(self):
         return self.role
     
     def __repr__(self):
-        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, role: {self.role} '
+        return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, section: {self.section}, role: {self.role} '
 
 class PasswordReset(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
@@ -86,14 +94,24 @@ class Transactions(db.Model):
 class Assignments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    due = db.Column(db.DateTime)
     inputtype = db.Column(db.String(10))
     grader = db.Column(db.String(50))
     
     
     def __repr__(self):
-        return f'name: {self.name}, due: {self.due}, inputtype: {self.inputtype}, grader: {self.grader}'
+        return f'name: {self.name}, inputtype: {self.inputtype}, grader: {self.grader}'
     
+class DueDates(db.Model):
+    __tablename__ = 'due_dates'
+    id = db.Column(db.Integer, primary_key=True)
+    assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
+    section = db.Column(db.Integer,db.ForeignKey('sections.id'))
+    duedate = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return f'assignment: {self.assignment}, section: {self.section}, duedate: {self.duedate}'
+    
+
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)

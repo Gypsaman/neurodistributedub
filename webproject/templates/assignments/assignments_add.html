@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="neuro-content">
-    <h3>Add Assignment</h3>
+    <h1>Add Assignment</h1>
     {% with messages = get_flashed_messages() %} {% if messages %}
     <div class="notification is-danger">
         {{ messages[0] }}. Go to
@@ -15,10 +15,7 @@
                 <label for="assignmentName">Assignment Name</label>
                 <input type="text" id="assignmentName" name="assignmentName" placeholder="Assignment Name" required>
             </div>
-            <div class="neuro-form-entry-row">
-                <label for="due">Due Date</label>
-                <input type="datetime-local" id="due" name="due" placeholder="Due Date" required>
-            </div>
+
             <div class="neuro-form-entry-row">
                 <label for ="inputtype" >Submissions Type</label>
                 <select id="inputtype" name="inputtype" required>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="padding-right: 20px; padding-left: 20px; height: 60px">
     <div class="neuro-flex-row ">
-      <a href="/" class="navbar-brand">
+      <a href="/dashboard" class="navbar-brand">
         <img class="neuro-logo" src="/static/imgs/DNA_Secondary-white.png" />
       </a>
     </div>
@@ -17,7 +17,10 @@
         {% if current_user.is_authenticated %}
           {%if current_user.role == 'admin' %}
             <li class="neuro-nav-item">
-              <a href="assignments/1" class="nav-link">Assignments</a>
+              <a href="/assignments/1" class="nav-link">Assignments</a>
+            </li>
+            <li class="neuro-nav-item">
+              <a href="/admin/assignmentsdue" class="nav-link">Due Dates</a>
             </li>
             <li class="neuro-nav-item">
               <a href="/admin/users/1" class="nav-link">Users</a>

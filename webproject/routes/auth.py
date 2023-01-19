@@ -8,7 +8,8 @@ from webproject.routes import admin_required
 from datetime import datetime as dt
 import random
 from webproject.modules.ubemail import UBEmail
-from webproject.modules.table_creator import TableCreator, Field
+from webproject.models import Sections
+
 
 auth = Blueprint('auth',__name__)
 
@@ -36,7 +37,8 @@ def login_post():
 
 @auth.route('/register')
 def register():
-    return render_template('auth/register.html')
+    open_sections = Sections.query.filter_by(active=True).all()
+    return render_template('auth/register.html',sections=open_sections)
 
 
 @auth.route('/register',methods=['POST'])
@@ -59,6 +61,7 @@ def register_post():
         'first_name' : request.form.get('firstname'),
         'last_name' : request.form.get('lastname'),
         'student_id' : request.form.get('studentid'),
+        'section' : request.form.get('sectionid'),
         'password' : generate_password_hash(request.form.get('password'),method='sha256'),
         'role'  : 'admin' if email=='gypsaman@gmail.com' else 'student'
     }

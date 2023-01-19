@@ -18,6 +18,17 @@ body {
 
 
 }
+
+input[type="file"]::file-selector-button{
+  color: white;
+  opacity: 1;
+  font-size: 15px;
+  background-color: #3665ab;
+  border-radius: 10px;
+  border-style:none;  
+  padding: 10px;
+  margin-right: 10px;
+}
 .neuro-button-main {
   color: white;
   opacity: 1;
@@ -87,7 +98,10 @@ body {
 }
 
 select {
-  background-color: rgb(222, 210, 210);
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin-bottom: 15px;
 }
 
 .neuro-debug-border {
@@ -199,7 +213,7 @@ select {
 }
 
 input,textarea {
-  background-color: rgb(233, 230, 230);
+  background-color: rgb(248, 243, 243);
   
 }
 
@@ -275,7 +289,7 @@ input,textarea {
   border-style: transparent;
   border-radius: 20px;
   border-width: 1px;
-  background-color: #D6E3E9;
+  background-color: #95b5d5;
   opacity: 0.5;
   min-height: 400px;
 }
@@ -293,14 +307,14 @@ input,textarea {
 }
 .nuero-dashboard-profile-item-label{
   flex: 1;
-  color: #2560B9;
+  color: #091c38;
   font-size: 9px;
   width: 70px;
   text-align: right;
 }
 .neuro-dashboard-profile-item-value{
   flex: 6;
-  color: #2560B9;
+  color: #010a17;
   text-align: left;
   align-content: flex-start;
   

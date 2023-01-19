@@ -26,7 +26,7 @@ def assets_list(page_num):
         'time_added': Field(timestamp_to_date,'Added On'),
         'assignment': Field(None,'Assignment')
     }
-    table_creator = TableCreator("Assets", fields, actions=["View", "Delete","Edit"])
+    table_creator = TableCreator("Assets", fields, condition=f"user_id={current_user.id}",actions=["View", "Delete","Edit"])
     table_creator.set_items_per_page(10)
     table_creator.create_view()
     table = table_creator.create(page_num)
