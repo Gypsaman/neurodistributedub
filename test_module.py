@@ -1,28 +1,11 @@
-import json
+from webproject import db, create_app
+from webproject.models import User, Submissions, Grades
 
-
-def convert():
-    with open('./data/roster.csv','r') as f:
-        roster = f.readlines()
-        
-    columns = roster[0][:-1].split(',')
-    out = {}
-    for line in roster[1:]:
-        data = line.split(',')
-        info = {columns[i]:data[i] for i in range(1,len(columns))}
-        info['Course'] = info['Course'][:-1]
-        out[data[0]] = info
-        
-    with open('./data/roster.json','w') as f:
-        json.dump(out,f)
-        
-def test_conversion():
-    with open('./data/roster.json','r') as f:
-        roster = json.load(f)
-        
-    for student,info in roster.items():
-        print(f'{student}: {info["Course"]}')
-        
-convert()
-test_conversion()
-    
+with create_app().app_context():
+    submissions = Submissions.query.all()
+    for submission in submissions:
+        user = User.query.filter_by(id=submission.user_id).first()
+        if user is None:
+            print(f'User {submission.user_id} not found for submission {submission.id}')
+            continue
+        print(user.student_id,submission,user.id)

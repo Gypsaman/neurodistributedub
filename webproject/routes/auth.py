@@ -10,6 +10,7 @@ import random
 from webproject.modules.ubemail import UBEmail
 from webproject.models import Sections
 import json
+import os
 
 
 auth = Blueprint('auth',__name__)
@@ -44,8 +45,9 @@ def register():
 
 @auth.route('/register',methods=['POST'])
 def register_post():
-    
-    with open('./data/roster.json','r') as f:
+    cwd = os.getcwd()
+    cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
+    with open(os.path.join(cwd,'/data/roster.json','r')) as f:
         roster = json.load(f)
     
     email =  request.form.get('email')

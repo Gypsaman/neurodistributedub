@@ -97,27 +97,21 @@ def add_sections():
         db.session.add(section)
 
         db.session.commit()
-        
-def update_student_section():
+
+def check_not_registered():
     import json
     with open('./data/roster.json','r') as f:
         roster = json.load(f)
         
     with create_app().app_context():
+        users = User.query.all()
+        for user in users:
+            if user.student_id not in roster:
+                print(f'{user.student_id} not in roster')
+                continue
+            roster[user.student_id]['inSystem'] = True
+            
         
-        students = User.query.filter_by(role='student').all()
-        for student in students:
-            if student.student_id not in roster:
-                print(f'{student.student_id} not in roster')
-                continue
-            section = Sections.query.filter_by(section=roster[student.student_id]['Course']).first()
-            if section is None:
-                print(f'{roster[student.student_id]["Course"]} not in sections')
-                continue
-            student.section = section.id
-            db.session.commit()
-
+        
 if __name__ == '__main__':
 
-    add_sections()
-    update_student_section()

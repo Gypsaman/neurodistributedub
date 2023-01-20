@@ -165,10 +165,11 @@ def grades_select_post():
     )
 
 
-@admin.route("/admin/users/<int:page_num>")
+@admin.route("/admin/user/<int:page_num>")
 @admin_required
 def users(page_num):
 
+    users = User.query.all()
     fields = {
         "user.id": Field(None, None),
         "first_name": Field(None, "First Name"),
@@ -179,9 +180,9 @@ def users(page_num):
         "role": Field(None, "Role"),
     }
 
-    table_creator = TableCreator("User", fields, actions=["Edit", "Delete"])
+    table_creator = TableCreator("User", fields, actions=["Edit"],subdomain="/admin")
     table_creator.join("Sections", "user.section == Sections.id")
     table_creator.set_items_per_page(12)
     table_creator.create_view()
     table = table_creator.create(page_num)
-    return render_template("admin/users.html", table=table)
+    return render_template("admin/users.html", table=table,users=users)

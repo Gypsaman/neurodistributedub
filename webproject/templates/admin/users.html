@@ -2,12 +2,20 @@
 <div class="neuro-content">
   <h1>Users</h1>
     {{ table | safe }}
-    <div class="neuro-flex-row" style="margin-top: 10px;">
-        <div>
-            <button class="neuro-button-main" onclick="window.location.href='/adduser'">
-                Add
-            </button>
-        </div>  
-    </div>
+    <div class="neuro-form-section">
+      <form action="\dashboard\student" method="POST" class="neuro-form">
+          <div class="neuro-form-entry-row">
+              <label for="studentid">Pick Student</label>
+              <select id="studentid" name="studentid" required>
+                  {% for user in users %}
+                  <option value="{{ user.id }}">{{ user.student_id }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          <div class="neuro-form-entry-row">
+              <button type="submit" class="neuro-button-main">Dashboard</button>
+          </div>
+      </form>
+  </div>
 </div>
 {% endblock %}

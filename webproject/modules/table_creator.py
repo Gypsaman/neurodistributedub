@@ -36,13 +36,14 @@ class Field:
             return self.Format(value)
         
 class TableCreator:
-    def __init__(self,table_name,fields,condition=None,actions=["Edit", "Delete","View"]):
+    def __init__(self,table_name,fields,condition=None,actions=["Edit", "Delete","View"],subdomain=''):
         self.table_name = table_name
         self.join_table = None
         self.condition = condition
         self.join_condition = None
         self.actions = actions
         self.fields = {column:field for column,field in fields.items()}
+        self.subdomain = subdomain
 
         if 'id' not in list(self.fields.keys())[0] and len(actions) > 0:
             raise Exception('TableCreator: id field is required for actions')
@@ -106,11 +107,11 @@ class TableCreator:
                 
                 self.id = item[0]
                 if "Edit" in self.actions:
-                    html += f'<a href="/{self.table_name.lower()}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
+                    html += f'<a href="/{self.table_name.lower()}{self.subdomain}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
                 if "Delete" in self.actions:
-                    html += f'<a href="/{self.table_name.lower()}/delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
+                    html += f'<a href="/{self.table_name.lower()}{self.subdomain}/delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
                 if "View" in self.actions:
-                    html += f'<a href="/{self.table_name.lower()}/view/{page_num}/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
+                    html += f'<a href="/{self.table_name.lower()}{self.subdomain}/view/{page_num}/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
                 html += '</div></td>'
             html += '</tr>'
 
@@ -122,11 +123,11 @@ class TableCreator:
         html += '<div class="neuro-flex-row neuro-table-nav">'
         html += '<div style="height: 30px; width: 30px">'
         if back_button:
-            html += f'<a href="/{self.table_name.lower()}/{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="{self.subdomain}/{self.table_name.lower()}/{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '<div style="height: 30px; width: 30px">'
         if next_button:
-            html += f'<a href="/{self.table_name.lower()}/{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="{self.subdomain}/{self.table_name.lower()}/{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '</div>'
         
