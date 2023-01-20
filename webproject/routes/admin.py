@@ -33,7 +33,7 @@ def submission_select():
 def submission_select_post():
 
     assignment = Assignments.query.filter_by(
-        name=request.form["assignmentName"]
+        id=request.form["assignment"]
     ).first()
     fields = {
         "submissions.id": Field(None, None),
