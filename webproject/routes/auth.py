@@ -47,6 +47,7 @@ def register():
 def register_post():
     cwd = os.getcwd()
     cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
+    return cwd
     with open(os.path.join(cwd,'/data/roster.json','r')) as f:
         roster = json.load(f)
     
