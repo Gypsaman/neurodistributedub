@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from webproject import db
-from webproject.models import Assignments, DueDates, Grades, Submissions, User
+from webproject.models import Assignments, DueDates, Grades, Submissions, User, Sections
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
 from webproject.routes import admin_required
 from datetime import datetime as dt
@@ -100,14 +100,15 @@ def assigmentsdue_post():
 @admin_required
 def add_duedate(id):
     assignments = Assignments.query.all()
-    return render_template('admin/addduedate.html', assignments=assignments,selected=id)
+    sections = Sections.query.all()
+    return render_template('admin/addduedate.html', assignments=assignments,selected=id,sections=sections)
 
 @admin.route('/addduedate', methods=['POST'])
 @admin_required
 def add_duedate_post():
     record = {
         'assignment': request.form['assignment'],
-        'section': request.form['section'],
+        'section': request.form['sectionid'],
         'duedate': dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
     }
     duedate = DueDates(**record)
