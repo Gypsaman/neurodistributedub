@@ -9,6 +9,7 @@ from datetime import datetime as dt
 import random
 from webproject.modules.ubemail import UBEmail
 from webproject.models import Sections
+import json
 
 
 auth = Blueprint('auth',__name__)
@@ -44,6 +45,9 @@ def register():
 @auth.route('/register',methods=['POST'])
 def register_post():
     
+    with open('./data/roster.json','r') as f:
+        roster = json.load(f)
+    
     email =  request.form.get('email')
     curr_User = User.query.filter_by(email=email).first()
 
@@ -65,6 +69,12 @@ def register_post():
         'password' : generate_password_hash(request.form.get('password'),method='sha256'),
         'role'  : 'admin' if email=='gypsaman@gmail.com' else 'student'
     }
+    if record['student_id'] not in roster:
+        flash('Student ID does not match roster')
+        return redirect(url_for('auth.register'))
+    if roster[record['student_id']]['Preferred Email'] != record['email']:
+        flash('Email does not match roster')
+        return redirect(url_for('auth.register'))
     
     new_usr = User(**record)
 
