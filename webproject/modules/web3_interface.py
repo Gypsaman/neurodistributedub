@@ -6,7 +6,9 @@ from web3 import Web3
 import os
 from dotenv import load_dotenv,find_dotenv
 
-#load_dotenv(load_dotenv("/home/neurodistributed/neurodistributedub/.env"))
+cwd = os.getcwd()
+cwd = os.path.join(cwd,'neurodistributedub') if cwd.endswith('neurodistributed') else cwd
+load_dotenv(os.path.join(cwd,".env"))
 
 PROVIDER = os.getenv("PROVIDER")
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
@@ -94,6 +96,21 @@ def get_nft_uri(token_addr, top=10):
 
     return nfts
 
+
+def get_contract_abi(account):
+    EtherQuery = (
+        "https://api-goerli.etherscan.io/api"
+        "?module=contract"
+        "&action=getabi"
+        "&address={}"
+        "&apikey={}"
+    )
+
+    accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
+
+    transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+    
+    print(transinfo)
 
 def get_eth_balance(account):
     EtherQuery = (

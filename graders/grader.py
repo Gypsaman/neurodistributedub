@@ -138,6 +138,12 @@ def sha256_grader(submission:str) :
         
     if isinstance(hash,list):
         hash = ''.join(hash)
+        
+    if isinstance(hash,bytes):
+        hash = hash.decode('utf-8')
+        
+    if hash[:2] == '0x':
+        hash = hash[2:]
     
     if hash == correcthash:
         return 100, f'Hash "{hash}" is correct'
@@ -145,7 +151,7 @@ def sha256_grader(submission:str) :
     if len(hash) == len(correcthash):
         return 90, f'Hash "{hash}" is not correct, it should be "{correcthash}"'
 
-    return 80,f'Hash "{hash}" is not correct lenght or content, it should be "{correcthash}"'
+    return 80,f'Hash "{hash}" is not correct length or content, it should be "{correcthash}"'
 
 
 def ecc_grader(submission:str) :
