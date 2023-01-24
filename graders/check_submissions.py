@@ -4,6 +4,7 @@ from webproject.modules.ubemail import UBEmail
 from datetime import datetime as dt
 from graders.grader import call_grader
 from dotenv import load_dotenv
+from webproject.modules.dotenv_util import initialize_dotenv
 import shutil
 import os
 import time
@@ -12,10 +13,8 @@ import time
 
 def check_submissions():
     
-    cwd = os.getcwd()
-    cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
+    initialize_dotenv()
     
-    load_dotenv(os.path.join(cwd, '.env'))
     UPLOAD_FOLDER = os.getenv('UPLOADPATH')
     STORE_FOLDER = os.getenv('STOREPATH')
     

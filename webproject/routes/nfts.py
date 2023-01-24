@@ -25,5 +25,5 @@ def nfts_view(page_num,asset_id):
 
 @nfts.route('/test')
 def test():
-
-    return os.getcwd()
+    from webproject.modules.dotenv_util import get_cwd
+    return get_cwd()

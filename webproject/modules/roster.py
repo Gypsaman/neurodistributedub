@@ -111,5 +111,6 @@ def save_roster_encrypted(roster):
 if __name__ == '__main__':
 
     roster = open_roster_encrypted()
-    print(roster)
+    with open('./data/roster.json','w') as f:
+        json.dump(roster,f,indent=4)
     

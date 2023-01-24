@@ -6,18 +6,12 @@ from flask import Flask
 from flask_login import LoginManager
 
 from webproject.modules.extensions import db, migrate
+from webproject.modules.dotenv_util import get_cwd,initialize_dotenv
 
 
 def create_app():
-
-    cwd = os.getcwd()
-    cwd = (
-        os.path.join(cwd, "neurodistributedub")
-        if cwd == "/home/neurodistributed"
-        else cwd
-    )
-
-    load_dotenv(os.path.join(cwd, ".env"))
+    
+    initialize_dotenv()
 
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")

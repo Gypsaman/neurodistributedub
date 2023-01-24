@@ -4,6 +4,7 @@ import json
 import shutil
 import os
 import numpy as np
+from webproject.modules.dotenv_util import get_cwd
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -118,8 +119,7 @@ def sha256_grader(submission:str) :
     
     correcthash = "d6e8f9655184c6f96b24dc3df0c8eb88678181c79f4d7f809b51e88288976f7d"
     
-    cwd = os.getcwd()
-    cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\home\neurodistributed' else cwd
+    cwd = get_cwd()
     cwd = os.path.join(cwd,'graders','imports')
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
     
@@ -223,8 +223,7 @@ def ecc_grader(submission:str) :
 
         return 80,f'Your Encryption:\n{Cm}\n\nExpected Encryption:\n{Cm_expected} '
 
-    cwd = os.getcwd()
-    cwd = os.path.join(cwd,'neurodistributedub') if cwd == '\\home\\neurodistributed' else cwd
+    cwd = get_cwd()
     cwd = os.path.join(cwd,'graders','imports')
     shutil.copy(submission,os.path.join(cwd,'ECCIMPORT.py'))
     points,comment = grade_ecc()
