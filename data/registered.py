@@ -26,7 +26,7 @@ def update_registered():
     with open('./data/roster.json','w') as f:
         json.dump(roster,f,indent=4)
 
-def not_registered(section):
+def not_registered(section,listonly=False):
     with open('./data/roster.json','r') as f:
         roster = json.load(f)
     
@@ -36,15 +36,17 @@ def not_registered(section):
             if roster[student]['Registered'] == False:
                 not_registered.append(roster[student]['Preferred Email'])
     
+    if listonly:
+        return not_registered
     
     body = f'Dear Student,\n\nYou have not registered on the website for homework submission.  Please go to www.neurodistributed.com to register.\n\nCesar'
     for email_address in not_registered:
         email = UBEmail()
         email.send_email(email_address,'Register in Website',body)
     
-    return not_registered
+    return None
 
-def assignment_not_submitted(assignment):
+def assignment_not_submitted(assignment,listonly=False):
     with create_app().app_context():
         not_submitted = []
         assignment = Assignments.query.filter_by(name=assignment).first()
@@ -54,16 +56,19 @@ def assignment_not_submitted(assignment):
             if submission == None:
                 not_submitted.append(user.email)
     
+    if listonly:
+        return not_submitted
+    
     body = f'Dear Student,\n\nYou have not submitted assignment {assignment}.\n\nAssignment is past due date\n\nCesar'
     for email_address in not_submitted:
         email = UBEmail()
         email.send_email(email_address,'Register in Website',body)
     
-    return not_submitted
+    return None
 
 if __name__ == '__main__':
     # create_registered_item()
     update_registered()
 
-    print(not_registered('SP23-Monday'))
+    print(not_registered('SP23-Monday',True))
     # print(assignment_not_submitted('SHA256'))

@@ -74,7 +74,7 @@
         "Class Level": "Senior",
         "Preferred Email": "adocteur@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1164271": {
         "Student Name": "Mr. Bhanu Prasad Doddipati",
@@ -158,7 +158,7 @@
         "Class Level": "Graduate First Year",
         "Preferred Email": "mguttik@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1167597": {
         "Student Name": "Ms. Meghana Guttikonda",
@@ -207,7 +207,7 @@
         "Class Level": "Graduate First Year",
         "Preferred Email": "jkopp@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1170999": {
         "Student Name": "Ms. Greeshma Sai Priya Lekkala",
@@ -221,7 +221,7 @@
         "Class Level": "Graduate First Year",
         "Preferred Email": "smatta@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1164708": {
         "Student Name": "Mr. Sai Teja Medasani",
@@ -249,14 +249,14 @@
         "Class Level": "Graduate First Year",
         "Preferred Email": "amort@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1172677": {
         "Student Name": "Mr. Dinesh Kumar Reddy Mure",
         "Class Level": "Graduate First Year",
         "Preferred Email": "dmure@my.bridgeport.edu",
         "Course": "SP23-Monday",
-        "Registered": false
+        "Registered": true
     },
     "1148774": {
         "Student Name": "Mr. Yeshwanth Babu Neelapu",
@@ -306,6 +306,13 @@
         "Preferred Email": "sthotla@my.bridgeport.edu",
         "Course": "SP23-Monday",
         "Registered": true
+    },
+    "1177887": {
+        "Student Name": "Mr. Akhil Reddy Taniparthi",
+        "Class Level": "Graduate First Year",
+        "Preferred Email": "atani@my.bridgeport.edu",
+        "Course": "SP23-Monday",
+        "Registered": false
     },
     "1166317": {
         "Student Name": "Mr. Harshavardhan Vadla",
@@ -648,7 +655,7 @@
         "Class Level": "Graduate First Year",
         "Preferred Email": "smupp@my.bridgeport.edu",
         "Course": "SP23-Wednesday",
-        "Registered": false
+        "Registered": true
     },
     "1171100": {
         "Student Name": "Ms. Sai Prasanna Nayini",
