@@ -4,11 +4,9 @@ from datetime import datetime as dt
 import requests
 from web3 import Web3
 import os
-from dotenv import load_dotenv,find_dotenv
+from dotenv_util import initialize_dotenv
 
-cwd = os.getcwd()
-cwd = os.path.join(cwd,'neurodistributedub') if cwd.endswith('neurodistributed') else cwd
-load_dotenv(os.path.join(cwd,".env"))
+initialize_dotenv()
 
 PROVIDER = os.getenv("PROVIDER")
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")

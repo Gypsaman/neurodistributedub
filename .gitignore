@@ -7,3 +7,4 @@ uploads
 uploads_history/
 table_creator copy.py
 graders/imports/
+data/

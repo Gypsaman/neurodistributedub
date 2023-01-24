@@ -8,6 +8,7 @@ from webproject.routes import admin_required
 from datetime import datetime as dt
 import random
 from webproject.modules.ubemail import UBEmail
+from webproject.modules.roster import open_roster_encrypted
 from webproject.models import Sections
 import json
 import os
@@ -45,12 +46,8 @@ def register():
 
 @auth.route('/register',methods=['POST'])
 def register_post():
-    cwd = os.getcwd()
-    cwd = os.path.join(cwd, 'neurodistributedub') if cwd == '/home/neurodistributed' else cwd
-    rosterfile = os.path.join(cwd,'data/roster.json')
-
-    with open(rosterfile,'r') as f:
-        roster = json.load(f)
+    
+    roster = open_roster_encrypted()
     
     email =  request.form.get('email')
     curr_User = User.query.filter_by(email=email).first()
