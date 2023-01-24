@@ -3,7 +3,6 @@ from webproject.models import Assignments,Submissions,Grades, User
 from webproject.modules.ubemail import UBEmail
 from datetime import datetime as dt
 from graders.grader import call_grader
-from dotenv import load_dotenv
 from webproject.modules.dotenv_util import initialize_dotenv
 import shutil
 import os

@@ -4,7 +4,7 @@ from datetime import datetime as dt
 import requests
 from web3 import Web3
 import os
-from dotenv_util import initialize_dotenv
+from webproject.modules.dotenv_util import initialize_dotenv
 
 initialize_dotenv()
 
