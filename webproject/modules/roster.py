@@ -3,21 +3,22 @@ from webproject.models import User, Submissions, Grades, Sections, Assignments
 from webproject.modules.ubemail import UBEmail
 import json
 import os
-from webproject.modules.dotenv_util import initialize_dotenv
+from webproject.modules.dotenv_util import initialize_dotenv,get_cwd
 import fernet
 
 initialize_dotenv()
+filepath = get_cwd()
+
 
 def convert_roster_csv():
-    with open('./data/roster.csv','r') as f:
+    with open(os.path.join(filepath,'roster.csv','r')) as f:
         roster = f.readlines()
         
     columns = roster[0][:-1].split(',')
     
     out = {}
-    if os.path.exists('./data/roster.json'):
-        with open('./data/roster.json','r') as f:
-            out = json.load(f)
+    if os.path.exists(os.path.join(filepath,'roster.enc')):
+        out = open_roster_encrypted()
     
     for line in roster[1:]:
         data = line.split(',')
@@ -28,22 +29,18 @@ def convert_roster_csv():
         info['Course'] = info['Course'][:-1]
         out[student_id] = info
         
-    with open('./data/roster.json','w') as f:
-        json.dump(out,f)
+    save_roster_encrypted(out)
       
 def create_registered_item():
-    with open('./data/roster.json','r') as f:
-        roster = json.load(f)
+    roster = open_roster_encrypted()
         
     for student in roster:
         roster[student]['Registered'] = False
 
-    with open('./data/roster.json','w') as f:
-        json.dump(roster,f,indent=4)
+    save_roster_encrypted(roster)
 
 def update_registered():
-    with open('./data/roster.json','r') as f:
-        roster = json.load(f)
+    roster = open_roster_encrypted()
 
     with create_app().app_context():
         users = User.query.all()
@@ -51,12 +48,10 @@ def update_registered():
             if user.role == 'student':
                 roster[user.student_id]['Registered'] = True
         
-    with open('./data/roster.json','w') as f:
-        json.dump(roster,f,indent=4)
+    save_roster_encrypted(roster)
 
 def not_registered(section,listonly=False):
-    with open('./data/roster.json','r') as f:
-        roster = json.load(f)
+    roster = open_roster_encrypted()
     
     not_registered = []
     for student in roster:
