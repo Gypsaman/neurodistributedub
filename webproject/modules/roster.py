@@ -91,7 +91,7 @@ def assignment_not_submitted(assignment,listonly=False):
 
 def open_roster_encrypted():
     key = bytes(os.environ.get('FERNET_KEY').encode('utf-8'))
-    with open('./data/roster.enc','rb') as f:
+    with open(os.path.join(get_cwd(),'data/roster.enc'),'rb') as f:
         roster = f.read()
     frn = fernet.Fernet(key)
     roster = frn.decrypt(roster).decode('utf-8')
@@ -111,6 +111,6 @@ def save_roster_encrypted(roster):
 if __name__ == '__main__':
 
     roster = open_roster_encrypted()
-    with open('./data/roster.json','w') as f:
+    with open(os.path.join(get_cwd(),'data/roster.json'),'w') as f:
         json.dump(roster,f,indent=4)
     
