@@ -10,7 +10,6 @@ from webproject import db, create_app
 from webproject.models import Assignments,Submissions,Grades, User
 
 with create_app().app_context():
-    submissions = Submissions.query.filter_by(grade=None).all()
+    submissions = Submissions.query.filter_by(user_id=1).all()
     for submission in submissions:
-        submission.grade = 20
-    db.session.commit()
+        print(submission.comment)
