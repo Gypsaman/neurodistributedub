@@ -132,6 +132,7 @@ class Submissions(db.Model):
     submission = db.Column(db.String(50))
     date_submitted = db.Column(db.DateTime)
     grade = db.Column(db.Integer)
+    comment = db.Column(db.String(100))
     
     
     def __repr__(self):

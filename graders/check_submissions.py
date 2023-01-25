@@ -30,6 +30,7 @@ def check_submissions():
                 grade,comments = call_grader(assignment.name,submissionPath)
                 
                 submission.grade = grade
+                submission.comment = comments
                 grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
                 if grade is None:
                     grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
