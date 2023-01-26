@@ -5,18 +5,25 @@ import json
 import time
 import os
 from typing import List,Dict
+
+from webproject.modules.dotenv_util import get_cwd,initialize_dotenv
+
 servers = {
-    "UB":  { "emailServer": "smtp.office365.com", "emailPort": 587, "emailAccount": "cegarcia@brdigeport.edu","password_source":"UBPassword"},
+    "UB":  { "emailServer": "smtp.office365.com", "emailPort": 587, "emailAccount": "cegarcia@bridgeport.edu","password_source":"UBPassword"},
     "DNA": { "emailServer": "smtp.ionos.com", "emailPort": 587, "emailAccount": "cesar@distributedneuralapplications.com","password_source":"NeuroEmail"}
 }
+initialize_dotenv()
+
 class UBEmail:
     
     def __init__(self) -> None:
-        self.emailServer = servers["DNA"]['emailServer'] #smtp.office365.com
-        self.emailPort = servers["DNA"]['emailPort'] #587
+        server = os.environ.get('EMAIL_SERVER')
+        
+        self.emailServer = servers[server]['emailServer'] #smtp.office365.com
+        self.emailPort = servers[server]['emailPort'] #587
 
-        self.password = os.environ.get(servers["DNA"]['password_source'])
-        self.emailAccount = servers["DNA"]['emailAccount']
+        self.password = os.environ.get(servers[server]['password_source'])
+        self.emailAccount = servers[server]['emailAccount']
 
         self.context = ssl.create_default_context()
 
@@ -25,19 +32,23 @@ class UBEmail:
         self.mailserver.starttls()
         self.mailserver.login(self.emailAccount, self.password)
 
-    def send_email(self,recipient,subject,body) -> None:
+    def send_email(self,recipient,subject,body,carboncopy=None) -> None:
             
             em = EmailMessage()
-
+            recipients = [recipient]
+            if carboncopy is not None:
+                recipients.append(carboncopy)
             
             em['From'] = self.emailAccount
             em['To'] = recipient
+            if carboncopy is not None:
+                em['Cc'] = carboncopy
             em['Subject'] = subject
 
             body = body
 
             em.set_content(body)
-            self.mailserver.sendmail(self.emailAccount,recipient,em.as_string())
+            self.mailserver.sendmail(self.emailAccount,recipients,em.as_string())
             
             
     def bulk_email(self,emails: List[Dict[str,str]])-> None:

@@ -96,14 +96,14 @@ def open_roster_encrypted():
     frn = fernet.Fernet(key)
     roster = frn.decrypt(roster).decode('utf-8')
     
-    return json.loads(roster)
+    return json.loads(roster.replace('\'','\"').replace('True','true').replace('False','false'))
 
 def save_roster_encrypted(roster):
     key = bytes(os.environ.get('FERNET_KEY').encode('utf-8'))
     frn = fernet.Fernet(key)
-    roster = frn.encrypt(roster)
+    roster = frn.encrypt(str(roster))
     
-    with open('./data/roster.enc','wb') as f:
+    with open(os.path.join(get_cwd(),'data/roster.enc'),'wb') as f:
         f.write(roster)
     
     return None
