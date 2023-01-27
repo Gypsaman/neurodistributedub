@@ -16,12 +16,17 @@
                 {% elif assignment.inputtype == "address" %}
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" placeholder="Enter Address" pattern="0x[a-zA-Z0-9]{40}" required>
-                
                 {% endif %}
             </div>
+            {% if assignment.inputtype == 'None' %}
+                <div>
+                    <p>There is no submission for this assignment</p>
+                </div>
+            {% else %}
             <div class="neuro-form-entry-row" style="margin: 20px">
                 <button class="neuro-button-main" type="submit">Submit</button>
             </div>
+            {% endif %}
         </form>
     </div>
     <div class="neuro-form-section">

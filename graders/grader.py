@@ -242,11 +242,8 @@ def ecc_grader(submission:str) :
     return points, comment
     
 def wallet_grader(submission:str) :
-
-    ethbalance = get_eth_balance(submission)
-    if ethbalance > 0:
-        return 100, f'Wallet balance is {ethbalance} ETH'
-    return 0, f'Wallet is either invalid or has no ETH'
+    # graded by form for entering wallet address
+    pass
 
 
 graders= {
