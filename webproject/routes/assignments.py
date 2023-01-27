@@ -71,7 +71,7 @@ def add_assignment():
         assignment = Assignments(**record)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for('assignments.assingments'))
+        return redirect(url_for('assignments.assingments/1'))
     return render_template('assignments/assignments_add.html')
 
 

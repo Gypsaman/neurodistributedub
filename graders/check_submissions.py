@@ -28,7 +28,11 @@ def check_submissions():
                 submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
                 submission_content = submissionPath if submission.type == 'file' else submission.submission
                 
-                grade,comments = call_grader(assignment.name,submission_content)
+                if assignment.grader == 'None':
+                    grade=0
+                    comments='No grader assigned'
+                else:
+                    grade,comments = call_grader(assignment.name,submission_content)
                 
                 update_grade(submission,grade,comments)
 
