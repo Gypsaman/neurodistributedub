@@ -118,10 +118,14 @@ def payUB_Grader(contractAddress):
 
 def sha256_grader(submission:str) :
     
+    if submission.endswith('.pdf'):
+        return 0, 'Submission must be a python file'
+    
     correcthash = "d6e8f9655184c6f96b24dc3df0c8eb88678181c79f4d7f809b51e88288976f7d"
     
     cwd = get_cwd()
     cwd = os.path.join(cwd,'graders','imports')
+    
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
     
     try:
@@ -156,6 +160,10 @@ def sha256_grader(submission:str) :
 
 
 def ecc_grader(submission:str) :
+    
+    if submission.endswith('.pdf'):
+        return 0, 'Submission must be a python file'
+    
     
     def sumPoints(Cm):
 
