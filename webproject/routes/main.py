@@ -4,6 +4,7 @@ from webproject.models import User,Wallet,Assets,Transactions,Assignments,Grades
 from webproject.modules.web3_interface import get_eth_balance
 from webproject import db
 from flask_login import login_required
+from datetime import datetime as dt
 
 
 main = Blueprint('main',__name__)
@@ -23,20 +24,30 @@ def wallet():
 def wallet_post():
 
     wallet_address = request.form.get('wallet_address')
-    private_key = request.form.get('private_key')
-    if not wallet_address or not private_key:
-        flash('Please fill all the fields')
-        return redirect(url_for('main.wallet'))
+
+    
     curr_wallet = Wallet.query.filter_by(user_id=current_user.id).first()
     if curr_wallet:
-        flash('Wallet already exists')
+        flash('Wallet already added')
         return redirect(url_for('main.wallet'))
-    wallet = Wallet(wallet=wallet_address,privatekey=private_key,user_id=current_user.id)
     
+    if Wallet.query.filter_by(wallet=wallet_address).first() is not None:
+        flash('Wallet already in use')
+        return redirect(url_for('main.wallet'))
+
+    if get_eth_balance(wallet_address) == 0:
+        flash('Wallet address has no ETH')
+        return redirect(url_for('main.wallet'))
+    
+    wallet = Wallet(wallet=wallet_address,user_id=current_user.id)
+    assignment = Assignments.query.filter_by(name='Wallet').first()
+    grade = Grades(user_id=current_user.id,assignment=assignment.id,grade=100,dategraded=dt.now())    
+    
+    db.session.add(grade)
     db.session.add(wallet)
     db.session.commit()
     
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('dashboard.dashboard'))
 
 @main.route('/welcome')
 @login_required

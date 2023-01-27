@@ -5,6 +5,7 @@ import shutil
 import os
 import numpy as np
 from webproject.modules.dotenv_util import get_cwd
+from webproject.models import Wallet
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -232,10 +233,18 @@ def ecc_grader(submission:str) :
     
     return points, comment
     
+def wallet_grader(submission:str) :
+
+    ethbalance = get_eth_balance(submission)
+    if ethbalance > 0:
+        return 100, f'Wallet balance is {ethbalance} ETH'
+    return 0, f'Wallet is either invalid or has no ETH'
+
+
 graders= {
     "SHA256": sha256_grader,
     "ECC Curve": ecc_grader,
-    # "Wallet": wallet_grader,
+    "Wallet": wallet_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

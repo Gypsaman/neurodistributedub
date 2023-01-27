@@ -69,11 +69,12 @@ def not_registered(section,listonly=False):
     
     return None
 
-def assignment_not_submitted(assignment,listonly=False):
+def assignment_not_submitted(assignment,sectionName,listonly=False):
     with create_app().app_context():
         not_submitted = []
         assignment = Assignments.query.filter_by(name=assignment).first()
-        users = User.query.filter_by(section=2).all()
+        section = Sections.query.filter_by(section=sectionName).first()
+        users = User.query.filter_by(section=section.id).all()
         for user in users:
             submission = Submissions.query.filter_by(user_id=user.id,assignment=assignment.id).first()
             if submission == None:
@@ -82,7 +83,7 @@ def assignment_not_submitted(assignment,listonly=False):
     if listonly:
         return not_submitted
     
-    body = f'Dear Student,\n\nYou have not submitted assignment {assignment}.\n\nAssignment is past due date\n\nCesar'
+    body = f'Dear Student,\n\nYou have not submitted assignment {assignment.name}.\n\nAssignment is past due date\n\nCesar'
     for email_address in not_submitted:
         email = UBEmail()
         email.send_email(email_address,'Register in Website',body)

@@ -5,7 +5,7 @@ from webproject.routes import admin_required
 from webproject import db
 from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades, Sections
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
-
+from webproject.modules.web3_interface import get_eth_balance
 
 dashb = Blueprint("dashb", __name__)
 
@@ -42,6 +42,7 @@ def create_dashboard(user_id):
     user = User.query.filter_by(id=user_id).first()
     section = Sections.query.filter_by(id=user.section).first()
     wallet = Wallet.query.filter_by(user_id=user_id).first()
+    ethbalance = get_eth_balance(wallet.wallet) if wallet is not None else 0
     tokens = Assets.query.filter_by(user_id=user_id, asset_type=1).count()
     nfts = Assets.query.filter_by(user_id=user_id, asset_type=2).count()
     assigments_count = Assignments.query.count()
@@ -54,6 +55,7 @@ def create_dashboard(user_id):
                            user=user,
                            section=section,
                            wallet=wallet,
+                           ethbalance=ethbalance,
                            tokens=tokens,nfts=nfts,
                            assigments_count=assigments_count,
                            submissions_count=submissions_count,

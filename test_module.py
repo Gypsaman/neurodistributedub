@@ -1,5 +1,5 @@
-from webproject.modules.ubemail import UBEmail
+from webproject.modules.roster import update_registered, not_registered, assignment_not_submitted
 
-email = UBEmail()
-body = f'testCC'
-email.send_email('cegarcia@my.bridgeport.edu','Testing',body,carboncopy='gypsaman@gmail.com')
+
+assignment_not_submitted('SHA256','SP23-Monday')
+assignment_not_submitted('SHA256','SP23-Wednesday')

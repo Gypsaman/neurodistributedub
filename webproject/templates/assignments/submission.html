@@ -12,8 +12,11 @@
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" placeholder="Enter your answer here" required>
                 {% elif assignment.inputtype == "file" %}
-
                     <input type="file" name="submission" required>
+                {% elif assignment.inputtype == "address" %}
+                    <label for="submission">Submission</label>
+                    <input type="text" name="submission" placeholder="Enter Address" pattern="0x[a-zA-Z0-9]{40}" required>
+                
                 {% endif %}
             </div>
             <div class="neuro-form-entry-row" style="margin: 20px">

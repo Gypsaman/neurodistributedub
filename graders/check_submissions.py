@@ -8,8 +8,6 @@ import shutil
 import os
 import time
 
-
-
 def check_submissions():
     
     initialize_dotenv()
@@ -25,30 +23,41 @@ def check_submissions():
         while True:
             submissions = Submissions.query.filter_by(grade=None).all()
             for submission in submissions:
-                submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
+                
                 assignment = Assignments.query.filter_by(id=submission.assignment).first()
-                grade,comments = call_grader(assignment.name,submissionPath)
+                submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
+                submission_content = submissionPath if submission.type == 'file' else submission.submission
                 
-                submission.grade = grade
-                submission.comment = comments
-                grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
-                if grade is None:
-                    grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
-                    db.session.add(grade)
-                else:
-                    grade.grade = max(submission.grade,grade.grade)
-                    grade.dategraded = dt.now()
-                db.session.commit()
+                grade,comments = call_grader(assignment.name,submission_content)
                 
-                email = UBEmail()
-                user = User.query.filter_by(id=submission.user_id).first()
-                body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:\n{comments}'
-                email.send_email(user.email,f'Grade for {assignment.name}',body)
+                update_grade(submission,grade,comments)
+
+                email_grade(submission,assignment,grade,comments)
+                           
                 shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
+            
             time.sleep(30)
             
-            
 
+    
+def email_grade(submission,assignment,grade,comments):
+    email = UBEmail()
+    user = User.query.filter_by(id=submission.user_id).first()
+    body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:\n{comments}'
+    email.send_email(user.email,f'Grade for {assignment.name}',body)
+    
+def update_grade(submission,grade,comments):
+    submission.grade = grade
+    submission.comment = comments
+    grade = Grades.query.filter_by(assignment=submission.assignment,user_id=submission.user_id).first()
+    if grade is None:
+        grade = Grades(user_id=submission.user_id,assignment=submission.assignment,grade=submission.grade,dategraded=dt.now())
+        db.session.add(grade)
+    else:
+        grade.grade = max(submission.grade,grade.grade)
+        grade.dategraded = dt.now()
+    db.session.commit()
+                
 
 
 if __name__ == '__main__':

@@ -60,5 +60,5 @@ class UBEmail:
             if idx % 5:
                 time.sleep(5)
 
-    def __del__(self) -> None:
-        self.mailserver.quit()
+    # def __del__(self) -> None:
+    #     self.mailserver.quit()

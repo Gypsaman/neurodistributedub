@@ -60,7 +60,6 @@ def add_assignment():
     if request.method == 'POST':
         record = {
             'name':request.form['assignmentName'].strip(),
-            'due': dt.strptime(request.form['due'],'%Y-%m-%d'),
             'inputtype' : request.form['inputtype'],
             'grader' : request.form['grader'].strip(),
         }
