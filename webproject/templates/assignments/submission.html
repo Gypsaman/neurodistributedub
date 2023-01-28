@@ -15,7 +15,9 @@
                     <input type="file" name="submission" required>
                 {% elif assignment.inputtype == "address" %}
                     <label for="submission">Submission</label>
-                    <input type="text" name="submission" placeholder="Enter Address" pattern="0x[a-zA-Z0-9]{40}" required>
+                    <input type="text" name="submission" 
+                        placeholder="0xCDdE8850c5F52B9A03631C1Bf241423164fb3d43" 
+                        pattern="0x[a-zA-Z0-9]{40}" required>
                 {% endif %}
             </div>
             {% if assignment.inputtype == 'None' %}

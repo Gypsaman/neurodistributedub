@@ -26,7 +26,7 @@ def check_submissions():
                 
                 assignment = Assignments.query.filter_by(id=submission.assignment).first()
                 submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
-                submission_content = submissionPath if submission.type == 'file' else submission.submission
+                submission_content = submissionPath if submission.inputtype == 'file' else submission.submission
                 
                 if assignment.grader == 'None':
                     grade=0
