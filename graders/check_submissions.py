@@ -23,22 +23,27 @@ def check_submissions():
         while True:
             submissions = Submissions.query.filter_by(grade=None).all()
             for submission in submissions:
-                
-                assignment = Assignments.query.filter_by(id=submission.assignment).first()
-                submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
-                submission_content = submissionPath if submission.inputtype == 'file' else submission.submission
-                
-                if assignment.grader == 'None':
-                    grade=0
-                    comments='No grader assigned'
-                else:
-                    grade,comments = call_grader(assignment.name,submission_content)
-                
-                update_grade(submission,grade,comments)
+            
+                try :
+                    assignment = Assignments.query.filter_by(id=submission.assignment).first()
+                    submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
+                    submission_content = submissionPath if assignment.inputtype == 'file' else submission.submission
+                    
+                    if assignment.grader == 'None':
+                        grade=0
+                        comments='No grader assigned'
+                    else:
+                        grade,comments = call_grader(assignment.name,submission_content)
+                    
+                    update_grade(submission,grade,comments)
 
-                email_grade(submission,assignment,grade,comments)
-                           
-                shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
+                    email_grade(submission,assignment,grade,comments)
+                            
+                    shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
+                
+                except Exception as e:
+                    email_error(e)
+                    exit()
             
             time.sleep(30)
             
@@ -49,6 +54,11 @@ def email_grade(submission,assignment,grade,comments):
     user = User.query.filter_by(id=submission.user_id).first()
     body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:\n{comments}'
     email.send_email(user.email,f'Grade for {assignment.name}',body)
+    
+def email_error(error):
+    email = UBEmail()
+    body = f'Check_submissions error:\n{error}'
+    email.send_email('cegarcia@bridgeport.edu',f'Check_submissions error',body)
     
 def update_grade(submission,grade,comments):
     submission.grade = grade
