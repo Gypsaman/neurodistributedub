@@ -52,7 +52,7 @@ def check_submissions():
 def email_grade(submission,assignment,grade,comments):
     email = UBEmail()
     user = User.query.filter_by(id=submission.user_id).first()
-    body = f'Your grade for {assignment.name} is {grade.grade}\n\nComments on grade:\n{comments}'
+    body = f'Your grade for {assignment.name} is {grade}\n\nComments on grade:\n{comments}'
     email.send_email(user.email,f'Grade for {assignment.name}',body)
     
 def email_error(error):

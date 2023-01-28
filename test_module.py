@@ -1,5 +1,3 @@
-from webproject.modules.roster import update_registered, not_registered, assignment_not_submitted
+from graders.check_submissions import check_submissions
 
-
-assignment_not_submitted('SHA256','SP23-Monday')
-assignment_not_submitted('SHA256','SP23-Wednesday')
+check_submissions()
