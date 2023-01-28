@@ -141,6 +141,9 @@ def sha256_grader(submission:str) :
     except Exception as e:
         return 0, f"SHA256 does not run correctly\nError:\n{str(e).replace('SHAIMPORT.py','')}"
         
+    if hash is None:
+        return 0, f"SHA256 does not run correctly, it returns None"
+    
     if isinstance(hash,list):
         hash = ''.join(hash)
         
