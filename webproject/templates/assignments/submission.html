@@ -7,19 +7,32 @@
             <h1>Submission </h1>
             <h2>{{ assignment.name }}</h2>
             <p> due on: {{duedate.duedate}}</p>
-            <div>
+            <div class="neuro-form-entry-row">
                 {% if assignment.inputtype == "text" %}
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" placeholder="Enter your answer here" required>
-                {% elif assignment.inputtype == "file" %}
+                {% endif %}
+                {% if assignment.inputtype == "file" %}
                     <input type="file" name="submission" required>
-                {% elif assignment.inputtype == "address" %}
+                {% endif %}
+                {% if assignment.inputtype.startswith("address") %}
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" 
                         placeholder="0xCDdE8850c5F52B9A03631C1Bf241423164fb3d43" 
-                        pattern="0x[a-zA-Z0-9]{40}" required>
+                        pattern="0x[a-zA-Z0-9]{40}" required
+                        style="min-width:42em" >
                 {% endif %}
             </div>
+                {% if assignment.inputtype == "address_abi" %}
+                <div class="neuro-form-entry-row">
+                    <label for="abi">Contract ABI</label>
+                    <textarea name="abi" 
+                        placeholder="Enter ABI here" required
+                        rows="5">
+                    </textarea>
+                </div>
+                {% endif %}
+
             {% if assignment.inputtype == 'None' %}
                 <div>
                     <p>There is no submission for this assignment</p>

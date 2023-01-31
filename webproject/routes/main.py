@@ -47,7 +47,7 @@ def wallet_post():
     db.session.add(wallet)
     db.session.commit()
     
-    return redirect(url_for('dashboard.dashboard'))
+    return redirect(url_for('dashb.dashboard'))
 
 @main.route('/welcome')
 @login_required

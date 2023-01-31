@@ -71,7 +71,7 @@ def add_assignment():
         assignment = Assignments(**record)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for('assignments.assingments/1'))
+        return redirect(url_for('assignments.assingments'))
     return render_template('assignments/assignments_add.html')
 
 
@@ -112,27 +112,31 @@ def submission_select_post():
 def submission_post(submission_id):
 
     assignment = Assignments.query.filter_by(id=submission_id).first()
-    upload_name = ''
+    submission = ''
     if assignment.inputtype == 'file':
         file_data = request.files['submission']
         file_name = werkzeug.utils.secure_filename(f'{submission_id}_{current_user.id}_{dt.now().strftime("%Y%m%d%H%M%S")}_{file_data.filename}')
         file_data.save(join(UPLOADPATH,file_name))
-        upload_name=file_name
+        submission=file_name
+    elif assignment.inputtype == 'address_abi':
+        contract = request.form['submission']
+        abi = request.form['abi']
+        submission = {'contract':contract,'abi':abi}
     else:
-        upload_name = request.form['submission']
+        submission = request.form['submission']
         
     record = {
         "user_id":current_user.id,
         "assignment":submission_id,
-        "submission":upload_name,
+        "submission":submission,
         "date_submitted":dt.now(),
         'grade':None
     }
-    submission = Submissions(**record)
-    db.session.add(submission)
+    submission_record = Submissions(**record)
+    db.session.add(submission_record)
     db.session.commit()
         
-    return render_template('assignments/submissionconfirm.html',assignment=assignment,submission=upload_name)
+    return render_template('assignments/submissionconfirm.html',assignment=assignment,submission=submission)
 
 @assignments.route('/grades/<int:page_num>')
 @login_required

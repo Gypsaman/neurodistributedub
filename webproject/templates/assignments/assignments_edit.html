@@ -18,6 +18,8 @@
             <div class="neuro-form-entry-row">
                 <label for ="inputtype" >Submissions Type</label>
                 <select id="inputtype" name="inputtype" required style="min-width:200px">
+                    <option value="address" {% if assignment.inputtype == 'address' %}selected{% endif %}>Address</option>
+                    <option value="address_abi" {% if assignment.inputtype == 'address_abi' %}selected{% endif %}>Address with ABI</option>
                     <option value="text" {% if assignment.inputtype == 'text' %}selected{% endif %}>Text</option>
                     <option value="file" {% if assignment.inputtype == 'file' %}selected{% endif %}>File</option>
                 </select>
