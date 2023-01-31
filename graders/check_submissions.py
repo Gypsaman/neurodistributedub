@@ -1,5 +1,5 @@
 from webproject import create_app, db
-from webproject.models import Assignments,Submissions,Grades, User
+from webproject.models import Assignments,Submissions,Grades, User, DueDates
 from webproject.modules.ubemail import UBEmail
 from datetime import datetime as dt
 from graders.grader import call_grader
@@ -35,6 +35,8 @@ def check_submissions():
                     else:
                         grade,comments = call_grader(assignment.name,submission_content)
                     
+                    grade,comments = update_if_late(submission.date_submitted,assignment.id,submission.user_id,grade,comments)
+                    
                     update_grade(submission,grade,comments)
 
                     email_grade(submission,assignment,grade,comments)
@@ -48,7 +50,15 @@ def check_submissions():
             time.sleep(30)
             
 
-    
+def update_if_late(date_submitted,assignment_id,user_id,grade,comments):
+    user = User.query.filter_by(id=user_id).first()
+    due_date = DueDates.query.filter_by(assignment=assignment_id,section=user.section).first()
+    if date_submitted > due_date.duedate:
+        days = (date_submitted - due_date.duedate).days
+        grade = grade - 5 if days < 7 else grade - 11
+        comments += f'\n\nyour submission was {days} days late'
+    return grade,comments
+
 def email_grade(submission,assignment,grade,comments):
     email = UBEmail()
     user = User.query.filter_by(id=submission.user_id).first()

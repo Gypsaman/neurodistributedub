@@ -1,6 +1,7 @@
 from webproject import db, create_app
 from webproject.models import User, Wallet
 from werkzeug.security import generate_password_hash
+from graders.check_submissions import check_submissions
 
 
 def create_user():
@@ -22,4 +23,4 @@ def remove_wallet():
         db.session.delete(wallet)
         db.session.commit()
             
-remove_wallet()
+check_submissions()
