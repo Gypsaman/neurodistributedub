@@ -26,8 +26,8 @@ def check_submissions():
             
                 try :
                     assignment = Assignments.query.filter_by(id=submission.assignment).first()
-                    submissionPath = os.path.join(UPLOAD_FOLDER,submission.submission)
-                    submission_content = submissionPath if assignment.inputtype == 'file' else submission.submission
+                    
+                    submission_content = os.path.join(UPLOAD_FOLDER,submission.submission) if assignment.inputtype == 'file' else submission.submission
                     
                     if assignment.grader == 'None':
                         grade=0
@@ -40,8 +40,9 @@ def check_submissions():
                     update_grade(submission,grade,comments)
 
                     email_grade(submission,assignment,grade,comments)
-                            
-                    shutil.move(submissionPath,os.path.join(STORE_FOLDER,submission.submission))
+                    
+                    if assignment.inputtype == 'file':
+                        shutil.move(submission_content,os.path.join(STORE_FOLDER,submission.submission))
                 
                 except Exception as e:
                     email_error(e)

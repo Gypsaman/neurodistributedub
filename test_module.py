@@ -2,7 +2,7 @@ from webproject import db, create_app
 from webproject.models import User, Wallet
 from werkzeug.security import generate_password_hash
 from graders.check_submissions import check_submissions
-
+from webproject.models import Submissions
 
 def create_user():
     with create_app().app_context():
@@ -22,5 +22,143 @@ def remove_wallet():
         wallet = Wallet.query.filter_by(user_id=user.id).first()
         db.session.delete(wallet)
         db.session.commit()
-            
+def check_abi():
+    import json
+    with create_app().app_context():
+        submission = Submissions.query.filter_by(id=449).first()   
+        contract = 0xC332E48F97241795dEA9C0DDbF8637E2565A1b18
+        abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "student",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "billAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "addBill",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pay",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "billsToPay",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ethAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "getConversionRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "studentsBilled",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "viewMyBill",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+        submission.submission = json.dumps({'contract': contract, 'abi': abi})
+        # submission.grade = 100
+        db.session.commit()
+        
+def update_section():
+    with create_app().app_context():
+        user = User.query.filter_by(id=1).first()
+        user.section = 1
+        db.session.commit()
+        
+      
 check_submissions()
+# check_abi()

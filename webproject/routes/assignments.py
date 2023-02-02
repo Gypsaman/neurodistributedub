@@ -7,7 +7,7 @@ from webproject import db
 from datetime import datetime as dt
 import os
 from os.path import join
-
+import json
 
 from flask_login import login_required
 from webproject.routes import admin_required
@@ -46,7 +46,6 @@ def assignments_edit(id):
 def assigments_edit_post(id):
     assignment = Assignments.query.filter_by(id=id).first()
     assignment.name = request.form['assignmentName']
-    assignment.due = dt.strptime(request.form['due'].replace('T',' '),'%Y-%m-%d %H:%M')
     assignment.inputtype = request.form['inputtype']
     assignment.grader = request.form['grader']
     
@@ -71,7 +70,7 @@ def add_assignment():
         assignment = Assignments(**record)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for('assignments.assingments'))
+        return redirect(url_for('assignments.assingments',page_num=1))
     return render_template('assignments/assignments_add.html')
 
 
@@ -121,7 +120,7 @@ def submission_post(submission_id):
     elif assignment.inputtype == 'address_abi':
         contract = request.form['submission']
         abi = request.form['abi']
-        submission = {'contract':contract,'abi':abi}
+        submission = json.dumps({'contract':contract,'abi':abi})
     else:
         submission = request.form['submission']
         

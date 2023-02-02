@@ -12,11 +12,24 @@ STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
 
 
-def get_contract(contractAddress,abiFile):
+def get_dict_from_string(dictstring):
+    # dictstring = dictstring.replace('\\t','').replace('\\n','').replace('\\r','')
+    try:
+        dict = json.loads(dictstring)
+    except Exception as e:
+        dict = None
+        
+    return dict
+
+def get_abi_functions(abi):
+   
+    return [i['name'] for i in abi if i['type'] == 'function']
+    
+
+def get_contract(contractAddress,abi):
 
     w3 = Web3(HTTPProvider('https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881'))
-    with open(abiFile,'r') as f:
-        abi = json.load(f)
+
     try:
         contract = w3.eth.contract(address=w3.toChecksumAddress(contractAddress),abi=abi)
     except:
@@ -70,51 +83,65 @@ def MidTerm_Grader(contractAddress):
     
     return grade
 
-def MyID_Grader(contractAddress):
+def MyID_Grader(Address_ABI):
 
-    myID = get_contract(contractAddress,'myID_ABI.json')
+    Address_ABI = get_dict_from_string(Address_ABI)
+    contractAddress = Address_ABI['contract']
+    abi = Address_ABI['abi']
+
+    myID = get_contract(contractAddress,abi)
 
     if myID is None:
-        return 0
+        return 0, "Not a valid contract address"
 
     try:
         id = myID.functions.getID().call({"from":myaccount})
-    except:
-        id = ""
+    except Exception as e:
+        if 'You are not approved to view this ID' in str(e):
+            return 80, f'getID function does not give access to {myaccount}'
+        return 0, f"getID function does not run correctly\nError:\n{str(e)}"
 
-    grade = 75
+    
     if isinstance(id,tuple):
-        grade = 100
+        grade,comment = 100, 'Homework is correct'
+    else:
+        grade,comment = 85, f'getID does not return correct elements'
     
     
-    return grade
+    return grade,comment
 
-def payUB_Grader(contractAddress):
-
-    payUB = get_contract(contractAddress,'payUB_ABI.json')
+def payUB_Grader(Address_ABI):
+    
+    Address_ABI = get_dict_from_string(Address_ABI)
+    contractAddress = Address_ABI['contract']
+    abi = Address_ABI['abi']
+    
+    if 'viewMyBill' not in get_abi_functions(abi):
+        return 0, 'viewMyBill function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
+    
+    
+    payUB = get_contract(contractAddress,abi)
 
     if payUB is None:
-        return 0
+        return 0, 'Not a valid contract address'
 
     try:
         billtopay = payUB.functions.billsToPay(myaccount).call()
     except:
         billtopay = -1
+
     try:
-        mybill = payUB.functions.viewBill().call({"from":Web3.toChecksumAddress(myaccount)})
+        mybill = payUB.functions.viewMyBill().call({"from":Web3.toChecksumAddress(myaccount)})
     except:
-        try:
-            mybill = payUB.functions.viewMyBill().call({"from":Web3.toChecksumAddress(myaccount)})
-        except:
-            mybill = -1
+        mybill = -1
     
-    grade = 75
-    if billtopay == 500:
-        grade = 85
-    if mybill == 500:
-        grade = 100
+    grade, comment = 75, f'Bill to {myaccount} is not correct'
+    if billtopay == 500 and mybill == 500:
+        grade,comment = 100,'Homework is correct'
+    if billtopay == 500 and mybill != 500:
+        grade,comment = 85,'viewMyBill function does not return correct value'
     
-    return grade
+    return grade,comment
 
 def sha256_grader(submission:str) :
     
@@ -253,6 +280,8 @@ graders= {
     "SHA256": sha256_grader,
     "ECC Curve": ecc_grader,
     "Wallet": wallet_grader,
+    "PayUB": payUB_Grader,
+    "myID": MyID_Grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    
