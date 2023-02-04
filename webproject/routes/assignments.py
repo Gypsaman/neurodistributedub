@@ -171,5 +171,4 @@ def grade_history():
  	'''
   
     history = db.engine.execute(qry)
-    # return [[row.student_id,row.section,row.assignment,row.grade] for row in history]
     return [{'StudentID':row.student_id,'section':row.section,'assignment':row.assignment,'grade':row.grade} for row in history]
