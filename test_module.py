@@ -1,8 +1,10 @@
 from webproject import db, create_app
-from webproject.models import User, Wallet
+from webproject.models import User, Wallet,Assignments, Grades
 from werkzeug.security import generate_password_hash
 from graders.check_submissions import check_submissions
 from webproject.models import Submissions
+import requests
+# import pandas as pd
 
 def create_user():
     with create_app().app_context():
@@ -159,6 +161,17 @@ def update_section():
         user.section = 1
         db.session.commit()
         
-      
-check_submissions()
-# check_abi()
+def cross_tab(qry, row_fields,column_field, aggfunc):
+    
+    cross_qry = 'select' + [f'{field}, ' for field in row_fields] + [f'{aggfunc}({column_field}) as {column_field}'] + 'from' + qry + 'group by' + [f'{field}' for field in row_fields]
+    
+	
+def grades_crosstab():
+    import json
+    response = requests.get('http://127.0.0.1:5000/gradehistory')
+    gradehistory = json.loads(response.content)
+    print(gradehistory[0])
+    
+        
+          
+grades_crosstab()

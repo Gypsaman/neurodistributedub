@@ -156,3 +156,20 @@ def grades(page_num):
     table = table_creator.create(page_num)
     
     return render_template('assignments/grades.html',table=table)
+
+@assignments.route('/gradehistory')
+def grade_history():
+	
+    qry = '''
+	SELECT student_id, sections.section, assignment, grade 
+ 	FROM User
+  	join Sections on User.section = Sections.id  
+    left join 
+    (SELECT user_id, assignments.name as assignment, grade from Grades join Assignments on Grades.assignment = Assignments.id) as g
+    on User.id = g.user_id
+    where User.role = 'student'
+ 	'''
+  
+    history = db.engine.execute(qry)
+    # return [[row.student_id,row.section,row.assignment,row.grade] for row in history]
+    return [{'StudentID':row.student_id,'section':row.section,'assignment':row.assignment,'grade':row.grade} for row in history]
