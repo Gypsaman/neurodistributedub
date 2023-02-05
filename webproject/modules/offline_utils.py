@@ -5,9 +5,11 @@ import requests
 def grade_history():
         
     response = requests.get('http://neurodistributed.com/gradehistory')
-    print(response.content)
-    gradehistory = json.loads(response.content)
+    # response = requests.get('http://127.0.0.1:5000/gradehistory')
+    gradehistory = json.loads(response.text)
+
     df = pd.json_normalize(gradehistory)
-    return df.pivot(index=['section','StudentID'], columns='assignment', values='grade')
+    # df.to_csv('gradehistory.csv')
+    print(df.pivot(index=['section','StudentID'], columns='assignment', values='grade'))
     
 grade_history()

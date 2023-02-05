@@ -136,5 +136,5 @@ class Submissions(db.Model):
     
     
     def __repr__(self):
-        return f'assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}'   
+        return f'user_id: {self.user_id}, assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}, comment: {self.comment}'   
     

@@ -120,7 +120,8 @@ def submission_post(submission_id):
     elif assignment.inputtype == 'address_abi':
         contract = request.form['submission']
         abi = request.form['abi']
-        submission = json.dumps({'contract':contract,'abi':abi})
+        wallet = Wallet.query.filter_by(user_id=current_user.id).first()
+        submission = json.dumps({'contract':contract,'abi':abi,'wallet':wallet.wallet})
     else:
         submission = request.form['submission']
         

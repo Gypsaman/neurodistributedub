@@ -198,7 +198,7 @@ def getContractCreator(contract):
 
     for tran in transactions:
         if tran["contractAddress"].lower() == contract.lower():
-            return tran["from"]
+            return tran["trans_from"]
 
 
 def CallContractFunction(contract, func, args):

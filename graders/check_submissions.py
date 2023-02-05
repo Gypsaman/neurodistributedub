@@ -1,5 +1,5 @@
 from webproject import create_app, db
-from webproject.models import Assignments,Submissions,Grades, User, DueDates
+from webproject.models import Assignments,Submissions,Grades, User, DueDates, Wallet
 from webproject.modules.ubemail import UBEmail
 from datetime import datetime as dt
 from graders.grader import call_grader
@@ -45,7 +45,7 @@ def check_submissions():
                         shutil.move(submission_content,os.path.join(STORE_FOLDER,submission.submission))
                 
                 except Exception as e:
-                    email_error(e)
+                    email_error(e,submission)
                     exit()
             
             time.sleep(30)
@@ -66,9 +66,9 @@ def email_grade(submission,assignment,grade,comments):
     body = f'Your grade for {assignment.name} is {grade}\n\nComments on grade:\n{comments}'
     email.send_email(user.email,f'Grade for {assignment.name}',body)
     
-def email_error(error):
+def email_error(error,submission):
     email = UBEmail()
-    body = f'Check_submissions error:\n{error}'
+    body = f'Check_submissions error:\n{error}\n\n{submission}'
     email.send_email('cegarcia@bridgeport.edu',f'Check_submissions error',body)
     
 def update_grade(submission,grade,comments):

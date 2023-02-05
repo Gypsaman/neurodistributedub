@@ -1,4 +1,4 @@
-from webproject.modules.web3_interface import get_eth_balance
+from webproject.modules.web3_interface import get_eth_balance, getContractCreator
 from web3 import Web3,HTTPProvider
 import json
 import shutil
@@ -115,6 +115,14 @@ def payUB_Grader(Address_ABI):
     Address_ABI = get_dict_from_string(Address_ABI)
     contractAddress = Address_ABI['contract']
     abi = Address_ABI['abi']
+    if 'wallet' in Address_ABI:
+        wallet = Address_ABI['wallet']
+    
+        if wallet.lower() != getContractCreator(contractAddress).lower():
+            return 0, 'This contract was not created by your wallet'
+        
+    if not isinstance(abi,dict):
+        abi = json.loads(abi)
     
     if 'viewMyBill' not in get_abi_functions(abi):
         return 0, 'viewMyBill function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
@@ -136,6 +144,7 @@ def payUB_Grader(Address_ABI):
         mybill = -1
     
     grade, comment = 75, f'Bill to {myaccount} is not correct'
+    
     if billtopay == 500 and mybill == 500:
         grade,comment = 100,'Homework is correct'
     if billtopay == 500 and mybill != 500:
@@ -283,7 +292,7 @@ graders= {
     "PayUB": payUB_Grader,
     "myID": MyID_Grader,
 }
-def call_grader(assignment:str,submission:str) -> int:
+def call_grader(assignment:str,submission:str,wallet:str) -> int:
    
    return graders[assignment](submission)
     
