@@ -292,7 +292,7 @@ graders= {
     "PayUB": payUB_Grader,
     "myID": MyID_Grader,
 }
-def call_grader(assignment:str,submission:str,wallet:str) -> int:
+def call_grader(assignment:str,submission:str) -> int:
    
    return graders[assignment](submission)
     
