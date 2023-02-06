@@ -56,8 +56,9 @@ def update_if_late(date_submitted,assignment_id,user_id,grade,comments):
     due_date = DueDates.query.filter_by(assignment=assignment_id,section=user.section).first()
     if date_submitted > due_date.duedate:
         days = (date_submitted - due_date.duedate).days
-        grade = grade - 5 if days < 7 else grade - 11
-        comments += f'\n\nyour submission was {days} days late'
+        penalty = 5 if days < 7 else grade - 11
+        grade = grade - penalty
+        comments += f'\n\nyour submission was {days} days late and your score was reduced by {penalty} points'
     return grade,comments
 
 def email_grade(submission,assignment,grade,comments):

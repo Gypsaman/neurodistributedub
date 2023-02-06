@@ -9,7 +9,7 @@ def grade_history():
     gradehistory = json.loads(response.text)
 
     df = pd.json_normalize(gradehistory)
-    # df.to_csv('gradehistory.csv')
-    print(df.pivot(index=['section','StudentID'], columns='assignment', values='grade'))
+    df.to_csv('gradehistory.csv')
+    # print(df.pivot(index=['section','StudentID'], columns='assignment', values='grade'))
     
 grade_history()
