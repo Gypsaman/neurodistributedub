@@ -115,11 +115,15 @@ def payUB_Grader(Address_ABI):
     Address_ABI = get_dict_from_string(Address_ABI)
     contractAddress = Address_ABI['contract']
     abi = Address_ABI['abi']
-    if 'wallet' in Address_ABI:
-        wallet = Address_ABI['wallet']
+    wallet = Address_ABI['wallet']
+
+    creator = getContractCreator(contractAddress)
     
-        if wallet.lower() != getContractCreator(contractAddress).lower():
-            return 0, 'This contract was not created by your wallet'
+    if creator == 'Invalid':
+        return 0, 'Not a valid contract address'
+    
+    if wallet.lower() != creator.lower():
+        return 0, 'This contract was not created by your wallet'
         
     if not isinstance(abi,dict):
         abi = json.loads(abi)
