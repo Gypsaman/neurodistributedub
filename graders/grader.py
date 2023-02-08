@@ -13,17 +13,35 @@ myaccount = os.getenv("MYWALLET")
 
 
 def get_dict_from_string(dictstring):
-    # dictstring = dictstring.replace('\\t','').replace('\\n','').replace('\\r','')
     try:
         dict = json.loads(dictstring)
     except Exception as e:
-        dict = None
+        dict = {}
         
     return dict
 
 def get_abi_functions(abi):
    
     return [i['name'] for i in abi if i['type'] == 'function']
+    
+def get_contract_info(Address_ABI):
+    
+    Address_ABI = get_dict_from_string(Address_ABI)
+    contractAddress = Address_ABI['contract']
+    abi = Address_ABI['abi']
+    wallet = Address_ABI['wallet']
+
+    creator = getContractCreator(contractAddress)
+    
+    is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
+        
+    if not isinstance(abi,dict):
+        abi = get_dict_from_string(abi)
+    
+    contract = get_contract(contractAddress,abi)
+    
+    return contract,abi,is_wallet
+        
     
 
 def get_contract(contractAddress,abi):
@@ -36,6 +54,7 @@ def get_contract(contractAddress,abi):
         contract = None
     
     return contract
+
 def rentCar_Grader(contractAddress):
 
     rentCar = get_contract(contractAddress,'rentCar_ABI.json')
@@ -85,11 +104,14 @@ def MidTerm_Grader(contractAddress):
 
 def MyID_Grader(Address_ABI):
 
-    Address_ABI = get_dict_from_string(Address_ABI)
-    contractAddress = Address_ABI['contract']
-    abi = Address_ABI['abi']
-
-    myID = get_contract(contractAddress,abi)
+  
+    myID,abi,is_wallet = get_contract_info(Address_ABI)
+    
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+    
+    if 'getID' not in get_abi_functions(abi):
+        return 0, 'viewMyBill function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
 
     if myID is None:
         return 0, "Not a valid contract address"
@@ -112,27 +134,13 @@ def MyID_Grader(Address_ABI):
 
 def payUB_Grader(Address_ABI):
     
-    Address_ABI = get_dict_from_string(Address_ABI)
-    contractAddress = Address_ABI['contract']
-    abi = Address_ABI['abi']
-    wallet = Address_ABI['wallet']
+    payUB,UB_abi,is_wallet =  get_contract_info(Address_ABI)
 
-    creator = getContractCreator(contractAddress)
-    
-    if creator == 'Invalid':
-        return 0, 'Not a valid contract address'
-    
-    if wallet.lower() != creator.lower():
+    if not is_wallet:
         return 0, 'This contract was not created by your wallet'
-        
-    if not isinstance(abi,dict):
-        abi = json.loads(abi)
-    
-    if 'viewMyBill' not in get_abi_functions(abi):
-        return 0, 'viewMyBill function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
-    
-    
-    payUB = get_contract(contractAddress,abi)
+
+    if 'viewMyBill' not in get_abi_functions(UB_abi):
+        return 0, 'viewMyBill function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
 
     if payUB is None:
         return 0, 'Not a valid contract address'
