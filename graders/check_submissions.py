@@ -46,7 +46,8 @@ def check_submissions():
                 
                 except Exception as e:
                     email_error(e,submission)
-                    exit()
+                    update_grade(submission,0,'Error in submission')
+                    
             
             time.sleep(30)
             
