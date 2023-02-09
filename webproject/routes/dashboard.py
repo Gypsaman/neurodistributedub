@@ -4,7 +4,7 @@ from webproject.routes import admin_required
 
 from webproject import db
 from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades, Sections
-from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
+from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date, only_contract
 from webproject.modules.web3_interface import get_eth_balance
 
 dashb = Blueprint("dashb", __name__)
@@ -28,7 +28,7 @@ def create_dashboard(user_id):
 
     submission_fields = {
         "assignments.name": Field(None, "Assignment"),
-        "submission": Field(None, "Submission"),
+        "submission": Field(only_contract, "Submission"),
         "date_submitted": Field(timestamp_to_date, "Submitted"),
         "grade": Field(None, "Grade")
     }

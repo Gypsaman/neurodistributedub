@@ -3,9 +3,16 @@
     margin: 25px 0;
     font-size: 0.9em;
     min-width: 400px;
+    height: 400px;
     border-radius: 5px 5px 0 0;
-    overflow: hidden;
+    overflow-y: auto ;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+.neuro-table div.scroll {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .neuro-table thead tr {

@@ -1,4 +1,5 @@
 from webproject import db
+import json
 
 def wei_to_eth(wei):
     return wei / 1000000000000000000
@@ -24,6 +25,12 @@ def asset_type_string(asset_type):
 def short_hash(hash):
     hash = str(hash)
     return hash[:10] + '...' if len(hash) > 10 else hash
+
+def only_contract(submission):
+    if submission[2:10] == 'contract':
+        contract_abi = json.loads(submission)
+        return contract_abi['contract']
+    return submission[:60]
 
 class Field:
     def __init__(self,format,display):

@@ -6,6 +6,7 @@ from webproject import db
 from flask_login import login_required
 from webproject.routes import admin_required
 from datetime import datetime as dt
+from datetime import timedelta
 import random
 from webproject.modules.ubemail import UBEmail
 from webproject.modules.roster import open_roster_encrypted
@@ -107,7 +108,7 @@ def password_reset():
             
             
         password_phrase = random.randint(100000,999999)
-        phrase_expires = dt.now().replace(minute=dt.now().minute+5)
+        phrase_expires = dt.now() + timedelta(minutes=5)
                 
         pwdreset = PasswordReset(user_id=user.id,password_phrase=password_phrase,phrase_expires=phrase_expires)
         
