@@ -121,8 +121,11 @@ def get_eth_balance(account):
     )
 
     accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
-
-    transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+    
+    try:
+        transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+    except:
+        return -1
 
     balance = int(transinfo["result"]) if transinfo["message"] == "OK" else -1
 

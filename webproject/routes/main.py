@@ -34,8 +34,14 @@ def wallet_post():
     if Wallet.query.filter_by(wallet=wallet_address).first() is not None:
         flash('Wallet already in use')
         return redirect(url_for('main.wallet'))
+    
+    eth_balance = get_eth_balance(wallet_address)
 
-    if get_eth_balance(wallet_address) == 0:
+    if eth_balance == -1:
+        flash('Invalid wallet address')
+        return redirect(url_for('main.wallet'))
+    
+    if eth_balance == 0:
         flash('Wallet address has no ETH')
         return redirect(url_for('main.wallet'))
     
