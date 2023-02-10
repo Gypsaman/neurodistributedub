@@ -349,17 +349,26 @@ input,textarea {
   background-color: white;
   min-height: 400px;
 }
-.neuro-dashboard-content-section {
+.neuro-dashboard-content-section1 {
   display: flex;
+  flex: 2;
   flex-direction: column;
-  width: 90%;
-  margin: 20px;
+  
+  margin-left: 20px;
 }
-.neuro-dashboard-content-section label {
+.neuro-dashboard-content-section2 {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  
+  margin-left: 20px;
+}
+
+.neuro-dashboard-content-section1 label {
   color: #2560B9;
   font-size: 24px;
 }
-.neuro-dashboard-content-section input {
+.neuro-dashboard-content-section1 input {
   color: #2560B9;
   font-size: 12pt;
   max-width: 32em;

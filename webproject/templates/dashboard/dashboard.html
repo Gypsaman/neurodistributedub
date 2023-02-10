@@ -7,21 +7,22 @@
     </div>
     <div class="neuro-dashboard-content">
 
-        <div class="neuro-dashboard-content-section">
+        <div class="neuro-dashboard-content-section1">
             <div>
                 <h1>Wallet</h1>
                 {% include 'dashboard/wallet.html' %}
-            </div>
-        </div>
-        <div class="neuro-dashboard-content-section">
-            <div >
-                <h1 >Submissions</h1>
-                {{submissions_table| safe}}
             </div>
             <div>
                 <h1>Grades</h1>
                 {{grades_table|safe}}
             </div>
+        </div>
+        <div class="neuro-dashboard-content-section2">
+            <div >
+                <h1 >Submissions</h1>
+                {{submissions_table| safe}}
+            </div>
+
         </div>
 
         

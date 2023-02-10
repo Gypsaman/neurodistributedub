@@ -1,15 +1,17 @@
-{% if wallet == None %}
-<div>
-    <button class="neuro-button-small" onclick="window.location.href='/wallet'">Add Wallet</button>
-</div>
-{% endif %}
+<div style="display:flex; flex-direction: column;">
+    {% if wallet == None %}
+    <div>
+        <button class="neuro-button-small" onclick="window.location.href='/wallet'">Add Wallet</button>
+    </div>
+    {% endif %}
 
-<div class="">
-    <label for="walletaddress">Wallet Address</label>
-    <input name="wallet_address" type="text" size="100" value={{ wallet.wallet }} >
-</div>
+    <div style="display:flex;flex-direction: row;justify-content: space-between;">
+        <label for="walletaddress">Wallet Address</label>
+        <input name="wallet_address" type="text" size="100" value={{ wallet.wallet }} >
+    </div>
 
-<div class="">
-    <label for="ETH balance">Eth Balance</label><br>
-    <input name="ETH balance" type="text" size=100 value={{ ethbalance }}>
+    <div style="display:flex;flex-direction: row;justify-content: space-between">
+        <label for="ETH balance">Eth Balance</label><br>
+        <input name="ETH balance" type="text" size=100 value={{ ethbalance }}>
+    </div>
 </div>
