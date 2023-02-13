@@ -2,7 +2,7 @@ from flask import Blueprint,render_template,request,redirect,url_for,flash
 import werkzeug
 from flask_login import current_user
 from webproject.models import User,Wallet,Assignments,Grades,Submissions, DueDates
-from webproject.modules.table_creator import TableCreator, Field,timestamp_to_date,short_hash,wei_to_eth,asset_type_string
+from webproject.modules.table_creator import TableCreator, Field,timestamp_to_date,short_hash,wei_to_eth,asset_type_string, true_false
 from webproject import db
 from datetime import datetime as dt
 import os
@@ -24,6 +24,7 @@ def assingments(page_num):
             'name': Field(None,'Assignment'),
             'inputtype': Field(None,'Input Type'),
             'grader': Field(None,'Grader'),
+            'Active': Field(true_false,'Active')
     }
     
     table_creator = TableCreator('Assignments',fields,actions=['Edit','Delete'])
@@ -48,6 +49,7 @@ def assigments_edit_post(id):
     assignment.name = request.form['assignmentName']
     assignment.inputtype = request.form['inputtype']
     assignment.grader = request.form['grader']
+    assignment.active = True if 'active' in request.form else False
     
     db.session.commit()
     
@@ -57,10 +59,12 @@ def assigments_edit_post(id):
 @admin_required
 def add_assignment():
     if request.method == 'POST':
+        
         record = {
             'name':request.form['assignmentName'].strip(),
             'inputtype' : request.form['inputtype'],
             'grader' : request.form['grader'].strip(),
+            'active' : True if 'active' in request.form else False
         }
         assignment = Assignments.query.filter_by(name=record['name']).first()
         if assignment:
@@ -80,7 +84,7 @@ def add_assignment():
 @login_required
 def submission_select():
 
-    assignments = Assignments.query.all()
+    assignments = Assignments.query.filter_by(active=True).all()
     
     return render_template('assignments/submission_select.html',assignments=assignments)
 
@@ -164,14 +168,14 @@ def grades(page_num):
 def grade_history():
 	
     qry = '''
-	SELECT student_id, sections.section, assignment, grade 
+	SELECT student_id, sections.section, assignment, assignment_id, grade 
  	FROM User
   	join Sections on User.section = Sections.id  
     left join 
-    (SELECT user_id, assignments.name as assignment, grade from Grades join Assignments on Grades.assignment = Assignments.id) as g
+    (SELECT user_id, assignments.id as assignment_id, assignments.name as assignment, grade from Grades join Assignments on Grades.assignment = Assignments.id) as g
     on User.id = g.user_id
     where User.role = 'student'
  	'''
   
     history = db.engine.execute(qry)
-    return [{'StudentID':row.student_id,'section':row.section,'assignment':row.assignment,'grade':row.grade} for row in history]
+    return [{'StudentID':row.student_id,'section':row.section,'assignment':f'{row.assignment_id}-{row.assignment}','grade':row.grade} for row in history]

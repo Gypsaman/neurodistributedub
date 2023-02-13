@@ -96,10 +96,11 @@ class Assignments(db.Model):
     name = db.Column(db.String(50))
     inputtype = db.Column(db.String(10))
     grader = db.Column(db.String(50))
+    active = db.Column(db.Boolean)
     
     
     def __repr__(self):
-        return f'name: {self.name}, inputtype: {self.inputtype}, grader: {self.grader}'
+        return f'name: {self.name}, inputtype: {self.inputtype}, grader: {self.grader}, active: {self.active}'
     
 class DueDates(db.Model):
     __tablename__ = 'due_dates'

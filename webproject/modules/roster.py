@@ -45,7 +45,7 @@ def update_registered():
     with create_app().app_context():
         users = User.query.all()
         for user in users:
-            if user.role == 'student':
+            if user.student_id in roster and user.role == 'student':
                 roster[user.student_id]['Registered'] = True
         
     save_roster_encrypted(roster)

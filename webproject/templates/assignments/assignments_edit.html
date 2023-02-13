@@ -28,8 +28,12 @@
                 <label for="grader">Grader</label>
                 <input id="grader" name="grader" value=" {{ assignment.grader }}" required>
             </div>
-            <div class="col d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Update</button>
+            <div class="neuro-form-entry-row">
+                <label for ="active" >Really</label>
+                <input id="active" name="active" type="checkbox" {% if assignment.active %}checked{% endif %} >
+            </div>
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="neuro-button-main">Update</button>
             </div>
         </form>
     </div>

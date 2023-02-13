@@ -23,6 +23,9 @@ def get_dict_from_string(dictstring):
 def get_abi_functions(abi):
    
     return [i['name'] for i in abi if i['type'] == 'function']
+
+def has_constructor(abi):
+    return 'constructor' in [i['type'] for i in abi]
     
 def get_contract_info(Address_ABI):
     
@@ -81,26 +84,39 @@ def rentCar_Grader(contractAddress):
 
     return grade
 
-def MidTerm_Grader(contractAddress):
+def MidTerm_Grader(Address_ABI):
 
-    midTerm = get_contract(contractAddress,'MidTerm_ABI.json')
+    midTerm,abi,is_wallet = get_contract_info(Address_ABI)
 
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+    
     if midTerm is None:
-        return 0
+                return 0, "Not a valid contract address"
+            
+    if not has_constructor(abi):
+        return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    if 'getValue' not in get_abi_functions(abi):
+        return 0, 'getValue function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
+    
+    if 'value' not in get_abi_functions(abi):
+        return 0, 'value function not defined or not public\nMake sure it is spelled correctly and capitlization is correct'
+
 
     try:
         value = midTerm.functions.getValue().call({"from":myaccount})
-    except:
-        value = 0
+    except Exception as e:
+        return 0, f"getValue function does not run correctly\nError:\n{str(e)}"
 
-    grade = 75
+    
     if value==100:
-        grade = 100
+        return 100, 'MidTerm is correct'
     elif value > 0:
-        grade = 80
+        return 80, f'getValue function does not return correct value'
     
     
-    return grade
+    return 75, f'getValue function does not return correct value'
 
 def MyID_Grader(Address_ABI):
 
@@ -111,7 +127,7 @@ def MyID_Grader(Address_ABI):
         return 0, 'This contract was not created by your wallet'
     
     if 'getID' not in get_abi_functions(abi):
-        return 0, 'viewMyBill function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
+        return 0, 'getID function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
 
     if myID is None:
         return 0, "Not a valid contract address"
@@ -303,6 +319,7 @@ graders= {
     "Wallet": wallet_grader,
     "PayUB": payUB_Grader,
     "myID": MyID_Grader,
+    "Mid Term": MidTerm_Grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    
