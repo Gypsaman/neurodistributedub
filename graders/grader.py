@@ -26,7 +26,12 @@ def get_abi_functions(abi):
 
 def has_constructor(abi):
     return 'constructor' in [i['type'] for i in abi]
-    
+   
+def get_constructor(abi):
+    constructor_arr = [i for i in abi if i['type'] == 'constructor']
+    constructor = constructor_arr[0] if len(constructor_arr) > 0 else None
+    return constructor
+
 def get_contract_info(Address_ABI):
     
     Address_ABI = get_dict_from_string(Address_ABI)
@@ -88,14 +93,18 @@ def MidTerm_Grader(Address_ABI):
 
     midTerm,abi,is_wallet = get_contract_info(Address_ABI)
 
-    if not is_wallet:
-        return 0, 'This contract was not created by your wallet'
+    # if not is_wallet:
+    #     return 0, 'This contract was not created by your wallet'
     
     if midTerm is None:
                 return 0, "Not a valid contract address"
-            
-    if not has_constructor(abi):
+    
+    constructor = get_constructor(abi)
+    if constructor is None:
         return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    if len(constructor['inputs']) == 0:
+        return 0, 'Constructor does not have any parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
 
     if 'getValue' not in get_abi_functions(abi):
         return 0, 'getValue function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
@@ -103,11 +112,19 @@ def MidTerm_Grader(Address_ABI):
     if 'value' not in get_abi_functions(abi):
         return 0, 'value function not defined or not public\nMake sure it is spelled correctly and capitlization is correct'
 
+    try:
+        midTerm.functions.updates(100).call({'from':myaccount})
+        return 75, f'updates function is not restricted to owner'
+    except Exception as e:
+        # expecting error
+        if 'You are not the owner' not in str(e):
+            return 75, f'updates function is not restricted to owner\nError:\n{str(e)}'
+        
 
     try:
         value = midTerm.functions.getValue().call({"from":myaccount})
     except Exception as e:
-        return 0, f"getValue function does not run correctly\nError:\n{str(e)}"
+        return 75, f"getValue function does not run correctly\nError:\n{str(e)}"
 
     
     if value==100:
