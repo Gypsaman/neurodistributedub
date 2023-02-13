@@ -93,8 +93,8 @@ def MidTerm_Grader(Address_ABI):
 
     midTerm,abi,is_wallet = get_contract_info(Address_ABI)
 
-    # if not is_wallet:
-    #     return 0, 'This contract was not created by your wallet'
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
     
     if midTerm is None:
                 return 0, "Not a valid contract address"
