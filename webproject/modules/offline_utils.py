@@ -6,6 +6,8 @@ from webproject.modules import roster
 from webproject import db, create_app
 from webproject.models import User, Assignments, Submissions, Grades, Sections, DueDates
 from datetime import datetime as dt
+from webproject.modules import dotenv_util
+import os
 
 
 Assignment_qry = 'SELECT * from Assignments inner join (SELECT assignment,duedate FROM due_dates WHERE section = {}) as d on Assignments.id = d.assignment'
@@ -70,13 +72,14 @@ def Assignments_not_completed():
         email.send_email(students[student_id]['Preferred Email'],'Assignments not completed',body)
         
 def import_quiz(quiz_name,quizdate):
+    cwd = dotenv_util.get_cwd()
     with create_app().app_context():
         assignment = Assignments.query.filter_by(name=quiz_name).first()
         if assignment is None:
             print(f'Could not find assignment {quiz_name}')
             return
         lookup = {info['Canvas ID']:student for student,info in roster.open_roster_encrypted().items()}
-        grades = open('./data/quizimport.csv','r').readlines()
+        grades = open(os.path.join(cwd,'data','quizimport.csv'),'r').readlines()
         for grade in grades[1:]:
             student_id,grade = grade.split(',')
             student_id = student_id.strip()
