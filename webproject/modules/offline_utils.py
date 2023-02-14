@@ -9,8 +9,10 @@ def grade_history():
     response = requests.get('http://neurodistributed.com/gradehistory')
     # response = requests.get('http://127.0.0.1:5000/gradehistory')
     gradehistory = json.loads(response.text)
+    
 
     df = pd.json_normalize(gradehistory)
+    df.to_csv('gradehistory.csv')
     
     pt = df.pivot_table(index=['section','StudentID'], columns='assignment', values='grade', aggfunc='sum')
             

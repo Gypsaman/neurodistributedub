@@ -3,6 +3,10 @@
     <div>
         <button class="neuro-button-small" onclick="window.location.href='/wallet'">Add Wallet</button>
     </div>
+    {% else %}
+    <div>
+        <button class="neuro-button-small" onclick="window.location.href='/wallet/update/{{wallet.id}}'">Edit Wallet</button>
+    </div>
     {% endif %}
 
     <div style="display:flex;flex-direction: row;justify-content: space-between;">

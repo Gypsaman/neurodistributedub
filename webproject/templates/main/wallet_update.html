@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <form class="neuro-login-form"  method="POST" action="/wallet/update/{{wallet.id}}">
+        
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}</a>
+        </div>
+        {% endif %} {% endwith %}
+        <div class="neuro-form-section">
+            <h3>Wallet Info</h3>
+            <div class="">
+                <label for="walletaddress">Wallet Address</label>
+                <input name="wallet_address" 
+                    type="text" 
+                    size="100" 
+                    required 
+                    value="{{wallet.wallet}}"
+                    pattern ="0x[a-zA-Z0-9]{40}" >
+            </div>
+            <div class="neuro-form-entry-row">
+                <div>
+                    <button type="submit" class="neuro-button-main">Update</button>
+                </div>
+                <div>
+                    <button type="button" class="neuro-button-main" onclick="window.location.href='/dashboard'">Cancel</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

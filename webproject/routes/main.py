@@ -19,30 +19,31 @@ def wallet():
     wallet = Wallet.query.filter_by(user_id=current_user.id).first()
     return render_template('main/wallet.html',wallet=wallet)
 
+def verify_wallet(wallet_address):
+    
+    
+    if Wallet.query.filter_by(wallet=wallet_address).first() is not None:
+        return False, 'Wallet already in use'
+    
+    eth_balance = get_eth_balance(wallet_address)
+
+    if eth_balance == -1:
+        return False, 'Invalid wallet address'
+    
+    if eth_balance == 0:
+        return False, 'Wallet address has no ETH'
+        
+        
 @main.route('/wallet',methods=["POST"])
 @login_required
 def wallet_post():
 
     wallet_address = request.form.get('wallet_address')
-
     
-    curr_wallet = Wallet.query.filter_by(user_id=current_user.id).first()
-    if curr_wallet:
-        flash('Wallet already added')
-        return redirect(url_for('main.wallet'))
+    valid, msg = verify_wallet(wallet_address)
     
-    if Wallet.query.filter_by(wallet=wallet_address).first() is not None:
-        flash('Wallet already in use')
-        return redirect(url_for('main.wallet'))
-    
-    eth_balance = get_eth_balance(wallet_address)
-
-    if eth_balance == -1:
-        flash('Invalid wallet address')
-        return redirect(url_for('main.wallet'))
-    
-    if eth_balance == 0:
-        flash('Wallet address has no ETH')
+    if not valid:
+        flash(msg)
         return redirect(url_for('main.wallet'))
     
     wallet = Wallet(wallet=wallet_address,user_id=current_user.id)
@@ -54,6 +55,23 @@ def wallet_post():
     db.session.commit()
     
     return redirect(url_for('dashb.dashboard'))
+
+@main.route('/wallet/update/<int:wallet_id>',methods=["GET","POST"])
+def wallet_update(wallet_id):
+    wallet = Wallet.query.filter_by(id=wallet_id).first()
+    if request.method == "POST":
+        wallet_addr = request.form['wallet_address']
+        valid, msg = verify_wallet(wallet_addr)
+
+        if not valid:
+            flash(msg)
+            return redirect(url_for('main.wallet_update',wallet_id=wallet_id))
+        wallet.wallet = wallet_addr
+        db.session.commit()
+        return redirect(url_for('dashb.dashboard'))
+    
+    return render_template('main/wallet_update.html',wallet=wallet)
+
 
 @main.route('/welcome')
 @login_required
