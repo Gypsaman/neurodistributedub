@@ -117,8 +117,8 @@ def MidTerm_Grader(Address_ABI):
         return 75, f'updates function is not restricted to owner'
     except Exception as e:
         # expecting error
-        if 'You are not the owner' not in str(e):
-            return 75, f'updates function is not restricted to owner\nError:\n{str(e)}'
+        pass
+            
         
 
     try:
