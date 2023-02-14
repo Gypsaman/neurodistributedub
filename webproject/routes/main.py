@@ -32,6 +32,8 @@ def verify_wallet(wallet_address):
     
     if eth_balance == 0:
         return False, 'Wallet address has no ETH'
+    
+    return True, 'Wallet address is valid'
         
         
 @main.route('/wallet',methods=["POST"])
