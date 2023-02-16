@@ -50,8 +50,6 @@ def get_contract_info(Address_ABI):
     
     return contract,abi,is_wallet
         
-    
-
 def get_contract(contractAddress,abi):
 
     w3 = Web3(HTTPProvider('https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881'))
@@ -63,15 +61,37 @@ def get_contract(contractAddress,abi):
     
     return contract
 
-def rentCar_Grader(contractAddress):
+def rentCar_Grader(Address_ABI):
 
-    rentCar = get_contract(contractAddress,'rentCar_ABI.json')
+    rentCar,abi,is_wallet = get_contract_info(Address_ABI)
 
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+    
     if rentCar is None:
-        return 0
+        return 0, "Not a valid contract address"
+
+    constructor = get_constructor(abi)
+    if constructor is None:
+        return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    if len(constructor['inputs']) == 0:
+        return 0, 'Constructor does not have any parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    functions = ['carDetails','rentCar','returnCar','withdraw']
+    for function in functions:
+        if function not in get_abi_functions(abi):
+            return 0, f'{function} function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
+    
+    carDetails = [element['outputs'][0]['internalType'] for element in abi if 'name' in element and element['name'] == 'carDetails'][0]
+    
+    if 'struct' not in carDetails:
+        return 0, 'carDetails function does not return a struct\n'
 
     try:
         _,_,_,_,rentAmt = rentCar.functions.carDetails().call({"from":myaccount})
+        if isinstance(rentAmt,int):
+            return 0, 'rentAmt is not a uint\n'
     except:
         rentAmt = 0
     
@@ -81,13 +101,58 @@ def rentCar_Grader(contractAddress):
     except:
         rentOk = False
 
-    grade = 75
-    if rentAmt  > 0 and rentOk:
-        grade = 100
-    elif rentAmt > 0:
-        grade = 90
+    if rentAmt  > 0 and not rentOk:
+        return 90, 'Not able to rent car'
+    elif rentAmt > 0 and rentOk:
+        return 100, 'RentCar is correct'
 
-    return grade
+    return 80, 'Rental Amount not correct'
+
+def studentID_Grader(Address_ABI):
+    
+    studentID,abi,is_wallet = get_contract_info(Address_ABI)
+
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+    
+    if studentID is None:
+        return 0, "Not a valid contract address"
+
+    constructor = get_constructor(abi)
+    if constructor is None:
+        return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    if len(constructor['inputs']) == 0:
+        return 0, 'Constructor does not have any parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    functions = ['viewMyId','updateID']
+    for function in functions:
+        if function not in get_abi_functions(abi):
+            return 0, f'{function} function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
+    
+    updateid = [element['inputs'] for element in abi if 'name' in element and element['name'] == 'updateID'][0]
+    if len(updateid) == 0:
+        return 0, 'updateID function does not have any parameters\n'
+
+    try:
+        id = studentID.functions.viewMyId().call({"from":myaccount})
+        if not isinstance(id,int):
+            return 0, 'id is not a uint\n'
+    except Exception as e:
+        id = 0
+    
+    try:
+        tx = studentID.functions.updateID(23456).call({'from':myaccount})
+        permitOnlyOwner = False
+    except Exception as e:
+        permitOnlyOwner = True
+
+    if id > 0 and not permitOnlyOwner:
+        return 90, 'updateID function does not permit only owner'
+    if id > 0 and permitOnlyOwner:
+        return 100, 'Student ID is correct'
+    
+    return 80, 'Contract does not return a valid ID'
 
 def MidTerm_Grader(Address_ABI):
 
@@ -157,7 +222,7 @@ def MyID_Grader(Address_ABI):
         return 0, f"getID function does not run correctly\nError:\n{str(e)}"
 
     
-    if isinstance(id,tuple):
+    if id == 0:
         grade,comment = 100, 'Homework is correct'
     else:
         grade,comment = 85, f'getID does not return correct elements'
@@ -337,6 +402,8 @@ graders= {
     "PayUB": payUB_Grader,
     "myID": MyID_Grader,
     "Mid Term": MidTerm_Grader,
+    "Rent Car": rentCar_Grader,
+    "Student ID": studentID_Grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

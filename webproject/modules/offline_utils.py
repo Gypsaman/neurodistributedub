@@ -22,15 +22,20 @@ def grade_update(section_name=None):
         assignments = db.session.execute(Assignment_qry.format(section.id)).all()
         
         for user in users:
-            body = f'Hello {user.first_name} {user.last_name},\n\nYour grades are:\n'
+            unsbumitted = False
+            body = f'Hello {user.first_name} {user.last_name},\n\nSo far your grades are:\n\n'
             for assignment in assignments:
                 grade = Grades.query.filter_by(user_id=user.id,assignment=assignment.id).first()
                 body += f'\t{assignment.name} - {grade.grade}\n' if grade is not None else f'\t{assignment.name} - Not submitted\n'
-            print(body)
-            break
-                    
+                if grade is None:
+                    unsbumitted = True
+            if unsbumitted:
+                body += '\n\nYou have unsubmitted Assignment(s).  Let me know if you need any help.\n\n'
+            email = UBEmail()
+            email.send_email(user.email,'Revised Grade Update',body)
+            
 
-def grade_history():
+def grade_history_data():
         
     response = requests.get('http://neurodistributed.com/gradehistory')
     # response = requests.get('http://127.0.0.1:5000/gradehistory')
@@ -48,7 +53,7 @@ def Assignments_not_completed():
     
     students = roster.open_roster_encrypted()
     
-    grades = grade_history()
+    grades = grade_history_data()
     
     columns = grades.columns.tolist()
     for idx,row in grades.iterrows():
