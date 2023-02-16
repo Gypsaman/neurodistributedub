@@ -186,3 +186,16 @@ def users(page_num):
     table_creator.create_view()
     table = table_creator.create(page_num)
     return render_template("admin/users.html", table=table,users=users)
+
+@admin.route("/admin/grade-history/<string:section>/<int:page>")
+def grade_history(section,page):
+    
+    import pandas as pd
+    from webproject.modules import offline_utils as ou
+    df = ou.grade_history_data()
+    table = TableCreator('Grade History',fields={},actions=[])
+    table.dataframe(df,index=['Section','Student ID'])
+    table.set_items_per_page(15)
+    html = table.create(page)
+    return render_template('admin/grade_history.html',table=html,section=section)
+             

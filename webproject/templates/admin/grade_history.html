@@ -1,0 +1,12 @@
+{% extends 'admin_base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+
+    <div class="neuro-form-section">
+        <h3>Grade History</h3>
+        <h1>{{section}}</h1>
+        {{ table | safe }}
+    </div>
+</div>
+{% endblock %}

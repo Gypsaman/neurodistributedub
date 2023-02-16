@@ -1,5 +1,6 @@
 from webproject import db
 import json
+import pandas as pd
 
 def wei_to_eth(wei):
     return wei / 1000000000000000000
@@ -52,7 +53,7 @@ class TableCreator:
         self.fields = {column:field for column,field in fields.items()}
         self.subdomain = subdomain
 
-        if 'id' not in list(self.fields.keys())[0] and len(actions) > 0:
+        if len(fields) > 0 and 'id' not in list(self.fields.keys())[0] and len(actions) > 0:
             raise Exception('TableCreator: id field is required for actions')
         
     def set_items_per_page(self,items_per_page):
@@ -78,6 +79,17 @@ class TableCreator:
     def view(self,view):
         self.items = view
           
+    def dataframe(self,df,index=[]):
+        self.columns = index
+        self.columns.extend(df.columns)
+        self.fields =  {column:Field(None,column) for column in self.columns}
+        self.items = []
+        for idx,row in df.iterrows():
+            row_vals = list(idx)
+            values = row.tolist()
+            row_vals.extend(values)
+            self.items.append(row_vals)
+        
         
     def create(self,page_num):
         if len(self.items) == 0:

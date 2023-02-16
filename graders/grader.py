@@ -90,7 +90,7 @@ def rentCar_Grader(Address_ABI):
 
     try:
         _,_,_,_,rentAmt = rentCar.functions.carDetails().call({"from":myaccount})
-        if isinstance(rentAmt,int):
+        if not isinstance(rentAmt,int):
             return 0, 'rentAmt is not a uint\n'
     except:
         rentAmt = 0
