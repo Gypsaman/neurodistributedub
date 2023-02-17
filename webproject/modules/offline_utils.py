@@ -35,7 +35,7 @@ def grade_update(section_name=None):
             email.send_email(user.email,'Revised Grade Update',body)
             
 
-def grade_history_data():
+def grade_history_data(section_name=None):
         
     response = requests.get('http://neurodistributed.com/gradehistory')
     # response = requests.get('http://127.0.0.1:5000/gradehistory')
@@ -44,8 +44,10 @@ def grade_history_data():
 
     df = pd.json_normalize(gradehistory)
     df.to_csv('gradehistory.csv')
-    
-    pt = df.pivot_table(index=['section','StudentID'], columns='assignment', values='grade', aggfunc='sum')
+    if section_name:
+        pt = df[df['section']==section_name].pivot_table(index=['StudentID'], columns='assignment', values='grade', aggfunc='sum')
+    else:
+        pt = df.pivot_table(index=['section','StudentID'], columns='assignment', values='grade', aggfunc='sum')
             
     return pt
     

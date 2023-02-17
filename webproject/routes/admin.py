@@ -180,7 +180,7 @@ def users(page_num):
         "role": Field(None, "Role"),
     }
 
-    table_creator = TableCreator("User", fields, actions=["Edit"],subdomain="/admin")
+    table_creator = TableCreator("User", fields, actions=["Edit"],domain="/admin/user/")
     table_creator.join("Sections", "user.section == Sections.id")
     table_creator.set_items_per_page(12)
     table_creator.create_view()
@@ -192,9 +192,9 @@ def grade_history(section,page):
     
     import pandas as pd
     from webproject.modules import offline_utils as ou
-    df = ou.grade_history_data()
-    table = TableCreator('Grade History',fields={},actions=[])
-    table.dataframe(df,index=['Section','Student ID'])
+    df = ou.grade_history_data(section)
+    table = TableCreator('Grade History',fields={},actions=[],domain='/admin/grade-history/'+section)
+    table.dataframe(df,index=['Student ID'])
     table.set_items_per_page(15)
     html = table.create(page)
     return render_template('admin/grade_history.html',table=html,section=section)
