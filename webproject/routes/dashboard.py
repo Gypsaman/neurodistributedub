@@ -25,7 +25,7 @@ def create_dashboard(user_id,submission_page=1,grades_page=1):
         "Grades", grade_fields, condition=f'user_id = {user_id}', actions=actions
     )
     table_creator.join("Assignments", "Grades.assignment == Assignments.id")
-    table_creator.set_items_per_page(2)
+    table_creator.set_items_per_page(10)
     table_creator.domain = f'dashboard?submissions_page={submission_page}&grades_page='
     table_creator.create_view()
     grades_table = table_creator.create(grades_page)
@@ -39,9 +39,9 @@ def create_dashboard(user_id,submission_page=1,grades_page=1):
     actions=[]
     table_creator = TableCreator("Submissions", submission_fields, condition=f"user_id = {user_id}", actions=actions)
     table_creator.join("Assignments", "Submissions.assignment == Assignments.id")
-    table_creator.set_items_per_page(5)
+    table_creator.set_items_per_page(15)
     table_creator.domain= f'dashboard?grades_page={grades_page}&submissions_page='
-    table_creator.create_view()
+    table_creator.create_view(order='date_submitted DESC')
     submissions_table = table_creator.create(submission_page)
 
     user = User.query.filter_by(id=user_id).first()

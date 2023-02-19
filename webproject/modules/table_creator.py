@@ -63,7 +63,7 @@ class TableCreator:
         self.join_table = table_name
         self.join_condition = condition
         
-    def create_view(self):
+    def create_view(self,order=None):
         fieldlist = ""
         for field in self.fields.keys():
             fieldlist += f"{field},"
@@ -73,6 +73,8 @@ class TableCreator:
             stmt += f"join {self.join_table} on {self.join_condition} "
         if self.condition:
             stmt += f"where {self.condition}"
+        if order:
+            stmt += f" order by {order}"
                     
         self.items = list(db.session.execute(stmt))
         
