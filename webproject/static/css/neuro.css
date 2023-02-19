@@ -242,6 +242,7 @@ input,textarea {
   /* background-color: rgb(39, 37, 37); */
   padding: 15px;
   margin: 10px;
+  overflow: auto;
 
 }
 .neuro-form-section h3 {
@@ -353,13 +354,23 @@ input,textarea {
   display: flex;
   flex: 2;
   flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 90%;
+  overflow: auto;
+  flex-grow: none;
   
   margin-left: 20px;
 }
 .neuro-dashboard-content-section2 {
   display: flex;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+
   flex: 3;
   flex-direction: column;
+  flex-grow: none;
   
   margin-left: 20px;
 }

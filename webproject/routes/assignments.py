@@ -171,11 +171,11 @@ def grade_history():
 	SELECT student_id, sections.section, assignment, assignment_id, grade 
  	FROM User
   	join Sections on User.section = Sections.id  
-    left join 
+    join 
     (SELECT user_id, assignments.id as assignment_id, assignments.name as assignment, grade from Grades join Assignments on Grades.assignment = Assignments.id) as g
     on User.id = g.user_id
-    where User.role = 'student'
+    where User.role = 'student' 
  	'''
   
     history = db.engine.execute(qry)
-    return [{'StudentID':row.student_id,'section':row.section,'assignment':f'{row.assignment_id}-{row.assignment}','grade':row.grade} for row in history]
+    return [{'StudentID':row.student_id,'section':row.section,'assignment':f'{row.assignment_id:02d}-{row.assignment}','grade':row.grade} for row in history]

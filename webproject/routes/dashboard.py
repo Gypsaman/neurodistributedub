@@ -9,7 +9,10 @@ from webproject.modules.web3_interface import get_eth_balance
 
 dashb = Blueprint("dashb", __name__)
 
-def create_dashboard(user_id):
+submission_page = 1
+grades_page = 1
+
+def create_dashboard(user_id,submission_page=1,grades_page=1):
 
     grade_fields = {
         "grades.id": Field(None, None),
@@ -22,9 +25,10 @@ def create_dashboard(user_id):
         "Grades", grade_fields, condition=f'user_id = {user_id}', actions=actions
     )
     table_creator.join("Assignments", "Grades.assignment == Assignments.id")
-    table_creator.set_items_per_page(15)
+    table_creator.set_items_per_page(2)
+    table_creator.domain = f'dashboard?submissions_page={submission_page}&grades_page='
     table_creator.create_view()
-    grades_table = table_creator.create(1)
+    grades_table = table_creator.create(grades_page)
 
     submission_fields = {
         "assignments.name": Field(None, "Assignment"),
@@ -35,9 +39,10 @@ def create_dashboard(user_id):
     actions=[]
     table_creator = TableCreator("Submissions", submission_fields, condition=f"user_id = {user_id}", actions=actions)
     table_creator.join("Assignments", "Submissions.assignment == Assignments.id")
-    table_creator.set_items_per_page(35)
+    table_creator.set_items_per_page(5)
+    table_creator.domain= f'dashboard?grades_page={grades_page}&submissions_page='
     table_creator.create_view()
-    submissions_table = table_creator.create(1)
+    submissions_table = table_creator.create(submission_page)
 
     user = User.query.filter_by(id=user_id).first()
     section = Sections.query.filter_by(id=user.section).first()
@@ -63,10 +68,21 @@ def create_dashboard(user_id):
                            )
 
 
+
 @dashb.route("/dashboard")
 @login_required
 def dashboard():
-    return create_dashboard(current_user.id)
+    
+    if request.args.get("submissions_page"):
+        submission_page = int(request.args.get("submissions_page"))
+    else:
+        submission_page = 1
+    if request.args.get("grades_page"):
+        grades_page = int(request.args.get("grades_page"))          
+    else:
+        grades_page = 1
+    
+    return create_dashboard(current_user.id,submission_page=submission_page,grades_page=grades_page)
 
 @dashb.route("/dashboard/<string:student_id>")
 @admin_required
@@ -77,16 +93,16 @@ def dashboard_student(student_id):
         return redirect(url_for("dashb.dashboard"))
     return create_dashboard(user.id)
 
-@dashb.route("/dashboard/student", methods=["POST"])
-@admin_required
-def dashboard_student_post():
-    student_id = request.form.get("studentid")
+# @dashb.route("/dashboard/student", methods=["POST"])
+# @admin_required
+# def dashboard_student_post():
+#     student_id = request.form.get("studentid")
 
-    user = User.query.filter_by(id=student_id).first()
-    if user is None:
-        flash("Student not found")
-        return redirect(url_for("dashb.dashboard"))
-    return create_dashboard(user.id)
+#     user = User.query.filter_by(id=student_id).first()
+#     if user is None:
+#         flash("Student not found")
+#         return redirect(url_for("dashb.dashboard"))
+#     return create_dashboard(user.id)
 
 
 

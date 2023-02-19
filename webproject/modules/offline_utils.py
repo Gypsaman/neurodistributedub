@@ -43,7 +43,7 @@ def grade_history_data(section_name=None):
     
 
     df = pd.json_normalize(gradehistory)
-    df.to_csv('gradehistory.csv')
+    
     if section_name:
         pt = df[df['section']==section_name].pivot_table(index=['StudentID'], columns='assignment', values='grade', aggfunc='sum')
     else:

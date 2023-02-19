@@ -51,7 +51,7 @@ class TableCreator:
         self.join_condition = None
         self.actions = actions
         self.fields = {column:field for column,field in fields.items()}
-        self.domain = domain if domain else table_name.lower()
+        self.domain = domain if domain else f'{table_name.lower()}/'
 
         if len(fields) > 0 and 'id' not in list(self.fields.keys())[0] and len(actions) > 0:
             raise Exception('TableCreator: id field is required for actions')
@@ -142,11 +142,11 @@ class TableCreator:
         html += '<div class="neuro-flex-row neuro-table-nav">'
         html += '<div style="height: 30px; width: 30px">'
         if back_button:
-            html += f'<a href="{self.domain}/{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="{self.domain}{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '<div style="height: 30px; width: 30px">'
         if next_button:
-            html += f'<a href="{self.domain}/{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="{self.domain}{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '</div>'
         

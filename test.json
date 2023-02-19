@@ -1,58 +1,32 @@
-1074242
-1076057
-1146787
-1149285
-1149913
-1151158
-1153322
-1157814
-1162133
-1163368
-1163744
-1165503
-1165934
-1166203
-1166356
-1166493
-1166503
-1166566
-1166571
-1166870
-1167670
-1167792
-1168115
-1168474
-1168853
-1168891
-1169411
-1169518
-1169733
-1170006
-1170500
-1170787
-1170811
-1170886
-1171100
-1171127
-1171294
-1171441
-1171750
-1172333
-1172360
-1172512
-1172527
-1172596
-1172671
-1172779
-1173615
-1173717
-1173742
-1174766
-1174870
-1175155
-1175214
-1175371
-1176660
-1182852
-1183155
-1183907
+[
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_val", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_num", "type": "uint256" }
+    ],
+    "name": "updates",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getValue",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "value",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

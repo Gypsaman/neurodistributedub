@@ -2,7 +2,7 @@ import json
 from datetime import datetime as dt
 
 import requests
-from web3 import Web3
+from web3 import Web3, HTTPProvider
 import os
 from webproject.modules.dotenv_util import initialize_dotenv
 
@@ -159,6 +159,18 @@ def conform_eth_trans(transhist):
         tran["isError"] = tran["isError"] != "0"
         tran["txreceipt_status"] = tran["txreceipt_status"] != "0"
     return transhist
+
+def get_contract(contractAddress,abi):
+
+    w3 = Web3(HTTPProvider('https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881'))
+
+    try:
+        contract = w3.eth.contract(address=w3.toChecksumAddress(contractAddress),abi=abi)
+    except Exception as e:
+        contract = None
+    
+    return contract
+
 
 
 def getContracts(account):

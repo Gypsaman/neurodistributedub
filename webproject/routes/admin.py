@@ -47,7 +47,7 @@ def submission_select_post():
         "Submissions", fields, condition=f"assignment={assignment.id}", actions=actions
     )
     table_creator.join("User", "submissions.user_id == User.id")
-    table_creator.set_items_per_page(15)
+    table_creator.set_items_per_page(55)
     table_creator.create_view()
     table = table_creator.create(1)
 
@@ -186,6 +186,10 @@ def users(page_num):
     table_creator.create_view()
     table = table_creator.create(page_num)
     return render_template("admin/users.html", table=table,users=users)
+
+@admin.route("/admin/grade-history/<string:section>")
+def grade_history_section(section):
+    return redirect(url_for('admin.grade_history',section=section,page=1))
 
 @admin.route("/admin/grade-history/<string:section>/<int:page>")
 def grade_history(section,page):

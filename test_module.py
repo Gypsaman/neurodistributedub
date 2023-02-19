@@ -4,13 +4,24 @@ from webproject import db, create_app
 from webproject.modules.ubemail import UBEmail
 from webproject.models import Submissions, User,Grades
 from webproject.modules import offline_utils as ou
+from webproject.modules import roster
 import pandas as pd
+import json
 
-df = ou.grade_history_data('SP23-Monday')
-table = TableCreator('Grade History',fields={},actions=[],domain='/admin/grade-history/SP23-Monday')
-table.dataframe(df,index=['Student ID'])
-table.set_items_per_page(15)
-html = table.create(1)
-print(html)
+# with open('test.json') as f:
+#     data = json.load(f)
+# print(set([d['assignment'] for  d in data]))
+
+# # df = ou.grade_history_data()
+# # print(df.head())
+
+
 
 # check_submissions()
+
+try:
+    var1
+except NameError:
+    var1 = 1
+    
+print(var1)
