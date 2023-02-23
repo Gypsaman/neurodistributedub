@@ -1,4 +1,4 @@
-from webproject.modules.web3_interface import get_eth_balance, getContractCreator
+from webproject.modules.web3_interface import getContractCreator
 from web3 import Web3,HTTPProvider
 import json
 import shutil

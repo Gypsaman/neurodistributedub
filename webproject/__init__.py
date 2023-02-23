@@ -1,12 +1,11 @@
 import os
 import subprocess
 
-from dotenv import find_dotenv, load_dotenv
 from flask import Flask
 from flask_login import LoginManager
 
 from webproject.modules.extensions import db, migrate
-from webproject.modules.dotenv_util import get_cwd,initialize_dotenv
+from webproject.modules.dotenv_util import initialize_dotenv
 
 
 def create_app():
@@ -61,5 +60,8 @@ def create_app():
     from webproject.routes.dashboard import dashb as dashb_blueprint
     
     app.register_blueprint(dashb_blueprint)
+    
+    from webproject.routes.quizzes import quiz as quiz_blueprint
+    app.register_blueprint(quiz_blueprint)
 
     return app
