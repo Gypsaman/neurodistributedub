@@ -14,13 +14,13 @@ def create_quiz(topics_selected):
         for q in topic_questions[selection]:
             answers = np.array(questions[q]['Answers'])
             selection = np.random.choice(range(len(answers)),len(answers),replace=False)
-            quiz_questions.append((q,[a['ID'] for a in answers[selection]]))
+            quiz_questions.append((q,questions[q]['Question'],[a for a in answers[selection]]))
     return quiz_questions
         
 
     
-   
-Topics_selected = {'Encryption': 5, 'Blockchain': 3,"Solidity": 2}
-quiz_questions = create_quiz(Topics_selected)
+if __name__ == '__main__':
+    Topics_selected = {'Encryption': 5, 'Blockchain': 3,"Solidity": 2}
+    quiz_questions = create_quiz(Topics_selected)
 
-print(quiz_questions)
+    print(quiz_questions)
