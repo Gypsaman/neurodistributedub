@@ -1,0 +1,34 @@
+<h3>Your score is {{quiz.grade}}</h3>
+{% if quiz.grade < 100  and quiz.multiple_retries %}
+<div class="neuro-flex-row">
+    <button class="neuro-button-main" onclick="location.href='/quiz/retake/{{quiz.id}}'">Retake Quiz</button>
+</div>
+{% endif %}
+<div class="neuro-flex-column">
+{% for question in questions %}
+
+<div class="neuro-flex-row">
+    <div style="min-width: 7em">{% if question['question']['is_correct'] %}<span style="color:blue">Correct</span>{%else%}<span style="color:red">Incorrect</span>{%endif%}</div>
+    <div>{{question['question']['display_order']}})</div>
+    <div>{{question['question']['question']}}</div>
+    <br>
+</div>
+{% for answer in question['answers']%}
+<div class="neuro-flex-row">
+    
+        <div class style="min-width: 7em">
+        {%if answer['answer_id'] == question['question']['answer_chosen'] %}
+        Selected
+
+        {% endif %}
+        </div>
+        <div>&#128280</div>
+        <div>{{answer['answer_txt']}}</div>
+    
+</div>
+{% endfor %}
+<div class="neuro-flex-row"><hr style="width:50%;text-align:left;margin-left:0"></div>
+    
+
+{% endfor %}
+</div>

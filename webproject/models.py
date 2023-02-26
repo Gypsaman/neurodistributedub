@@ -148,6 +148,8 @@ class Quizzes(db.Model):
     date_available = db.Column(db.DateTime)
     date_due = db.Column(db.DateTime)
     submitted = db.Column(db.Boolean)
+    grade = db.Column(db.Integer)
+    multiple_retries = db.Column(db.Boolean)
     
 class Questions(db.Model):
     __tablename__ = 'questions'
@@ -161,10 +163,12 @@ class Questions(db.Model):
 class Answers(db.Model):
     __tablename__ = 'answers'
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
-    question_id = db.Column(db.String(10),primary_key=True)
+    question_id = db.Column(db.String(10),db.ForeignKey('questions.question_id'), primary_key=True )
     answer_id = db.Column(db.String(10),primary_key=True)
     display_order = db.Column(db.Integer)
     answer_txt = db.Column(db.String(100))
     correct_answer = db.Column(db.Boolean)
+    
+
     
     

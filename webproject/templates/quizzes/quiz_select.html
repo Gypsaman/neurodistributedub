@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>Select Quiz</h1>
+    <div class="neuro-form-section">
+        <form action="/quizzes" method="POST" class="neuro-form">
+            <div class="neuro-form-entry-row">
+                <label for="quizdescription">Assignment Name</label>
+                <select id="quizdescription" name="quiz_id" required>
+                    {% for quiz in quizzes %}
+                    <option value="{{ quiz.id }}">{{ quiz.description }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="neuro-button-main">Select</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

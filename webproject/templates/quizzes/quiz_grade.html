@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>{{quiz.description}}</h1>
+
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. 
+    </div>
+    {% endif %} {% endwith %}
+    {% if quiz.grade is not none %}
+        {% include 'quizzes/detailed_grade.html' %}
+        
+    {% else %}
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/quiz/{{quiz.id}}">
+            {% if not_answered > 0 %}
+            <div class="neuro-form-entry-row">
+                <p>There are {{not_answered}} questions that have not been answered.</p>
+                <p>Out of {{all_questions}} total questions.</p>
+            </div>
+            {% endif %}
+            
+            
+            <div class="neuro-flex-row" style="align-content: center;justify-content: center;">
+            
+                <button type="submit" class="neuro-button-main">Grade</button>
+                
+            </div>
+        </form>
+        <div>
+            <button class="neuro-button-main" style="align-content: center;justify-content: center;" 
+                onclick="window.location.href='/quiz/{{quiz.id}}/1'">Cancel</button>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
