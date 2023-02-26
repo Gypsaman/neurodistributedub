@@ -41,6 +41,23 @@ input[type="file"]::file-selector-button{
   margin-bottom: 10px;
   padding: 15px 25px;
 }
+.neuro-button-nav {
+  color: white;
+  opacity: 1;
+  font-size: 15px;
+  background-color: #30ba14;
+  border-radius: 10px;
+  border-style:none;
+  min-height: 15px;
+  min-width: 50px;
+  margin-bottom: 10px;
+  padding: 15px 25px;
+}
+button[disabled=disabled], button:disabled
+ {
+  background-color: gray;
+  color: #ffffff;
+}
 .neuro-button-small {
   color: white;
   opacity: 1;

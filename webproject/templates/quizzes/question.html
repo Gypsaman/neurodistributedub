@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>{{quiz.description}}</h1>
+
+    <h3>Question #{{question.display_order}}/{{all_questions | length}}</h3>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. 
+    </div>
+    {% endif %} {% endwith %}
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/quiz/{{quiz.id}}/{{question.display_order}}">
+            <div class="neuro-form-entry-row">
+                <textarea rows=10 style="max-width: 500px">{{question.question}}</textarea>
+            </div>
+            <div  class="neuro-form-entry-column" style="margin-top: 10px; margin-bottom: 10px;">
+                <fieldset id="answers">
+                {% for answer in answers %}
+                    <input type="radio" name="answer_selected" value="{{answer.answer_id}}" {% if answer.answer_id == question.answer_selected %}checked{%endif%}></input>
+                    <label for="answer_selected">{{answer.answer_txt}}</label>
+                    <br>
+                {% endfor %}
+                </fieldset>
+            </div>
+
+            <div class="neuro-flex-row" style="justify-content: space-between;">
+                <div>
+                    <button class="neuro-button-nav" type="button" 
+                    onclick="location.href='/quiz/{{quiz.id}}/{{question.display_order - 1}}'"
+                    {% if question.display_order <= 1 %}disabled{%endif%}
+                    >Previous</button>
+                </div>
+                <button type="submit" class="neuro-button-main">Submit</button>
+                <div>
+                    <button class="neuro-button-nav" type="button" 
+                    onclick="location.href='/quiz/{{quiz.id}}/{{question.display_order + 1}}'"
+                    {% if question.display_order == number_of_questions %}disabled{%endif%}
+                    >Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

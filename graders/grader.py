@@ -6,6 +6,7 @@ import os
 import numpy as np
 from webproject.modules.dotenv_util import get_cwd
 from webproject.models import Wallet
+import re
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -98,7 +99,7 @@ def rentCar_Grader(Address_ABI):
     try:
         tx = rentCar.functions.rentCar().call({'from':myaccount,'value':rentAmt})
         rentOk = True
-    except:
+    except Exception as e:
         rentOk = False
 
     if rentAmt  > 0 and not rentOk:
@@ -307,7 +308,53 @@ def sha256_grader(submission:str) :
 
     return 80,f'Hash "{hash}" is not correct length or content, it should be "{correcthash}"'
 
+def web3_grader(submission:str):
+    import importlib
+    
+    cwd = get_cwd()
+    cwd = os.path.join(cwd,'graders','imports')
+    
+    
+    with open(submission,'r') as f:
+        code = f.read()
+        
+    contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
+    code = code.replace("./newContract.sol",contract_path)
+    with open(submission,'w') as f:
+        f.write(code)
+        
+    shutil.copy(submission,os.path.join(cwd,'StudentDeploy.py'))
+    
+    
+    import graders.imports.StudentDeploy as StudentDeploy
+        
+    try:
+        
+        importlib.reload(StudentDeploy)
+        
+    except Exception as e:
+        error_msg = str(e).replace('StudentDeploy.py','')
+        if 'from' in error_msg:
+            error_msg = error_msg[:error_msg.find('from')]
+        return 0, f"Submission does not compile correctly or deploy function not defined.\nError:\n{error_msg} "
+    
+    try:
+        contract = StudentDeploy.deploy()
+    except Exception as e:
+        return 0, f"deploy function does not run correctly"
+    
 
+    p = re.compile('0x[a-zA-Z0-9]{40}')
+
+    regex = p.search(contract)
+    
+    if regex is None:
+        return 75, f"deploy function does not return a valid contract address"
+    
+    
+    return 100, f"Contract address is correct"
+    
+    
 def ecc_grader(submission:str) :
     
     if submission.endswith('.pdf'):
@@ -404,6 +451,7 @@ graders= {
     "Mid Term": MidTerm_Grader,
     "Rent Car": rentCar_Grader,
     "Student ID": studentID_Grader,
+    "web3_py": web3_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

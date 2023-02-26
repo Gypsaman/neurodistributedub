@@ -11,6 +11,7 @@ class Sections(db.Model):
         return f'section: {self.section}, active: {self.active}'
 
 class User(UserMixin,db.Model):
+    __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50))
@@ -113,54 +114,57 @@ class DueDates(db.Model):
         return f'assignment: {self.assignment}, section: {self.section}, duedate: {self.duedate}'
     
 
-# class Grades(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer)
-#     assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
-#     grade = db.Column(db.Integer)
-#     dategraded = db.Column(db.DateTime)
+class Grades(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
+    grade = db.Column(db.Integer)
+    dategraded = db.Column(db.DateTime)
     
-#     assignmentR = db.relationship('Assignments', backref='grades', lazy=True)
+    assignmentR = db.relationship('Assignments', backref='grades', lazy=True)
    
-#     def __repr__(self):
-#         return f'assignment: {self.assignment}, grade: {self.grade}, dategraded: {self.dategraded}'
+    def __repr__(self):
+        return f'assignment: {self.assignment}, grade: {self.grade}, dategraded: {self.dategraded}'
     
     
-# class Submissions(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer)
-#     assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
-#     submission = db.Column(db.String(50))
-#     date_submitted = db.Column(db.DateTime)
-#     grade = db.Column(db.Integer)
-#     comment = db.Column(db.String(100))
+class Submissions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
+    submission = db.Column(db.String(50))
+    date_submitted = db.Column(db.DateTime)
+    grade = db.Column(db.Integer)
+    comment = db.Column(db.String(100))
     
     
-#     def __repr__(self):
-#         return f'user_id: {self.user_id}, assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}, comment: {self.comment}'   
+    def __repr__(self):
+        return f'user_id: {self.user_id}, assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}, comment: {self.comment}'   
     
-# class Quizzes(db.Model):
-#     __tablename__ = 'quizzes'
-#     quiz_id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     description = db.Column(db.String(100))
-#     date_available = db.Column(db.DateTime)
-#     date_due = db.Column(db.DateTime)
+class Quizzes(db.Model):
+    __tablename__ = 'quizzes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    description = db.Column(db.String(100))
+    date_available = db.Column(db.DateTime)
+    date_due = db.Column(db.DateTime)
+    submitted = db.Column(db.Boolean)
     
-# class Questions(db.model):
-#     __tablename__ = 'questions'
-#     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.quiz_id'))
-#     question_id = db.Column(db.String(10))
-#     question = db.Column(db.String(500))
-#     answer = db.Column(db.String(20))
-#     correct = db.Column(db.Boolean)
+class Questions(db.Model):
+    __tablename__ = 'questions'
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
+    question_id = db.Column(db.String(10),primary_key=True)
+    question = db.Column(db.String(500))
+    display_order = db.Column(db.Integer)
+    answer_chosen = db.Column(db.String(20))
+    is_correct = db.Column(db.Boolean)
     
-# class Answers(db.model):
-#     __table__ = 'answers'
-#     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.quiz_id'))
-#     question_id = db.Column(db.String(10))
-#     answer_id = db.Column(db.String(10))
-#     answer = db.Column(db.String(100))
-#     corrrect = db.Column(db.Boolean)
+class Answers(db.Model):
+    __tablename__ = 'answers'
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
+    question_id = db.Column(db.String(10),primary_key=True)
+    answer_id = db.Column(db.String(10),primary_key=True)
+    display_order = db.Column(db.Integer)
+    answer_txt = db.Column(db.String(100))
+    correct_answer = db.Column(db.Boolean)
     
     
