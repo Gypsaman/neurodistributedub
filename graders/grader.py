@@ -309,6 +309,10 @@ def sha256_grader(submission:str) :
     return 80,f'Hash "{hash}" is not correct length or content, it should be "{correcthash}"'
 
 def web3_grader(submission:str):
+    
+    if submission.endswith('.pdf'):
+        return 0, 'Submission must be a python file, not a pdf'
+    
     import importlib
     
     cwd = get_cwd()
