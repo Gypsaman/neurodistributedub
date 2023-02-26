@@ -341,7 +341,7 @@ def web3_grader(submission:str):
     try:
         contract = StudentDeploy.deploy()
     except Exception as e:
-        return 0, f"deploy function does not run correctly"
+        return 0, f"deploy function does not run correctly\n{str(e)}"
     
 
     p = re.compile('0x[a-zA-Z0-9]{40}')

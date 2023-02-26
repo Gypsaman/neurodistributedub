@@ -5,13 +5,13 @@ from webproject import create_app, db
 from datetime import datetime as dt
 from graders.check_submissions import check_submissions
 
-with create_app().app_context():
-    user = User.query.filter_by(student_id='1166493').first()
-    assgn = Assignments.query.filter_by(name='Rent Car').first()
-    sub = Submissions.query.filter_by(assignment=assgn.id,user_id=user.id).first()
+# with create_app().app_context():
+#     user = User.query.filter_by(student_id='1166493').first()
+#     assgn = Assignments.query.filter_by(name='Rent Car').first()
+#     sub = Submissions.query.filter_by(assignment=assgn.id,user_id=user.id).first()
 
-    sub.grade = None
-    db.session.commit()
+#     sub.grade = None
+#     db.session.commit()
 
 
 check_submissions()
