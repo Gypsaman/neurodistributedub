@@ -12,6 +12,13 @@ UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
 
+def check_ganache_cli_running():
+    w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
+    my_address = os.getenv("GANACHE_ACCOUNT")
+    if not w3.isConnected():
+        raise Exception("Ganache-cli is not running")
+    if w3.eth.getBalance(my_address) == 0:
+        raise Exception("No funds in Ganache-cli account")
 
 def get_dict_from_string(dictstring):
     try:
@@ -309,6 +316,8 @@ def sha256_grader(submission:str) :
     return 80,f'Hash "{hash}" is not correct length or content, it should be "{correcthash}"'
 
 def web3_grader(submission:str):
+    
+    check_ganache_cli_running()
     
     if submission.endswith('.pdf'):
         return 0, 'Submission must be a python file, not a pdf'
