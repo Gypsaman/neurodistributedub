@@ -1,46 +1,32 @@
 
-from webproject.modules.quizzes import create_quiz
+from webproject.modules.quizzes import create_quiz, Topics
 from webproject.models import Quizzes, Questions, Answers, Submissions, User, Assignments
 from webproject import create_app, db
 from datetime import datetime as dt
 from graders.check_submissions import check_submissions
+import json
+from collections import Counter
 
-with create_app().app_context():
-    questions = Questions.query.filter_by(quiz_id=7).order_by(Questions.display_order).all()
-    for question in questions:
-        print(f'{question.display_order}-{question.question},{question.answer_chosen},{question.is_correct}')
-        for answer in question.answers:
-            print("\t",answer.display_order,answer.answer_txt,answer.correct_answer)
-    # user = User.query.filter_by(student_id='1166493').first()
-    # assgn = Assignments.query.filter_by(name='Rent Car').first()
-    # sub = Submissions.query.filter_by(assignment=assgn.id,user_id=user.id).first()
-
-    # sub.grade = None
-    # db.session.commit()
-
+check_submissions()
 exit()
-# check_submissions()
-# exit()
-# def get_table_names():
-#     with create_app().app_context():
-#         return db.engine.table_names()
-    
-# # print(get_table_names())
+
+print(Topics)
 
 with create_app().app_context():
 
-    topics_selected = {'Encryption': 5, 'Blockchain': 3,"Solidity": 2}
-    quiz_id = create_quiz(topics_selected,description="Practice Quiz (Encryption, Blockchain, Solidity)",date_available=dt.strptime("2023-02-24","%Y-%m-%d"),date_due=dt.strptime("2020-01-01","%Y-%m-%d"),multiple_retires=True)
-    print(quiz_id)
+    # topics_selected = {'Web3': 15}
+    # description = "Web3 Quiz"
+    # quiz_id = create_quiz(topics_selected,description=description,date_available=dt.strptime("2023-02-24","%Y-%m-%d"),date_due=dt.strptime("2020-01-01","%Y-%m-%d"),multiple_retries=True)
+    # print(quiz_id)
 
   
-    quizzes = Quizzes.query.filter_by(id=7).all()
+    quizzes = Quizzes.query.filter_by(id=8).all()
     for quiz in quizzes:
         print(f'{quiz.id}-{quiz.description},{quiz.date_available},{quiz.date_due},{quiz.grade}')
         questions = Questions.query.filter_by(quiz_id=quiz.id).order_by(Questions.display_order).all()
         for question in questions:
             print(f'\t{question.display_order}-{question.question},{question.answer_chosen},{question.is_correct}')
             answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
-            # for answer in answers:
-            #     print("\t\t",answer.display_order,answer.answer_txt,answer.correct_answer)
+            for answer in answers:
+                print("\t\t",answer.display_order,answer.answer_txt,answer.correct_answer)
             print('*'*50)

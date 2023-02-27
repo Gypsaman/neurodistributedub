@@ -1,4 +1,4 @@
-<h3>Your score is {{quiz.grade}}</h3>
+<h3>Your score is {{quiz.grade | round}}</h3>
 {% if quiz.grade < 100  and quiz.multiple_retries %}
 <div class="neuro-flex-row">
     <button class="neuro-button-main" onclick="location.href='/quiz/retake/{{quiz.id}}'">Retake Quiz</button>

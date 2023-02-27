@@ -324,6 +324,11 @@ def web3_grader(submission:str):
         
     contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
     code = code.replace("./newContract.sol",contract_path)
+    code = code.replace("PROVIDER","GANACHE_PROVIDER")
+    code = code.replace("CHAINID","GANACHE_CHAINID")
+    code = code.replace("ACCOUNT","GANACHE_ACCOUNT")
+    code = code.replace("PRIVATE_KEY","GANACHE_PRIVATE_KEY")
+    
     with open(submission,'w') as f:
         f.write(code)
         

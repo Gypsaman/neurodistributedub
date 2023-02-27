@@ -151,6 +151,9 @@ class Quizzes(db.Model):
     grade = db.Column(db.Integer)
     multiple_retries = db.Column(db.Boolean)
     
+    def __repr__(self):
+        return f'user_id: {self.user_id}, description: {self.description}, date_available: {self.date_available}, date_due: {self.date_due}, submitted: {self.submitted}, grade: {self.grade}, multiple_retries: {self.multiple_retries}'
+    
 class Questions(db.Model):
     __tablename__ = 'questions'
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)

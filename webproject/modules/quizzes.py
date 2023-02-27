@@ -9,8 +9,8 @@ questions = json.load(open('./data/quizzes.json','r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 
-def create_quiz(topics_selected,date_available,date_due,description):
-    quiz = Quizzes(description=description,user_id = 1, date_available=date_available,date_due=date_due,submitted=False)
+def create_quiz(topics_selected,date_available,date_due,description,multiple_retries=True):
+    quiz = Quizzes(description=description,user_id = 1, date_available=date_available,date_due=date_due,submitted=False,multiple_retries=multiple_retries)
     db.session.add(quiz)
     db.session.commit()
     question_number = 1

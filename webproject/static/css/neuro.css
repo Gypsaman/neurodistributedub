@@ -309,24 +309,24 @@ input,textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   background-color: white;
   height: 100%;
   width: 100%;
 }
 .neuro-dashboard-profile{
   display: flex;
-  flex: 1;
+  flex: 4;
   flex-direction: column;
   justify-content: flex-start;
   padding: 5px;
-  margin: 25px;
+  margin: 5px;
   border-style: transparent;
   border-radius: 20px;
   border-width: 1px;
   background-color: #95b5d5;
   opacity: 0.5;
-  min-height: 400px;
+  width: 100%;
 }
 .neuro-dashboard-profile h1{
   color: #2560B9
@@ -344,7 +344,6 @@ input,textarea {
   flex: 1;
   color: #091c38;
   font-size: 9px;
-  width: 70px;
   text-align: right;
 }
 .neuro-dashboard-profile-item-value{
@@ -378,6 +377,10 @@ input,textarea {
   flex-grow: none;
   
   margin-left: 20px;
+}
+.neuro-dashboard-content-section1 h3 {
+  color: #AE6222;
+  font-size: 47px;
 }
 .neuro-dashboard-content-section2 {
   display: flex;

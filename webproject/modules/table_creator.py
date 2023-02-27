@@ -2,6 +2,16 @@ from webproject import db
 import json
 import pandas as pd
 
+def round_to_2_decimals(value):
+    if value is None:
+        return value
+    return round(value,2)
+
+def round_to_0_decimals(value):
+    if value is None:
+        return value
+    return int(round(value,0))
+
 def wei_to_eth(wei):
     return wei / 1000000000000000000
 

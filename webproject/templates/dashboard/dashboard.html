@@ -2,19 +2,23 @@
 {% block body %}
 <div class="neuro-dashboard">
     
-    <div class="neuro-dashboard-profile">
-        {% include 'dashboard/profile.html' %}
-    </div>
+
+    {% include 'dashboard/profile.html' %}
+
     <div class="neuro-dashboard-content">
 
         <div class="neuro-dashboard-content-section1">
             <div>
-                <h1>Wallet</h1>
-                {% include 'dashboard/wallet.html' %}
+                <h3>Grades</h3>
             </div>
             <div>
-                <h1>Grades</h1>
+
+                <h1>Assignments</h1>
                 {{grades_table|safe}}
+            </div>
+            <div>
+                <h1>Quizzes</h1>
+                {{quizzes_table|safe}}
             </div>
         </div>
         <div class="neuro-dashboard-content-section2">

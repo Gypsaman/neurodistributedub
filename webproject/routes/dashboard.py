@@ -4,7 +4,7 @@ from webproject.routes import admin_required
 
 from webproject import db
 from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades, Sections
-from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date, only_contract
+from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date, only_contract, round_to_2_decimals,round_to_0_decimals
 from webproject.modules.web3_interface import get_eth_balance
 
 dashb = Blueprint("dashb", __name__)
@@ -12,13 +12,14 @@ dashb = Blueprint("dashb", __name__)
 submission_page = 1
 grades_page = 1
 
-def create_dashboard(user_id,submission_page=1,grades_page=1):
+def create_dashboard(user_id,submission_page=1,grades_page=1,quiz_page=1):
+
 
     grade_fields = {
         "grades.id": Field(None, None),
         'assignments.name': Field(None, 'Assignment'),
         "dategraded": Field(timestamp_to_date, "Date Submitted"),
-        "grade": Field(None, "Grade"),
+        "grade": Field(round_to_0_decimals, "Grade"),
     }
     actions = [] 
     table_creator = TableCreator(
@@ -26,9 +27,23 @@ def create_dashboard(user_id,submission_page=1,grades_page=1):
     )
     table_creator.join("Assignments", "Grades.assignment == Assignments.id")
     table_creator.set_items_per_page(10)
-    table_creator.domain = f'dashboard?submissions_page={submission_page}&grades_page='
+    table_creator.domain = f'dashboard?submissions_page={submission_page}&quiz_page={quiz_page}&grades_page='
     table_creator.create_view()
     grades_table = table_creator.create(grades_page)
+
+    quiz_fields = {
+        'id': Field(None, None),
+        'description': Field(None, 'Description'),
+        'date_due': Field(timestamp_to_date, 'Due Date'),
+        'Grade': Field(round_to_0_decimals, 'Grade'),
+    }
+    actions = []
+    table_creator = TableCreator("Quizzes", quiz_fields, condition=f'user_id = {user_id}', actions=actions)
+    table_creator.set_items_per_page(5)
+    table_creator.domain = f'dashboard?submissions_page={submission_page}&grades_page={grades_page}&quiz_page='
+    table_creator.create_view()
+    quiz_table = table_creator.create(quiz_page)
+
 
     submission_fields = {
         "assignments.name": Field(None, "Assignment"),
@@ -40,7 +55,7 @@ def create_dashboard(user_id,submission_page=1,grades_page=1):
     table_creator = TableCreator("Submissions", submission_fields, condition=f"user_id = {user_id}", actions=actions)
     table_creator.join("Assignments", "Submissions.assignment == Assignments.id")
     table_creator.set_items_per_page(15)
-    table_creator.domain= f'dashboard?grades_page={grades_page}&submissions_page='
+    table_creator.domain= f'dashboard?grades_page={grades_page}&&quiz_page={quiz_page}submissions_page='
     table_creator.create_view(order='date_submitted DESC')
     submissions_table = table_creator.create(submission_page)
 
@@ -57,6 +72,7 @@ def create_dashboard(user_id,submission_page=1,grades_page=1):
     return render_template("/dashboard/dashboard.html",
                            grades_table=grades_table,
                            submissions_table=submissions_table,
+                           quizzes_table = quiz_table,
                            user=user,
                            section=section,
                            wallet=wallet,
@@ -81,8 +97,12 @@ def dashboard():
         grades_page = int(request.args.get("grades_page"))          
     else:
         grades_page = 1
+    if request.args.get("quiz_page"):
+        quiz_page = int(request.args.get("quiz_page"))
+    else:
+        quiz_page = 1
     
-    return create_dashboard(current_user.id,submission_page=submission_page,grades_page=grades_page)
+    return create_dashboard(current_user.id,submission_page=submission_page,grades_page=grades_page,quiz_page=quiz_page)
 
 @dashb.route("/dashboard/<string:student_id>")
 @admin_required

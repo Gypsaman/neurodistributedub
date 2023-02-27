@@ -1,43 +1,53 @@
-<div>
-    <h1>Welcome {{user.first_name}}!</h1>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{user.first_name}}</div>
-    <div class="nuero-dashboard-profile-item-label">first name</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{user.last_name}}</div>
-    <div class="nuero-dashboard-profile-item-label">last name</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{user.student_id}}</div>
-    <div class="nuero-dashboard-profile-item-label">Student Id</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{section.section}}</div>
-    <div class="nuero-dashboard-profile-item-label">Section</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{user.email}}</div>
-    <div class="nuero-dashboard-profile-item-label">email</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{ assigments_count }}</div>
-    <div class="nuero-dashboard-profile-item-label">Assignments</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{ submissions_count }}</div>
-    <div class="nuero-dashboard-profile-item-label">submissions</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{ grades_count }}</div>
-    <div class="nuero-dashboard-profile-item-label">Assignments Graded</div>
-</div>
-<div class="neuro-dashboard-profile-item" >
-    <div class="neuro-dashboard-profile-item-value">{{tokens}}</div>
-    <div class="nuero-dashboard-profile-item-label">tokens</div>
-</div>
-<div class="neuro-dashboard-profile-item">
-    <div class="neuro-dashboard-profile-item-value">{{nfts}}</div>
-    <div class="nuero-dashboard-profile-item-label">nfts</div>
+<div class ="neuro-flex-column">
+    <div class="neuro-dashboard-profile">
+        <div>
+            <h1>Welcome {{user.first_name}}!</h1>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{user.first_name}}</div>
+            <div class="nuero-dashboard-profile-item-label">first name</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{user.last_name}}</div>
+            <div class="nuero-dashboard-profile-item-label">last name</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{user.student_id}}</div>
+            <div class="nuero-dashboard-profile-item-label">Student Id</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{section.section}}</div>
+            <div class="nuero-dashboard-profile-item-label">Section</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{user.email}}</div>
+            <div class="nuero-dashboard-profile-item-label">email</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{ assigments_count }}</div>
+            <div class="nuero-dashboard-profile-item-label">Assignments</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{ submissions_count }}</div>
+            <div class="nuero-dashboard-profile-item-label">submissions</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{ grades_count }}</div>
+            <div class="nuero-dashboard-profile-item-label">Assignments Graded</div>
+        </div>
+        <div class="neuro-dashboard-profile-item" >
+            <div class="neuro-dashboard-profile-item-value">{{tokens}}</div>
+            <div class="nuero-dashboard-profile-item-label">tokens</div>
+        </div>
+        <div class="neuro-dashboard-profile-item">
+            <div class="neuro-dashboard-profile-item-value">{{nfts}}</div>
+            <div class="nuero-dashboard-profile-item-label">nfts</div>
+        </div>
+        <div>
+            <h1>Wallet</h1>
+            {% include 'dashboard/wallet.html' %}
+        </div>
+    </div>
+
+
 </div>
