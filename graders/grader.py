@@ -16,9 +16,12 @@ def check_ganache_cli_running():
     w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
     my_address = os.getenv("GANACHE_ACCOUNT")
     if not w3.isConnected():
-        raise Exception("Ganache-cli is not running")
+        # raise Exception("Ganache-cli is not running")
+        return False
     if w3.eth.getBalance(my_address) == 0:
-        raise Exception("No funds in Ganache-cli account")
+        # raise Exception("No funds in Ganache-cli account")
+        return False
+    return True
 
 def get_dict_from_string(dictstring):
     try:
@@ -317,7 +320,7 @@ def sha256_grader(submission:str) :
 
 def web3_grader(submission:str):
     
-    check_ganache_cli_running()
+
     
     if submission.endswith('.pdf'):
         return 0, 'Submission must be a python file, not a pdf'
@@ -333,10 +336,11 @@ def web3_grader(submission:str):
         
     contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
     code = code.replace("./newContract.sol",contract_path)
-    code = code.replace("PROVIDER","GANACHE_PROVIDER")
-    code = code.replace("CHAINID","GANACHE_CHAINID")
-    code = code.replace("ACCOUNT","GANACHE_ACCOUNT")
-    code = code.replace("PRIVATE_KEY","GANACHE_PRIVATE_KEY")
+    if check_ganache_cli_running():
+        code = code.replace("PROVIDER","GANACHE_PROVIDER")
+        code = code.replace("CHAINID","GANACHE_CHAINID")
+        code = code.replace("ACCOUNT","GANACHE_ACCOUNT")
+        code = code.replace("PRIVATE_KEY","GANACHE_PRIVATE_KEY")
     
     with open(submission,'w') as f:
         f.write(code)

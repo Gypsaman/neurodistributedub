@@ -197,7 +197,7 @@ def grade_history(section,page):
     import pandas as pd
     from webproject.modules import offline_utils as ou
     df = ou.grade_history_data(section)
-    table = TableCreator('Grade History',fields={},actions=[],domain='/admin/grade-history/'+section)
+    table = TableCreator('Grade History',fields={},actions=[],domain='/admin/grade-history/'+section+'/')
     table.dataframe(df,index=['Student ID'])
     table.set_items_per_page(15)
     html = table.create(page)
