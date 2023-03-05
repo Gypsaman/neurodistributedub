@@ -2,15 +2,16 @@ import json
 from collections import Counter
 import numpy as np
 from webproject import create_app, db
-from webproject.models import Quizzes, Questions, Answers
+from webproject.models import Quizzes, Questions, Answers, User, Sections
 from datetime import datetime as dt
+from datetime import timedelta
 
 questions = json.load(open('./data/quizzes.json','r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 
-def create_quiz(topics_selected,date_available,date_due,description,multiple_retries=True):
-    quiz = Quizzes(description=description,user_id = 1, date_available=date_available,date_due=date_due,submitted=False,multiple_retries=multiple_retries)
+def create_quiz(topics_selected,date_available,date_due,description,user_id,multiple_retries=True):
+    quiz = Quizzes(description=description,user_id=user_id, date_available=date_available,date_due=date_due,submitted=False,multiple_retries=multiple_retries)
     db.session.add(quiz)
     db.session.commit()
     question_number = 1
@@ -24,14 +25,25 @@ def create_quiz(topics_selected,date_available,date_due,description,multiple_ret
             question_number += 1
             
             answers = np.array(questions[q]['Answers'])
-            selection = np.random.choice(range(len(answers)),len(answers),replace=False)
-            for order,a in enumerate(answers[selection]):
+            answer_selection = np.random.choice(range(len(answers)),len(answers),replace=False)
+            for order,a in enumerate(answers[answer_selection]):
                 answer = Answers(quiz_id=quiz.id,question_id=q,answer_id=a['ID'],display_order=order+1,answer_txt=a['Answer'],correct_answer=a['Correct'])
                 db.session.add(answer)
                 db.session.commit()
             
     return quiz.id
-        
+   
+def create_quiz_all_users(section_name:str,description,topics_selected:dict):     
+    with create_app().app_context():
+        section = Sections.query.filter_by(section=section_name).first()
+        users = User.query.filter_by(section=section.id,role='student').all()
+        quizzes = []
+        for user in users:
+            quiz_id = create_quiz(topics_selected,dt.now(),dt.now()+timedelta(days=7),description=description + ' for {}'.format(user.first_name),user_id=user.id)
+            quizzes.append(quiz_id)
+            
+    
+    return quizzes
 
     
 if __name__ == '__main__':

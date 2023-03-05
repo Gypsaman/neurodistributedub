@@ -38,6 +38,9 @@ def quiz_retake(quiz_id):
 @login_required
 def quiz_grade(quiz_id):
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
+    
+    if quiz is None or quiz.user_id != current_user.id:
+        return redirect(url_for("quiz.select_quiz"))
     not_answered = Questions.query.filter_by(quiz_id=quiz.id,answer_chosen='').count()
     
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).count()
