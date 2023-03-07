@@ -37,13 +37,9 @@ def create_quiz_all_users(section_name:str,description,topics_selected:dict):
     with create_app().app_context():
         section = Sections.query.filter_by(section=section_name).first()
         users = User.query.filter_by(section=section.id,role='student').all()
-        quizzes = []
         for user in users:
             quiz_id = create_quiz(topics_selected,dt.now(),dt.now()+timedelta(days=7),description=description + ' for {}'.format(user.first_name),user_id=user.id)
-            quizzes.append(quiz_id)
-            
-    
-    return quizzes
+            print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
 
     
 if __name__ == '__main__':

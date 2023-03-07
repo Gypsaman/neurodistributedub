@@ -5,12 +5,40 @@ import shutil
 import os
 import numpy as np
 from webproject.modules.dotenv_util import get_cwd
-from webproject.models import Wallet
 import re
+import subprocess
+from zipfile import ZipFile
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
+
+
+def set_up_zipfile(zipf):
+    # clean previous inputs and extract zip file.
+    cwd = get_cwd()
+    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    if os.path.exists(currSubmissionDir):
+        cleanup_zip()
+    else:
+        os.mkdir(currSubmissionDir)
+    os.chdir(currSubmissionDir)
+    with ZipFile(zipf,'r') as zipObj:
+        zipObj.extractall()
+        
+    # shutil.copy(os.path.join(cwd,'.env'),currSubmissionDir)
+        
+def cleanup_zip():
+    cwd = get_cwd()
+    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    
+    for file in os.listdir(currSubmissionDir):
+        curr_file = os.path.join(currSubmissionDir,file)
+        if os.path.isdir(curr_file):
+            shutil.rmtree(curr_file)
+        else:
+            os.remove(curr_file)
+
 
 def check_ganache_cli_running():
     w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
@@ -463,6 +491,46 @@ def wallet_grader(submission:str) :
     # graded by form for entering wallet address
     pass
 
+def brownie_grader(submission:str) :
+      # Check that there is at least one script and utilize the first one.
+    
+    set_up_zipfile(submission)
+    
+    script = ''
+    for s in os.listdir('./scripts'):
+        if s.endswith('.py'):
+            script = s
+            
+    if script == '':
+        return 0,'No script found' 
+
+    # Run the brownie script
+    # result = subprocess.run(['brownie', 'run', script, '--network', 'ganache-local'],stdout=subprocess.PIPE)
+    result = subprocess.run(['brownie', 'run', script],stdout=subprocess.PIPE)
+
+    brownieOutput = result.stdout.decode('utf-8')
+
+
+    # Analyze output of brownie
+    
+    isError = re.search(r'[Ee]rror',brownieOutput)
+    if isError:
+        return 0,isError.group(0)
+    
+    invalidSyntax = re.search(r'invalid syntax',brownieOutput)
+    if invalidSyntax:
+        return 70,invalidSyntax.group(0)
+
+
+    matches = re.findall(r'deployed at: 0x[a-zA-Z0-9]{40}',brownieOutput)
+    for match in matches:
+        contract = re.findall(r'0x[a-zA-Z0-9]{40}',match)[0]
+    if contract.startswith('0x'):
+        return 100,'Valid deployement'
+    
+    return 70, 'deployment did not generate a contract'
+
+
 
 graders= {
     "SHA256": sha256_grader,
@@ -474,6 +542,7 @@ graders= {
     "Rent Car": rentCar_Grader,
     "Student ID": studentID_Grader,
     "web3_py": web3_grader,
+    "brownie": brownie_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

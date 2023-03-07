@@ -7,4 +7,6 @@ uploads
 uploads_history/
 table_creator copy.py
 graders/imports/
+graders/currsubmission
 data/
+submission.zip
