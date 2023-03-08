@@ -23,6 +23,8 @@ def set_up_zipfile(zipf):
     else:
         os.mkdir(currSubmissionDir)
     os.chdir(currSubmissionDir)
+    import pathlib
+    zipf = pathlib.Path(zipf)
     with ZipFile(zipf,'r') as zipObj:
         zipObj.extractall()
         
@@ -497,9 +499,13 @@ def brownie_grader(submission:str) :
     set_up_zipfile(submission)
     
     script = ''
-    for s in os.listdir('./scripts'):
-        if s.endswith('.py'):
-            script = s
+    if 'deploy.py' in os.listdir('./scripts'):
+        script = 'deploy.py'
+    else:
+        for s in os.listdir('./scripts'):
+            if s.endswith('.py'):
+                script = s
+                break
             
     if script == '':
         return 0,'No script found' 
@@ -510,6 +516,7 @@ def brownie_grader(submission:str) :
 
     brownieOutput = result.stdout.decode('utf-8')
 
+    brownieOutput = brownieOutput.replace('\x1b','').replace('[0;1;34m','').replace('[0;m','')
 
     # Analyze output of brownie
     
