@@ -1,6 +1,8 @@
-from graders.grader import set_up_zipfile
+from graders.check_submissions import check_submissions
+import os
 
-# import shutil
-# shutil.make_archive('submission', 'zip', 'd:/brownieSimpleStorage')
+print(os.getenv("DATABASE"))
+print(os.getenv("SECRET_KEY"))
+print(os.getenv("EMAIL_SERVER"))
 
-set_up_zipfile('C:\\Users\\gypsa\\websites\\neurodistributedub\\submission.zip')
+# check_submissions()

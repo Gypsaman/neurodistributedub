@@ -363,6 +363,7 @@ def web3_grader(submission:str):
         code = f.read()
         
     contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
+    
     code = code.replace("./newContract.sol",contract_path)
     if check_ganache_cli_running():
         code = code.replace("PROVIDER","GANACHE_PROVIDER")
