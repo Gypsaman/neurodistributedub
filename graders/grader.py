@@ -13,18 +13,23 @@ UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
 
+def currSubmissionsPath():
+    cwd = get_cwd()
+    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    return currSubmissionDir
 
 def set_up_zipfile(zipf):
     # clean previous inputs and extract zip file.
-    cwd = get_cwd()
-    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    currSubmissionDir = currSubmissionsPath()
     if os.path.exists(currSubmissionDir):
         cleanup_zip()
     else:
         os.mkdir(currSubmissionDir)
-    os.chdir(currSubmissionDir)
+    
+    import pathlib
+    zipf = pathlib.Path(zipf)
     with ZipFile(zipf,'r') as zipObj:
-        zipObj.extractall()
+        zipObj.extractall(currSubmissionDir)
         
     # shutil.copy(os.path.join(cwd,'.env'),currSubmissionDir)
         
@@ -496,21 +501,34 @@ def brownie_grader(submission:str) :
       # Check that there is at least one script and utilize the first one.
     
     set_up_zipfile(submission)
-    
+    currSubmissionDir = currSubmissionsPath()
+    scriptsPath = os.path.join(currSubmissionDir,'scripts')
     script = ''
-    for s in os.listdir('./scripts'):
-        if s.endswith('.py'):
-            script = s
+    if 'deploy.py' in os.listdir(scriptsPath):
+        script = 'deploy.py'
+    else:
+        for s in os.listdir(scriptsPath):
+            if s.endswith('.py'):
+                script = s
+                break
             
     if script == '':
         return 0,'No script found' 
 
     # Run the brownie script
     # result = subprocess.run(['brownie', 'run', script, '--network', 'ganache-local'],stdout=subprocess.PIPE)
-    result = subprocess.run(['brownie', 'run', script],stdout=subprocess.PIPE)
+    cwd = os.getcwd()
+    try:
+        os.chdir(currSubmissionDir)
+        result = subprocess.run(['brownie', 'run', os.path.join(scriptsPath,script)],stdout=subprocess.PIPE)
+    except Exception as e:
+        raise Exception(f'Error running brownie\n\n{e}')
+    finally:
+        os.chdir(cwd)
 
     brownieOutput = result.stdout.decode('utf-8')
 
+    brownieOutput = brownieOutput.replace('\x1b','').replace('[0;1;34m','').replace('[0;m','')
 
     # Analyze output of brownie
     
