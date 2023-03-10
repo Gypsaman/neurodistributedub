@@ -115,6 +115,7 @@ def brownie_grader(submission:str) :
 
 
     matches = re.findall(r'deployed at: 0x[a-zA-Z0-9]{40}',brownieOutput)
+    contract = ''
     for match in matches:
         contract = re.findall(r'0x[a-zA-Z0-9]{40}',match)[0]
     if contract.startswith('0x'):
