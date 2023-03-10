@@ -21,6 +21,8 @@ def get_tree(start_dir):
 
 def project_folder():
     currSubmissionDir = currSubmissionsPath()
+    if 'scripts' in os.listdir(currSubmissionDir):
+        return currSubmissionDir
     for file in os.listdir(currSubmissionDir):
         if os.path.isdir(os.path.join(currSubmissionDir,file)):
             paths = get_tree(os.path.join(currSubmissionDir,file))
