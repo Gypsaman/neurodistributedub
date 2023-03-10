@@ -8,7 +8,7 @@ import subprocess
 def get_tree(start_dir):
     dirs = []
     for file in os.listdir(start_dir):
-        if file == '_MACOSX':
+        if 'MACOSX' in file:
             continue
         curr_path = os.path.join(start_dir,file)
         if os.path.isdir(curr_path):
@@ -24,6 +24,8 @@ def project_folder():
     if 'scripts' in os.listdir(currSubmissionDir):
         return currSubmissionDir
     for file in os.listdir(currSubmissionDir):
+        if 'MACOSX' in file:
+            continue
         if os.path.isdir(os.path.join(currSubmissionDir,file)):
             paths = get_tree(os.path.join(currSubmissionDir,file))
             for dir in paths:
