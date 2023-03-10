@@ -5,5 +5,12 @@ from webproject.models import Submissions
 #     sub = Submissions.query.filter_by(user_id=1,assignment=12).first()
 #     sub.grade = None
 #     db.session.commit()
-    
-check_submissions()
+
+import re
+# contract_location = re.findall('[\\\\]',"once a upon a time with open('.\\contracts\\newContract.sol','r')")
+
+contract_location = re.findall('[\\\\/.a-zA-Z0-9_]*.sol',"once a upon a time with open('./contracts/newContract.sol','r')")
+for i in contract_location:
+    print(i)
+        
+# check_submissions()

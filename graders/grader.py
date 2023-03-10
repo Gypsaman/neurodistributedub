@@ -337,7 +337,12 @@ def web3_grader(submission:str):
         
     contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
     
-    code = code.replace("./newContract.sol",contract_path)
+    contract_location = re.findall('[\\\\/.a-zA-Z0-9_]*.sol',code)
+    
+    if not contract_location:
+        return 0, 'Submission must have a contract file'
+    
+    code = code.replace(contract_location[0],contract_path)
     if check_ganache_cli_running():
         code = code.replace("PROVIDER","GANACHE_PROVIDER")
         code = code.replace("CHAINID","GANACHE_CHAINID")
