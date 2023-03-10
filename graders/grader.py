@@ -6,43 +6,11 @@ import os
 import numpy as np
 from webproject.modules.dotenv_util import get_cwd
 import re
-import subprocess
-from zipfile import ZipFile
+from graders.brownie_grader import brownie_grader
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
-
-def currSubmissionsPath():
-    cwd = get_cwd()
-    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
-    return currSubmissionDir
-
-def set_up_zipfile(zipf):
-    # clean previous inputs and extract zip file.
-    currSubmissionDir = currSubmissionsPath()
-    if os.path.exists(currSubmissionDir):
-        cleanup_zip()
-    else:
-        os.mkdir(currSubmissionDir)
-    
-    import pathlib
-    zipf = pathlib.Path(zipf)
-    with ZipFile(zipf,'r') as zipObj:
-        zipObj.extractall(currSubmissionDir)
-        
-    # shutil.copy(os.path.join(cwd,'.env'),currSubmissionDir)
-        
-def cleanup_zip():
-    cwd = get_cwd()
-    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
-    
-    for file in os.listdir(currSubmissionDir):
-        curr_file = os.path.join(currSubmissionDir,file)
-        if os.path.isdir(curr_file):
-            shutil.rmtree(curr_file)
-        else:
-            os.remove(curr_file)
 
 
 def check_ganache_cli_running():
@@ -496,59 +464,6 @@ def ecc_grader(submission:str) :
 def wallet_grader(submission:str) :
     # graded by form for entering wallet address
     pass
-
-def brownie_grader(submission:str) :
-      # Check that there is at least one script and utilize the first one.
-    
-    set_up_zipfile(submission)
-    currSubmissionDir = currSubmissionsPath()
-    scriptsPath = os.path.join(currSubmissionDir,'scripts')
-    script = ''
-    if 'deploy.py' in os.listdir(scriptsPath):
-        script = 'deploy.py'
-    else:
-        for s in os.listdir(scriptsPath):
-            if s.endswith('.py'):
-                script = s
-                break
-            
-    if script == '':
-        return 0,'No script found' 
-
-    # Run the brownie script
-    # result = subprocess.run(['brownie', 'run', script, '--network', 'ganache-local'],stdout=subprocess.PIPE)
-    cwd = os.getcwd()
-    try:
-        os.chdir(currSubmissionDir)
-        result = subprocess.run(['brownie', 'run', os.path.join(scriptsPath,script)],stdout=subprocess.PIPE)
-    except Exception as e:
-        raise Exception(f'Error running brownie\n\n{e}')
-    finally:
-        os.chdir(cwd)
-
-    brownieOutput = result.stdout.decode('utf-8')
-
-    brownieOutput = brownieOutput.replace('\x1b','').replace('[0;1;34m','').replace('[0;m','')
-
-    # Analyze output of brownie
-    
-    isError = re.search(r'[Ee]rror',brownieOutput)
-    if isError:
-        return 0,isError.group(0)
-    
-    invalidSyntax = re.search(r'invalid syntax',brownieOutput)
-    if invalidSyntax:
-        return 70,invalidSyntax.group(0)
-
-
-    matches = re.findall(r'deployed at: 0x[a-zA-Z0-9]{40}',brownieOutput)
-    for match in matches:
-        contract = re.findall(r'0x[a-zA-Z0-9]{40}',match)[0]
-    if contract.startswith('0x'):
-        return 100,'Valid deployement'
-    
-    return 70, 'deployment did not generate a contract'
-
 
 
 graders= {
