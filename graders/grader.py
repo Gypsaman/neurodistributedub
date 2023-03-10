@@ -337,7 +337,7 @@ def web3_grader(submission:str):
         
     contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
     
-    contract_location = re.findall('[\\\\/.a-zA-Z0-9_]*.sol',code)
+    contract_location = re.findall('[\\\\/\.a-zA-Z0-9_]*\.sol',code)
     
     if not contract_location:
         return 0, 'Submission must have a contract file'
