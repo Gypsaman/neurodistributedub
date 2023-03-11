@@ -6,5 +6,8 @@ from webproject.models import Submissions
 #     sub.grade = None
 #     db.session.commit()
 
+from webproject.modules.quizzes import create_quiz_all_users,Topics
 
-check_submissions()
+print(Topics)
+topics = {"Web3": 15}
+create_quiz_all_users('SP23-Wednesday','Web3',topics)

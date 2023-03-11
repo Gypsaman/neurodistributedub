@@ -27,7 +27,7 @@ def select_quiz_post():
 @login_required
 def quiz_retake(quiz_id):
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
-    quiz.grade = None
+    # quiz.grade = None
     questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     for question in questions:
         question.answer_chosen = ''
@@ -72,7 +72,8 @@ def quiz_grade_post(quiz_id):
     for question in all_questions:
         if question.is_correct:
             score += 1
-    quiz.grade = score/len(all_questions)*100
+    score = score/len(all_questions)*100
+    quiz.grade = score if score > quiz.grade else quiz.grade
     db.session.commit()
     return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
 
