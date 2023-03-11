@@ -9,10 +9,7 @@
         {{ messages[0] }}. 
     </div>
     {% endif %} {% endwith %}
-    {% if quiz.grade is not none %}
-        {% include 'quizzes/detailed_grade.html' %}
-        
-    {% else %}
+
     <div class="neuro-form-section">
         <form class="neuro-form"  method="POST" action="/quiz/{{quiz.id}}">
             {% if not_answered > 0 %}
@@ -34,7 +31,6 @@
                 onclick="window.location.href='/quiz/{{quiz.id}}/1'">Cancel</button>
         </div>
     </div>
-    {% endif %}
 
 </div>
 {% endblock %}

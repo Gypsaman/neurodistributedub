@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block body %}
 <h3>Your score is {{quiz.grade | round}}</h3>
 {% if quiz.grade < 100  and quiz.multiple_retries %}
 <div class="neuro-flex-row">
@@ -32,3 +35,4 @@
 
 {% endfor %}
 </div>
+{% endblock %}

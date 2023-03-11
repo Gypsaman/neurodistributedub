@@ -48,19 +48,9 @@ def quiz_grade(quiz_id):
     if not_answered == all_questions:
         return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=1))
     
-    questions = Questions.query.filter_by(quiz_id=quiz.id).order_by(Questions.display_order).all()
-    
-    question_answers = []
-    for question in questions:
-        q = {'question':{'display_order':question.display_order,'question':question.question,'answer_chosen':question.answer_chosen,'is_correct':question.is_correct}}
-        answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
-        q['answers'] = []
-        for answer in answers:
-            q['answers'].append({'answer_id':answer.answer_id,'display_order':answer.display_order,'answer_txt':answer.answer_txt,'correct_answer':answer.correct_answer})
-        question_answers.append(q)
-        
-    
-    return render_template("quizzes/quiz_grade.html",quiz=quiz,not_answered=not_answered,all_questions=all_questions,questions=question_answers)
+
+
+    return render_template("quizzes/quiz_grade.html",quiz=quiz,not_answered=not_answered,all_questions=all_questions)
 
 @quiz.route('/quiz/<int:quiz_id>',methods=['POST'])
 @login_required
@@ -73,9 +63,23 @@ def quiz_grade_post(quiz_id):
         if question.is_correct:
             score += 1
     score = score/len(all_questions)*100
-    quiz.grade = score if score > quiz.grade else quiz.grade
+    if quiz.grade is None or score > quiz.grade:
+        quiz.grade = score
     db.session.commit()
-    return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
+    
+    questions = Questions.query.filter_by(quiz_id=quiz.id).order_by(Questions.display_order).all()
+    
+    question_answers = []
+    for question in questions:
+        q = {'question':{'display_order':question.display_order,'question':question.question,'answer_chosen':question.answer_chosen,'is_correct':question.is_correct}}
+        answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
+        q['answers'] = []
+        for answer in answers:
+            q['answers'].append({'answer_id':answer.answer_id,'display_order':answer.display_order,'answer_txt':answer.answer_txt,'correct_answer':answer.correct_answer})
+        question_answers.append(q)
+        
+    return render_template("quizzes/detailed_grade.html",quiz=quiz,questions=question_answers)
+    # return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
 
 @quiz.route("/quiz/<int:quiz_id>/<int:question_number>")
 @login_required
