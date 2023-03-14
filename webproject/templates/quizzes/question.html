@@ -16,6 +16,9 @@
     <div class="neuro-form-section">
         <form class="neuro-form"  method="POST" action="/quiz/{{quiz.id}}/{{question.display_order}}">
             <div class="neuro-form-entry-row">
+                <label for="question">Topic: {{question.topic}}</label>
+            </div>
+            <div class="neuro-form-entry-row">
                 <textarea rows=10 style="max-width: 500px">{{question.question}}</textarea>
             </div>
             <div  class="neuro-form-entry-column" style="margin-top: 10px; margin-bottom: 10px;">

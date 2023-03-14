@@ -158,6 +158,7 @@ class Questions(db.Model):
     __tablename__ = 'questions'
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
     question_id = db.Column(db.String(10),primary_key=True)
+    topic = db.Column(db.String(50))
     question = db.Column(db.String(500))
     display_order = db.Column(db.Integer)
     answer_chosen = db.Column(db.String(20))

@@ -19,7 +19,7 @@ def create_quiz(topics_selected,date_available,date_due,description,user_id,mult
         selection = np.random.choice(range(Topics[topic]),qty ,replace=False)
         topic_questions = np.array([id for id,q in questions.items() if q['Topic'] == topic])
         for q in topic_questions[selection]:
-            question = Questions(quiz_id=quiz.id,question_id=q,question=questions[q]['Question'],display_order=question_number,answer_chosen='',is_correct=False)
+            question = Questions(quiz_id=quiz.id,question_id=q,topic=topic,question=questions[q]['Question'],display_order=question_number,answer_chosen='',is_correct=False)
             db.session.add(question)
             db.session.commit()
             question_number += 1

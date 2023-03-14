@@ -71,7 +71,7 @@ def quiz_grade_post(quiz_id):
     
     question_answers = []
     for question in questions:
-        q = {'question':{'display_order':question.display_order,'question':question.question,'answer_chosen':question.answer_chosen,'is_correct':question.is_correct}}
+        q = {'question':{'display_order':question.display_order,'topic':question.topic,'question':question.question,'answer_chosen':question.answer_chosen,'is_correct':question.is_correct}}
         answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
         q['answers'] = []
         for answer in answers:
