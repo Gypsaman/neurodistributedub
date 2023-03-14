@@ -105,7 +105,9 @@ def quiz_display_post(quiz_id,question_number):
     question.is_correct = answer.correct_answer
     db.session.commit()
     
-    next_question = (question_number+1) % number_of_questions
+    next_question = question_number+1
+    if next_question > number_of_questions:
+        next_question = 1
 
     return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=next_question))
         

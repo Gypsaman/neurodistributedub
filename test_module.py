@@ -6,18 +6,14 @@ from webproject.models import Submissions, Questions
 #     sub.grade = None
 #     db.session.commit()
 
-from webproject.modules.quizzes import create_quiz_all_users,Topics, questions
+from webproject.modules.quizzes import create_quiz_all_users,Topics, questions, create_quiz
 
 print(Topics)
-def update_topics():
-    with create_app().app_context():
-        db_questions = Questions.query.all()
-        for q in db_questions:
-            topic = questions[q.question_id]['Topic']
-            q.topic = topic
-        db.session.commit()
-            
-update_topics()
-    
+
+
+from datetime import datetime as dt
+from time import timedelta
 topics = {"Brownie": 15}
-create_quiz_all_users('SP23-Monday','Brownie',topics)
+description = 'Brownie'
+create_quiz(topics,dt.now(),dt.now()+timedelta(days=7),description=description + ' for Cesar',user_id=1)
+# create_quiz_all_users('SP23-Monday','Brownie',topics)
