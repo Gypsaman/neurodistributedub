@@ -5,11 +5,16 @@ import requests
 from web3 import Web3, HTTPProvider
 import os
 from webproject.modules.dotenv_util import initialize_dotenv
+from time import sleep
 
 initialize_dotenv()
 
 PROVIDER = os.getenv("PROVIDER")
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
+
+# These headers are needed to avoid getting blocked by etherscan during a get request
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
 
 nft_abi = [
     {
@@ -78,7 +83,7 @@ def get_nft_uri(token_addr, top=10):
             tokenURI = tokenURI.split("?filename")[0]
         else:
             tokenURI = tokenURI.split("filename")[0]
-        response = requests.get(tokenURI)
+        response = requests.get(tokenURI, headers=HEADERS)
         if response.status_code != 200:
             break
         content = json.loads(response.content.decode())
@@ -106,7 +111,7 @@ def get_contract_abi(account):
 
     accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
 
-    transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+    transinfo = json.loads(requests.get(accountquery,headers=HEADERS).content.decode("utf-8"))
     
     print(transinfo)
 
@@ -123,7 +128,7 @@ def get_eth_balance(account):
     accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
     
     try:
-        transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+        transinfo = json.loads(requests.get(accountquery,headers=HEADERS).content.decode("utf-8"))
     except:
         return -1
 
@@ -140,7 +145,8 @@ def getEthTrans(account):
     EtherQuery = "https://api-goerli.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&sort=asc&apikey={}"
 
     accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
-    transinfo = json.loads(requests.get(accountquery).content.decode("utf-8"))
+    results = requests.get(accountquery,headers=HEADERS)
+    transinfo = json.loads(results.content.decode("utf-8"))
     if transinfo["message"] == "NOTOK":
         return -1
 

@@ -470,6 +470,54 @@ def wallet_grader(submission:str) :
     # graded by form for entering wallet address
     pass
 
+def token_grader(Address_ABI):
+    ubtoken,token_abi,is_wallet =  get_contract_info(Address_ABI)
+
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+
+    functions_needed = ['name','symbol','totalSupply','balanceOf','decimals']
+    msg = ''
+    for f in functions_needed:
+        if f not in get_abi_functions(token_abi):
+            msg += f'{f} function not defined in ABI'
+    if msg != '':
+        return 0, msg + '\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+    
+
+    if ubtoken is None:
+        return 0, 'Not a valid contract address'
+    try:
+        name = ubtoken.functions.name().call()
+        symbol = ubtoken.functions.symbol().call()
+        totalSupply = ubtoken.functions.totalSupply().call()
+        tokenbalance = ubtoken.functions.balanceOf(myaccount).call()
+        decimals = ubtoken.functions.decimals().call()
+    except:
+        return 0, 'Error calling functions'
+    
+    msg = ''
+    base_grade = 75
+    if name == "UBStudent":
+        base_grade += 5
+    else:
+        msg += 'Name is not UBStudent\n'
+    if symbol == "US":
+        base_grade += 5
+    else:
+        msg += 'Symbol is not US\n'
+    if totalSupply == 10_000_000 * 10**decimals:
+        base_grade += 5
+    else:
+        msg += 'Total Supply is not 10,000,000\n'
+    if tokenbalance == 1000 * 10**decimals:
+        base_grade += 10
+    else:
+        msg += f'Balance in {myaccount} is not 1,000\n'
+        
+    return base_grade, msg
+
+
 
 graders= {
     "SHA256": sha256_grader,
@@ -482,6 +530,7 @@ graders= {
     "Student ID": studentID_Grader,
     "web3_py": web3_grader,
     "brownie": brownie_grader,
+    "token": token_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

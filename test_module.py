@@ -1,19 +1,15 @@
+from webproject.modules.offline_utils import grade_update
+from webproject.modules.quizzes import create_quiz_all_users
+from webproject import db, create_app
+from webproject.models import Quizzes, User
 from graders.check_submissions import check_submissions
-from webproject import create_app, db
-from webproject.models import Submissions, Questions
+
+check_submissions()
 # with create_app().app_context():
-#     sub = Submissions.query.filter_by(user_id=1,assignment=12).first()
-#     sub.grade = None
+
+#     quizzes = Quizzes.query.filter_by(id=112).first()
+#     db.session.delete(quizzes)
 #     db.session.commit()
+topic = {'Brownie':15}
+create_quiz_all_users('SP23-Wednesday','Brownie',topic)
 
-from webproject.modules.quizzes import create_quiz_all_users,Topics, questions, create_quiz
-
-print(Topics)
-
-
-from datetime import datetime as dt
-from time import timedelta
-topics = {"Brownie": 15}
-description = 'Brownie'
-create_quiz(topics,dt.now(),dt.now()+timedelta(days=7),description=description + ' for Cesar',user_id=1)
-# create_quiz_all_users('SP23-Monday','Brownie',topics)

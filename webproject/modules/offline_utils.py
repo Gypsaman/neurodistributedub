@@ -4,7 +4,7 @@ import requests
 from webproject.modules.ubemail import UBEmail
 from webproject.modules import roster
 from webproject import db, create_app
-from webproject.models import User, Assignments, Submissions, Grades, Sections, DueDates
+from webproject.models import User, Assignments, Submissions, Grades, Sections, DueDates, Quizzes
 from datetime import datetime as dt
 from webproject.modules import dotenv_util
 import os
@@ -21,13 +21,21 @@ def grade_update(section_name=None):
             users = User.query.filter_by(section=section.id,role='student').all()
         assignments = db.session.execute(Assignment_qry.format(section.id)).all()
         
+        
         for user in users:
             unsbumitted = False
+            quizzes = Quizzes.query.filter_by(user_id=user.id).all()
             body = f'Hello {user.first_name} {user.last_name},\n\nSo far your grades are:\n\n'
+            body += f'Assignments:\n\n'
             for assignment in assignments:
                 grade = Grades.query.filter_by(user_id=user.id,assignment=assignment.id).first()
                 body += f'\t{assignment.name} - {grade.grade}\n' if grade is not None else f'\t{assignment.name} - Not submitted\n'
                 if grade is None:
+                    unsbumitted = True
+            body += f'\nQuizzes:\n\n'
+            for quiz in quizzes:
+                body += f'\t{quiz.description} - {quiz.grade}\n' 
+                if quiz.grade is None or quiz.grade == 0:
                     unsbumitted = True
             if unsbumitted:
                 body += '\n\nYou have unsubmitted Assignment(s).  Let me know if you need any help.\n\n'
@@ -107,4 +115,4 @@ def import_quiz(quiz_name,quizdate):
             db.session.commit() 
     
 if __name__ == '__main__':
-    grade_update('SP23-Monday')
+    grade_update()
