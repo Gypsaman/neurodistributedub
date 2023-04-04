@@ -6,7 +6,9 @@
     {% if metadatas | length == 0 %}
         <p>There are no NFTs in this collection.</p>
     {% endif %}
+    <div class="neuro-view-nft-collection">
     {% for metadata in metadatas %}
+
         <div class="neuro-view-nft">
             <img src="https://ipfs.io/ipfs/{{metadata['image']}}" alt="NFTs" style="height:300px">
             <h1 class="title">{{ metadata['name'] }}</h1>
@@ -15,7 +17,7 @@
             <div class="neuro-nft-metadata">
             {% for attribute in metadata['attributes'] %}
 
-                <div class style="display:flex; flex-direction:row; justify-content:space-between; margin:10px 0px;">
+                <div class style="display:flex; flex-direction:row; justify-content:space-between; margin:10px 0px; ">
                     {% for key,value in attribute.items() %}
                         <div class = "neuro-nft-attribute-label">{{ key }}</div>
                         <div class = "neuro-nft-attribute-value"> {{ value }} </div>
@@ -25,9 +27,11 @@
             {% endfor %}
             </div>
         </div>
+    
     {% endfor %}
+</div>
     <div>
-        <button class="neuro-button" onclick="window.location.href='/assets/{{ page_num }}'">return</button>
+        <button class="neuro-button-main" onclick="window.location.href='/assets/{{ page_num }}'">return</button>
     </div>
 </div>
 {% endblock %}

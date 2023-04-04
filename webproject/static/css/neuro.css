@@ -201,6 +201,7 @@ select {
 }
 .neuro-nft-metadata {
   display: flex;
+  
   flex-direction: row;
   justify-content: space-between;
   margin: 2px;
@@ -234,13 +235,13 @@ select {
 
 .neuro-nft-attribute-label {
   /* background-color: rgb(65, 65, 170); */
-  color: white;
+  color: black;
   padding: 2px;
 }
 
 .neuro-nft-attribute-value {
   /* background-color: rgb(86, 92, 181); */
-  color: white;
+  color: black;
   padding: 2px;
   margin-right: 5px;
 }

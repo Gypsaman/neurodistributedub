@@ -88,7 +88,7 @@ def add_assets_post():
         "asset_type": request.form.get("asset_type"),
         "network": request.form.get("network"),
         "asset_address": request.form.get("asset_address"),
-        "assignment": request.form.get("assignment"),
+
         "time_added": dt.now(),
     }
     asset_exists = Assets.query.filter_by(asset_address=record["asset_address"]).first()

@@ -29,15 +29,7 @@
                 <label for="asset_adddress">Asset Address</label>
                 <input name="asset_address" type="text" size=50 >
             </div>
-            <div>
-                <label for="assignment">Assignment</label><br>
-                <select name="assignment" id="assignment" style="width: 300px">
-                    <option value="">None</option>
-                    {% for assignment in assignments %}
-                        <option value={{assignment.id}}>{{assignment.name}}</option>
-                    {% endfor %}
-                </select>
-            </div>
+
             <div class="col d-flex justify-content-center mt-5">
                 <button type="submit" class="btn btn-primary btn-block mb-4 btn-center">Update</button>
             </div>

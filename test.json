@@ -1,59 +1,30 @@
-What is eth-brownie?
-a. A type of brownie made with Ethereum blockchain technology.
-b. A development framework used for building Ethereum smart contracts.
-c. A popular cryptocurrency used for online transactions.
-d. A type of dessert popular in the Ethereum community.
-
-Which programming languages can be used with eth-brownie?
-a. Python
-b. Java
-c. C++
-d. Ruby
-
-Which command is used to create a new eth-brownie project?
-a. brownie run
-b. brownie compile
-c. brownie init
-d. brownie test
-
-What is the purpose of the Brownie project structure?
-a. To organize your code into logical modules and packages.
-b. To store your smart contracts on the Ethereum blockchain.
-c. To run automated tests on your code.
-d. To deploy your smart contracts to the Ethereum network.
-
-What is the role of the Brownie network object?
-a. To interact with the Ethereum network and execute transactions.
-b. To manage the deployment of your smart contracts.
-c. To store your private keys securely.
-d. To perform code coverage analysis on your smart contracts.
-
-Which command is used to run a script using the eth-brownie console?
-a. brownie run
-b. brownie console
-c. brownie test
-d. brownie compile
-
-What is the purpose of the eth-brownie test runner?
-a. To automate the testing of your smart contracts.
-b. To deploy your smart contracts to the Ethereum network.
-c. To analyze the code coverage of your smart contracts.
-d. To compile your smart contracts into bytecode.
-
-What is the purpose of the eth-brownie network module?
-a. To manage the deployment of your smart contracts.
-b. To interact with the Ethereum network and execute transactions.
-c. To store your private keys securely.
-d. To perform code coverage analysis on your smart contracts.
-
-Which command is used to deploy a smart contract to a specific network using eth-brownie?
-a. brownie deploy
-b. brownie run
-c. brownie test
-d. brownie console
-
-What is the purpose of the eth-brownie accounts module?
-a. To manage the deployment of your smart contracts.
-b. To interact with the Ethereum network and execute transactions.
-c. To store your private keys securely.
-d. To perform code coverage analysis on your smart contracts
+Which of the following can be turned into an NFT?
+a) Physical goods only
+b) Digital goods only
+c) Both physical and digital goods
+d) Neither physical nor digital goods
+What does NFT stand for?
+a) Non-Fungible Token
+b) National Football Team
+c) New File Transfer
+d) Not For Trade
+Which of the following is an example of an ERC-721 project?
+a) Augur
+b) MakerDAO
+c) CryptoKitties
+d) Chainlink
+What is the purpose of the "approve" function in ERC-721 transactions?
+a) To grant permission to transfer tokens to another address
+b) To mint new tokens
+c) To set the value of a token
+d) To destroy tokens  
+What is the main difference between ERC-20 and ERC-721 tokens?
+a) ERC-20 tokens are fungible, while ERC-721 tokens are non-fungible
+b) ERC-20 tokens can be traded on any blockchain network, while ERC-721 tokens can only be traded on the Ethereum network
+c) ERC-20 tokens have lower transaction fees than ERC-721 tokens
+d) ERC-20 tokens have better security features than ERC-721 tokens
+What is ERC-721?
+a) A protocol for decentralized exchanges
+b) A standard for fungible tokens on the Ethereum network
+c) A standard for non-fungible tokens on the Ethereum network
+d) A standard for tokenized real estate on the Ethereum network

@@ -10,7 +10,13 @@ questions = json.load(open('./data/quizzes.json','r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 
-def create_quiz(topics_selected,date_available,date_due,description,user_id,multiple_retries=True):
+def create_quiz(topics_selected,
+                date_available,
+                date_due,
+                description,
+                user_id,
+                multiple_retries=True
+    ):
     quiz = Quizzes(description=description,user_id=user_id, date_available=date_available,date_due=date_due,submitted=False,multiple_retries=multiple_retries)
     db.session.add(quiz)
     db.session.commit()
@@ -33,7 +39,10 @@ def create_quiz(topics_selected,date_available,date_due,description,user_id,mult
             
     return quiz.id
    
-def create_quiz_all_users(section_name:str,description,topics_selected:dict):     
+def create_quiz_all_users(section_name:str,
+                          description,
+                          topics_selected:dict
+    ):     
     with create_app().app_context():
         section = Sections.query.filter_by(section=section_name).first()
         users = User.query.filter_by(section=section.id,role='student').all()
