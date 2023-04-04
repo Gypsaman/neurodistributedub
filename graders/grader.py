@@ -517,7 +517,48 @@ def token_grader(Address_ABI):
         
     return base_grade, msg
 
+def nft_grader(Address_ABI):
+    ubnft,token_abi,is_wallet =  get_contract_info(Address_ABI)
 
+    if not is_wallet:
+        return 0, 'This contract was not created by your wallet'
+
+    functions_needed = ['name','symbol','tokenURI']
+    msg = ''
+    for f in functions_needed:
+        if f not in get_abi_functions(token_abi):
+            msg += f'{f} function not defined in ABI'
+    if msg != '':
+        return 0, msg + '\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+    
+
+    if ubnft is None:
+        return 0, 'Not a valid contract address'
+    try:
+        name = ubnft.functions.name().call()
+        symbol = ubnft.functions.symbol().call()
+        uris = []
+        for x in range(3):
+            uris.append(ubnft.functions.tokenURI(x).call())
+    except:
+        return 0, 'Error calling functions'
+    
+    msg = ''
+    base_grade = 80
+    if name >= "":
+        base_grade += 5
+    else:
+        msg += 'Name is not Populated\n'
+    if symbol >= "":
+        base_grade += 5
+    else:
+        msg += 'Symbol is not Populated\n'
+    if len(uris) == 3:
+        base_grade += 10
+    else:
+        msg += '3 NFTs were not minted\n'
+        
+    return base_grade, msg
 
 graders= {
     "SHA256": sha256_grader,
@@ -531,6 +572,7 @@ graders= {
     "web3_py": web3_grader,
     "brownie": brownie_grader,
     "token": token_grader,
+    "nft": nft_grader,
 }
 def call_grader(assignment:str,submission:str) -> int:
    
