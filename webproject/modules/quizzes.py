@@ -39,6 +39,14 @@ def create_quiz(topics_selected,
             
     return quiz.id
    
+def create_final(topics_selected:dict,StartTime:dt):
+    with create_app().app_context():
+        users = User.query.filter_by().all()
+        for user in users:
+            quiz_id = create_quiz(topics_selected,StartTime,dt.now()+timedelta(hours=2),description='Final for {}'.format(user.first_name),user_id=user.id,multiple_retries=False)
+            print('Created quiz {} for {}'.format(quiz_id,user.first_name))
+            break
+
 def create_quiz_all_users(section_name:str,
                           description,
                           topics_selected:dict
@@ -52,9 +60,6 @@ def create_quiz_all_users(section_name:str,
 
     
 if __name__ == '__main__':
-    topics_selected = {'Encryption': 5, 'Blockchain': 3,"Solidity": 2}
-    quiz_id = create_quiz(topics_selected)
-    print(quiz_id)
+    topics_selected = {"NFT": 11}
+    create_quiz_all_users('SP23-Wednesday','NFT',topics_selected)
 
-    quiz = Quizzes.query.filter_by(quiz_id=quiz_id).join(Questions).join(Answers).first()
-    print(quiz)
