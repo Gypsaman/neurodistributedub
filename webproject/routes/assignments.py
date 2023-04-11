@@ -124,10 +124,11 @@ def submission_post(submission_id):
     elif assignment.inputtype == 'address_abi':
         contract = request.form['submission']
         abi = request.form['abi']
+        network = request.form['network']
         wallet = Wallet.query.filter_by(user_id=current_user.id).first().wallet
         if wallet is None:
             wallet = ""
-        submission = json.dumps({'contract':contract,'abi':abi,'wallet':wallet})
+        submission = json.dumps({'contract':contract,'abi':abi,'wallet':wallet,'network':network})
     else:
         submission = request.form['submission']
         

@@ -24,6 +24,15 @@
                 {% endif %}
             </div>
                 {% if assignment.inputtype == "address_abi" %}
+                <div style="display:flex;flex: row; margin-top:20px">
+                    <label for ="network" style="margin-right:80px">Network</label>
+                    <select  name="network" >
+                        <option value="goerli" select>Goerli</option>
+                        <option value="sepolia">Sepolia</option>
+
+                    </select>
+                    
+                </div>
                 <div class="neuro-form-entry-row">
                     <label for="abi">Contract ABI</label>
                     <textarea name="abi" 

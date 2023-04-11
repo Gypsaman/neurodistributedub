@@ -1,4 +1,4 @@
-from webproject.modules.web3_interface import getContractCreator
+from webproject.modules.web3_interface import getContractCreator,get_contract
 from web3 import Web3,HTTPProvider
 import json
 import shutil
@@ -7,6 +7,7 @@ import numpy as np
 from webproject.modules.dotenv_util import get_cwd
 import re
 from graders.brownie_grader import brownie_grader
+from graders.grade_final import gradeFinal
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
@@ -50,29 +51,19 @@ def get_contract_info(Address_ABI):
     contractAddress = Address_ABI['contract']
     abi = Address_ABI['abi']
     wallet = Address_ABI['wallet']
+    network = Address_ABI['network'] if 'network' in Address_ABI else 'goerli'
 
-    creator = getContractCreator(contractAddress)
+    creator = getContractCreator(contractAddress,network)
     
     is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
         
     if not isinstance(abi,dict):
         abi = get_dict_from_string(abi)
     
-    contract = get_contract(contractAddress,abi)
+    contract = get_contract(contractAddress,abi,network)
     
     return contract,abi,is_wallet
         
-def get_contract(contractAddress,abi):
-
-    w3 = Web3(HTTPProvider('https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881'))
-
-    try:
-        contract = w3.eth.contract(address=w3.toChecksumAddress(contractAddress),abi=abi)
-    except:
-        contract = None
-    
-    return contract
-
 def rentCar_Grader(Address_ABI):
 
     rentCar,abi,is_wallet = get_contract_info(Address_ABI)
@@ -573,6 +564,7 @@ graders= {
     "brownie": brownie_grader,
     "token": token_grader,
     "nft": nft_grader,
+    "final": gradeFinal,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

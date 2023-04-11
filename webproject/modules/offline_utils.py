@@ -10,7 +10,7 @@ from webproject.modules import dotenv_util
 import os
 
 
-Assignment_qry = 'SELECT * from Assignments inner join (SELECT assignment,duedate FROM due_dates WHERE section = {}) as d on Assignments.id = d.assignment'
+Assignment_qry = "SELECT * from Assignments inner join (SELECT assignment,duedate FROM due_dates WHERE section = {} and duedate <= '{}') as d on Assignments.id = d.assignment"
 
 def grade_update(section_name=None):
     with create_app().app_context():
@@ -19,13 +19,13 @@ def grade_update(section_name=None):
         else:
             section = Sections.query.filter_by(section=section_name).first()
             users = User.query.filter_by(section=section.id,role='student').all()
-        assignments = db.session.execute(Assignment_qry.format(section.id)).all()
+        assignments = db.session.execute(Assignment_qry.format(section.id,dt.now().strftime("%Y-%m-%d"))).all()
         
         
         for user in users:
             unsbumitted = False
-            quizzes = Quizzes.query.filter_by(user_id=user.id).all()
-            body = f'Hello {user.first_name} {user.last_name},\n\nSo far your grades are:\n\n'
+            quizzes = Quizzes.query.filter_by(user_id=user.id).filter(Quizzes.date_due<=dt.now()).all()
+            body = f'Hello {user.first_name} {user.last_name},\n\nFor assignments due before: {dt.now().strftime("%Y-%m-%d")} your grades are:\n\n'
             body += f'Assignments:\n\n'
             for assignment in assignments:
                 grade = Grades.query.filter_by(user_id=user.id,assignment=assignment.id).first()

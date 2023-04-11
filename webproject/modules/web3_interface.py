@@ -9,7 +9,7 @@ from time import sleep
 
 initialize_dotenv()
 
-PROVIDER = os.getenv("PROVIDER")
+
 ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
 
 # These headers are needed to avoid getting blocked by etherscan during a get request
@@ -59,10 +59,16 @@ nft_abi = [
     },
 ]
 
+def get_provider(network):
+    if network == 'goerli':
+        return os.getenv("PROVIDER")
+    if network == 'sepolia':
+        return os.getenv("PROVIDER_SEPOLIA")
+    
 
 def get_nft_uri(token_addr, top=10):
 
-    w3 = Web3(Web3.HTTPProvider(PROVIDER))
+    w3 = Web3(Web3.HTTPProvider(get_provider(network)))
 
     tokenContract = None
     nfts = []
@@ -100,24 +106,24 @@ def get_nft_uri(token_addr, top=10):
     return nfts
 
 
-def get_contract_abi(account):
+def get_contract_abi(account,network="goerli"):
     EtherQuery = (
-        "https://api-goerli.etherscan.io/api"
+        "https://api-{}}.etherscan.io/api"
         "?module=contract"
         "&action=getabi"
         "&address={}"
         "&apikey={}"
     )
 
-    accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
+    accountquery = EtherQuery.format(network,account, ETHERSCAN_TOKEN)
 
     transinfo = json.loads(requests.get(accountquery,headers=HEADERS).content.decode("utf-8"))
     
     print(transinfo)
 
-def get_eth_balance(account):
+def get_eth_balance(account,network="goerli"):
     EtherQuery = (
-        "https://api-goerli.etherscan.io/api"
+        "https://api-{}}.etherscan.io/api"
         "?module=account"
         "&action=balance"
         "&address={}"
@@ -125,7 +131,7 @@ def get_eth_balance(account):
         "&apikey={}"
     )
 
-    accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
+    accountquery = EtherQuery.format(network,account, ETHERSCAN_TOKEN)
     
     try:
         transinfo = json.loads(requests.get(accountquery,headers=HEADERS).content.decode("utf-8"))
@@ -137,14 +143,14 @@ def get_eth_balance(account):
     return balance / 10**18
 
 
-def getEthTrans(account):
+def getEthTrans(account,network="goerli"):
 
-    EtherQuery = "https://api-goerli.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey={}"
+    EtherQuery = "https://api-{}.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey={}"
 
     #without offset (limit 10)
-    EtherQuery = "https://api-goerli.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&sort=asc&apikey={}"
+    EtherQuery = "https://api-{}.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&sort=asc&apikey={}"
 
-    accountquery = EtherQuery.format(account, ETHERSCAN_TOKEN)
+    accountquery = EtherQuery.format(network,account, ETHERSCAN_TOKEN)
     results = requests.get(accountquery,headers=HEADERS)
     transinfo = json.loads(results.content.decode("utf-8"))
     if transinfo["message"] == "NOTOK":
@@ -166,9 +172,9 @@ def conform_eth_trans(transhist):
         tran["txreceipt_status"] = tran["txreceipt_status"] != "0"
     return transhist
 
-def get_contract(contractAddress,abi):
+def get_contract(contractAddress,abi,network="goerli"):
 
-    w3 = Web3(HTTPProvider('https://goerli.infura.io/v3/a6285c05a4094c4ea4a16c1395c44881'))
+    w3 = Web3(HTTPProvider(get_provider(network)))
 
     try:
         contract = w3.eth.contract(address=w3.toChecksumAddress(contractAddress),abi=abi)
@@ -179,10 +185,10 @@ def get_contract(contractAddress,abi):
 
 
 
-def getContracts(account):
-    w3 = Web3(Web3.HTTPProvider(PROVIDER))
+def getContracts(account,network="goerli"):
+    w3 = Web3(Web3.HTTPProvider(get_provider(network)))
     
-    transhist = getEthTrans(account)
+    transhist = getEthTrans(account,network)
     contracts = []
 
     for tran in transhist:
@@ -210,9 +216,9 @@ def getContracts(account):
     return contracts
 
 
-def getContractCreator(contract):
+def getContractCreator(contract,network):
 
-    transactions = getEthTrans(contract)
+    transactions = getEthTrans(contract,network)
 
     if transactions == -1:
         return "Invalid"
@@ -224,8 +230,8 @@ def getContractCreator(contract):
     return "Invalid"
 
 
-def CallContractFunction(contract, func, args):
-    w3 = Web3(Web3.HTTPProvider(PROVIDER))
+def CallContractFunction(contract, func, args,network="goerli"):
+    w3 = Web3(Web3.HTTPProvider(get_provider(network)))
     contract = w3.eth.contract(address=contract, abi=nft_abi)
     func = getattr(contract.functions, func)
     return func(*args).call()
