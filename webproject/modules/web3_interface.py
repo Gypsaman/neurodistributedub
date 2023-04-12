@@ -123,7 +123,7 @@ def get_contract_abi(account,network="goerli"):
 
 def get_eth_balance(account,network="goerli"):
     EtherQuery = (
-        "https://api-{}}.etherscan.io/api"
+        "https://api-{}.etherscan.io/api"
         "?module=account"
         "&action=balance"
         "&address={}"
