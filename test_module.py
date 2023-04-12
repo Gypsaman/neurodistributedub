@@ -4,22 +4,8 @@ from webproject import db, create_app
 from webproject.models import Quizzes, User
 from graders.check_submissions import check_submissions
 from datetime import datetime,timedelta
-check_submissions()
 
-# with create_app().app_context():
-#     user = User.query.filter_by(first_name='Ning').first()
-#     print(user.id, user.first_name, user.last_name)
-#     quizzes = Quizzes.query.filter_by(user_id=user.id).all()
-#     quizids= [1,112,224,225,226,227,228]
-#     for q in quizzes:
-#         if q.id in quizids and q.grade is None:
-#             db.session.delete(q)
-#     db.session.commit()
-        
-# exit()
-    
 
-grade_update('SP23-Wednesday')
 questions = sum([val for key,val in Topics.items()])
 perc = 60/questions
 total = 0

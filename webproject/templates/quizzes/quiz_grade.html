@@ -14,8 +14,8 @@
         <form class="neuro-form"  method="POST" action="/quiz/{{quiz.id}}">
             {% if not_answered > 0 %}
             <div class="neuro-form-entry-row">
-                <p>There are {{not_answered}} questions that have not been answered.</p>
-                <p>Out of {{all_questions}} total questions.</p>
+                <p>There are {{not_answered}} questions that have not been answered out of {{all_questions}} total questions.</p>
+                
             </div>
             {% endif %}
             

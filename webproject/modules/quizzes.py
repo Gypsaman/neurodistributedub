@@ -41,7 +41,7 @@ def create_quiz(topics_selected,
    
 def create_final(topics_selected:dict,StartTime:dt):
     with create_app().app_context():
-        users = User.query.filter_by().all()
+        users = User.query.all()
         for user in users:
             quiz_id = create_quiz(topics_selected,StartTime,dt.now()+timedelta(hours=2),description='Final for {}'.format(user.first_name),user_id=user.id,multiple_retries=False)
             print('Created quiz {} for {}'.format(quiz_id,user.first_name))
