@@ -5,7 +5,7 @@ from webproject.models import Quizzes, User,Assignments, Submissions
 from graders.check_submissions import check_submissions
 from datetime import datetime,timedelta
 
-
+check_submissions()
 questions = sum([val for key,val in Topics.items()])
 perc = 60/questions
 total = 0
