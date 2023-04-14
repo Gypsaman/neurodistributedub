@@ -1,6 +1,7 @@
 from webproject import db
 import json
 import pandas as pd
+from sqlalchemy import text
 
 def round_to_2_decimals(value):
     if value is None:
@@ -86,7 +87,7 @@ class TableCreator:
         if order:
             stmt += f" order by {order}"
                     
-        self.items = list(db.session.execute(stmt))
+        self.items = list(db.session.execute(text(stmt)))
         
     def view(self,view):
         self.items = view

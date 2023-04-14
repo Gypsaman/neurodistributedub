@@ -152,9 +152,9 @@ def gradeFinal(submission):
     
     grade = 30
     elements = [
-        [r'UBToken deployed at: 0x[a-zA-Z0-9]{40}','UBToken not Deployed'],
+        ['UBToken deployed at:','UBToken not Deployed'],
         ['UBToken.transfer confirmed','UBToken.transfer not confirmed'],
-        [r'UBNFT deployed at: 0x[a-zA-Z0-9]{40}','UBNFT not Deployed'],
+        ['UBNFT deployed at:','UBNFT not Deployed'],
         ['UBNFT.registerToken confirmed','UBNFT.registerToken not confirmed'],
         ['UBToken.approve confirmed','UBToken.approve not confirmed'],
         ['UBNFT.depositTokens confirmed','UBNFT.depositTokens not confirmed'],
