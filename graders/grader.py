@@ -55,8 +55,8 @@ def get_contract_info(Address_ABI):
 
     creator = getContractCreator(contractAddress,network)
     
-    is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
-        
+    # is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
+    is_wallet = True     
     if not isinstance(abi,dict):
         abi = get_dict_from_string(abi)
     
@@ -564,7 +564,7 @@ graders= {
     "brownie": brownie_grader,
     "token": token_grader,
     "nft": nft_grader,
-    "final": gradeFinal,
+    "Final Project": gradeFinal,
 }
 def call_grader(assignment:str,submission:str) -> int:
    

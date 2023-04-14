@@ -1,11 +1,11 @@
 from webproject.modules.offline_utils import grade_update
 from webproject.modules.quizzes import create_quiz_all_users, Topics, create_quiz, create_final
 from webproject import db, create_app
-from webproject.models import Quizzes, User
+from webproject.models import Quizzes, User,Assignments, Submissions
 from graders.check_submissions import check_submissions
 from datetime import datetime,timedelta
 
-
+check_submissions()
 questions = sum([val for key,val in Topics.items()])
 perc = 60/questions
 total = 0

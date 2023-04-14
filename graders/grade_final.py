@@ -1,4 +1,5 @@
 from zipfile import ZipFile
+from webproject.modules.dotenv_util import get_cwd
 import subprocess
 import os
 import shutil
@@ -21,11 +22,21 @@ def get_tree(start_dir):
                 dirs.append(p)
     return dirs
 
+def currSubmissionsPath():
+    cwd = get_cwd()
+    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    return currSubmissionDir
+
+
 def project_folder():
-    
-    for file in os.listdir():
-        if os.path.isdir(file):
-            paths = get_tree(os.path.join(os.getcwd(),file))
+    currSubmissionDir = currSubmissionsPath()
+    if 'scripts' in os.listdir(currSubmissionDir):
+        return currSubmissionDir
+    for file in os.listdir(currSubmissionDir):
+        if 'MACOSX' in file:
+            continue
+        if os.path.isdir(os.path.join(currSubmissionDir,file)):
+            paths = get_tree(os.path.join(currSubmissionDir,file))
             for dir in paths:
                 if dir.endswith('scripts'):
                     path = dir
@@ -37,23 +48,23 @@ def project_folder():
         path = ''
     return path[:-7]
 
-def clean_prior_deployments():
-    if os.path.exists('./build/deployments/1337'):
-        shutil.rmtree('./build/deployments/1337')
-    if os.path.exists('./build/contracts/dependencies/OpenZeppelin'):
-        shutil.rmtree('./build/contracts/dependencies/OpenZeppelin')
-    for file in os.listdir('./build/contracts'):
+def clean_prior_deployments(path):
+    if os.path.exists(os.path.join(path,'build/deployments/1337')):
+        shutil.rmtree(os.path.join(path,'build/deployments/1337'))
+    if os.path.exists(os.path.join(path,'build/contracts/dependencies/OpenZeppelin')):
+        shutil.rmtree(os.path.join(path,'build/contracts/dependencies/OpenZeppelin'))
+    for file in os.listdir(os.path.join(path,'build/contracts')):
         if file.endswith('json'):
-            os.remove(os.path.join('./build/contracts',file))
+            os.remove(os.path.join(path,'build/contracts',file))
 
-def fix_deployment_versions():
-    with open('./brownie-config.yaml','r') as f:
+def fix_deployment_versions(path):
+    with open(os.path.join(path,'brownie-config.yaml'),'r') as f:
         config = f.read()
     config = config.replace('4.8.0','3.4.0')
-    with open('./brownie-config.yaml','w') as f:
+    with open(os.path.join(path,'brownie-config.yaml'),'w') as f:
         f.write(config)
         
-    contractDir = './contracts'
+    contractDir = os.path.join(path,'contracts')
     for file in os.listdir(contractDir):
         with open(os.path.join(contractDir,file),'r') as f:
             script = f.read()
@@ -61,108 +72,104 @@ def fix_deployment_versions():
         with open(os.path.join(contractDir,file),'w') as f:
             f.write(script)
             
-    with open('./brownie-config.yaml','r') as f:
-        config = yaml.safe_load(f)
-    if 'ganache-local' not in config['networks']:
-        config['networks']['ganache-local'] = {'verify':False}
-    with open('./brownie-config.yaml','w') as f:
-        yaml.dump(config,f)
+    # with open(os.path.join(currSubmissionsPath(),'./brownie-config.yaml'),'r') as f:
+    #     config = yaml.safe_load(f)
+    # if 'ganache-local' not in config['networks']:
+    #     config['networks']['ganache-local'] = {'verify':False}
+    # with open('./brownie-config.yaml','w') as f:
+    #     yaml.dump(config,f)
     
         
         
         
 def setUp(zipf):
     # clean previous inputs and extract zip file.
-    currSubmissionDir = './currsubmission'
-    if os.path.exists(currSubmissionDir) == False:
+    currSubmissionDir = currSubmissionsPath()
+    if os.path.exists(currSubmissionDir):
+        cleanUp()
+    else:
         os.mkdir(currSubmissionDir)
-    os.chdir(currSubmissionDir)
+    
+    # import pathlib
+    # zipf = pathlib.Path(zipf)
     try:
         with ZipFile(zipf,'r') as zipObj:
-            zipObj.extractall()
+            zipObj.extractall('./graders/currsubmission')
     except:
         return False
+    
     path = project_folder()
-    if path != '':
-        os.chdir(path)
-    clean_prior_deployments()
-    fix_deployment_versions()
-    if os.path.exists('.env') == False:
-        with open('.env','w') as f:
-            f.write('WEB3_INFURA_PROJECT_ID=0')
+    clean_prior_deployments(path)
+    fix_deployment_versions(path)
+
     return True
 
-def cleanUp(orig_dir,delete=True):
-    os.chdir(orig_dir)
-    if delete:
-        for file in os.listdir(orig_dir):
-            curr_file = os.path.join(orig_dir,file)
-            if os.path.isdir(curr_file) and file not in EXISTING_DIRS:
-                shutil.rmtree(curr_file)
-
-
-def gradeFinal():
-
-    # Check that there is at least one script and utilize the first one.
+def cleanUp():
+    cwd = get_cwd()
+    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
     
-    scripts = ['deploy_token.py','deploy_nft.py','transfer_token_nft.py','check_nft_balance.py','nft_mint.py']
+    for file in os.listdir(currSubmissionDir):
+        curr_file = os.path.join(currSubmissionDir,file)
+        if os.path.isdir(curr_file):
+            shutil.rmtree(curr_file)
+        else:
+            os.remove(curr_file)
+
+
+def gradeFinal(submission):
     
+    if not submission.endswith('.zip'):
+        return 0, 'Submission must be a zip file'
+    
+    if not setUp(submission):
+        return 0, 'invalid submission'
+
     grade = 0
     
-    for script in scripts:
+    script = 'finalexam'
+    # Run the brownie script
+    currSubmissionDir = project_folder()
+    cwd = os.getcwd()
+    try:
+        os.chdir(currSubmissionDir)
+        result = subprocess.run(['brownie', 'run', script],stdout=subprocess.PIPE)
+    except Exception as e:
+        raise Exception(f'Error running brownie\n\n{e}')
+    finally:
+        os.chdir(cwd)
+    brownieOutput = result.stdout.decode('utf-8')
 
-        # Run the brownie script
-        result = subprocess.run(['brownie', 'run', script, '--network', 'ganache-local'],stdout=subprocess.PIPE)
-        
 
-        brownieOutput = result.stdout.decode('utf-8')
+    # Analyze output of brownie
 
+    invalidSyntax = re.search(r'invalid syntax',brownieOutput)
+    if invalidSyntax:
+        return grade,'invalid syntax'
 
-        # Analyze output of brownie
-        contract = ''
-
-        invalidSyntax = re.search(r'invalid syntax',brownieOutput)
-        if invalidSyntax:
-            continue
-
-        isError = re.search(r'[Ee]rror',brownieOutput)
-        if isError:
-            continue
-        
-
-        if script.startswith('deploy'):
-            matches = re.findall(r'deployed at: 0x[a-zA-Z0-9]{40}',brownieOutput)
-            if matches:
-                grade += 20
-            continue
-        if script == 'transfer_token_nft.py':
-            matches = re.findall(r'transfer confirmed',brownieOutput)
-            if matches:
-                grade += 20
-            continue
-        if script == 'check_nft_balance.py':
-            matches = re.findall(r'1000000000000000000000',brownieOutput)
-            if matches:
-                grade += 20
-                continue
-            matches = re.findall(r'1000',brownieOutput)
-            if matches:
-                grade += 20
-            continue
-        if script == 'nft_mint.py':
-            matches = re.findall(r'createLogoNFT confirmed',brownieOutput)
-            if matches:
-                grade += 20
-                continue
-            matches = re.findall(r'createLogoNft confirmed',brownieOutput)
-            if matches:
-                grade += 20
-                continue
-            matches = re.findall(r'CreateLogoNFT confirmed',brownieOutput)
-            if matches:
-                grade += 20
-            continue
-    return grade
+    isError = re.search(r'[Ee]rror',brownieOutput)
+    if isError:
+        return grade, 'Error'
+    
+    grade = 30
+    elements = [
+        [r'UBToken deployed at: 0x[a-zA-Z0-9]{40}','UBToken not Deployed'],
+        ['UBToken.transfer confirmed','UBToken.transfer not confirmed'],
+        [r'UBNFT deployed at: 0x[a-zA-Z0-9]{40}','UBNFT not Deployed'],
+        ['UBNFT.registerToken confirmed','UBNFT.registerToken not confirmed'],
+        ['UBToken.approve confirmed','UBToken.approve not confirmed'],
+        ['UBNFT.depositTokens confirmed','UBNFT.depositTokens not confirmed'],
+        ['UBNFT.createLogoNFT','UBNFT.createLogoNFT not confirmed']
+    ]
+    
+    msg = ''
+    for element in elements:
+        matches = re.findall(element[0],brownieOutput)
+        if matches:
+            grade += 10
+        else:
+            msg += element[1] + '\n'
+    
+    return grade,msg
             
 
 def SubmissionInfo(submission):
@@ -179,46 +186,12 @@ def save_results(results):
 
     return
 
-def export_grades():
-    with open('results.json','r') as f:
-        results = json.load(f)
-
-    with open('grades.csv','w') as grades:
-        for id,info in results.items():
-            grades.write(f'{id},{info["student"]},{info["grade"]}\n')
 
 
 
-if __name__ == '__main__':
 
-    # export_grades()
-    # exit()
-    resultFile = 'results.json'
-    if os.path.exists(resultFile):
-        with open(resultFile,'r') as f:
-            results = json.load(f)
-    else: 
-        results = {}
-
-    curr_dir = os.getcwd()
-    submissionPath = os.path.join(curr_dir,'submissions')
-    for file in [f for f in os.listdir('.\submissions') if f.endswith('zip')]:
-        student, id = SubmissionInfo(file)
-        if id in results and results[id]['grade'] in [0,100]:
-            continue
-        print(f'Processing {id}-{student}....')
-        if setUp(os.path.join(submissionPath,file)):
-            grade = gradeFinal()
-        else:
-            grade = 0
-
-        results[id] = {"student":student,"grade":grade}
-        print(results[id])
-
-        cleanUp(curr_dir,delete=True)
+    
         
         
 
-    save_results(results)
-    export_grades()
         
