@@ -12,7 +12,7 @@ import os
 
 Assignment_qry = "SELECT * from Assignments inner join (SELECT assignment,duedate FROM due_dates WHERE section = {} and duedate <= '{}') as d on Assignments.id = d.assignment"
 
-def grade_update(section_name=None):
+def provide_grade_update(section_name=None):
     with create_app().app_context():
         if section_name is None:
             users = User.query.filter_by(role='student').all()
@@ -114,5 +114,3 @@ def import_quiz(quiz_name,quizdate):
             db.session.add(grade)
             db.session.commit() 
     
-if __name__ == '__main__':
-    grade_update()

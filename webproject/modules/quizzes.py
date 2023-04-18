@@ -9,6 +9,18 @@ from datetime import timedelta
 questions = json.load(open('./data/quizzes.json','r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
+def select_topics_final():
+    questions = sum([val for key,val in Topics.items()])
+    perc = 60/questions
+    total = 0
+    topic_selected = {}
+    for key,val in Topics.items():
+        qty = round(val*perc)
+        topic_selected[key] = qty
+        total += qty
+    if total > 60:
+        topic_selected['Brownie'] -= 1
+    return topic_selected
 
 def create_quiz(topics_selected,
                 date_available,

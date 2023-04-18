@@ -9,7 +9,9 @@
                 <label for="quizdescription">Assignment Name</label>
                 <select id="quizdescription" name="quiz_id" required>
                     {% for quiz in quizzes %}
-                    <option value="{{ quiz.id }}">{{ quiz.description }}</option>
+                        {% if quiz.description[:5] != 'Final'}
+                            <option value="{{ quiz.id }}">{{ quiz.description }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>

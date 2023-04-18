@@ -137,7 +137,7 @@ def gradeFinal(submission):
         raise Exception(f'Error running brownie\n\n{e}')
     finally:
         os.chdir(cwd)
-    brownieOutput = result.stdout.decode('utf-8')
+    brownieOutput = result.stdout.decode()
 
 
     # Analyze output of brownie

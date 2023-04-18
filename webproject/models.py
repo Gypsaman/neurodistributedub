@@ -150,6 +150,7 @@ class Quizzes(db.Model):
     submitted = db.Column(db.Boolean)
     grade = db.Column(db.Integer)
     multiple_retries = db.Column(db.Boolean)
+    active = db.Column(db.Boolean)
     
     def __repr__(self):
         return f'user_id: {self.user_id}, description: {self.description}, date_available: {self.date_available}, date_due: {self.date_due}, submitted: {self.submitted}, grade: {self.grade}, multiple_retries: {self.multiple_retries}'
