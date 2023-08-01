@@ -27,7 +27,7 @@ def final_grades_student(id):
         assignments = Assignments.query.all()
         for assignment in assignments:
             grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
-            score = 0 if grade is None else grade.grade
+            score = 0 if grade is None else max(0,grade.grade)
             if assignment.name in [midterm_assignment,midterm_quiz]:
                 grades['Midterms'].append((assignment.name,score,score/100*15 ))
             elif assignment.name == final_assignment:
@@ -49,15 +49,26 @@ def final_grades_student(id):
                 grades['Assignments'].append((quiz.description,score,score/1600*40))
         return grades
         
-def publish_final_grades():
+def publish_final_grades(type='Preview',email=False):
     grades = []
+    incomplete = ['1166070']
     with create_app().app_context():
         for user in User.query.filter_by(role='student').all():
+            if user.student_id not in incomplete:
+                continue
             final_grades = final_grades_student(user.id)
-            msg,grade = build_grade_message(final_grades,user,type='Preview')
-            # email = UBEmail()
-            # email.send_email(user.email,'Final Grades Preview',msg)
-            grades.append({"id":user.id,"grade":grade,"Letter_grade":get_letter_grade(grade),"student_id":user.student_id,"first_name":user.first_name,"last_name":user.last_name,"email":user.email})
+            msg,grade = build_grade_message(final_grades,user,type=type)
+            if email:
+                email = UBEmail()
+                email.send_email(user.email,'Final Grades Preview',msg)
+            grades.append({"id":user.id,
+                           "grade":grade,
+                           "Letter_grade":get_letter_grade(grade),
+                           "student_id":user.student_id,
+                           "first_name":user.first_name,
+                           "last_name":user.last_name,
+                           "email":user.email,
+                           "section":user.section})
     
     return grades
             
@@ -82,9 +93,20 @@ def build_grade_message(final_grades, user, type='FINAL'):
         msg = msg + '-'*len(type)+'\n'
         type_total = 0
         for grade in grades:
-            msg += f'{grade[0].strip()}: {grade[1]:.2f}\n'
+            msg += f'{grade[0].strip()}: {grade[1]:.1f}\n'
             type_total += grade[2]
         msg += f'\nGrade: {type_total:.2f}%\n\n'
         overall_total += type_total
-    msg += f'FINAL GRADE: {min(overall_total,100):.2f}'
+    overall_total = min(overall_total,100)
+    msg += f'FINAL GRADE: {overall_total:.1f} ({get_letter_grade(overall_total)})'
     return msg,overall_total
+
+def course_evaluation_email():
+    with create_app().app_context():
+        users = User.query.filter_by(role='student').all()
+        for user in users:
+            msg = f'Hello {user.first_name.title()},\n\n'
+            msg += "I want to thank you for participating in the course this semester. I hope you found the course interesting and useful. If you haven't done so already, I would like to ask you to take a few minutes to fill out a course evaluation. The course evaluation is anonymous and will help me improve the course for future semesters.\n\n"
+            msg += 'Thank you\n\nCesar Garcia'
+            email = UBEmail()
+            email.send_email(user.email,'Course Evaluation',msg)

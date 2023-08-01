@@ -35,10 +35,10 @@ def create_dashboard(user_id,submission_page=1,grades_page=1,quiz_page=1):
         'id': Field(None, None),
         'description': Field(None, 'Description'),
         'date_due': Field(timestamp_to_date, 'Due Date'),
-        'Grade': Field(round_to_0_decimals, 'Grade'),
+        # 'Grade': Field(round_to_0_decimals, 'Grade'),
     }
     actions = []
-    table_creator = TableCreator("Quizzes", quiz_fields, condition=f'user_id = {user_id}', actions=actions)
+    table_creator = TableCreator("Quiz_Header", quiz_fields, condition=f'active = {True}', actions=actions)
     table_creator.set_items_per_page(5)
     table_creator.domain = f'dashboard?submissions_page={submission_page}&grades_page={grades_page}&quiz_page='
     table_creator.create_view()

@@ -1,0 +1,1 @@
+#https://www.zenrows.com/blog/web-scraping-login-python#sites-requiring-a-simple-username-and-password-login

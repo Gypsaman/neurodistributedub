@@ -2,10 +2,11 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from webproject import db
-from webproject.models import Assignments, DueDates, Grades, Submissions, User, Sections
+from webproject.models import Assignments, DueDates, Grades, Submissions, User, Sections, Quiz_Header, Quiz_Topics
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
 from webproject.routes import admin_required
 from datetime import datetime as dt
+from webproject.modules.quizzes import Topics
 
 admin = Blueprint("admin", __name__)
 
@@ -203,3 +204,33 @@ def grade_history(section,page):
     html = table.create(page)
     return render_template('admin/grade_history.html',table=html,section=section)
              
+@admin.route("/admin/quizzes",methods=['GET','POST'])
+def quizzes():
+    if request.method=='POST':
+        description = request.form['description']
+        if Quiz_Header.query.filter_by(description=description).first() is not None:
+            flash('Quiz already exists')
+            return redirect(url_for('admin.quizzes'))
+        record = {
+            "description": description,
+            "date_available": request.form['date_available'],
+            "date_due" : request.form['date_due'],
+            "multiple_retries": request.form['multiple_retries'] == 'on',
+            "active": request.form['active'] == 'on'
+        }
+        quiz = Quiz_Header(**record)
+        db.session.add(quiz)
+        return redirect(url_for('admin.add_quiz_topics',id=quiz.id))
+    
+    return render_template('quizzes/add_quiz.html')
+
+@admin.route("/admin/add-quiz-topics/<int:id>",methods=['GET','POST'])
+def add_quiz_topics(quiz_header_id):
+    if request.method=='POST':
+        record = {}
+        quiz_topics = Quiz_Topics(**record)
+        db.session.add(quiz_topics)
+        return render_template('admin.add_quiz_topics',quiz_header_id=quiz_header_id)
+    
+    return render_template('admin/add_quiz_topics.html',quiz_header_id=quiz_header_id)
+

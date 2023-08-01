@@ -140,17 +140,29 @@ class Submissions(db.Model):
     def __repr__(self):
         return f'user_id: {self.user_id}, assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}, comment: {self.comment}'   
     
-class Quizzes(db.Model):
-    __tablename__ = 'quizzes'
+class Quiz_Header(db.Model):
+    __tablename__ = 'quiz_header'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     description = db.Column(db.String(100))
     date_available = db.Column(db.DateTime)
     date_due = db.Column(db.DateTime)
-    submitted = db.Column(db.Boolean)
-    grade = db.Column(db.Integer)
     multiple_retries = db.Column(db.Boolean)
     active = db.Column(db.Boolean)
+    
+class Quiz_Topics(db.Model):
+    __tablename__ = 'quiz_topics'
+    id = db.Column(db.Integer, primary_key=True)
+    quiz_header = db.Column(db.Integer, db.ForeignKey('quiz_header.id'))
+    topic = db.Column(db.String(100))
+    number_of_questions = db.Column(db.Integer)
+    
+class Quizzes(db.Model):
+    __tablename__ = 'quizzes'
+    id = db.Column(db.Integer, primary_key=True)
+    quiz_header = db.Column(db.Integer, db.ForeignKey('quiz_header.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    submitted = db.Column(db.Boolean)
+    grade = db.Column(db.Integer)
     
     def __repr__(self):
         return f'user_id: {self.user_id}, description: {self.description}, date_available: {self.date_available}, date_due: {self.date_due}, submitted: {self.submitted}, grade: {self.grade}, multiple_retries: {self.multiple_retries}'

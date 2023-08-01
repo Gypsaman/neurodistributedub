@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>Add Quiz</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to
+        <a href="{{ url_for('main.profile') }}">Profile Page</a>
+    </div>
+    {% endif %} {% endwith %}
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/admin/quizzes">
+            <div class="neuro-form-entry-row">
+                <label for="description">Quiz Description</label>
+                <input type="text" id="description" name="description" placeholder="Quiz Description" required>
+            </div>
+
+            <div class="neuro-form-entry-row" style="margin-top: 10px;">
+                <label for ="date_available" >Date Available</label>
+                <input type="datetime-local" id="date_available" name="date_available" required>
+            </div>
+            
+            <div class="neuro-form-entry-row" style="margin-top: 10px;">
+                <label for ="date_due" >Date Due</label>
+                <input type="datetime-local" id="date_due" name="date_due" required>
+            </div>
+            <div class="neuro-form-entry-row" style="margin-top: 10px;">
+                <input type="checkbox" id="multiple_retries" name="multiple_retries" required>
+                <label for ="multiple_retries>" >Multiple Retries</label>
+            </div>
+            <div class="neuro-form-entry-row" style="margin-top: 10px;">
+                <input type="checkbox" id="active" name="active" required>
+                <label for ="active>" >Active</label>
+            </div>
+            <div class="col d-flex justify-content-center mt-5">
+                <button type="submit" class="neuro-button-main">Update</button>
+            </div>
+        </form>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

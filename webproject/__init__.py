@@ -15,6 +15,7 @@ def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    print(os.getenv("DATABASE"))
 
     db.init_app(app)
     migrate.init_app(app, db)
