@@ -1,6 +1,6 @@
 __pycache__
 start_flask_server.bat
-blockchainenv
+venv
 .env
 instance
 uploads
