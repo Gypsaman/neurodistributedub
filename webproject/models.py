@@ -2,6 +2,7 @@ from flask_login import UserMixin
 from webproject.modules.extensions import db
 from datetime import datetime
 
+
 class Sections(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     section = db.Column(db.String(10), unique=True)
@@ -149,12 +150,18 @@ class Quiz_Header(db.Model):
     multiple_retries = db.Column(db.Boolean)
     active = db.Column(db.Boolean)
     
+    def __repr__(self):
+        return f'id: {self.id} description: {self.description} date available: {self.date_available} date due {self.date_due} multiple retires {self.multiple_retries} active {self.active}'
+    
 class Quiz_Topics(db.Model):
     __tablename__ = 'quiz_topics'
     id = db.Column(db.Integer, primary_key=True)
     quiz_header = db.Column(db.Integer, db.ForeignKey('quiz_header.id'))
     topic = db.Column(db.String(100))
     number_of_questions = db.Column(db.Integer)
+    
+    def __repr__(self):
+        return f'topic {self.topic} number of questions {self.number_of_questions}'
     
 class Quizzes(db.Model):
     __tablename__ = 'quizzes'
@@ -165,7 +172,7 @@ class Quizzes(db.Model):
     grade = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'user_id: {self.user_id}, description: {self.description}, date_available: {self.date_available}, date_due: {self.date_due}, submitted: {self.submitted}, grade: {self.grade}, multiple_retries: {self.multiple_retries}'
+        return f'user_id: {self.user_id}, submitted: {self.submitted}, grade: {self.grade}'
     
 class Questions(db.Model):
     __tablename__ = 'questions'
@@ -177,6 +184,9 @@ class Questions(db.Model):
     answer_chosen = db.Column(db.String(20))
     is_correct = db.Column(db.Boolean)
     
+    def __repr__(self):
+        return f'id: {self.question_id} topic: {self.topic}  question: {self.question} display order: {self.display_order} answer chosen: {self.answer_chosen} correct: {self.is_correct}'
+    
 class Answers(db.Model):
     __tablename__ = 'answers'
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
@@ -185,6 +195,9 @@ class Answers(db.Model):
     display_order = db.Column(db.Integer)
     answer_txt = db.Column(db.String(100))
     correct_answer = db.Column(db.Boolean)
+    
+    def __repr__(self):
+        return f'id: {self.answer_id}, Display Order: {self.display_order}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
     
 
     

@@ -24,8 +24,8 @@ def select_topics_final():
 
 def create_quiz(
     description: str,
-    date_available: dt.datetime,
-    date_due: dt.datetime,
+    date_available: dt,
+    date_due: dt,
     topics: dict,
     multiple_retries: bool=True,
     active: bool=True
@@ -38,9 +38,13 @@ def create_quiz(
     db.session.add(quiz_header)
     db.session.commit()
     for topic,qty in topics.items():
-        quiz_topic = Quiz_Topics(quiz_id=quiz_header.id,
+        quiz_topic = Quiz_Topics(quiz_header=quiz_header.id,
                                  topic=topic,
                                  number_of_questions=qty)
+        db.session.add(quiz_topic)
+    db.session.commit()
+    
+    return quiz_header.id
         
 
 def create_quiz_user(quiz_id: int,

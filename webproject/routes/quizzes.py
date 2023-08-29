@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from webproject import db
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
-from webproject.models import Quizzes, Questions, Answers
+from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics
 from webproject.routes import admin_required
 from datetime import datetime as dt
 
@@ -14,7 +14,7 @@ quiz = Blueprint("quiz", __name__)
 @quiz.route('/quizzes')
 @login_required
 def select_quiz():
-    quizzes = Quizzes.query.filter_by(user_id=current_user.id).all()
+    quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id).all()
     return render_template("quizzes/quiz_select.html",quizzes=quizzes)
 
 @quiz.route('/quizzes',methods=['POST'])

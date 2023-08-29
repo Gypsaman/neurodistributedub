@@ -6,12 +6,10 @@
     <div class="neuro-form-section">
         <form action="/quizzes" method="POST" class="neuro-form">
             <div class="neuro-form-entry-row">
-                <label for="quizdescription">Assignment Name</label>
+                <label for="quizdescription">Quiz Name</label>
                 <select id="quizdescription" name="quiz_id" required>
                     {% for quiz in quizzes %}
-                        
-                        <option value="{{ quiz.id }}">{{ quiz.description }}</option>
-                        
+                        <option value="{{ quiz.Quizzes.id }}">{{ quiz.Quiz_Header.description }}</option>
                     {% endfor %}
                 </select>
             </div>
