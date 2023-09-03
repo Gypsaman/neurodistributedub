@@ -1,4 +1,4 @@
-from dbutilities.create_initial_data import create_initial_data,send_new_user_email
+from webproject.modules.create_initial_data import create_initial_data,send_new_user_email
 from webproject.modules.quizzes import create_quiz, create_quiz_all_users
 from datetime import datetime as dt
 from datetime import timedelta
@@ -8,7 +8,7 @@ from webproject.modules.dotenv_util import load_dotenv
 
 load_dotenv()
 
-# create_initial_data()
+create_initial_data()
 with create_app().app_context():
     
     # topics_selected = {"NFT": 11}

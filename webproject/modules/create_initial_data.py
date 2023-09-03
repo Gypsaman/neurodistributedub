@@ -33,7 +33,9 @@ def create_sections():
     
 def send_new_user_email(first_name,email_addr,pwd):
     body = f'Dear {first_name},\n\n'
-    body += 'In this course we will be utilizing a web interface for assignments and quizzes.\n\n  Please follow the link: www.neurodistributed.com.\n\n'
+    body += 'Welcome to CPSC-570, Blockchain & Crypto Currency Technology.\n'
+    body += 'In this course we will be utilizing a web interface for assignments and quizzes.\n\n'
+    body += '    Please follow the link: www.neurodistributed.com.\n\n'
     body += f'Your user name is your email address and your password is "{pwd}".  You may change your password at any time.\n\n'
     body += 'I have populated your first name and last name, you may change these as needed.\n\n'
     body += 'If you have any questions, feel free to contact me.\n\n'
@@ -46,7 +48,7 @@ def create_users_from_roster():
     roster_dir = './data/rosters'
     email_body = ''
     for roster in os.listdir(roster_dir):
-        r_df = pd.read_excel(os.path.join(roster_dir,roster))
+        r_df = pd.read_csv(os.path.join(roster_dir,roster))
         section_name = roster.split('.')[0]
         roster_section = Sections.query.filter_by(section=section_name).first()
         if not roster_section:
@@ -56,11 +58,17 @@ def create_users_from_roster():
             pwd = hashlib.sha256(bytes(student['Preferred Email']+'cegarcia@bridgeport.edu','utf-8')).hexdigest()[:8]
             if User.query.filter_by(email=student['Preferred Email']).first():
                 continue
+            lastname = student['Preferred Email'].split('@')[0][1:]
+            names = student['Student Name'].split(' ')
+            firstname = names[1] 
+            if names[1].lower() in ['sai','sri']:
+                firstname += ' ' + names[2]
+
             user = User(
                 email = student['Preferred Email'],
                 password=generate_password_hash(pwd,method='sha256'),
-                first_name= student['First Name'],
-                last_name = student['lastname'],
+                first_name= firstname,
+                last_name = lastname,
                 student_id = student['Student ID'],
                 role = 'student',
                 section = roster_section.id
@@ -68,7 +76,7 @@ def create_users_from_roster():
             )
             db.session.add(user)
             send_new_user_email(user.first_name,user.email,pwd)
-            break
+
             
     db.session.commit()
     
