@@ -5,8 +5,11 @@ from webproject import create_app, db
 from webproject.models import Quizzes, Questions, Answers, User, Sections, Quiz_Header, Quiz_Topics
 from datetime import datetime as dt
 from datetime import timedelta
+from webproject.modules.dotenv_util import get_cwd
+import os
 
-questions = json.load(open('./data/quizzes.json','r'))
+cwd = get_cwd
+questions = json.load(open(os.path.join(cwd,'/data/quizzes.json'),'r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 def select_topics_final():
