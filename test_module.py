@@ -5,26 +5,26 @@ from datetime import timedelta
 from webproject.models import User,Sections,Quiz_Header,Quiz_Topics, Quizzes,Questions, Answers
 from webproject import db, create_app
 from webproject.modules.dotenv_util import load_dotenv
-
+from webproject.modules.quizzes import Topics
 load_dotenv()
 
-create_initial_data()
-with create_app().app_context():
+# create_initial_data()
+# with create_app().app_context():
     
-    # topics_selected = {"NFT": 11}
-    # quiz_id = create_quiz(
-    #             description= "NFT Quiz",
-    #             date_available= dt.now(),
-    #             date_due= dt.now()+timedelta(days=7),
-    #             topics = topics_selected,
-    #             multiple_retries=True,
-    #             active=True
-    #             )
-    # create_quiz_all_users('FA23-Monday',quiz_id)
+#     # topics_selected = {"NFT": 11}
+#     # quiz_id = create_quiz(
+#     #             description= "NFT Quiz",
+#     #             date_available= dt.now(),
+#     #             date_due= dt.now()+timedelta(days=7),
+#     #             topics = topics_selected,
+#     #             multiple_retries=True,
+#     #             active=True
+#     #             )
+#     # create_quiz_all_users('FA23-Monday',quiz_id)
 
     
-    for user in User.query.all():
-        print(user)
+#     for user in User.query.all():
+#         print(user)
         
     # for section in Sections.query.all():
     #     print(section)
