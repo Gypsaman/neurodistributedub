@@ -9,7 +9,7 @@ from webproject.modules.dotenv_util import get_cwd
 import os
 
 cwd = get_cwd
-questions = json.load(open(os.path.join(cwd,'/data/quizzes.json'),'r'))
+questions = json.load(open(os.path.join(cwd,'data/quizzes.json'),'r'))
 Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 def select_topics_final():
