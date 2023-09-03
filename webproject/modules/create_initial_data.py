@@ -44,7 +44,7 @@ def send_new_user_email(first_name,email_addr,pwd):
     email = UBEmail()
     email.send_email(email_addr,'Assignment and Quiz Web Site',body)
     
-def create_users_from_roster():
+def create_users_from_roster(top=None):
     roster_dir = './data/rosters'
     email_body = ''
     for roster in os.listdir(roster_dir):
@@ -54,7 +54,9 @@ def create_users_from_roster():
         if not roster_section:
             raise('Roster Filename needs to be a valid section')
         
-        for _, student in r_df.iterrows():
+        for idx, student in r_df.iterrows():
+            if top and idx > top:
+                break
             pwd = hashlib.sha256(bytes(student['Preferred Email']+'cegarcia@bridgeport.edu','utf-8')).hexdigest()[:8]
             if User.query.filter_by(email=student['Preferred Email']).first():
                 continue
