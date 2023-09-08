@@ -77,7 +77,7 @@ def create_users_from_roster(top=None):
                 
             )
             db.session.add(user)
-            send_new_user_email(user.first_name,user.email,pwd)
+            # send_new_user_email(user.first_name,user.email,pwd)
 
             
     db.session.commit()
@@ -97,7 +97,7 @@ def create_users():
             section=section.id
             )
         db.session.add(user)
-    if not User.query.filter_by(email='cegarcia@my.brdigeport.edu'):
+    if not User.query.filter_by(email='cegarcia@my.bridgeport.edu').first():
         user = User(
             email='cegarcia@my.bridgeport.edu',
             password=generate_password_hash('123',method='sha256'),

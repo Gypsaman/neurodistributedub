@@ -21,6 +21,9 @@ def select_quiz():
 @login_required
 def select_quiz_post():
     quiz_id = request.form['quiz_id']
+    quiz = Quizzes.query.filter_by(id=quiz_id).first()
+    if quiz.grade is not None:
+        return redirect(url_for("quiz.quiz_retake",quiz_id=quiz_id))
     return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
 
 @quiz.route('/quiz/retake/<int:quiz_id>')
