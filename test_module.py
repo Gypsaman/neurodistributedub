@@ -11,23 +11,26 @@ from graders.check_submissions import check_submissions
 # check_submissions()
 load_dotenv()
 
-# create_initial_data()
+create_initial_data()
 with create_app().app_context():
+    # quizzes = Quiz_Header.query.all()
+    # for quiz in quizzes:
+    #     print(quiz)
     
-    topics_selected = {"Encryption": 9}
-    quiz_id = create_quiz(
-                description= "Encryption",
-                date_available= dt.now(),
-                date_due= dt.now()+timedelta(days=7),
-                topics = topics_selected,
-                multiple_retries=True,
-                active=True
-                )
-    create_quiz_all_users('FA23-Monday',quiz_id)
+    # topics_selected = {"Encryption": 9}
+    # quiz_id = create_quiz(
+    #             description= "Encryption",
+    #             date_available= dt.strptime('09/07/2023 23:59','%m/%d/%Y %H:%M'),
+    #             date_due= dt.now()+timedelta(days=7),
+    #             topics = topics_selected,
+    #             multiple_retries=True,
+    #             active=True
+    #             )
+    # create_quiz_all_users('FA23-Thursday',quiz_id)
 
     
-    # for user in User.query.all():
-    #     print(user)
+    for user in User.query.all():
+        print(user.id,user)
         
     # for section in Sections.query.all():
     #     print(section)

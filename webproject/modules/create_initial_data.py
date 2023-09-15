@@ -77,7 +77,7 @@ def create_users_from_roster(top=None):
                 
             )
             db.session.add(user)
-            # send_new_user_email(user.first_name,user.email,pwd)
+            send_new_user_email(user.first_name,user.email,pwd)
 
             
     db.session.commit()

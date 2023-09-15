@@ -276,7 +276,6 @@ def sha256_grader(submission:str) :
     cwd = os.path.join(cwd,'graders','imports')
     
     shutil.copy(submission,os.path.join(cwd,'SHAIMPORT.py'))
-    
     try:
         from graders.imports.SHAIMPORT import SHA256
     except Exception as e:
