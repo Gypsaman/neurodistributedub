@@ -172,7 +172,7 @@ class Quizzes(db.Model):
     grade = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'user_id: {self.user_id}, submitted: {self.submitted}, grade: {self.grade}'
+        return f'quiz_header: {self.quiz_header}, user_id: {self.user_id}, submitted: {self.submitted}, grade: {self.grade}'
     
 class Questions(db.Model):
     __tablename__ = 'questions'

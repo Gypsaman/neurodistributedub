@@ -32,9 +32,17 @@ def submission_select():
 @admin.route("/admin/submissionselect", methods=["POST"])
 @admin_required
 def submission_select_post():
+    assignment_id = request.form["assignment"]
+    return redirect(url_for('admin.assignment_view',
+                            assignment_id=assignment_id,
+                            page_num=1))
 
+
+@admin.route("/admin/submissions/<int:assignment_id>/<int:page_num>")
+@admin_required
+def assignment_view(assignment_id,page_num):
     assignment = Assignments.query.filter_by(
-        id=request.form["assignment"]
+        id=assignment_id
     ).first()
     fields = {
         "submissions.id": Field(None, None),
@@ -45,12 +53,16 @@ def submission_select_post():
     }
     actions = ["Delete"] if current_user.role == "admin" else []
     table_creator = TableCreator(
-        "Submissions", fields, condition=f"assignment={assignment.id}", actions=actions
+        "Submissions", 
+        fields, 
+        condition=f"assignment={assignment.id}", 
+        actions=actions,
+        domain=f'/admin/submissions/{assignment_id}/'
     )
     table_creator.join("User", "submissions.user_id == User.id")
     table_creator.set_items_per_page(55)
     table_creator.create_view()
-    table = table_creator.create(1)
+    table = table_creator.create(page_num)
 
     return render_template(
         "admin/admin_submissions.html", assignment=assignment, table=table

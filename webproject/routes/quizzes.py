@@ -34,6 +34,7 @@ def quiz_retake(quiz_id):
     questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     for question in questions:
         question.answer_chosen = ''
+        question.is_correct = None
     db.session.commit()
     return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=1))
 

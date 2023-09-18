@@ -90,13 +90,13 @@ def create_final(topics_selected:dict,StartTime:dt):
            
 
 def create_quiz_all_users(section_name:str,
-                          quiz_id:int,
+                          quiz_header_id:int,
     ):     
     with create_app().app_context():
         section = Sections.query.filter_by(section=section_name).first()
         users = User.query.filter_by(section=section.id,role='student').all()
         for user in users:
-            quiz_id = create_quiz_user(quiz_id,user.id)
+            quiz_id = create_quiz_user(quiz_header_id,user.id)
             print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
 
     
