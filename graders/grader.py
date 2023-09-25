@@ -51,7 +51,7 @@ def get_contract_info(Address_ABI):
     contractAddress = Address_ABI['contract']
     abi = Address_ABI['abi']
     wallet = Address_ABI['wallet']
-    network = Address_ABI['network'] if 'network' in Address_ABI else 'goerli'
+    network = Address_ABI['network'] if 'network' in Address_ABI else 'sepolia'
 
     creator = getContractCreator(contractAddress,network)
     

@@ -52,7 +52,7 @@ def add_eth_assets():
             continue
         type = asset_types[asset['type']]
         
-        new_asset = Assets(user_id=current_user.id, asset_type=type, network='goerli', asset_address=contract, time_added=dt.now(), assignment=None)
+        new_asset = Assets(user_id=current_user.id, asset_type=type, network='sepolia', asset_address=contract, time_added=dt.now(), assignment=None)
         db.session.add(new_asset)
         db.session.commit()
         

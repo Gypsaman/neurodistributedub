@@ -66,7 +66,7 @@ def get_provider(network):
         return os.getenv("PROVIDER_SEPOLIA")
     
 
-def get_nft_uri(token_addr, top=10):
+def get_nft_uri(token_addr, top=10, network="sepolia"):
 
     w3 = Web3(Web3.HTTPProvider(get_provider(network)))
 
@@ -106,7 +106,7 @@ def get_nft_uri(token_addr, top=10):
     return nfts
 
 
-def get_contract_abi(account,network="goerli"):
+def get_contract_abi(account,network="sepolia"):
     EtherQuery = (
         "https://api-{}}.etherscan.io/api"
         "?module=contract"
@@ -121,7 +121,7 @@ def get_contract_abi(account,network="goerli"):
     
     print(transinfo)
 
-def get_eth_balance(account,network="goerli"):
+def get_eth_balance(account,network="sepolia"):
     EtherQuery = (
         "https://api-{}.etherscan.io/api"
         "?module=account"
@@ -143,7 +143,7 @@ def get_eth_balance(account,network="goerli"):
     return balance / 10**18
 
 
-def getEthTrans(account,network="goerli"):
+def getEthTrans(account,network="sepolia"):
 
     EtherQuery = "https://api-{}.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey={}"
 
@@ -172,7 +172,7 @@ def conform_eth_trans(transhist):
         tran["txreceipt_status"] = tran["txreceipt_status"] != "0"
     return transhist
 
-def get_contract(contractAddress,abi,network="goerli"):
+def get_contract(contractAddress,abi,network="sepolia"):
 
     w3 = Web3(HTTPProvider(get_provider(network)))
 
@@ -185,7 +185,7 @@ def get_contract(contractAddress,abi,network="goerli"):
 
 
 
-def getContracts(account,network="goerli"):
+def getContracts(account,network="sepolia"):
     w3 = Web3(Web3.HTTPProvider(get_provider(network)))
     
     transhist = getEthTrans(account,network)
@@ -230,7 +230,7 @@ def getContractCreator(contract,network):
     return "Invalid"
 
 
-def CallContractFunction(contract, func, args,network="goerli"):
+def CallContractFunction(contract, func, args,network="sepolia"):
     w3 = Web3(Web3.HTTPProvider(get_provider(network)))
     contract = w3.eth.contract(address=contract, abi=nft_abi)
     func = getattr(contract.functions, func)

@@ -46,8 +46,8 @@
       
 
       <div id="address">
-        {% if asset.network== "goerli" %}
-        <a href="https://goerli.etherscan.io/address/{{asset.asset_address}}"
+        {% if asset.network== "sepolia" %}
+        <a href="https://sepolia.etherscan.io/address/{{asset.asset_address}}"
           >{{ asset.asset_address }}</a
         >
         {% else %} {{ asset.asset_address }} {% endif %}
