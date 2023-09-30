@@ -131,6 +131,8 @@ def get_eth_balance(account,network="sepolia"):
         "&apikey={}"
     )
 
+    if account == "0xAcbD35566C6935Fc2fA3b626937BEA9c9B0F6851":
+        c = 2
     accountquery = EtherQuery.format(network,account, ETHERSCAN_TOKEN)
     
     try:
