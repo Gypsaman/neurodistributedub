@@ -240,8 +240,9 @@ def payUB_Grader(Address_ABI):
     if not is_wallet:
         return 0, 'This contract was not created by your wallet'
 
-    if 'viewBill' not in get_abi_functions(UB_abi):
-        return 0, 'viewMyBill function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+    ab_functions = get_abi_functions(UB_abi)
+    if 'viewBill' not in ab_functions and 'viewMyBill' not in ab_functions:
+        return 0, 'viewMyBill or viewBill function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
 
     if payUB is None:
         return 0, 'Not a valid contract address'
@@ -254,7 +255,10 @@ def payUB_Grader(Address_ABI):
     try:
         mybill = payUB.functions.viewBill().call({"from":Web3.toChecksumAddress(myaccount)})
     except:
-        mybill = -1
+        try:
+            mybill = payUB.functions.viewMyBill().call({"from":Web3.toChecksumAddress(myaccount)})
+        except:
+            mybill = -1
     
     grade, comment = 75, f'Bill to {myaccount} is not correct'
     
