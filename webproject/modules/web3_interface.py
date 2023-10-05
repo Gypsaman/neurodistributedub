@@ -74,7 +74,7 @@ def get_nft_uri(token_addr, top=10, network="sepolia"):
     nfts = []
     try:
         tokenContract = w3.eth.contract(
-            address=w3.toChecksumAddress(token_addr), abi=nft_abi
+            address=w3.to_checksum_address(token_addr), abi=nft_abi
         )
     except:
         return nfts
@@ -179,7 +179,7 @@ def get_contract(contractAddress,abi,network="sepolia"):
     w3 = Web3(HTTPProvider(get_provider(network)))
 
     try:
-        contract = w3.eth.contract(address=w3.toChecksumAddress(contractAddress),abi=abi)
+        contract = w3.eth.contract(address=w3.to_checksum_address(contractAddress),abi=abi)
     except Exception as e:
         contract = None
     
@@ -199,7 +199,7 @@ def getContracts(account,network="sepolia"):
         if contract > "":
             try:
                 tokenContract = w3.eth.contract(
-                    address=w3.toChecksumAddress(contract), abi=nft_abi
+                    address=w3.to_checksum_address(contract), abi=nft_abi
                 )
             except:
                 continue
@@ -208,7 +208,7 @@ def getContracts(account,network="sepolia"):
                 tokenContract.functions.tokenURI(0).call()
             except:
                 try:
-                    bal = tokenContract.functions.balanceOf(w3.toChecksumAddress(contract)).call()
+                    bal = tokenContract.functions.balanceOf(w3.to_checksum_address(contract)).call()
                     contract_type = 'ERC20'
                 except Exception as e:
                     contract_type = 'DAPP'

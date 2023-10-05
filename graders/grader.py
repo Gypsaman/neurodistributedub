@@ -225,7 +225,7 @@ def MyID_Grader(Address_ABI):
         return 0, f"getID function does not run correctly\nError:\n{str(e)}"
 
     
-    if id == 0:
+    if id[2] == 123456:
         grade,comment = 100, 'Homework is correct'
     else:
         grade,comment = 85, f'getID does not return correct elements'
