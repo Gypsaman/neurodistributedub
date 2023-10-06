@@ -253,10 +253,10 @@ def payUB_Grader(Address_ABI):
         billtopay = -1
 
     try:
-        mybill = payUB.functions.viewBill().call({"from":Web3.toChecksumAddress(myaccount)})
+        mybill = payUB.functions.viewBill().call({"from":Web3.to_checksum_address(myaccount)})
     except:
         try:
-            mybill = payUB.functions.viewMyBill().call({"from":Web3.toChecksumAddress(myaccount)})
+            mybill = payUB.functions.viewMyBill().call({"from":Web3.to_checksum_address(myaccount)})
         except:
             mybill = -1
     
