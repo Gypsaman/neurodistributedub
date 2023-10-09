@@ -241,8 +241,9 @@ def payUB_Grader(Address_ABI):
         return 0, 'This contract was not created by your wallet'
 
     ab_functions = get_abi_functions(UB_abi)
-    if 'viewBill' not in ab_functions and 'viewMyBill' not in ab_functions:
-        return 0, 'viewMyBill or viewBill function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+    for func in ['viewBill','bills_to_pay']:
+        if func not in ab_functions:
+            return 0, f'{func} function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
 
     if payUB is None:
         return 0, 'Not a valid contract address'

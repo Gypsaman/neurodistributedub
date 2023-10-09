@@ -14,7 +14,7 @@ quiz = Blueprint("quiz", __name__)
 @quiz.route('/quizzes')
 @login_required
 def select_quiz():
-    quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id).all()
+    quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id,Quiz_Header.date_available<=dt.now()).all()
     return render_template("quizzes/quiz_select.html",quizzes=quizzes)
 
 @quiz.route('/quizzes',methods=['POST'])

@@ -15,7 +15,7 @@ import pandas as pd
 
 load_dotenv()
 
-# check_submissions()
+check_submissions()
 
 # with create_app().app_context():
 #     section = Sections.query.filter_by(section='FA23-Thursday').first()
@@ -25,11 +25,11 @@ load_dotenv()
 #         print(f'{user.student_id},{user.first_name},{user.last_name},{wallet.wallet if wallet else ""},{eth}')
 
 with create_app().app_context():
-    topics_selected = {"Solidity": 11}
+    topics_selected = {"Encryption":7,"Blockchain":5,"Solidity": 8}
     quiz_id = create_quiz(
-                description= "Solidity",
-                date_available= dt.strptime('10/05/2023 23:59','%m/%d/%Y %H:%M'),
-                date_due=dt.strptime('10/12/2023 23:59','%m/%d/%Y %H:%M'),
+                description= "Midterm Exam",
+                date_available= dt.strptime('10/13/2023 16:59','%m/%d/%Y %H:%M'),
+                date_due=dt.strptime('10/13/2023 19:00','%m/%d/%Y %H:%M'),
                 topics = topics_selected,
                 multiple_retries=True,
                 active=True
