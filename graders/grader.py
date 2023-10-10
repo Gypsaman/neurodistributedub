@@ -8,13 +8,14 @@ from webproject.modules.dotenv_util import get_cwd
 import re
 from graders.brownie_grader import brownie_grader
 from graders.grade_final import gradeFinal
+from graders.MidTermExam import get_exam
 
 UPLOADPATH = os.getenv("UPLOADPATH")
 STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
 
 
-def check_ganache_cli_running():
+def check_ganache_cli_running() -> bool:
     w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
     my_address = os.getenv("GANACHE_ACCOUNT")
     if not w3.isConnected():
@@ -25,7 +26,7 @@ def check_ganache_cli_running():
         return False
     return True
 
-def get_dict_from_string(dictstring):
+def get_dict_from_string(dictstring:str) -> dict:
     try:
         dict = json.loads(dictstring)
     except Exception as e:
@@ -33,19 +34,19 @@ def get_dict_from_string(dictstring):
         
     return dict
 
-def get_abi_functions(abi):
+def get_abi_functions(abi:dict) :
    
     return [i['name'] for i in abi if i['type'] == 'function']
 
-def has_constructor(abi):
+def has_constructor(abi:dict) -> bool:
     return 'constructor' in [i['type'] for i in abi]
    
-def get_constructor(abi):
+def get_constructor(abi:dict) -> list[str]:
     constructor_arr = [i for i in abi if i['type'] == 'constructor']
     constructor = constructor_arr[0] if len(constructor_arr) > 0 else None
     return constructor
 
-def get_contract_info(Address_ABI):
+def get_contract_info(Address_ABI:str) -> tuple[str,str,bool]:
     
     Address_ABI = get_dict_from_string(Address_ABI)
     contractAddress = Address_ABI['contract']
@@ -55,8 +56,8 @@ def get_contract_info(Address_ABI):
 
     creator = getContractCreator(contractAddress,network)
     
-    # is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
-    is_wallet = True     
+    is_wallet = (wallet.lower() == creator.lower()) and creator != 'Invalid'
+    # is_wallet = True     
     if not isinstance(abi,dict):
         abi = get_dict_from_string(abi)
     
@@ -64,7 +65,7 @@ def get_contract_info(Address_ABI):
     
     return contract,abi,is_wallet
         
-def rentCar_Grader(Address_ABI):
+def rentCar_Grader(Address_ABI:str) -> tuple[int,str]:
 
     rentCar,abi,is_wallet = get_contract_info(Address_ABI)
 
@@ -111,7 +112,7 @@ def rentCar_Grader(Address_ABI):
 
     return 80, 'Rental Amount not correct'
 
-def studentID_Grader(Address_ABI):
+def studentID_Grader(Address_ABI: str) -> tuple[int,str]:
     
     studentID,abi,is_wallet = get_contract_info(Address_ABI)
 
@@ -157,53 +158,61 @@ def studentID_Grader(Address_ABI):
     
     return 80, 'Contract does not return a valid ID'
 
-def MidTerm_Grader(Address_ABI):
+def MidTerm_Grader(Address_ABI:str) -> tuple[int,str]:
 
-    midTerm,abi,is_wallet = get_contract_info(Address_ABI)
+    midterm,abi,is_wallet = get_contract_info(Address_ABI)
 
+    
     if not is_wallet:
         return 0, 'This contract was not created by your wallet'
     
-    if midTerm is None:
-                return 0, "Not a valid contract address"
+    if midterm is None:
+                return 0, "Not a valid contract address, or problem connecting to contract"
+    
+    student_id = get_dict_from_string(Address_ABI)['user_id']['student_id']
+    exam = get_exam(student_id)
     
     constructor = get_constructor(abi)
     if constructor is None:
         return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
 
-    if len(constructor['inputs']) == 0:
-        return 0, 'Constructor does not have any parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
-
-    if 'getValue' not in get_abi_functions(abi):
-        return 0, 'getValue function not defined in ABI\nMake sure it is spelled correctly and capitlization is correct'
-    
-    if 'value' not in get_abi_functions(abi):
-        return 0, 'value function not defined or not public\nMake sure it is spelled correctly and capitlization is correct'
-
-    try:
-        midTerm.functions.updates(100).call({'from':myaccount})
-        return 75, f'updates function is not restricted to owner'
-    except Exception as e:
-        # expecting error
-        pass
+    if len(constructor['inputs']) == len(exam['Structure']['properties']):
+        for idx,inp in enumerate(constructor['inputs']):
+            if inp['type'] != exam['Structure']['properties'][idx]['type']:
+                return 0, 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
             
-        
+    else:
+        return 0, 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    msg = ''
+    functions_to_verify = [exam['get_function'],exam['variable'],exam['update_function']]
+    for func in functions_to_verify:
+        if func not in get_abi_functions(abi):
+            msg += f"{exam['variable']} function not defined or not public\nMake sure it is spelled correctly and capitlization is correct"
+    if msg != '':
+        return 0, msg
+    
+    try:
+        midterm.functions[exam['update_function']](100).call({'from':myaccount})
+        return 85, f'Updates function is not restricted to owner'
+    
+    except Exception as e:
+        if 'execution reverted' not in e.args[0]:
+            return 0, f'Error in updates function\n{str(e)}'
 
     try:
-        value = midTerm.functions.getValue().call({"from":myaccount})
+        value = midterm.functions[exam['get_function']]().call({"from":myaccount})
     except Exception as e:
         return 75, f"getValue function does not run correctly\nError:\n{str(e)}"
 
-    
-    if value==100:
-        return 100, 'MidTerm is correct'
-    elif value > 0:
-        return 80, f'getValue function does not return correct value'
+    if len(value) != len(exam['Structure']['properties']):
+        return 75, "value does not return correct number of elements"
     
     
-    return 75, f'getValue function does not return correct value'
+    
+    return 100, f'Great work on your mid term exam!!'
 
-def MyID_Grader(Address_ABI):
+def MyID_Grader(Address_ABI) -> tuple[int,str]:
 
   
     myID,abi,is_wallet = get_contract_info(Address_ABI)
@@ -233,7 +242,7 @@ def MyID_Grader(Address_ABI):
     
     return grade,comment
 
-def payUB_Grader(Address_ABI):
+def payUB_Grader(Address_ABI) -> tuple[int,str]:
     
     payUB,UB_abi,is_wallet =  get_contract_info(Address_ABI)
 
@@ -270,7 +279,7 @@ def payUB_Grader(Address_ABI):
     
     return grade,comment
 
-def sha256_grader(submission:str) :
+def sha256_grader(submission:str) -> tuple[int,str]:
     
     if not submission.endswith('.py'):
         return 0, 'Submission must be a python file'
@@ -314,7 +323,7 @@ def sha256_grader(submission:str) :
 
     return 80,f'Hash "{hash}" is not correct length or content, it should be "{correcthash}"'
 
-def web3_grader(submission:str):
+def web3_grader(submission:str) -> tuple[int,str]:
     
 
     
@@ -379,7 +388,7 @@ def web3_grader(submission:str):
     return 100, f"Contract address is correct"
     
     
-def ecc_grader(submission:str) :
+def ecc_grader(submission:str) -> tuple[int,str]:
     
     if submission.endswith('.pdf'):
         return 0, 'Submission must be a python file'
@@ -461,11 +470,11 @@ def ecc_grader(submission:str) :
     
     return points, comment
     
-def wallet_grader(submission:str) :
+def wallet_grader(submission:str) -> tuple[int,str] :
     # graded by form for entering wallet address
     pass
 
-def token_grader(Address_ABI):
+def token_grader(Address_ABI:str) -> tuple[int,str]:
     ubtoken,token_abi,is_wallet =  get_contract_info(Address_ABI)
 
     if not is_wallet:
@@ -512,7 +521,7 @@ def token_grader(Address_ABI):
         
     return base_grade, msg
 
-def nft_grader(Address_ABI):
+def nft_grader(Address_ABI:str) -> tuple[int,str]:
     ubnft,token_abi,is_wallet =  get_contract_info(Address_ABI)
 
     if not is_wallet:
@@ -570,7 +579,7 @@ graders= {
     "nft": nft_grader,
     "Final Project": gradeFinal,
 }
-def call_grader(assignment:str,submission:str) -> int:
+def call_grader(assignment:str,submission:str) -> tuple[int,str]:
    
    return graders[assignment](submission)
     

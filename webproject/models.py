@@ -96,6 +96,7 @@ class Transactions(db.Model):
 class Assignments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
+    # instructions = db.Column(db.String(100))
     inputtype = db.Column(db.String(10))
     grader = db.Column(db.String(50))
     active = db.Column(db.Boolean)
@@ -132,7 +133,7 @@ class Submissions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
     assignment = db.Column(db.Integer, db.ForeignKey('assignments.id'))
-    submission = db.Column(db.String(50))
+    submission = db.Column(db.String(100))
     date_submitted = db.Column(db.DateTime)
     grade = db.Column(db.Integer)
     comment = db.Column(db.String(100))
