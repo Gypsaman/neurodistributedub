@@ -42,3 +42,4 @@ with create_app().app_context():
                 active=True
                 )
     create_quiz_all_users('FA23-Monday',quiz_id)
+    create_

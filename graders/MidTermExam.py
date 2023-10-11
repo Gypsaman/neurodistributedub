@@ -113,7 +113,7 @@ def build_exam_distribution():
             exam_distribution[user.student_id] = {"exam_id":random.randint(1,len(exams)),"email":user.email,"name":user.last_name}
     json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
                 
-def write_program(exam: int) -> str:
+def create_program(exam: int) -> str:
     
     # we use {10} and {11} as place holders for "{" and "}" repectively because the format function confuses it
     
@@ -179,12 +179,12 @@ contract Midterm {10}
     
 def write_all_programs():
     for exam_no in exams.keys():
-        program = write_program(exam_no)
-        with open(f'.\graders\midterm_{exam_no}.sol','w') as f:
+        program = create_program(exam_no)
+        with open(f'./graders/midterm_{exam_no}.sol','w') as f:
             f.write(program)
     
 def get_exam(student_id):
-    exam_distribution = json.load(open('.\graders\exam_distribution.json','r'))
+    exam_distribution = json.load(open('./graders/exam_distribution.json','r'))
     exam_no = exam_distribution[student_id]
     return exams[exam_no['exam_id']]
 
@@ -195,7 +195,7 @@ def email_exams():
             instructions = get_instructions(exam)
             email = UBEmail()
             body = f'{user.first_name},\n\n{instructions}'
-            email.send_email('gypsaman@gmail.com',f'Mid Term Exam',body)
+            email.send_email(user.email,f'Mid Term Exam',body)
             
 if __name__ == '__main__':
-    build_exam_distribution()
+    print('MidTermExam.py is meant to be used as module')
