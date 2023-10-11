@@ -111,7 +111,7 @@ def build_exam_distribution():
     with create_app().app_context():
         for user in User.query.all():
             exam_distribution[user.student_id] = {"exam_id":random.randint(1,len(exams)),"email":user.email,"name":user.last_name}
-    json.dump(exam_distribution,open('.\graders\exam_distribution.json','w'))
+    json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
                 
 def write_program(exam: int) -> str:
     
@@ -190,7 +190,7 @@ def get_exam(student_id):
 
 def email_exams():
     with create_app().app_context():
-        for user in User.query.all():
+        for user in User.query.filter_by(role='student').all():
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
             email = UBEmail()
