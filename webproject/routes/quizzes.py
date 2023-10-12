@@ -61,12 +61,19 @@ def quiz_grade(quiz_id):
 def quiz_grade_post(quiz_id):
 
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
+    date_due = Quiz_Header.query.filter_by(id=quiz.quiz_header).first().date_due
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     score = 0
     for question in all_questions:
         if question.is_correct:
             score += 1
     score = score/len(all_questions)*100
+    penalty = 0
+    if dt.now() > date_due:
+        days = (dt.now() - date_due).days
+        penalty = 5 if days < 7 else  11
+        penalty = 15 if days > 21 else penalty 
+        score = max(score - penalty,0)
     if quiz.grade is None or score > quiz.grade:
         quiz.grade = score
     db.session.commit()
@@ -82,7 +89,7 @@ def quiz_grade_post(quiz_id):
             q['answers'].append({'answer_id':answer.answer_id,'display_order':answer.display_order,'answer_txt':answer.answer_txt,'correct_answer':answer.correct_answer})
         question_answers.append(q)
         
-    return render_template("quizzes/detailed_grade.html",quiz=quiz,questions=question_answers)
+    return render_template("quizzes/detailed_grade.html",quiz=quiz,questions=question_answers,score=score,penalty=penalty)
     # return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
 
 @quiz.route("/quiz/<int:quiz_id>/<int:question_number>")

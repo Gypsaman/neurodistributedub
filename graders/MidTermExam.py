@@ -6,7 +6,15 @@ import json
 
 
 Instructions ='''
-Create a contract with the following requirements.  Make sure that you use the correct types, visibility and that variable and function names are spelled exactly as they appear here, with the proper case.  Failure to do so will impact your grade.
+
+A quiz has been created in DNA called "Mid Term".  YOU HAVE ONLY ONE TRY with this one, there is no multiple tries for midterm.
+
+Create a contract with the following requirements, deploy to sepolia and submit contract address and ABI to DNA.  
+
+YOU HAVE ONLY ONE SUBMISSION on this contract.
+
+Make sure that you use the correct types, visibility and that variable and function names are spelled exactly as they appear here, with the proper case.  
+Failure to do so will impact your grade.
 
 Requirements:
 
