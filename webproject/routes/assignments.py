@@ -50,6 +50,7 @@ def assigments_edit_post(id):
     assignment.inputtype = request.form['inputtype']
     assignment.grader = request.form['grader']
     assignment.active = True if 'active' in request.form else False
+    assignment.retries = request.form['retries']
     
     db.session.commit()
     
