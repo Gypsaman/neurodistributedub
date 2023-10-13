@@ -76,7 +76,7 @@ exams = {
         'update_function':'update_quantity',
         'get_function':'get_product',
         },
-    7: {'Structure':{"name":"House","properties":[{"name":"address","type":"string"},{"name":"city","type":"string"},{"name":"rooms","type":"uint256"}]},
+    7: {'Structure':{"name":"House","properties":[{"name":"street_address","type":"string"},{"name":"city","type":"string"},{"name":"rooms","type":"uint256"}]},
         'variable':'house',
         'update_function':'update_rooms',
         'get_function':'get_house',
