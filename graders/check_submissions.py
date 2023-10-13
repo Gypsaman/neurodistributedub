@@ -57,6 +57,7 @@ def update_if_late(date_submitted,assignment_id,user_id,grade,comments):
     due_date = DueDates.query.filter_by(assignment=assignment_id,section=user.section).first()
     if date_submitted > due_date.duedate:
         days = (date_submitted - due_date.duedate).days
+        days = 1 if days == 0 else days
         penalty = 5 if days < 7 else  11
         penalty = 15 if days > 21 else penalty
         grade = max(grade - penalty,0)
