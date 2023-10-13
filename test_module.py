@@ -20,18 +20,22 @@ load_dotenv()
 # 
 # check_submissions()
 
-with create_app().app_context():
+# with create_app().app_context():
     
-    for user in User.query.filter_by(role='student').all():
-        wallet = Wallet.query.filter_by(user_id=user.id).first()
-        eth = get_eth_balance(wallet.wallet) if wallet else 0
-        if eth == 0:
-            email = UBEmail()
-            body = f'{user.first_name},\n\nYour wallet is not setup. You will not be able to take the mid term exam programming portion without a wallet.'
-            email.send_email(user.email,f'Wallet Missing',body)
-            print(f'{user.student_id},{user.first_name},{user.last_name},{wallet.wallet if wallet else ""},{eth}')
+#     for user in User.query.filter_by(role='student').all():
+#         wallet = Wallet.query.filter_by(user_id=user.id).first()
+#         eth = get_eth_balance(wallet.wallet) if wallet else 0
+#         if eth == 0:
+#             email = UBEmail()
+#             body = f'{user.first_name},\n\nYour wallet is not setup. You will not be able to take the mid term exam programming portion without a wallet.'
+#             email.send_email(user.email,f'Wallet Missing',body)
+#             print(f'{user.student_id},{user.first_name},{user.last_name},{wallet.wallet if wallet else ""},{eth}')
 
-
+with create_app().app_context():
+    user = User.query.filter_by(student_id='553029').first()
+    quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==user.id,Quiz_Header.active==True).all()
+    for q in quizzes:
+        print(q.Quiz_Header.active,q.Quiz_Header.description)
 
 
 
