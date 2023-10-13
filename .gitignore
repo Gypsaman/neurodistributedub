@@ -11,3 +11,4 @@ graders/currsubmission
 data/
 submission.zip
 xtesting
+graders/exam_distribution.json
