@@ -18,7 +18,7 @@ from graders.MidTermExam import email_exams
 
 load_dotenv()
 # 
-# check_submissions()
+check_submissions()
 
 # with create_app().app_context():
     

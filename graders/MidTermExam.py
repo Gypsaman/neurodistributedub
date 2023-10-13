@@ -7,11 +7,11 @@ import json
 
 Instructions ='''
 
-A quiz has been created in DNA called "Mid Term".  YOU WILL HAVE MAXIMUM OF 2 TRIES AT SUBMISSION, keep best grade.
+A quiz has been created in DNA called "Mid Term".  , keep best grade. YOU WILL HAVE ONLY ONE SUBMISSION ON THIS QUIZ.
 
 Create a contract named "Midterm" with the following requirements, deploy to sepolia and submit contract address and ABI to DNA.  
 
-YOU HAVE ONLY ONE SUBMISSION on this contract.
+YOU WILL HAVE MAXIMUM OF 2 TRIES AT SUBMISSION on this contract.
 
 Make sure that you use the correct types, visibility and that variable and function names are spelled exactly as they appear here, with the proper case.  
 Failure to do so will impact your grade.

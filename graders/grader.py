@@ -188,7 +188,7 @@ def MidTerm_Grader(Address_ABI:str) -> tuple[int,str]:
     functions_to_verify = [exam['get_function'],exam['variable'],exam['update_function']]
     for func in functions_to_verify:
         if func not in get_abi_functions(abi):
-            msg += f"{exam['variable']} function not defined or not public\nMake sure it is spelled correctly and capitlization is correct"
+            msg += f"{func} function not defined or not public\nMake sure it is spelled correctly and capitlization is correct"
     if msg != '':
         return 0, msg
     
