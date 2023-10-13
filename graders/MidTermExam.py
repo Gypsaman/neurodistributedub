@@ -9,7 +9,7 @@ Instructions ='''
 
 A quiz has been created in DNA called "Mid Term".  YOU HAVE ONLY ONE TRY with this one, there is no multiple tries for midterm.
 
-Create a contract with the following requirements, deploy to sepolia and submit contract address and ABI to DNA.  
+Create a contract named "Midterm" with the following requirements, deploy to sepolia and submit contract address and ABI to DNA.  
 
 YOU HAVE ONLY ONE SUBMISSION on this contract.
 

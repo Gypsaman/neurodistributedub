@@ -3,6 +3,9 @@
 {% block body %}
 <div class="neuro-content">
     <div class="neuro-form-section">
+        {% if max_submission %}
+        <h3>You have reached your maximum submissions for this assignment</h3>
+        {% else %}
         <form action="\submission\{{assignment.id}}" method="POST" class="neuro-form" enctype="multipart/form-data">
             <h1>Submission </h1>
             <h2>{{ assignment.name }}</h2>
@@ -57,5 +60,6 @@
         <h3>Submission History</h3>
         {{ table | safe }}
     </div>
+    {% endif %}
 </div>
 {% endblock %}

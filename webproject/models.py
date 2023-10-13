@@ -100,6 +100,7 @@ class Assignments(db.Model):
     inputtype = db.Column(db.String(10))
     grader = db.Column(db.String(50))
     active = db.Column(db.Boolean)
+    retries = db.Column(db.Integer)
     
     
     def __repr__(self):

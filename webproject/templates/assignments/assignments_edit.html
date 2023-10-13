@@ -34,6 +34,10 @@
                 <input id="active" name="active" type="checkbox" {% if assignment.active %}checked{% endif %} >
             </div>
             <div class="neuro-form-entry-row">
+                <label for="retries">Retries</label>
+                <input id="retries" name="retries" required value="{{ assignment.retries }}">
+            </div>
+            <div class="neuro-form-entry-row">
                 <button type="submit" class="neuro-button-main">Update</button>
             </div>
         </form>
