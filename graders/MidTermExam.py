@@ -7,7 +7,7 @@ import json
 
 Instructions ='''
 
-A quiz has been created in DNA called "Mid Term".  YOU HAVE ONLY ONE TRY with this one, there is no multiple tries for midterm.
+A quiz has been created in DNA called "Mid Term".  YOU WILL HAVE MAXIMUM OF 2 TRIES AT SUBMISSION, keep best grade.
 
 Create a contract named "Midterm" with the following requirements, deploy to sepolia and submit contract address and ABI to DNA.  
 
