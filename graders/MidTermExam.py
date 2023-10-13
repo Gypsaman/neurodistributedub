@@ -81,7 +81,7 @@ exams = {
         'update_function':'update_rooms',
         'get_function':'get_house',
         },
-    8: {'Structure':{"name":"Animal","properties":[{"name":"name","type":"string"},{"name":"type","type":"string"},{"name":"age","type":"uint256"}]},
+    8: {'Structure':{"name":"Animal","properties":[{"name":"name","type":"string"},{"name":"animal_type","type":"string"},{"name":"age","type":"uint256"}]},
         'variable':'animal',
         'update_function':'update_age',
         'get_function':'get_animal',
