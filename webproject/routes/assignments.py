@@ -96,7 +96,7 @@ def submission_select_post():
         
     assignment = Assignments.query.filter_by(name=request.form['assignmentName']).first()
     submissions = Submissions.query.filter_by(user_id=current_user.id,assignment=assignment.id).count()
-    max_submission = (assignment.retries >= submissions) if submissions else False
+    max_submission = (submissions >= assignment.retries) if submissions else False
     duedate = DueDates.query.filter_by(assignment=assignment.id,section=current_user.section).first()
     fields = {
             'id': Field(None,None),
