@@ -49,10 +49,10 @@ def wallet_post():
         return redirect(url_for('main.wallet'))
     
     wallet = Wallet(wallet=wallet_address,user_id=current_user.id)
-    # assignment = Assignments.query.filter_by(name='Wallet').first()
-    # grade = Grades(user_id=current_user.id,assignment=assignment.id,grade=100,dategraded=dt.now())    
+    assignment = Assignments.query.filter_by(name='Wallet').first()
+    grade = Grades(user_id=current_user.id,assignment=assignment.id,grade=100,dategraded=dt.now())    
     
-    # db.session.add(grade)
+    db.session.add(grade)
     db.session.add(wallet)
     db.session.commit()
     
