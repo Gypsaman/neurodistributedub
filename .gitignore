@@ -5,13 +5,13 @@ venv
 instance
 uploads
 uploads_history/
-table_creator copy.py
 graders/imports/
 graders/currsubmission
+graders/exam_distribution.json
+graders\exam_distribution.json
 data/
 submission.zip
 xtesting
-graders/exam_distribution.json
 zero_midterms_details_V1.csv
 zero_midterms_details.csv
 summary.json
