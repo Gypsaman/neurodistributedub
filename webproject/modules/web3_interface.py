@@ -218,7 +218,7 @@ def getContracts(account,network="sepolia"):
     return contracts
 
 
-def getContractCreator(contract,network):
+def getContractCreator(contract,network='sepolia'):
 
     transactions = getEthTrans(contract,network)
 

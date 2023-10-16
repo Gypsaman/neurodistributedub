@@ -108,6 +108,7 @@ def dashboard():
 @dashb.route("/dashboard/<string:student_id>")
 @admin_required
 def dashboard_student(student_id):
+    
     user = User.query.filter_by(student_id=student_id).first()
     if user is None:
         flash("Student not found")

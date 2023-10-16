@@ -12,3 +12,6 @@ data/
 submission.zip
 xtesting
 graders/exam_distribution.json
+zero_midterms_details_V1.csv
+zero_midterms_details.csv
+summary.json

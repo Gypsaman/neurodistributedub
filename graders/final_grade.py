@@ -1,11 +1,11 @@
-from webproject.models import Grades,Quizzes,User,Assignments
+from webproject.models import Grades,Quizzes,Quiz_Header,User,Assignments
 from webproject import db, create_app
 from webproject.modules.ubemail import UBEmail
 
 letter_grades = {'A':(94.9,100),'A-':(90,94.8),'B+':(87,89.9),'B':(83,86.9),'B-':(80,82.9),'C+':(77,79.9),'C':(73,76.9),'C-':(70,72.9),'D+':(67,69.9),'D':(63,66.9),'D-':(60,62.9),'F':(0,59.9)}
 
-midterm_assignment = "  Mid Term"
-midterm_quiz = "Mid Term Quiz"
+midterm_assignment = "Mid Term"
+midterm_quiz = "Midterm Exam"
 final_assignment = "Final Project"
 final_quiz = "Final"
 extra_credit = 'ECC Curve'
@@ -40,13 +40,14 @@ def final_grades_student(id):
             grades['Extra Credit'].append(('Additional Extra Credit',score,2))
         quizzes = Quizzes.query.filter_by(user_id=id).all()
         for quiz in quizzes:
+            header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
             score = 0 if quiz.grade is None else quiz.grade
-            if quiz.description.split(' ')[0] == midterm_quiz:
-                grades['Midterms'].append((quiz.description,score,score/100*15))
-            elif quiz.description.split(' ')[0] == final_quiz:
-                grades['Finals'].append((quiz.description,score,score/100*20))
+            if header.description == midterm_quiz:
+                grades['Midterms'].append((header.description,score,score/100*15))
+            elif header.description.split(' ')[0] == final_quiz:
+                grades['Finals'].append((header.description,score,score/100*20))
             else:
-                grades['Assignments'].append((quiz.description,score,score/1600*40))
+                grades['Assignments'].append((header.description,score,score/1600*40))
         return grades
         
 def publish_final_grades(type='Preview',email=False):
