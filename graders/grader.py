@@ -571,6 +571,7 @@ graders= {
     "PayUB": payUB_Grader,
     "myID": MyID_Grader,
     "Mid Term": MidTerm_Grader,
+    "Mid Term 2": MidTerm_Grader,
     "Rent Car": rentCar_Grader,
     "Student ID": studentID_Grader,
     "web3_py": web3_grader,
