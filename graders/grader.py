@@ -347,6 +347,8 @@ def web3_grader(submission:str) -> tuple[int,str]:
         return 0, 'Submission must have a contract file'
     
     code = code.replace(contract_location[0],contract_path)
+    solcx_location = re.findall('solc_version=[\'"]([0-9\.]*)[\'"]',code)
+    code = code.replace(solcx_location[0],'solcx="0.8.10"')
     if check_ganache_cli_running():
         code = code.replace("PROVIDER","GANACHE_PROVIDER")
         code = code.replace("CHAINID","GANACHE_CHAINID")
