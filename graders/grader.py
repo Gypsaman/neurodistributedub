@@ -18,10 +18,10 @@ myaccount = os.getenv("MYWALLET")
 def check_ganache_cli_running() -> bool:
     w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
     my_address = os.getenv("GANACHE_ACCOUNT")
-    if not w3.isConnected():
+    if not w3.is_connected():
         # raise Exception("Ganache-cli is not running")
         return False
-    if w3.eth.getBalance(my_address) == 0:
+    if w3.eth.get_balance(my_address) == 0:
         # raise Exception("No funds in Ganache-cli account")
         return False
     return True
@@ -353,11 +353,10 @@ def web3_grader(submission:str) -> tuple[int,str]:
         code = code.replace("ACCOUNT","GANACHE_ACCOUNT")
         code = code.replace("PRIVATE_KEY","GANACHE_PRIVATE_KEY")
     
-    with open(submission,'w') as f:
+    with open(os.path.join(cwd,'StudentDeploy.py'),'w') as f:
         f.write(code)
         
-    shutil.copy(submission,os.path.join(cwd,'StudentDeploy.py'))
-    
+        
     
     import graders.imports.StudentDeploy as StudentDeploy
         

@@ -127,7 +127,7 @@ def build_grade_message(final_grades, user, type='FINAL'):
         msg = msg + '-'*len(type)+'\n'
         type_total = 0
         for grade in grades:
-            msg += f'{grade.strip()}: {grades[grade]['score']:.1f}\n'
+            msg += f"{grade.strip()}: {grades[grade]['score']:.1f}\n"
             type_total += grades[grade]['grade_portion']
         msg += f'\nGrade: {type_total:.2f}%\n\n'
         overall_total += type_total
