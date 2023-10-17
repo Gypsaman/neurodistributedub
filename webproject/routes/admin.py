@@ -129,6 +129,33 @@ def add_duedate_post():
     db.session.commit()
     return redirect(url_for('admin.assigmentsdue'))
 
+@admin.route('/due_dates/update/<int:id>')
+def edit_duedate(id):
+    duedate = DueDates.query.filter_by(id=id).first()
+    assignment = Assignments.query.filter_by(id=duedate.assignment).first().name
+    section = Sections.query.filter_by(id=duedate.section).first().section
+    return render_template('admin/edit_duedate.html',duedate=duedate,assignment_name=assignment,section_name=section)
+
+@admin.route('/due_dates/update',methods=['POST'])
+def edit_duedate_post():
+
+    assignment = Assignments.query.filter_by(name=request.form['assignment']).first().id
+    section = Sections.query.filter_by(section=request.form['sectionid']).first().id
+    duedate = DueDates.query.filter_by(assignment=assignment,section=section).first()
+    duedate.assignment = assignment
+    duedate.section = section
+    duedate.duedate = dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
+    
+    db.session.commit()
+    return redirect(url_for('admin.assigmentsdue'))
+    
+@admin.route('/due_dates/delete/<int:id>')
+def del_duedate(id):
+    duedate = DueDates.query.filter_by(id=id).first()
+    db.session.delete(duedate)
+    db.session.commit()
+    return redirect(url_for('admin.assigmentsdue'))
+
 
 @admin.route("/grades/delete/<int:id>")
 @admin_required
