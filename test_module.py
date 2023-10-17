@@ -13,12 +13,12 @@ from webproject.modules.ubemail import UBEmail
 
 # import pandas as pd
 
-from graders.imports.SHAIMPORT import SHA256
-hash = SHA256('Cesar')
+# from graders.imports.SHAIMPORT import SHA256
+# hash = SHA256('Cesar')
 
-from graders.MidTermExam import email_exams
-email_exams()
-exit()
+# from graders.MidTermExam import email_exams
+# email_exams()
+# exit()
 
 load_dotenv()
 
@@ -42,13 +42,10 @@ load_dotenv()
 #             print(f'{user.student_id},{user.first_name},{user.last_name},{wallet.wallet if wallet else ""},{eth}')
 
 import json
-# from webproject.modules.web3_interface import getContractCreator
+
 # with create_app().app_context():
 #     all_students = {}
-# #     assignment = Assignments.query.filter_by(name='Mid Term').first()
-# #     if not assignment:
-# #         print('Assignment not found')
-# #         exit()
+
 #     for user in User.query.filter_by(role='student').all():
 #         print(user)
 #         final_grades = final_grades_student(user.id)
@@ -56,41 +53,37 @@ import json
 #         wallet = Wallet.query.filter_by(user_id=user.id).first()
 #         final_grades['wallet'] = wallet.wallet if wallet else ""
         
-#         # for idx,sub in enumerate(Submissions.query.filter_by(user_id=user.id,assignment=assignment.id).all()):
-#         #     contract = json.loads(sub.submission)['contract']
-#         #     creator = getContractCreator(contract,network='sepolia')
-#         #     final_grades[f'Submission {idx+1} wallet'] = creator if creator else ''
-#         #     final_grades[f'Comment {idx+1}'] = sub.comment.replace('\n','. ').replace(',',' ') if sub.comment else ''
             
 #         all_students[user.student_id] = final_grades
         
 #     json.dump(all_students,open('summary.json','w'),indent=4)
 
 # all_students = json.load(open('summary.json','r'))    
-# columns = [' SHA256','  ECC Curve','Wallet',' PayUB',' myID','Encryption','BlockChain','Solidity']
+# columns = ['Mid Term',' Mid Term 2','Midterm Exam',' SHA256','  ECC Curve','Wallet',' PayUB',' myID','Encryption','BlockChain','Solidity']
 
 
 # with open('zero_midterms_details.csv','w') as f:
     
-#     header = 'Student ID,email,wallet,sub1 wallet,sub1 comment,sub2 wallet, sub2 comment'
+#     header = 'Student ID,email,wallet'
 #     for col in columns:
 #         header += f',{col}'
 #     f.write(f'{header}\n')
 #     for student_id,student in all_students.items():
-#         for entry in student['Midterms']:
-#             if entry[0] == 'Mid Term':
-#                 if entry[1] == 0:
-#                     data =  f"{student_id},{student['email']},{student['wallet']},{student['Submission 1 wallet'] if 'Submission 1 wallet' in student else ''},{student['Comment 1'] if 'Comment 1' in student else ''},{student['Submission 2 wallet'] if 'Submission 2 wallet' in student else ''} ,{student['Comment 2'] if 'Comment 2' in student else ''},"
-#                     for assignment in student['Assignments']:
-#                         data += f'{assignment[1]},'
-#                     data += '\n'
-#                     f.write(data)
+#         data =  f"{student_id},{student['email']},{student['wallet']}"
+#         for col in columns[:3]:
+#             data += ','
+#             data += str(student['Midterms'][col]['score']) if col in student['Midterms'] else ''
+#         for col in columns[3:]:
+#             data += ','
+#             data += str(student['Assignments'][col]['score']) if col in student['Assignments'] else ''
+#         data += '\n'
+#         f.write(data)
                     
                     
 # not_included = ['1069829','1172523','1213915','1212697','1182733','1172732']
 # thursday_exam = ['1204936','1205524','1173160','1183157','1163460','1171150','1199689','1207754','1163967']   
 # add_email = ['1069829','1182367','1172523','1171150','1188604']
-                 
+# students_redo = ['1069829','1166843','1167056','1170399','1172523','1172732','1182733','1187195','1188604','1197727','1198498','1212697','1213915','1172542','1184077','1172552']                 
 
 # with open('zero_midterms_details.csv','r') as f:
 #     data = f.readlines()

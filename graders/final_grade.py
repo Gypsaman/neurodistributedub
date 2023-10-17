@@ -5,6 +5,7 @@ from webproject.modules.ubemail import UBEmail
 letter_grades = {'A':(94.9,100),'A-':(90,94.8),'B+':(87,89.9),'B':(83,86.9),'B-':(80,82.9),'C+':(77,79.9),'C':(73,76.9),'C-':(70,72.9),'D+':(67,69.9),'D':(63,66.9),'D-':(60,62.9),'F':(0,59.9)}
 
 midterm_assignment = "Mid Term"
+midterm_assignment2 = " Mid Term 2"
 midterm_quiz = "Midterm Exam"
 final_assignment = "Final Project"
 final_quiz = "Final"
@@ -19,7 +20,7 @@ def get_letter_grade(score):
             return key
     return 'F'
 
-def final_grades_student(id):
+def final_grades_student2(id):
     with create_app().app_context():
         user = User.query.filter_by(id=id).first()
     
@@ -28,7 +29,7 @@ def final_grades_student(id):
         for assignment in assignments:
             grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
             score = 0 if grade is None else max(0,grade.grade)
-            if assignment.name in [midterm_assignment,midterm_quiz]:
+            if assignment.name in [midterm_assignment,midterm_assignment2,midterm_quiz]:
                 grades['Midterms'].append((assignment.name,score,score/100*15 ))
             elif assignment.name == final_assignment:
                 grades['Finals'].append((assignment.name,score,score/100*10 ))
@@ -48,6 +49,38 @@ def final_grades_student(id):
                 grades['Finals'].append((header.description,score,score/100*20))
             else:
                 grades['Assignments'].append((header.description,score,score/1600*40))
+        return grades
+
+def final_grades_student(id):
+    with create_app().app_context():
+        user = User.query.filter_by(id=id).first()
+        if user.student_id == '1164676':
+           c = 2 
+        grades = {'Assignments':{},'Midterms':{},'Finals':{},'Extra Credit':{}}
+        assignments = Assignments.query.all()
+        for assignment in assignments:
+            grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
+            score = 0 if grade is None else max(0,grade.grade)
+            if assignment.name in [midterm_assignment,midterm_assignment2,midterm_quiz]:
+                grades['Midterms'][assignment.name] = {"score":score,"grade_portion":score/100*15}
+            elif assignment.name == final_assignment:
+                grades['Finals'][assignment.name] == {"score":score,"grade_portion":score/100*10}
+            elif assignment.name == extra_credit:
+                grades['Extra Credit'][assignment.name] = {"score":score,"grade_portion":2 if score > 0 else 0}
+            else:
+                grades['Assignments'][assignment.name] = {"score":score,"grade_portion":score/1600*40}
+        if user.student_id in additional_extra_credit:
+            grades['Extra Credit']['Additional Extra Credit'] == {"score":score,"grade_potion":2}
+        quizzes = Quizzes.query.filter_by(user_id=id).all()
+        for quiz in quizzes:
+            header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
+            score = 0 if quiz.grade is None else quiz.grade
+            if header.description == midterm_quiz:
+                grades['Midterms'][header.description] =  {"score":score,"grade_portion":score/100*15}
+            elif header.description.split(' ')[0] == final_quiz:
+                grades['Finals'][header.description] = {"score":score,"grade_portion":score/100*20}
+            else:
+                grades['Assignments'][header.description] = {"score":score,"grade_portion":score/1600*40}
         return grades
         
 def publish_final_grades(type='Preview',email=False):
@@ -94,8 +127,8 @@ def build_grade_message(final_grades, user, type='FINAL'):
         msg = msg + '-'*len(type)+'\n'
         type_total = 0
         for grade in grades:
-            msg += f'{grade[0].strip()}: {grade[1]:.1f}\n'
-            type_total += grade[2]
+            msg += f'{grade.strip()}: {grades[grade]['score']:.1f}\n'
+            type_total += grades[grade]['grade_portion']
         msg += f'\nGrade: {type_total:.2f}%\n\n'
         overall_total += type_total
     overall_total = min(overall_total,100)
