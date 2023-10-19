@@ -204,10 +204,9 @@ def email_exams():
     thursday_exam = ['1204936','1205524','1173160','1183157','1163460','1171150','1199689','1207754','1163967','1166843']   
     with create_app().app_context():
         for user in User.query.filter_by(role='student').all():
-            if user.student_id not in students_redo:
+            if user.student_id not in thursday_exam:
                 continue
-            if user.student_id in thursday_exam or user.student_id in not_included:
-                continue
+            
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
             email = UBEmail()
