@@ -19,8 +19,24 @@ from webproject.modules.ubemail import UBEmail
 # from graders.MidTermExam import email_exams
 # email_exams()
 # exit()
+with create_app().app_context():
+    for assignment in Assignments.query.all():
+        assignment.name = assignment.name.strip()
+        print(assignment.id,assignment.name)
+    db.session.commit()
 
+exam_students = ["1184077","1187195","1170399","1172542","1172552","1197727","1167056","1198498","1188604"]
+with create_app().app_context():
+    for user in User.query.all():
+        assignment = Assignments.query.filter_by(name='Mid Term 2').first()
+        if user.student_id not in exam_students:
+            continue
+        for submission in Submissions.query.filter_by(user_id=user.id,assignment=assignment.id).all():
+            print(user.student_id,submission.grade,submission.comment)
+            print('-----------------------------------')
+exit()
 load_dotenv()
+# check_submissions()
 
 # with create_app().app_context():
 #     wallet = Wallet.query.filter_by(wallet='0x5c4e0578d1bb46322906df7fcd444cdf00e0f50a').first()
@@ -28,7 +44,6 @@ load_dotenv()
 #         user = User.query.filter_by(id=wallet.user_id).first()
 #         print(user.student_id,user.first_name,user.last_name,user.email)
 # # 
-check_submissions()
 
 # with create_app().app_context():
     
@@ -43,41 +58,46 @@ check_submissions()
 
 import json
 
-# with create_app().app_context():
-#     all_students = {}
+with create_app().app_context():
+        
+    for assgn in Assignments.query.all():
+            assgn.name = assgn.name.strip()
+    db.session.commit()
+    all_students = {}
 
-#     for user in User.query.filter_by(role='student').all():
-#         print(user)
-#         final_grades = final_grades_student(user.id)
-#         final_grades['email']   = user.email
-#         wallet = Wallet.query.filter_by(user_id=user.id).first()
-#         final_grades['wallet'] = wallet.wallet if wallet else ""
+    for user in User.query.filter_by(role='student').all():
+        print(user)
+        final_grades = final_grades_student(user.id)
+        final_grades['email']   = user.email
+        final_grades['section'] = user.section
+        wallet = Wallet.query.filter_by(user_id=user.id).first()
+        final_grades['wallet'] = wallet.wallet if wallet else ""
         
             
-#         all_students[user.student_id] = final_grades
+        all_students[user.student_id] = final_grades
         
-#     json.dump(all_students,open('summary.json','w'),indent=4)
+    json.dump(all_students,open('summary.json','w'),indent=4)
 
-# all_students = json.load(open('summary.json','r'))    
-# columns = ['Mid Term',' Mid Term 2','Midterm Exam',' SHA256','  ECC Curve','Wallet',' PayUB',' myID','Encryption','BlockChain','Solidity']
+all_students = json.load(open('summary.json','r'))    
+columns = ['Mid Term','Mid Term 2','Midterm Exam','SHA256','ECC Curve','Wallet','PayUB','myID','Encryption','BlockChain','Solidity']
 
 
-# with open('zero_midterms_details.csv','w') as f:
+with open('zero_midterms_details.csv','w') as f:
     
-#     header = 'Student ID,email,wallet'
-#     for col in columns:
-#         header += f',{col}'
-#     f.write(f'{header}\n')
-#     for student_id,student in all_students.items():
-#         data =  f"{student_id},{student['email']},{student['wallet']}"
-#         for col in columns[:3]:
-#             data += ','
-#             data += str(student['Midterms'][col]['score']) if col in student['Midterms'] else ''
-#         for col in columns[3:]:
-#             data += ','
-#             data += str(student['Assignments'][col]['score']) if col in student['Assignments'] else ''
-#         data += '\n'
-#         f.write(data)
+    header = 'section,Student ID,email,wallet'
+    for col in columns:
+        header += f',{col}'
+    f.write(f'{header}\n')
+    for student_id,student in all_students.items():
+        data =  f"{student['section']},{student_id},{student['email']},{student['wallet']}"
+        for col in columns[:3]:
+            data += ','
+            data += str(student['Midterms'][col]['score']) if col in student['Midterms'] else ''
+        for col in columns[3:]:
+            data += ','
+            data += str(student['Assignments'][col]['score']) if col in student['Assignments'] else ''
+        data += '\n'
+        f.write(data)
                     
                     
 # not_included = ['1069829','1172523','1213915','1212697','1182733','1172732']

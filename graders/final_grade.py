@@ -5,7 +5,7 @@ from webproject.modules.ubemail import UBEmail
 letter_grades = {'A':(94.9,100),'A-':(90,94.8),'B+':(87,89.9),'B':(83,86.9),'B-':(80,82.9),'C+':(77,79.9),'C':(73,76.9),'C-':(70,72.9),'D+':(67,69.9),'D':(63,66.9),'D-':(60,62.9),'F':(0,59.9)}
 
 midterm_assignment = "Mid Term"
-midterm_assignment2 = " Mid Term 2"
+midterm_assignment2 = "Mid Term 2"
 midterm_quiz = "Midterm Exam"
 final_assignment = "Final Project"
 final_quiz = "Final"

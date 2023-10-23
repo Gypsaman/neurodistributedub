@@ -46,7 +46,7 @@ def assignments_edit(id):
 @admin_required
 def assigments_edit_post(id):
     assignment = Assignments.query.filter_by(id=id).first()
-    assignment.name = request.form['assignmentName']
+    assignment.name = request.form['assignmentName'].strip()
     assignment.inputtype = request.form['inputtype']
     assignment.grader = request.form['grader']
     assignment.active = True if 'active' in request.form else False
