@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from webproject import db
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
-from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates
+from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates, Sections
 from webproject.routes import admin_required
 from datetime import datetime as dt
 
@@ -198,3 +198,43 @@ def edit_quiz_post():
     
     return redirect(url_for('quiz.view_quizzes',page_num=1))
     
+    
+@quiz.route("/quiz_duedate/<int:id>")
+@admin_required
+def quiz_duedate(id):
+    quiz = Quiz_Header.query.filter_by(id=id).first()
+    fields = {
+        'id': Field(None,None),
+        'quiz_header': Field(None,'Quiz Header'),
+        'section': Field(None,'Section'),
+        'date_due': Field(timestamp_to_date,'Date Due')
+    }
+
+    table_creator = TableCreator("Quiz_DueDates", fields, condition=f"quiz_duedates.quiz_header={id}",actions=["Edit"],domain="quiz_due_date/")
+    table_creator.set_items_per_page(12)
+    table_creator.create_view()
+    table = table_creator.create(1)
+     
+    return render_template("quizzes/quizzesdue.html",table=table,quiz=quiz.id)
+    
+
+
+@quiz.route("/add_quiz_duedate/<int:id>")
+@admin_required
+def add_quiz_duedate(id):
+    quiz = Quiz_Header.query.filter_by(id=id).all()
+    sections = Sections.query.all()
+    return render_template('quizzes/add_quiz_duedate.html',quizzes=quiz,sections=sections)
+
+@quiz.route("/add_quiz_duedate",methods=['POST'])
+@admin_required
+def add_quiz_duedate_post():
+    record = {
+        "quiz_header": request.form['quiz'],
+        "section": request.form['sectionid'],
+        "date_due": dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
+    }
+    quiz_duedate = Quiz_DueDates(**record)
+    db.session.add(quiz_duedate)
+    db.session.commit()
+    return redirect(url_for('quiz.quiz_duedate',id=request.form['quiz']))
