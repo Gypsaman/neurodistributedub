@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template,request,redirect,url_for,flash
 import werkzeug
 from flask_login import current_user
-from webproject.models import User,Wallet,Assignments,Grades,Submissions, DueDates
+from webproject.models import User,Wallet,Assignments,Grades,Submissions, DueDates, Sections
 from webproject.modules.table_creator import TableCreator, Field,timestamp_to_date,short_hash,wei_to_eth,asset_type_string, true_false
 from webproject import db
 from datetime import datetime as dt
@@ -24,7 +24,9 @@ def assingments(page_num):
             'name': Field(None,'Assignment'),
             'inputtype': Field(None,'Input Type'),
             'grader': Field(None,'Grader'),
-            'Active': Field(true_false,'Active')
+            'Active': Field(true_false,'Active'),
+            'grade_category': Field(None,'Grade Category'),
+            'retries': Field(None,'Retries')
     }
     
     table_creator = TableCreator('Assignments',fields,actions=['Edit','Delete'])
@@ -51,6 +53,7 @@ def assigments_edit_post(id):
     assignment.grader = request.form['grader']
     assignment.active = True if 'active' in request.form else False
     assignment.retries = request.form['retries']
+    assignment.grade_category = request.form['grade_category']
     
     db.session.commit()
     
@@ -66,6 +69,7 @@ def add_assignment():
             'inputtype' : request.form['inputtype'],
             'grader' : request.form['grader'].strip(),
             'active' : True if 'active' in request.form else False,
+            'grade_category': request.form['grade_category'].strip(),
             'retries': request.form['retries']
         }
         assignment = Assignments.query.filter_by(name=record['name']).first()
@@ -185,3 +189,42 @@ def grade_history():
   
     history = db.engine.execute(qry)
     return [{'StudentID':row.student_id,'section':row.section,'assignment':f'{row.assignment_id:02d}-{row.assignment}','grade':row.grade} for row in history]
+
+
+@assignments.route("/assignments_due/<int:assignment>")
+@admin_required
+def assigments_due(assignment):
+    
+    fields = {
+        "due_dates.id": Field(None, None),
+        "assignments.name": Field(None, "Assignment"),
+        "section": Field(None, "Section"),
+        "duedate": Field(timestamp_to_date, "Due Date"),
+    }
+    actions = ["Edit", "Delete"]
+    table_creator = TableCreator("Due_Dates", fields, condition=f"due_dates.assignment={assignment}",actions=actions)
+    table_creator.set_items_per_page(15)
+    table_creator.join("Assignments", "assignments.id=due_dates.assignment")
+    table_creator.create_view()
+    table = table_creator.create(1)
+    return render_template("assignments/assignmentsdue.html", table=table,assignment=assignment)
+
+@assignments.route('/add_assgn_duedate/<int:id>')
+@admin_required
+def add_duedate(id):
+    assignments = Assignments.query.all()
+    sections = Sections.query.all()
+    return render_template('assignments/add_assgn_duedate.html', assignments=assignments,selected=id,sections=sections)
+
+@assignments.route('/add_assgn_duedate', methods=['POST'])
+@admin_required
+def add_duedate_post():
+    record = {
+        'assignment': request.form['assignment'],
+        'section': request.form['sectionid'],
+        'duedate': dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
+    }
+    duedate = DueDates(**record)
+    db.session.add(duedate)
+    db.session.commit()
+    return redirect(url_for('assigmentsdue'))

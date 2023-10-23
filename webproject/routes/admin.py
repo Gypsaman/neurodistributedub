@@ -78,56 +78,37 @@ def del_submissions(id):
     return redirect(url_for("admin.submission_select"))
 
 
-@admin.route("/admin/assignmentsdue")
-@admin_required
-def assigmentsdue():
-    assignments = Assignments.query.all()
-    return render_template(
-        "admin/admin_submission_select.html",
-        assignments=assignments,
-        sendto="/admin/assignmentsdue",
-    )
+# @admin.route("/admin/assignmentsdue")
+# @admin_required
+# def assigmentsdue():
+#     assignments = Assignments.query.all()
+#     return render_template(
+#         "admin/admin_submission_select.html",
+#         assignments=assignments,
+#         sendto="/admin/assignmentsdue",
+#     )
 
 
-@admin.route("/admin/assignmentsdue", methods=["POST"])
-@admin_required
-def assigmentsdue_post():
-    assignment = request.form["assignment"]
+# @admin.route("/admin/assignmentsdue", methods=["POST"])
+# @admin_required
+# def assigmentsdue_post():
+#     assignment = request.form["assignment"]
 
-    fields = {
-        "due_dates.id": Field(None, None),
-        "assignments.name": Field(None, "Assignment"),
-        "section": Field(None, "Section"),
-        "duedate": Field(timestamp_to_date, "Due Date"),
-    }
-    actions = ["Edit", "Delete"]
-    table_creator = TableCreator("Due_Dates", fields, condition=f"due_dates.assignment={assignment}",actions=actions)
-    table_creator.set_items_per_page(15)
-    table_creator.join("Assignments", "assignments.id=due_dates.assignment")
-    table_creator.create_view()
-    table = table_creator.create(1)
-    return render_template("admin/assignmentsdue.html", table=table,assignment=assignment)
+#     fields = {
+#         "due_dates.id": Field(None, None),
+#         "assignments.name": Field(None, "Assignment"),
+#         "section": Field(None, "Section"),
+#         "duedate": Field(timestamp_to_date, "Due Date"),
+#     }
+#     actions = ["Edit", "Delete"]
+#     table_creator = TableCreator("Due_Dates", fields, condition=f"due_dates.assignment={assignment}",actions=actions)
+#     table_creator.set_items_per_page(15)
+#     table_creator.join("Assignments", "assignments.id=due_dates.assignment")
+#     table_creator.create_view()
+#     table = table_creator.create(1)
+#     return render_template("admin/assignmentsdue.html", table=table,assignment=assignment)
 
 
-@admin.route('/addduedate/<int:id>')
-@admin_required
-def add_duedate(id):
-    assignments = Assignments.query.all()
-    sections = Sections.query.all()
-    return render_template('admin/addduedate.html', assignments=assignments,selected=id,sections=sections)
-
-@admin.route('/addduedate', methods=['POST'])
-@admin_required
-def add_duedate_post():
-    record = {
-        'assignment': request.form['assignment'],
-        'section': request.form['sectionid'],
-        'duedate': dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
-    }
-    duedate = DueDates(**record)
-    db.session.add(duedate)
-    db.session.commit()
-    return redirect(url_for('admin.assigmentsdue'))
 
 @admin.route('/due_dates/update/<int:id>')
 def edit_duedate(id):
@@ -242,14 +223,30 @@ def grade_history(section,page):
     table.set_items_per_page(15)
     html = table.create(page)
     return render_template('admin/grade_history.html',table=html,section=section)
-             
-@admin.route("/admin/quizzes",methods=['GET','POST'])
-def quizzes():
+
+@admin.route('/admin/quizzes/<int:page_num>')
+def quizzes(page_num):
+    quizzes = Quiz_Header.query.all()
+    fields = {
+        'description': Field(None,'Description'),
+        'date_available': Field(timestamp_to_date,'Date Available'),
+        'date_due': Field(timestamp_to_date,'Date Due'),
+        'multiple_retries': Field(None,'Multiple Retries'),
+        'active': Field(None,'Active')
+    }
+
+    table_creator = TableCreator("Quiz_Header", fields, actions=["Edit"],domain="/admin/quiz/")
+    table_creator.set_items_per_page(12)
+    table_creator.create_view()
+    table = table_creator.create(page_num)
+     
+@admin.route("/admin/add_quiz",methods=['GET','POST'])
+def add_quiz():
     if request.method=='POST':
         description = request.form['description']
         if Quiz_Header.query.filter_by(description=description).first() is not None:
             flash('Quiz already exists')
-            return redirect(url_for('admin.quizzes'))
+            return redirect(url_for('admin.add_quiz'))
         record = {
             "description": description,
             "date_available": request.form['date_available'],

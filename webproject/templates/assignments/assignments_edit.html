@@ -38,8 +38,22 @@
                 <input id="retries" name="retries" required value="{{ assignment.retries }}">
             </div>
             <div class="neuro-form-entry-row">
-                <button type="submit" class="neuro-button-main">Update</button>
+                <label for="grade_category">Max Submissions</label>
+                
+                <select id="grade_category" name="grade_category" required>
+                    <option value="Assignment" selected>Assignment</option>
+                    <option value="Midterm">Midterm</option>
+                    <option value="Final">Final</option>
+                    <option value="Extra Credit">Extra Credit</option>
+                </select>
             </div>
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="neuro-button-main">Update</button>
+                <buttom type="button" class="neuro-button-main" onclick="window.location.href='/assignments_due/{{ assignment.id }}'">
+                    Due Dates
+                </button>
+            </div>
+            
         </form>
     </div>
 
