@@ -34,7 +34,6 @@ def create_dashboard(user_id,submission_page=1,grades_page=1,quiz_page=1):
     quiz_fields = {
         'quiz_header.id': Field(None, None),
         'description': Field(None, 'Description'),
-        'date_due': Field(timestamp_to_date, 'Due Date'),
         'Grade': Field(round_to_0_decimals, 'Grade'),
     }
     actions = []

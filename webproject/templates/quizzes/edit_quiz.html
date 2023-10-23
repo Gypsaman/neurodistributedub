@@ -1,0 +1,37 @@
+{% extends 'admin_base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>Edit Quiz</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to
+        <a href="{{ url_for('main.profile') }}">Profile Page</a>
+    </div>
+    {% endif %} {% endwith %}
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/quizzes/update">
+            <div class="neuro-form-entry-row">
+                <label for="description">Quiz Description</label>
+                <input type="text" id="description" name="description" value="{{quiz.description}}" >
+            </div>
+
+            <div class="neuro-form-entry-row">
+                <label for ="multiple_retries>" >Multiple Retries</label>
+                <input type="checkbox" id="multiple_retries" name="multiple_retries" {%if quiz.multiple_retries%}checked{%endif%} >
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for ="active>" >Active</label>
+                <input type="checkbox" id="active" name="active" {%if quiz.active%}checked{%endif%}>
+            </div>
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="neuro-button-main">Update</button>
+                <button type="button" class="neuro-button-main" onclick="window.location.href='/quiz_duedate/{{quiz.id}}'">
+                    Due Dates
+            </div>
+        </form>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from webproject import db
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
-from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics
+from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates
 from webproject.routes import admin_required
 from datetime import datetime as dt
 
@@ -61,7 +61,7 @@ def quiz_grade(quiz_id):
 def quiz_grade_post(quiz_id):
 
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
-    date_due = Quiz_Header.query.filter_by(id=quiz.quiz_header).first().date_due
+    date_due = Quiz_DueDates.query.filter_by(id=quiz.quiz_header).first().date_due
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     score = 0
     for question in all_questions:
@@ -122,3 +122,79 @@ def quiz_display_post(quiz_id,question_number):
 
     return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=next_question))
         
+
+
+@quiz.route('/view_quizzes/<int:page_num>')
+@admin_required
+def view_quizzes(page_num):
+    
+    fields = {
+        'id': Field(None,None),
+        'description': Field(None,'Description'),
+        'multiple_retries': Field(None,'Multiple Retries'),
+        'active': Field(None,'Active')
+    }
+
+    table_creator = TableCreator("Quiz_Header", fields, actions=["Edit"],domain="quizzes/")
+    table_creator.set_items_per_page(12)
+    table_creator.create_view()
+    table = table_creator.create(page_num)
+     
+    return render_template("quizzes/view_quizzes.html",table=table)
+ 
+@quiz.route("/add_quiz",methods=['GET','POST'])
+@admin_required
+def add_quiz():
+    if request.method=='POST':
+        description = request.form['description']
+        if Quiz_Header.query.filter_by(description=description).first() is not None:
+            flash('Quiz already exists')
+            return redirect(url_for('admin.add_quiz'))
+        record = {
+            "description": description,
+            "date_available": request.form['date_available'],
+            "date_due" : request.form['date_due'],
+            "multiple_retries": request.form['multiple_retries'] == 'on',
+            "active": request.form['active'] == 'on'
+        }
+        quiz = Quiz_Header(**record)
+        db.session.add(quiz)
+        return redirect(url_for('admin.add_quiz_topics',id=quiz.id))
+    
+    return render_template('quizzes/add_quiz.html')
+
+@quiz.route("/add-quiz-topics/<int:id>",methods=['GET','POST'])
+@admin_required
+def add_quiz_topics(quiz_header_id):
+    if request.method=='POST':
+        record = {}
+        quiz_topics = Quiz_Topics(**record)
+        db.session.add(quiz_topics)
+        return render_template('admin.add_quiz_topics',quiz_header_id=quiz_header_id)
+    
+    return render_template('admin/add_quiz_topics.html',quiz_header_id=quiz_header_id)
+
+@quiz.route("/quizzes/update/<int:id>")
+@admin_required
+def edit_quiz(id):
+    quiz = Quiz_Header.query.filter_by(id=id).first()
+
+    return render_template('quizzes/edit_quiz.html',quiz=quiz)
+
+@quiz.route("/quizzes/update",methods=['POST'])
+@admin_required
+def edit_quiz_post():
+    quiz = Quiz_Header.query.filter_by(description=request.form['description']).first()    
+    
+    if 'multiple_retries' in request.form:
+        quiz.multiple_retries = request.form['multiple_retries'] == 'on'
+    else:
+        quiz.multiple_retries = False
+    if 'active' in request.form:
+        quiz.active = request.form['active'] == 'on'
+    else:
+        quiz.active = False
+    db.session.commit()
+    
+    return redirect(url_for('quiz.view_quizzes',page_num=1))
+    

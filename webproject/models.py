@@ -148,14 +148,22 @@ class Quiz_Header(db.Model):
     __tablename__ = 'quiz_header'
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100))
-    date_available = db.Column(db.DateTime)
-    date_due = db.Column(db.DateTime)
     multiple_retries = db.Column(db.Boolean)
     grade_category = db.Column(db.String(50))
     active = db.Column(db.Boolean)
     
     def __repr__(self):
-        return f'id: {self.id} description: {self.description} date available: {self.date_available} date due {self.date_due} multiple retires {self.multiple_retries} active {self.active}'
+        return f'id: {self.id} description: {self.description} multiple retires {self.multiple_retries} active {self.active}'
+    
+class Quiz_DueDates(db.Model):
+    __tablename__ = 'quiz_duedates'
+    id = db.Column(db.Integer, primary_key=True)
+    quiz_header = db.Column(db.Integer, db.ForeignKey('quiz_header.id'))
+    section = db.Column(db.Integer,db.ForeignKey('sections.id'))
+    date_due = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return f'id: {self.id} quiz_header: {self.quiz_header} section: {self.section} date due: {self.date_due}'
     
 class Quiz_Topics(db.Model):
     __tablename__ = 'quiz_topics'

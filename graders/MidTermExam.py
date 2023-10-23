@@ -45,6 +45,7 @@ Requirements:
     - It must be accesible to everyone.
         '''
     
+exam_students = ["1184077","1187195","1170399","1172542","1172552","1197727","1167056","1198498","1188604"]
 
 exams = {
     1: {"Structure": {"name":"Student","properties":[{"name":"id","type":"uint256"},{"name":"name","type":"string"},{"name":"age","type":"uint256"}]},
@@ -210,6 +211,40 @@ def email_exams(participants):
             body = f'{user.first_name},\n\n{instructions}'
             email.send_email(user.email,f'Mid Term Exam',body)
             
+            
+def email_exam_date():            
+    with open('zero_midterms_details.csv','r') as f:
+        data = f.readlines()
+        for line in data[2:]:
+            line = line.split(',')
+            if line[0] not in thursday_exam:
+                    continue
+            email = UBEmail()
+            body = '''
+    The exam will be held via zoom during Thursday's class.
+
+    https://bridgeport.zoom.us/j/93641513602
+
+    At the beggining of class we will go over questions regarding normal class.  After this we will redo the mid term exam.
+
+    During the midterm, you will need to have your VIDEO ON AT ALL TIMES.
+
+    If someone turns off their video or is seen talking with someone else, they will be receive a zero for the exam.
+
+    There were a few students from Monday's class that got booted out of zoom and received a 0.
+
+    '''
+            body = '''
+            A lot of people have been submitting contracts created from a wallet not registered in DNA or have submitted and invalid contract address.
+            
+            Please watch this video for training on how to submit, it's only 5 min long.
+            
+            https://youtu.be/qZTnU0PtYTE
+
+            
+            '''
+            email.send_email(line[1],'Mid Term Exam - Redo',body)
+
 if __name__ == '__main__':
     print('MidTermExam.py is meant to be used as module')
     # not_included = ['1069829','1172523','1213915','1212697','1182733','1172732']
