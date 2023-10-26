@@ -227,7 +227,7 @@ def add_duedate_post():
     duedate = DueDates(**record)
     db.session.add(duedate)
     db.session.commit()
-    return redirect(url_for(f'assigments_due/{record["assignment"]}'))
+    return redirect(url_for('assignments.assigments_due',assignment=record["assignment"]))
 
 
 @assignments.route('/due_dates/update/<int:id>')

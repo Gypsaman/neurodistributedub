@@ -61,7 +61,7 @@ def quiz_grade(quiz_id):
 def quiz_grade_post(quiz_id):
 
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
-    date_due = Quiz_DueDates.query.filter_by(id=quiz.quiz_header).first().date_due
+    date_due = Quiz_DueDates.query.filter_by(quiz_header=quiz.quiz_header).first().date_due
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     score = 0
     for question in all_questions:
@@ -149,37 +149,100 @@ def add_quiz():
         description = request.form['description']
         if Quiz_Header.query.filter_by(description=description).first() is not None:
             flash('Quiz already exists')
-            return redirect(url_for('admin.add_quiz'))
+            return redirect(url_for('quiz.add_quiz'))
         record = {
             "description": description,
-            "date_available": request.form['date_available'],
-            "date_due" : request.form['date_due'],
             "multiple_retries": request.form['multiple_retries'] == 'on',
             "active": request.form['active'] == 'on'
         }
         quiz = Quiz_Header(**record)
         db.session.add(quiz)
-        return redirect(url_for('admin.add_quiz_topics',id=quiz.id))
+        db.session.commit()
+        return redirect(url_for('quiz.add_quiz_topics',quiz_header_id=quiz.id))
     
     return render_template('quizzes/add_quiz.html')
 
-@quiz.route("/add-quiz-topics/<int:id>",methods=['GET','POST'])
-@admin_required
-def add_quiz_topics(quiz_header_id):
-    if request.method=='POST':
-        record = {}
-        quiz_topics = Quiz_Topics(**record)
-        db.session.add(quiz_topics)
-        return render_template('admin.add_quiz_topics',quiz_header_id=quiz_header_id)
+def topics_table(quiz_header):
+    fields = {
+        'id': Field(None,None),
+        'quiz_header': Field(None,None),
+        'topic': Field(None,'Topic'),
+        'number_of_questions': Field(None,'No. of Questions')
+        
+    }
+
+    table_creator = TableCreator("Quiz_Topics", fields, condition=f'quiz_header={quiz_header}',actions=["Edit","Delete"],domain="quiz_topics/")
+    table_creator.set_items_per_page(12)
+    table_creator.create_view()
+    table = table_creator.create(1)
     
-    return render_template('admin/add_quiz_topics.html',quiz_header_id=quiz_header_id)
+    return table
+
+@quiz.route('/quiz_topics/<int:quiz_header_id>')
+@admin_required
+def quiz_topics(quiz_header_id):
+    header = Quiz_Header.query.filter_by(id=quiz_header_id).first()
+    if header is None:
+        return redirect(url_for('quiz.view_quizzes',page_num=1))
+     
+    return render_template("quizzes/view_quiz_topics.html",table=topics_table(header.id),quiz_header=header)
+    
+
+@quiz.route("/add_quiz_topic/<int:quiz_header_id>")
+@admin_required
+def add_quiz_topic(quiz_header_id):
+    from webproject.modules.quizzes import Topics
+   
+    return render_template('quizzes/add_quiz_topic.html',topics=Topics,header_id=quiz_header_id)
+
+
+@quiz.route('/add_quiz_topic',methods=['POST'])
+@admin_required
+def add_quiz_topics_post():
+    record = {
+        'quiz_header': request.form['header_id'],
+        'topic': request.form['topic'],
+        'number_of_questions': request.form['questions']
+    }
+    quiz_topics = Quiz_Topics(**record)
+    db.session.add(quiz_topics)
+    db.session.commit()
+    return redirect(url_for('quiz.quiz_topics',quiz_header_id=quiz_topics.quiz_header))
+
+@quiz.route('/quiz_topics/delete/<int:id>')
+@admin_required
+def del_quiz_topic(id):
+    qt = Quiz_Topics.query.filter_by(id=id).first()
+    if qt:
+        db.session.delete(qt)
+        db.session.commit()
+    return redirect(url_for('quiz.quiz_topics',quiz_header_id=qt.quiz_header))
+        
+@quiz.route('/quiz_topics/update/<int:id>')
+@admin_required
+def update_quiz_topic(id):
+    from webproject.modules.quizzes import Topics
+    qt = Quiz_Topics.query.filter_by(id=id).first()
+    return render_template('quizzes/edit_quiz_topic.html',quiz_topic=qt,topics=Topics)
+
+@quiz.route('/quiz_topics/update',methods=['POST'])
+@admin_required
+def update_quiz_topic_post():
+    quiz_header = request.form['header_id']
+    topic = request.form['topic']
+    qt = Quiz_Topics.query.filter_by(quiz_header=quiz_header,topic=topic).first()
+    qt.topic = topic
+    qt.number_of_questions = request.form['questions']
+    db.session.commit()
+    return redirect(url_for('quiz.quiz_topics',quiz_header_id=qt.quiz_header))
+
 
 @quiz.route("/quizzes/update/<int:id>")
 @admin_required
 def edit_quiz(id):
     quiz = Quiz_Header.query.filter_by(id=id).first()
 
-    return render_template('quizzes/edit_quiz.html',quiz=quiz)
+    return render_template('quizzes/edit_quiz.html',quiz=quiz,table=topics_table(quiz.id))
 
 @quiz.route("/quizzes/update",methods=['POST'])
 @admin_required
@@ -238,3 +301,11 @@ def add_quiz_duedate_post():
     db.session.add(quiz_duedate)
     db.session.commit()
     return redirect(url_for('quiz.quiz_duedate',id=request.form['quiz']))
+
+@quiz.route('/generate_quizzes/<int:quiz_header>')
+@admin_required
+def generate_quizzes(quiz_header):
+    from webproject.modules.quizzes import create_quiz_all_users
+    for section in Sections.query.all():
+        create_quiz_all_users(section.section,quiz_header)
+    return redirect(url_for('quiz.quiz_duedate',id=quiz_header))

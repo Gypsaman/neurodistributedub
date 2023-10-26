@@ -45,8 +45,10 @@ def check_submissions():
                         shutil.move(submission_content,os.path.join(STORE_FOLDER,submission.submission))
                 
                 except Exception as e:
-                    email_error(e,submission)
-                    update_grade(submission,0,'Error in submission')
+                    comments = body = f'Submission error:\n{e}\n\n{submission}'
+                    email_error(comments)
+                    update_grade(submission,0,comments)
+                    email_grade(submission,assignment,grade,comments)
                     
             
             time.sleep(30)
@@ -70,9 +72,8 @@ def email_grade(submission,assignment,grade,comments):
     body = f'Your grade for {assignment.name} is {grade}\n\nComments on grade:\n{comments}'
     email.send_email(user.email,f'Grade for {assignment.name}',body)
     
-def email_error(error,submission):
+def email_error(body):
     email = UBEmail()
-    body = f'Check_submissions error:\n{error}\n\n{submission}'
     email.send_email('cegarcia@bridgeport.edu',f'Check_submissions error',body)
     
 def update_grade(submission,grade,comments):

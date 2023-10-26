@@ -1,0 +1,41 @@
+{% extends 'admin_base.html' %} 
+{% block body %}
+<div class="neuro-content">
+    <h1>Update Topic</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to
+        <a href="{{ url_for('main.profile') }}">Profile Page</a>
+    </div>
+    {% endif %} {% endwith %}
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/quiz_topics/update">
+            <div class="neuro-form-entry-row">
+                <label for="header_id">Header Id</label>
+                <input id="header_id" name="header_id"  value='{{quiz_topic.quiz_header}}' readonly>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic"  required>
+                    {% for topic in topics %}
+                    <option value="{{topic}}" {%if quiz_topic.topic == topic %}selected{%endif%}>{{ topic }}-{{topics[topic]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="neuro-form-entry-row">
+                <label for="questions">Questions</label>
+                <input id="questions" name="questions"  value='{{quiz_topic.number_of_questions}}' required>
+            </div>
+            <div class="">
+                <button type="submit" class="neuro-button-main">Update</button>
+            </div>
+        </form>
+    </div>
+    
+
+
+
+</div>>
+    
+{% endblock %}

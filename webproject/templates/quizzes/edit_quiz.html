@@ -30,8 +30,21 @@
                     Due Dates
             </div>
         </form>
-        </form>
-    </div>
 
+        
+    </div>
+    <h1>Topics</h1>
+    {{ table | safe }}
+    <div class="neuro-flex-row" >
+        <div>
+            <button class="neuro-button-main" onclick="window.location.href='/add_quiz_topic/{{quiz.id}}'">
+                Add Topic
+            </button>
+
+        </div>  
+    </div>
+    <div class="neuro-flex-row" >
+        <button class="neuro-button-main" onclick="window.location.href='/generate_quizzes/{{quiz.id}}'"> Generate Quizzes</button>
+    </div>
 </div>
 {% endblock %}
