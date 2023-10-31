@@ -96,9 +96,11 @@ def create_quiz_all_users(section_name:str,
         section = Sections.query.filter_by(section=section_name).first()
         users = User.query.filter_by(section=section.id,role='student').all()
         for user in users:
-            quiz_id = create_quiz_user(quiz_header_id,user.id)
-            if not silent:
-                print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
+            q = Quizzes.query.filter_by(quiz_header=quiz_header_id,user_id=user.id).first()
+            if not q:
+                quiz_id = create_quiz_user(quiz_header_id,user.id)
+                if not silent:
+                    print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
 
     
 if __name__ == '__main__':

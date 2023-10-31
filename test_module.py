@@ -14,15 +14,9 @@ from webproject.modules.ubemail import UBEmail
 load_dotenv()
 check_submissions()
 
-# with create_app().app_context():
-#     qh = Quiz_Header.query.filter_by(description='brownie').first()
-#     if not qh:
-#         print('Header not found')
-#         exit()
-#     for q in Quizzes.query.filter_by(quiz_header=qh.id).all():
-#         print(q)
-
-            
+with create_app().app_context():
+    user = User.query.filter_by(id=89).first()            
+    print(user)
 
 
 

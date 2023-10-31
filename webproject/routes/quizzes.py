@@ -158,7 +158,7 @@ def add_quiz():
         quiz = Quiz_Header(**record)
         db.session.add(quiz)
         db.session.commit()
-        return redirect(url_for('quiz.add_quiz_topics',quiz_header_id=quiz.id))
+        return redirect(url_for('quiz.add_quiz_topic',quiz_header_id=quiz.id))
     
     return render_template('quizzes/add_quiz.html')
 
