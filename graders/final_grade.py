@@ -11,7 +11,8 @@ final_assignment = "Final Project"
 final_quiz = "Final"
 extra_credit = 'ECC Curve'
 
-additional_extra_credit = ['1181220','1179119']
+additional_extra_credit = []
+grade_portion = {'Assignment':40/1600,'Midterm':15,'Final':15,'Extra Credit':2}
 
 def get_letter_grade(score):
     score = round(score,1)
@@ -20,38 +21,28 @@ def get_letter_grade(score):
             return key
     return 'F'
 
-def final_grades_student2(id):
+def final_grades_student(id):
     with create_app().app_context():
         user = User.query.filter_by(id=id).first()
     
-        grades = {'Assignments':[],'Midterms':[],'Finals':[],'Extra Credit':[]}
+        grades = {'Assignment':[],'Midterm':[],'Final':[],'Extra Credit':[]}
         assignments = Assignments.query.all()
         for assignment in assignments:
             grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
             score = 0 if grade is None else max(0,grade.grade)
-            if assignment.name in [midterm_assignment,midterm_assignment2,midterm_quiz]:
-                grades['Midterms'].append((assignment.name,score,score/100*15 ))
-            elif assignment.name == final_assignment:
-                grades['Finals'].append((assignment.name,score,score/100*10 ))
-            elif assignment.name == extra_credit:
-                grades['Extra Credit'].append((assignment.name,score,2 if score > 0 else 0))
-            else:
-                grades['Assignments'].append((assignment.name,score,score/1600*40 ))
+            grades[assignment.grade_category].append((assignment.name,score,score/grade_portion[assignment.grade_category]))
+
         if user.student_id in additional_extra_credit:
             grades['Extra Credit'].append(('Additional Extra Credit',score,2))
         quizzes = Quizzes.query.filter_by(user_id=id).all()
         for quiz in quizzes:
             header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
             score = 0 if quiz.grade is None else quiz.grade
-            if header.description == midterm_quiz:
-                grades['Midterms'].append((header.description,score,score/100*15))
-            elif header.description.split(' ')[0] == final_quiz:
-                grades['Finals'].append((header.description,score,score/100*20))
-            else:
-                grades['Assignments'].append((header.description,score,score/1600*40))
+            grades[header.grade_category].append((assignment.name,score,score/grade_portion[header.grade_category]))
+
         return grades
 
-def final_grades_student(id):
+def final_grades_student2(id):
     with create_app().app_context():
         user = User.query.filter_by(id=id).first()
         if user.student_id == '1164676':

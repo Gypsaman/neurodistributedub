@@ -149,13 +149,15 @@ def view_quizzes(page_num):
 def add_quiz():
     if request.method=='POST':
         description = request.form['description']
+        
         if Quiz_Header.query.filter_by(description=description).first() is not None:
             flash('Quiz already exists')
             return redirect(url_for('quiz.add_quiz'))
         record = {
             "description": description,
             "multiple_retries": request.form['multiple_retries'] == 'on',
-            "active": request.form['active'] == 'on'
+            "active": request.form['active'] == 'on',
+            "grade_category": request.form['grade_category']
         }
         quiz = Quiz_Header(**record)
         db.session.add(quiz)
@@ -251,6 +253,7 @@ def edit_quiz(id):
 def edit_quiz_post():
     quiz = Quiz_Header.query.filter_by(description=request.form['description']).first()    
     
+    quiz.grade_category = request.form['grade_category']
     if 'multiple_retries' in request.form:
         quiz.multiple_retries = request.form['multiple_retries'] == 'on'
     else:
