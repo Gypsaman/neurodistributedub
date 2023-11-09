@@ -6,6 +6,8 @@ from webproject.modules.table_creator import Field, TableCreator, timestamp_to_d
 from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates, Sections
 from webproject.routes import admin_required
 from datetime import datetime as dt
+from webproject.modules.quizzes import create_quiz_users
+from sqlalchemy import text
 
 
 quiz = Blueprint("quiz", __name__)
@@ -61,7 +63,7 @@ def quiz_grade(quiz_id):
 def quiz_grade_post(quiz_id):
 
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
-    date_due = Quiz_DueDates.query.filter_by(quiz_header=quiz.quiz_header).first().date_due
+    date_due = Quiz_DueDates.query.filter_by(quiz_header=quiz.quiz_header,section=current_user.section).first().date_due
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     score = 0
     for question in all_questions:
@@ -302,10 +304,18 @@ def add_quiz_duedate_post():
     db.session.commit()
     return redirect(url_for('quiz.quiz_duedate',id=request.form['quiz']))
 
+
 @quiz.route('/generate_quizzes/<int:quiz_header>')
 @admin_required
 def generate_quizzes(quiz_header):
-    from webproject.modules.quizzes import create_quiz_all_users
-    for section in Sections.query.all():
-        create_quiz_all_users(section.section,quiz_header)
-    return redirect(url_for('quiz.quiz_duedate',id=quiz_header))
+    stmt = "SELECT user.id FROM user  left join "
+    stmt += f"(select quiz_header,user_id from Quizzes where quiz_header = {quiz_header})"
+    stmt += "on user.id = user_id where user_id is null"
+    
+    users = list(db.session.execute(text(stmt)))
+
+    if len(users) == 0:
+        return redirect(url_for('quiz.quiz_duedate',id=quiz_header))
+    create_quiz_users(quiz_header,users[:10])
+    return redirect(url_for('quiz.generate_quizzes',quiz_header=quiz_header))
+    

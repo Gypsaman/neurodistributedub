@@ -103,6 +103,12 @@ def create_quiz_all_users(section_name:str,
                     print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
 
     
+def create_quiz_users(quiz_header_id:int,users:list):
+    with create_app().app_context():
+        for user in users:
+            create_quiz_user(quiz_header_id,user[0])
+
+
 if __name__ == '__main__':
     topics_selected = {"NFT": 11}
     quiz_id = create_quiz(
