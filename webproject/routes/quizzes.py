@@ -134,7 +134,8 @@ def view_quizzes(page_num):
         'id': Field(None,None),
         'description': Field(None,'Description'),
         'multiple_retries': Field(None,'Multiple Retries'),
-        'active': Field(None,'Active')
+        'active': Field(None,'Active'),
+        'grade_category': Field(None,'Grade Category')
     }
 
     table_creator = TableCreator("Quiz_Header", fields, actions=["Edit"],domain="quizzes/")
