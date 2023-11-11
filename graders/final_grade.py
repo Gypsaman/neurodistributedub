@@ -4,12 +4,6 @@ from webproject.modules.ubemail import UBEmail
 
 letter_grades = {'A':(94.9,100),'A-':(90,94.8),'B+':(87,89.9),'B':(83,86.9),'B-':(80,82.9),'C+':(77,79.9),'C':(73,76.9),'C-':(70,72.9),'D+':(67,69.9),'D':(63,66.9),'D-':(60,62.9),'F':(0,59.9)}
 
-midterm_assignment = "Mid Term"
-midterm_assignment2 = "Mid Term 2"
-midterm_quiz = "Midterm Exam"
-final_assignment = "Final Project"
-final_quiz = "Final"
-extra_credit = 'ECC Curve'
 
 additional_extra_credit = []
 grade_portion = {'Assignment':40/1600,'Midterm':15,'Final':15,'Extra Credit':2}
@@ -22,58 +16,30 @@ def get_letter_grade(score):
     return 'F'
 
 def final_grades_student(id):
-    with create_app().app_context():
-        user = User.query.filter_by(id=id).first()
-    
-        grades = {'Assignment':[],'Midterm':[],'Final':[],'Extra Credit':[]}
-        assignments = Assignments.query.all()
-        for assignment in assignments:
-            grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
-            score = 0 if grade is None else max(0,grade.grade)
-            grades[assignment.grade_category].append((assignment.name,score,score/grade_portion[assignment.grade_category]))
+    user = User.query.filter_by(id=id).first()
 
-        if user.student_id in additional_extra_credit:
-            grades['Extra Credit'].append(('Additional Extra Credit',score,2))
-        quizzes = Quizzes.query.filter_by(user_id=id).all()
-        for quiz in quizzes:
-            header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
-            score = 0 if quiz.grade is None else quiz.grade
-            grades[header.grade_category].append((assignment.name,score,score/grade_portion[header.grade_category]))
-
-        return grades
-
-def final_grades_student2(id):
-    with create_app().app_context():
-        user = User.query.filter_by(id=id).first()
-        if user.student_id == '1164676':
-           c = 2 
-        grades = {'Assignments':{},'Midterms':{},'Finals':{},'Extra Credit':{}}
-        assignments = Assignments.query.all()
-        for assignment in assignments:
-            grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
-            score = 0 if grade is None else max(0,grade.grade)
-            if assignment.name in [midterm_assignment,midterm_assignment2,midterm_quiz]:
-                grades['Midterms'][assignment.name] = {"score":score,"grade_portion":score/100*15}
-            elif assignment.name == final_assignment:
-                grades['Finals'][assignment.name] == {"score":score,"grade_portion":score/100*10}
-            elif assignment.name == extra_credit:
-                grades['Extra Credit'][assignment.name] = {"score":score,"grade_portion":2 if score > 0 else 0}
-            else:
-                grades['Assignments'][assignment.name] = {"score":score,"grade_portion":score/1600*40}
-        if user.student_id in additional_extra_credit:
-            grades['Extra Credit']['Additional Extra Credit'] == {"score":score,"grade_potion":2}
-        quizzes = Quizzes.query.filter_by(user_id=id).all()
-        for quiz in quizzes:
-            header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
-            score = 0 if quiz.grade is None else quiz.grade
-            if header.description == midterm_quiz:
-                grades['Midterms'][header.description] =  {"score":score,"grade_portion":score/100*15}
-            elif header.description.split(' ')[0] == final_quiz:
-                grades['Finals'][header.description] = {"score":score,"grade_portion":score/100*20}
-            else:
-                grades['Assignments'][header.description] = {"score":score,"grade_portion":score/1600*40}
-        return grades
+    grades = {'Assignment':{},'Midterm':{},'Final':{},'Extra Credit':{}}
+    assignments = Assignments.query.all()
+    for assignment in assignments:
+        grade = Grades.query.filter_by(user_id=id,assignment=assignment.id).first()
+        score = 0 if grade is None else max(0,grade.grade)
         
+        grades[assignment.grade_category][assignment.name] = {
+            "score":score,
+            "grade_portion":score/grade_portion[assignment.grade_category]
+            }
+
+    if user.student_id in additional_extra_credit:
+        grades['Extra Credit'].append(('Additional Extra Credit',score,2))
+    quizzes = Quizzes.query.filter_by(user_id=id).all()
+    for quiz in quizzes:
+        header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
+        score = 0 if quiz.grade is None else quiz.grade
+        grades[header.grade_category][f'{header.description}-Quiz'] = {"score":score,"grade_portion":score/grade_portion[header.grade_category]}
+
+    return grades
+
+      
 def publish_final_grades(type='Preview',email=False):
     grades = []
     incomplete = ['1166070']
@@ -96,8 +62,6 @@ def publish_final_grades(type='Preview',email=False):
                            "section":user.section})
     
     return grades
-            
-            
             
 def build_grade_message(final_grades, user, type='FINAL'):
     msg = f'Hello {user.first_name} ({user.student_id})\n\n'

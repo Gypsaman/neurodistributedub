@@ -213,4 +213,22 @@ class Answers(db.Model):
     
 
     
+class QuestionBank(db.Model):
+    __tablename__ = 'question_bank'
+    question_id = db.Column(db.String(10),primary_key=True)
+    topic = db.Column(db.String(50))
+    question = db.Column(db.String(500))
+    
+    def __repr__(self):
+        return f'id: {self.question_id} topic: {self.topic}  question: {self.question} '
+    
+class AnswerBank(db.Model):
+    __tablename__ = 'answer_bank'
+    question_id = db.Column(db.String(10),db.ForeignKey('questions.question_id'), primary_key=True )
+    answer_id = db.Column(db.String(10),primary_key=True)
+    answer_txt = db.Column(db.String(100))
+    correct_answer = db.Column(db.Boolean)
+    
+    def __repr__(self):
+        return f'id: {self.answer_id}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
     

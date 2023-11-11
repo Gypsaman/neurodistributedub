@@ -2,8 +2,10 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from webproject import db
-from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date
+from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date,round_to_2_decimals
 from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates, Sections
+from webproject.modules.quizzes import Topics
+
 from webproject.routes import admin_required
 from datetime import datetime as dt
 from webproject.modules.quizzes import create_quiz_users
@@ -196,9 +198,8 @@ def quiz_topics(quiz_header_id):
 @quiz.route("/add_quiz_topic/<int:quiz_header_id>")
 @admin_required
 def add_quiz_topic(quiz_header_id):
-    from webproject.modules.quizzes import Topics
    
-    return render_template('quizzes/add_quiz_topic.html',topics=Topics,header_id=quiz_header_id)
+    return render_template('quizzes/add_quiz_topic.html',topics=Topics(),header_id=quiz_header_id)
 
 
 @quiz.route('/add_quiz_topic',methods=['POST'])
@@ -322,4 +323,24 @@ def generate_quizzes(quiz_header):
         return redirect(url_for('quiz.quiz_duedate',id=quiz_header))
     create_quiz_users(quiz_header,users[:10])
     return redirect(url_for('quiz.generate_quizzes',quiz_header=quiz_header))
+    
+@quiz.route('/student_quizzes/<int:quiz_header>/<int:page_num>')
+@admin_required
+def student_quizzes(quiz_header,page_num):
+    
+    fields = {
+        'id': Field(None,None),
+        'quiz_header': Field(None,'Quiz Header'),
+        'user_id': Field(None,'User ID'),
+        'submitted': Field(None,'Submitted'),
+        'grade': Field(round_to_2_decimals,'Grade')
+        
+    }
+
+    table_creator = TableCreator("Quizzes", fields, condition=f"quizzes.quiz_header={quiz_header}",actions=["View"],domain=f"student_quizzes/{quiz_header}/")
+    table_creator.set_items_per_page(12)
+    table_creator.create_view()
+    table = table_creator.create(page_num)
+     
+    return render_template("quizzes/student_quizzes.html",table=table)
     

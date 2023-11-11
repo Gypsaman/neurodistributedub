@@ -2,22 +2,28 @@ import json
 from collections import Counter
 import numpy as np
 from webproject import create_app, db
-from webproject.models import Quizzes, Questions, Answers, User, Sections, Quiz_Header, Quiz_Topics
+from webproject.models import Quizzes, Questions, Answers, User, Sections, Quiz_Header, Quiz_Topics, AnswerBank, QuestionBank
 from datetime import datetime as dt
 from datetime import timedelta
 from webproject.modules.dotenv_util import get_cwd
 import os
 
 cwd = get_cwd()
-questions = json.load(open(os.path.join(cwd,'data/quizzes.json'),'r'))
-Topics = Counter([q['Topic'] for id,q in questions.items()])
+# questions = json.load(open(os.path.join(cwd,'data/quizzes.json'),'r'))
+# Topics = Counter([q['Topic'] for id,q in questions.items()])
+def Topics():
+    topics = {}
+    with create_app().app_context():
+        for q in QuestionBank.query.with_entities(QuestionBank.topic,db.func.count(QuestionBank.topic)).group_by(QuestionBank.topic).all():
+            topics[q[0]] = q[1]
+    return topics
 
 def select_topics_final():
-    questions = sum([val for key,val in Topics.items()])
+    questions = sum([val for key,val in Topics().items()])
     perc = 60/questions
     total = 0
     topic_selected = {}
-    for key,val in Topics.items():
+    for key,val in Topics().items():
         qty = round(val*perc)
         topic_selected[key] = qty
         total += qty
@@ -60,24 +66,40 @@ def create_quiz_user(quiz_id: int,
                    grade=None)
     db.session.add(quiz)
     db.session.commit()
-    question_number = 1
+    topic_count = 0
     for quiz_topic in Quiz_Topics.query.filter_by(quiz_header=quiz_id).all():
         topic = quiz_topic.topic
         qty = quiz_topic.number_of_questions
-        selection = np.random.choice(range(Topics[topic]),qty ,replace=False)
-        topic_questions = np.array([id for id,q in questions.items() if q['Topic'] == topic])
-        for q in topic_questions[selection]:
-            question = Questions(quiz_id=quiz.id,question_id=q,topic=topic,question=questions[q]['Question'],display_order=question_number,answer_chosen='',is_correct=False)
-            db.session.add(question)
-            db.session.commit()
-            question_number += 1
+        selection = np.random.choice(range(Topics()[topic]),qty ,replace=False).tolist()
+        for idx,question in enumerate(QuestionBank.query.filter_by(topic='Brownie').all()):
+            if idx not in selection:
+                continue
+            record = Questions(quiz_id=quiz.id,
+                               question_id=question.question_id,
+                               topic = topic,
+                               question=question.question,
+                               display_order=selection.index(idx)+topic_count,
+                               answer_chosen='',
+                               is_correct=False)
             
-            answers = np.array(questions[q]['Answers'])
-            answer_selection = np.random.choice(range(len(answers)),len(answers),replace=False)
-            for order,a in enumerate(answers[answer_selection]):
-                answer = Answers(quiz_id=quiz.id,question_id=q,answer_id=a['ID'],display_order=order+1,answer_txt=a['Answer'],correct_answer=a['Correct'])
+            db.session.add(record)
+            db.session.commit()
+
+            
+            answer_count = AnswerBank.query.filter_by(question_id=question.question_id).count()
+            answer_selection = np.random.choice(range(answer_count),answer_count,replace=False).tolist()
+            for order,a in enumerate(AnswerBank.query.filter_by(question_id=question.question_id).all()):
+                if order not in answer_selection:
+                    continue
+                answer = Answers(quiz_id=quiz.id,
+                                 question_id=question.question_id,
+                                 answer_id=a.answer_id,
+                                 display_order=answer_selection.index(order),
+                                 answer_txt=a.answer_txt,
+                                 correct_answer=a.correct_answer)
                 db.session.add(answer)
                 db.session.commit()
+        topic_count += qty
             
     return quiz.id
    
@@ -104,9 +126,9 @@ def create_quiz_all_users(section_name:str,
 
     
 def create_quiz_users(quiz_header_id:int,users:list):
-    with create_app().app_context():
-        for user in users:
-            create_quiz_user(quiz_header_id,user[0])
+    
+    for user in users:
+        create_quiz_user(quiz_header_id,user[0])
 
 
 if __name__ == '__main__':

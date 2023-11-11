@@ -114,7 +114,8 @@ class TableCreator:
         start = (page_num -1) * self.items_per_page
         end = start + self.items_per_page
         columns = [self.fields[field].Display for field in self.fields if self.fields[field].Display]
-        html = '<table class="neuro-table">'
+        html = '<div>Records in table: ' + str(len(self.items)) + '</div>'
+        html += '<table class="neuro-table">'
         html += '<thead>'
         html += '<tr>'    
         for column in columns:
@@ -139,11 +140,11 @@ class TableCreator:
                 
                 self.id = item[0]
                 if "Edit" in self.actions:
-                    html += f'<a href="/{self.domain}/update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
+                    html += f'<a href="/{self.domain}update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
                 if "Delete" in self.actions:
-                    html += f'<a href="/{self.domain}/delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
+                    html += f'<a href="/{self.domain}delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
                 if "View" in self.actions:
-                    html += f'<a href="/{self.domain}/view/{page_num}/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
+                    html += f'<a href="/{self.domain}view/{self.id}"><img src="\static\imgs\\binoculars.svg"></a>'
                 html += '</div></td>'
             html += '</tr>'
 
@@ -155,12 +156,13 @@ class TableCreator:
         html += '<div class="neuro-flex-row neuro-table-nav">'
         html += '<div style="height: 30px; width: 30px">'
         if back_button:
-            html += f'<a href="{self.domain}{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="/{self.domain}{page_num - 1}"><img src="/static/imgs/ArrowLeft.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '<div style="height: 30px; width: 30px">'
         if next_button:
-            html += f'<a href="{self.domain}{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
+            html += f'<a href="/{self.domain}{page_num + 1}"><img src="/static/imgs/ArrowRight.svg" style="height: 100%; width: 100%;"></a>'
         html += '</div>'
         html += '</div>'
+
         
         return html
