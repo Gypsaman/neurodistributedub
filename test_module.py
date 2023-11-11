@@ -2,20 +2,11 @@ from webproject import create_app, db
 from webproject.models import QuestionBank,AnswerBank, Questions
 import json
 
-from webproject.modules.quizzes import Topics
-print(Topics())
-exit()
 
 quizzes = json.load(open('./data/quizzes.json','r'))
 
 
 
-with create_app().app_context():
-    idx = 0
-    for idx,question in enumerate(QuestionBank.query.filter_by(topic='Brownie').all()):
-        print(idx,question.question_id)
-        
-exit()    
 with create_app().app_context():
     for answer in AnswerBank.query.all():
         db.session.delete(answer)
