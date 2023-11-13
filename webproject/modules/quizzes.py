@@ -11,6 +11,7 @@ import os
 cwd = get_cwd()
 # questions = json.load(open(os.path.join(cwd,'data/quizzes.json'),'r'))
 # Topics = Counter([q['Topic'] for id,q in questions.items()])
+
 def Topics():
     topics = {}
     with create_app().app_context():

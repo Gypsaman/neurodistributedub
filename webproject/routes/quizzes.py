@@ -227,9 +227,9 @@ def del_quiz_topic(id):
 @quiz.route('/quiz_topics/update/<int:id>')
 @admin_required
 def update_quiz_topic(id):
-    from webproject.modules.quizzes import Topics
+    
     qt = Quiz_Topics.query.filter_by(id=id).first()
-    return render_template('quizzes/edit_quiz_topic.html',quiz_topic=qt,topics=Topics)
+    return render_template('quizzes/edit_quiz_topic.html',quiz_topic=qt,topics=Topics())
 
 @quiz.route('/quiz_topics/update',methods=['POST'])
 @admin_required
