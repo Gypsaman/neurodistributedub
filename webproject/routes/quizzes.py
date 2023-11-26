@@ -329,7 +329,7 @@ def generate_quizzes(quiz_header):
 def student_quizzes(quiz_header,page_num):
     
     fields = {
-        'id': Field(None,None),
+        'id': Field(None,'Quiz ID'),
         'quiz_header': Field(None,'Quiz Header'),
         'user_id': Field(None,'User ID'),
         'submitted': Field(None,'Submitted'),

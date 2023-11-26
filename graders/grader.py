@@ -551,7 +551,7 @@ def nft_grader(Address_ABI:str) -> tuple[int,str]:
     msg = ''
     base_grade = 80
     if name >= "":
-        base_grade += 5
+        base_grade += 5 
     else:
         msg += 'Name is not Populated\n'
     if symbol >= "":

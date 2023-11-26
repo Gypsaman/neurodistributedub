@@ -71,8 +71,8 @@ def create_quiz_user(quiz_id: int,
     for quiz_topic in Quiz_Topics.query.filter_by(quiz_header=quiz_id).all():
         topic = quiz_topic.topic
         qty = quiz_topic.number_of_questions
-        selection = np.random.choice(range(Topics()[topic]),qty ,replace=False).tolist()
-        for idx,question in enumerate(QuestionBank.query.filter_by(topic='Brownie').all()):
+        selection = np.random.choice(range(1,Topics()[topic]+1),qty ,replace=False).tolist()
+        for idx,question in enumerate(QuestionBank.query.filter_by(topic=quiz_topic.topic).all()):
             if idx not in selection:
                 continue
             record = Questions(quiz_id=quiz.id,
@@ -88,7 +88,7 @@ def create_quiz_user(quiz_id: int,
 
             
             answer_count = AnswerBank.query.filter_by(question_id=question.question_id).count()
-            answer_selection = np.random.choice(range(answer_count),answer_count,replace=False).tolist()
+            answer_selection = np.random.choice(range(1,answer_count+1),answer_count,replace=False).tolist()
             for order,a in enumerate(AnswerBank.query.filter_by(question_id=question.question_id).all()):
                 if order not in answer_selection:
                     continue
