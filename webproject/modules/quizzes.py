@@ -75,12 +75,12 @@ def create_quiz_user(quiz_id: int,
             answer_count = AnswerBank.query.filter_by(question_id=question.question_id).count()
             answer_selection = np.random.choice(range(1,answer_count+1),answer_count,replace=False).tolist()
             for order,a in enumerate(AnswerBank.query.filter_by(question_id=question.question_id).all()):
-                if order not in answer_selection:
+                if (order+1) not in answer_selection:
                     continue
                 answer = Answers(quiz_id=quiz.id,
                                  question_id=question.question_id,
                                  answer_id=a.answer_id,
-                                 display_order=answer_selection.index(order),
+                                 display_order=answer_selection.index(order+1),
                                  answer_txt=a.answer_txt,
                                  correct_answer=a.correct_answer)
                 db.session.add(answer)
