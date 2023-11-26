@@ -9,8 +9,6 @@ from webproject.modules.dotenv_util import get_cwd
 import os
 
 cwd = get_cwd()
-# questions = json.load(open(os.path.join(cwd,'data/quizzes.json'),'r'))
-# Topics = Counter([q['Topic'] for id,q in questions.items()])
 
 def Topics():
     topics = {}
@@ -18,19 +16,6 @@ def Topics():
         for q in QuestionBank.query.with_entities(QuestionBank.topic,db.func.count(QuestionBank.topic)).group_by(QuestionBank.topic).all():
             topics[q[0]] = q[1]
     return topics
-
-def select_topics_final():
-    questions = sum([val for key,val in Topics().items()])
-    perc = 60/questions
-    total = 0
-    topic_selected = {}
-    for key,val in Topics().items():
-        qty = round(val*perc)
-        topic_selected[key] = qty
-        total += qty
-    if total > 60:
-        topic_selected['Brownie'] -= 1
-    return topic_selected
 
 def create_quiz(
     description: str,
@@ -71,15 +56,15 @@ def create_quiz_user(quiz_id: int,
     for quiz_topic in Quiz_Topics.query.filter_by(quiz_header=quiz_id).all():
         topic = quiz_topic.topic
         qty = quiz_topic.number_of_questions
-        selection = np.random.choice(range(1,Topics()[topic]+1),qty ,replace=False).tolist()
+        selection = np.random.choice(range(1,qty+1),qty ,replace=False).tolist()
         for idx,question in enumerate(QuestionBank.query.filter_by(topic=quiz_topic.topic).all()):
-            if idx not in selection:
+            if (idx+1) not in selection:
                 continue
             record = Questions(quiz_id=quiz.id,
                                question_id=question.question_id,
                                topic = topic,
                                question=question.question,
-                               display_order=selection.index(idx)+topic_count,
+                               display_order=selection.index(idx+1)+topic_count,
                                answer_chosen='',
                                is_correct=False)
             

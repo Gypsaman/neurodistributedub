@@ -5,7 +5,10 @@ from webproject import create_app, db
 
 with create_app().app_context():
     qt = Quiz_Topics.query.filter_by(quiz_header=11).first()
-    print(qt)
+    for Question in QuestionBank.query.filter_by(topic=qt.topic).all():
+        print(Question)
+        
+    
 
 
 
