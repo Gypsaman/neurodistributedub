@@ -159,7 +159,7 @@ def gradeFinal(submission):
         ['UBNFT.registerToken confirmed','UBNFT.registerToken not confirmed'],
         ['UBToken.approve confirmed','UBToken.approve not confirmed'],
         ['UBNFT.depositTokens confirmed','UBNFT.depositTokens not confirmed'],
-        ['UBNFT.createLogoNFT','UBNFT.createLogoNFT not confirmed']
+        ['UBNFT.mint','UBNFT.mint not confirmed']
     ]
     
     msg = ''
