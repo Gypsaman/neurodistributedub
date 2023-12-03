@@ -61,8 +61,8 @@ def fix_deployment_versions(path):
     with open(os.path.join(path,'brownie-config.yaml'),'r') as f:
         config = f.read()
     config = config.replace('4.8.0','3.4.0')
-    config = re.sub('OpenZeppelin/openzeppelin-contracts@*','OpenZeppelin/openzeppelin-contracts@4.9.0')
-    config = re.sub('"@openzeppelin=OpenZeppelin/openzeppelin-contracts@*','"@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0"')
+    config = re.sub('OpenZeppelin/openzeppelin-contracts@*','OpenZeppelin/openzeppelin-contracts@4.9.0',config)
+    config = re.sub('"@openzeppelin=OpenZeppelin/openzeppelin-contracts@*','"@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0"',config)
     with open(os.path.join(path,'brownie-config.yaml'),'w') as f:
         f.write(config)
         
