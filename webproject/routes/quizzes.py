@@ -158,8 +158,8 @@ def add_quiz():
             return redirect(url_for('quiz.add_quiz'))
         record = {
             "description": description,
-            "multiple_retries": request.form['multiple_retries'] == 'on',
-            "active": request.form['active'] == 'on',
+            "multiple_retries": False if 'multiple_retries' not in request.form else request.form['multiple_retries'] == 'on',
+            "active": False if 'active' not in request.form else request.form['active'] == 'on',
             "grade_category": request.form['grade_category']
         }
         quiz = Quiz_Header(**record)
