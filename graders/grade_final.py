@@ -61,6 +61,8 @@ def fix_deployment_versions(path):
     with open(os.path.join(path,'brownie-config.yaml'),'r') as f:
         config = f.read()
     config = config.replace('4.8.0','3.4.0')
+    config = re.sub('OpenZeppelin/openzeppelin-contracts@*','OpenZeppelin/openzeppelin-contracts@4.9.0')
+    config = re.sub('"@openzeppelin=OpenZeppelin/openzeppelin-contracts@*','"@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0"')
     with open(os.path.join(path,'brownie-config.yaml'),'w') as f:
         f.write(config)
         
@@ -68,7 +70,7 @@ def fix_deployment_versions(path):
     for file in os.listdir(contractDir):
         with open(os.path.join(contractDir,file),'r') as f:
             script = f.read()
-        script = re.sub('pragma solidity .*','pragma solidity 0.7.0;',script)
+        script = re.sub('pragma solidity .*','pragma solidity ^0.8.0;',script)
         with open(os.path.join(contractDir,file),'w') as f:
             f.write(script)
             
@@ -105,8 +107,8 @@ def setUp(zipf):
     return True
 
 def cleanUp():
-    cwd = get_cwd()
-    currSubmissionDir = os.path.join(cwd,'graders','currsubmission')
+    
+    currSubmissionDir = currSubmissionsPath()
     
     for file in os.listdir(currSubmissionDir):
         curr_file = os.path.join(currSubmissionDir,file)

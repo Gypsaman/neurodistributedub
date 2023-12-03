@@ -139,3 +139,15 @@ def import_quiz(quiz_name,quizdate):
             db.session.add(grade)
             db.session.commit() 
     
+def email_course_evaluation():
+    with create_app().app_context():
+        for user in User.query.filter_by(role='student').all():
+            email = UBEmail()
+            body = f'''Hello {user.first_name} {user.last_name},\n\n'''
+            body += f'''Please complete the course evaluation for this course.  It is very important for me to get your feedback.  '''
+            body += '\n\nCesar Garcia\n'
+            email.send_email(user.email,'Course Evaluation',body)
+
+    
+if __name__ == '__main__':
+    email_course_evaluation()

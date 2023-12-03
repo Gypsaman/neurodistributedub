@@ -52,7 +52,7 @@ def create_quiz_user(quiz_id: int,
                    grade=None)
     db.session.add(quiz)
     db.session.commit()
-    topic_count = 0
+    topic_count = 1
     for quiz_topic in Quiz_Topics.query.filter_by(quiz_header=quiz_id).all():
         topic = quiz_topic.topic
         qty = quiz_topic.number_of_questions

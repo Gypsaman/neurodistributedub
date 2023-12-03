@@ -23,7 +23,7 @@ def check_submissions():
         while True:
             submissions = Submissions.query.filter_by(grade=None).all()
             for submission in submissions:
-            
+                grade = 0
                 try :
                     assignment = Assignments.query.filter_by(id=submission.assignment).first()
                     
