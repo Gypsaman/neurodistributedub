@@ -145,11 +145,11 @@ def gradeFinal(submission):
 
     invalidSyntax = re.search(r'invalid syntax',brownieOutput)
     if invalidSyntax:
-        return grade,'invalid syntax'
+        return grade,brownieOutput
 
     isError = re.search(r'[Ee]rror',brownieOutput)
     if isError:
-        return grade, 'Error'
+        return grade, brownieOutput
     
     grade = 30
     elements = [
