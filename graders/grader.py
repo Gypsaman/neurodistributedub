@@ -525,8 +525,8 @@ def token_grader(Address_ABI:str) -> tuple[int,str]:
 def nft_grader(Address_ABI:str) -> tuple[int,str]:
     ubnft,token_abi,is_wallet =  get_contract_info(Address_ABI)
 
-    if not is_wallet:
-        return 0, 'This contract was not created by your wallet'
+    # if not is_wallet:
+    #     return 0, 'This contract was not created by your wallet'
 
     functions_needed = ['name','symbol','tokenURI']
     msg = ''
@@ -545,7 +545,7 @@ def nft_grader(Address_ABI:str) -> tuple[int,str]:
         uris = []
         for x in range(3):
             uris.append(ubnft.functions.tokenURI(x).call())
-    except:
+    except Exception as e:
         return 0, 'Error calling functions'
     
     msg = ''

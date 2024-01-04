@@ -1,7 +1,7 @@
 import json
 
 from webproject import create_app, db
-from webproject.models import Assignments, Grades, Quiz_Header, Quizzes, User
+from webproject.models import Assignments, Grades, Quiz_Header, Quizzes, User, Wallet
 from webproject.modules.ubemail import UBEmail
 
 letter_grades = {
@@ -21,10 +21,10 @@ letter_grades = {
 
 
 additional_extra_credit = []
-grade_portion = {"Assignment": 40 / 1600, "Midterm": 15, "Final": 15, "Extra Credit": 2}
+grade_portion = {"Assignment": 40 / 15, "Midterm": 15, "Final": 15, "Extra Credit": 2}
 
 
-def build_grades(score):
+def get_letter_grades(score):
     score = round(score, 1)
     for key, value in letter_grades.items():
         if score >= value[0] and score <= value[1]:
@@ -40,40 +40,51 @@ def final_grades_student(id):
     for assignment in assignments:
         grade = Grades.query.filter_by(user_id=id, assignment=assignment.id).first()
         score = 0 if grade is None else max(0, grade.grade)
-
-        grades[assignment.grade_category][assignment.name] = {
+        name = assignment.name.strip()
+        if assignment.grade_category == "Midterm":
+            if score == 0:
+                continue
+            name = "Mid Term"
+        grades[assignment.grade_category][name] = {
             "score": score,
-            "grade_portion": score / grade_portion[assignment.grade_category],
+            "grade_portion": score/100 * grade_portion[assignment.grade_category],
         }
+    if not 'Mid Term' in grades['Midterm']:
+        grades['Midterm']['Mid Term'] = {"score": 0, "grade_portion": 0}
 
     if user.student_id in additional_extra_credit:
         grades["Extra Credit"].append(("Additional Extra Credit", score, 2))
     quizzes = Quizzes.query.filter_by(user_id=id).all()
     for quiz in quizzes:
         header = Quiz_Header.query.filter_by(id=quiz.quiz_header).first()
+        if header.description == 'Do not Use':
+            continue
         score = 0 if quiz.grade is None else quiz.grade
         grades[header.grade_category][f"{header.description}-Quiz"] = {
             "score": score,
-            "grade_portion": score / grade_portion[header.grade_category],
+            "grade_portion": score /100 * grade_portion[header.grade_category],
         }
 
     return grades
-
+       
+            
 
 def publish_final_grades(type="Preview", email=False):
     grades = []
 
     for user in User.query.filter_by(role="student").all():
+        if user.student_id == '1187694':
+            continue
         final_grades = final_grades_student(user.id)
-        msg, grade = final_grade_message(final_grades, user, type=type)
+        msg, grade = final_grade_message(final_grades, user, grades_due='Dec 20, 2023',type=type)
         if email:
             email = UBEmail()
-            email.send_email(user.email, "Final Grades Preview", msg)
+            email.send_email(user.email, "Final Grades", msg)
         grades.append(
             {
                 "id": user.id,
                 "grade": grade,
-                "Letter_grade": build_grades(grade),
+                "Letter_grade":get_letter_grades(grade),
                 "student_id": user.student_id,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
@@ -104,12 +115,12 @@ def final_grade_message(final_grades, user, grades_due, type="FINAL"):
         msg = msg + "-" * len(type) + "\n"
         type_total = 0
         for grade in grades:
-            msg += f"{grade.strip()}: {grades[grade]['score']:.1f}\n"
+            msg += f"{grade.strip()}: {grades[grade]['score']:.0f}\n"
             type_total += grades[grade]["grade_portion"]
         msg += f"\nGrade: {type_total:.2f}%\n\n"
         overall_total += type_total
     overall_total = min(overall_total, 100)
-    msg += f"FINAL GRADE: {overall_total:.1f} ({build_grades(overall_total)})"
+    msg += f"FINAL GRADE: {overall_total:.2f}% ({get_letter_grades(overall_total)})"
     return msg, overall_total
 
 
@@ -146,7 +157,7 @@ def get_student_grades():
 def build_grades(get_grades=True):
     if get_grades:
         get_student_grades()
-    grade_csv()
+    # grade_csv()
 
 
 def grade_csv():
@@ -168,7 +179,7 @@ def grade_csv():
                 continue
             columns[assignment.grade_category].append(assignment.name)
 
-    with open("zero_midterms_details.csv", "w") as f:
+    with open("grade_details.csv", "w") as f:
         header = "section,Student ID,email,wallet"
         for grade_category in columns:
             for col in columns[grade_category]:

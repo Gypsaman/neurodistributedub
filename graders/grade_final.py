@@ -33,11 +33,13 @@ def project_folder():
     if 'scripts' in os.listdir(currSubmissionDir):
         return currSubmissionDir
     for file in os.listdir(currSubmissionDir):
-        if 'MACOSX' in file:
+        if 'MACOSX' in file or '.venv' in file:
             continue
         if os.path.isdir(os.path.join(currSubmissionDir,file)):
             paths = get_tree(os.path.join(currSubmissionDir,file))
             for dir in paths:
+                if '.venv' in dir:
+                    continue
                 if dir.endswith('scripts'):
                     path = dir
                     break
