@@ -9,6 +9,7 @@ from webproject.modules.quizzes import Topics
 from webproject.routes import admin_required
 from datetime import datetime as dt
 from webproject.modules.quizzes import create_quiz_users
+from webproject.modules.logger import Log, LogType
 from sqlalchemy import text
 
 
@@ -26,6 +27,7 @@ def select_quiz():
 def select_quiz_post():
     quiz_id = request.form['quiz_id']
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
+    Log(LogType.QUIZ,current_user.student_id,f"Quiz {quiz_id}")
     if quiz.grade is not None:
         return redirect(url_for("quiz.quiz_retake",quiz_id=quiz_id))
     return redirect(url_for("quiz.quiz_grade",quiz_id=quiz_id))
@@ -33,6 +35,7 @@ def select_quiz_post():
 @quiz.route('/quiz/retake/<int:quiz_id>')
 @login_required
 def quiz_retake(quiz_id):
+
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
     # quiz.grade = None
     questions = Questions.query.filter_by(quiz_id=quiz.id).all()
@@ -45,6 +48,9 @@ def quiz_retake(quiz_id):
 @quiz.route('/quiz/<int:quiz_id>')
 @login_required
 def quiz_grade(quiz_id):
+    
+
+    
     quiz = Quizzes.query.filter_by(id=quiz_id).first()
     
     if quiz is None or (quiz.user_id != current_user.id and not current_user.id == 1):
@@ -268,7 +274,6 @@ def edit_quiz_post():
     
     return redirect(url_for('quiz.view_quizzes',page_num=1))
     
-    
 @quiz.route("/quiz_duedate/<int:id>")
 @admin_required
 def quiz_duedate(id):
@@ -287,8 +292,6 @@ def quiz_duedate(id):
      
     return render_template("quizzes/quizzesdue.html",table=table,quiz=quiz.id)
     
-
-
 @quiz.route("/add_quiz_duedate/<int:id>")
 @admin_required
 def add_quiz_duedate(id):

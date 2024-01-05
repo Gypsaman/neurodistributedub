@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from webproject.modules.extensions import db, migrate
 from webproject.modules.dotenv_util import initialize_dotenv
 
+from datetime import timedelta
 
 def create_app():
     
@@ -15,7 +16,8 @@ def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-    print(os.getenv("DATABASE"))
+    app.permanent_session_lifetime = timedelta(hours=3)
+    
 
     db.init_app(app)
     migrate.init_app(app, db)

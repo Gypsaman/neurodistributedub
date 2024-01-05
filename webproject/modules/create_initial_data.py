@@ -9,18 +9,51 @@ import pandas as pd
 import hashlib
 from webproject.modules.ubemail import UBEmail
 
+from webproject.models import Quiz_DueDates,Quizzes,Grades,Submissions,DueDates,Sections,User,PasswordReset,Wallet
+import pandas as pd
 
+sections = ['SP24-Monday','SP24-Wednesday']
+SCHEDULE_FILE = 'e:\\Teaching\\CPS-570 BlockChain\\2024 Spring\\Class Topic Schedule.xlsx'
+
+def delete_previous_data():
+
+    for due in Quiz_DueDates.query.all():
+        db.session.delete(due)
+    db.session.commit()
+    for quiz in Quizzes.query.all():
+        db.session.delete(quiz)
+    db.session.commit()
+    for grade in Grades.query.all():
+        db.session.delete(grade)
+    db.session.commit()
+    for sub in Submissions.query.all():
+        db.session.delete(sub)
+    db.session.commit()
+    for due in DueDates.query.all():
+        db.session.delete(due)
+    db.session.commit()
+    for user in User.query.all():
+        db.session.delete(user)
+    db.session.commit()
+    for section in Sections.query.all():
+        db.session.delete(section)
+    for wallet in Wallet.query.all():
+        db.session.delete(wallet)
+    db.session.commit()
+    for passwordreset in PasswordReset.query.all():
+        db.session.delete(passwordreset)
+    db.session.commit()
+    
 def create_initial_data():
 
     with create_app().app_context():
-        db.create_all()
+        delete_previous_data()
         create_sections()
         create_users()
+        set_due_dates()
         
-
-
 def create_sections():
-    sections = ['FA23-Monday','FA23-Thursday']
+    
     for section in sections:
         if Sections.query.filter_by(section=section).first():
             continue
@@ -30,6 +63,30 @@ def create_sections():
         )
         db.session.add(new_section)
     db.session.commit()
+    
+def set_due_dates():
+    xls = pd.ExcelFile(SCHEDULE_FILE)
+    quizzes = pd.read_excel(xls, 'QuizDates')
+    for _,quiz in quizzes.iterrows():
+        for idx,section in enumerate(sections):
+            section_id = Sections.query.filter_by(section=section).first().id
+            if not section:
+                raise('Section not found in set_due_dates')
+            quiz_date = Quiz_DueDates(quiz_header=quiz['ID'],section=section_id, date_due=quiz[f'Section {idx+1}'])
+            db.session.add(quiz_date)
+        
+    db.session.commit()
+    assignments = pd.read_excel(xls, 'Assignment Dates')
+    for _,assign in assignments.iterrows():
+        for idx,section in enumerate(sections):
+            section_id = Sections.query.filter_by(section=section).first().id
+            if not section:
+                raise('Section not found in set_due_dates')
+            assign_date = DueDates(assignment=assign['ID'],section=section_id, duedate=assign[f'Section {idx+1}'])
+            db.session.add(assign_date)
+        
+    db.session.commit()
+    
     
 def send_new_user_email(first_name,email_addr,pwd):
     body = f'Dear {first_name},\n\n'
@@ -82,9 +139,8 @@ def create_users_from_roster(top=None):
             
     db.session.commit()
     
-    
 def create_users():
-    section = Sections.query.filter_by(section='FA23-Monday').first() 
+    section = Sections.query.filter_by(section=sections[0]).first() 
     if not User.query.filter_by(email='gypsaman@gmail.com').first():
             
         user = User(
@@ -115,4 +171,4 @@ def create_users():
         
        
 if __name__ == '__main__':
-    create_initial_data()
+    set_due_dates()

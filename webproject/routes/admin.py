@@ -7,6 +7,7 @@ from webproject.modules.table_creator import Field, TableCreator, timestamp_to_d
 from webproject.routes import admin_required
 from datetime import datetime as dt
 from webproject.modules.quizzes import Topics
+from webproject.modules.logger import LogType, Log
 
 admin = Blueprint("admin", __name__)
 

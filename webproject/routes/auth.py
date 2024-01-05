@@ -10,6 +10,7 @@ from datetime import timedelta
 import random
 from webproject.modules.ubemail import UBEmail
 from webproject.modules.roster import open_roster_encrypted
+from webproject.modules.logger import LogType, Log
 from webproject.models import Sections
 import json
 import os
@@ -33,9 +34,11 @@ def login_post():
     curr_usr = User.query.filter_by(email=email).first()
 
     if not curr_usr or not check_password_hash(curr_usr.password,password):
+        Log(LogType.LOGIN, email, "failed login attempt")
         flash('Incorrect email/password combination')
         return redirect(url_for('auth.login'))
     login_user(curr_usr,remember=remember)
+    Log(LogType.LOGIN, curr_usr.student_id, "successful login")
     return redirect(url_for('dashb.dashboard'))
 
 
@@ -54,11 +57,13 @@ def register_post():
     curr_User = User.query.filter_by(email=email).first()
 
     if curr_User:
+        Log(LogType.REGISTER, email, "Allready registered")
         flash('Email exists already')
         return redirect(url_for('auth.register'))
     
     curr_user = User.query.filter_by(student_id=request.form.get('studentid')).first()
     if curr_user:
+        Log(LogType.REGISTER, email, "Allready registered")
         flash('Student ID exists already')
         return redirect(url_for('auth.register'))
     
@@ -82,7 +87,7 @@ def register_post():
 
     db.session.add(new_usr)
     db.session.commit()
-
+    Log(LogType.REGISTER, email, "successful registration")
     return redirect(url_for('auth.login'))
 
 @auth.route('/logout')
