@@ -60,7 +60,7 @@ def update_if_late(date_submitted,assignment_id,user_id,grade,comments):
     if date_submitted > due_date.duedate:
         days = (date_submitted - due_date.duedate).days
         days = 1 if days == 0 else days
-        penalty = 8 if days < 7 else  11
+        penalty = 5 if days < 7 else  11
         penalty = 15 if days > 21 else penalty
         grade = max(grade - penalty,0)
         comments += f'\n\nyour submission was {days} days late and your score was reduced by {penalty} points'

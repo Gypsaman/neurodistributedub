@@ -4,7 +4,7 @@ import requests
 from webproject.modules.ubemail import UBEmail
 from webproject.modules import roster
 from webproject import db, create_app
-from webproject.models import User, Assignments, Submissions, Grades, Sections, DueDates, Quizzes
+from webproject.models import User, Assignments, Submissions, Grades, Sections, DueDates, Quizzes, QuestionBank,AnswerBank
 from datetime import datetime as dt
 from webproject.modules import dotenv_util
 import os
@@ -19,22 +19,22 @@ def import_quiz_questions():
 
         for question_number,question in quizzes.items():
                 
-            question_id = question_number
             topic = question['Topic']
             question_txt = question['Question']
-            db.session.add(QuestionBank(question_id=question_id,topic=topic,question=question_txt))
+            question_bank = QuestionBank(topic=topic,question=question_txt)
+            db.session.add(question_bank)
+            db.session.commit()
+            db.session.refresh(question_bank)
             for answer in question['Answers']:
-                answer_id = answer['ID']
                 answer_txt = answer['Answer']
                 correct_answer = answer['Correct']
                 db.session.add(
                     AnswerBank(
-                        question_id=question_id,
-                        answer_id=answer_id,
+                        question_id=question_bank.question_id,
                         answer_txt=answer_txt,
                         correct_answer=correct_answer)
                     )
-        db.session.commit()
+            db.session.commit()
         print('Done')
 
 def provide_grade_update(section_name=None):

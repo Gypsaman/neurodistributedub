@@ -17,31 +17,6 @@ def Topics():
             topics[q[0]] = q[1]
     return topics
 
-def create_quiz(
-    description: str,
-    date_available: dt,
-    date_due: dt,
-    topics: dict,
-    multiple_retries: bool=True,
-    active: bool=True
-    ):
-    quiz_header = Quiz_Header(description=description,
-                              date_available=date_available,
-                              date_due=date_due,
-                              multiple_retries=multiple_retries,
-                              active=active)
-    db.session.add(quiz_header)
-    db.session.commit()
-    for topic,qty in topics.items():
-        quiz_topic = Quiz_Topics(quiz_header=quiz_header.id,
-                                 topic=topic,
-                                 number_of_questions=qty)
-        db.session.add(quiz_topic)
-    db.session.commit()
-    
-    return quiz_header.id
-        
-
 def create_quiz_user(quiz_id: int,
                 user_id,
                 
@@ -61,15 +36,15 @@ def create_quiz_user(quiz_id: int,
             if (idx+1) not in selection:
                 continue
             record = Questions(quiz_id=quiz.id,
-                               question_id=question.question_id,
                                topic = topic,
                                question=question.question,
                                display_order=selection.index(idx+1)+topic_count,
-                               answer_chosen='',
+                               answer_chosen=0,
                                is_correct=False)
             
             db.session.add(record)
             db.session.commit()
+            db.session.refresh(record)
 
             
             answer_count = AnswerBank.query.filter_by(question_id=question.question_id).count()
@@ -77,9 +52,7 @@ def create_quiz_user(quiz_id: int,
             for order,a in enumerate(AnswerBank.query.filter_by(question_id=question.question_id).all()):
                 if (order+1) not in answer_selection:
                     continue
-                answer = Answers(quiz_id=quiz.id,
-                                 question_id=question.question_id,
-                                 answer_id=a.answer_id,
+                answer = Answers(question_id=record.question_id,
                                  display_order=answer_selection.index(order+1),
                                  answer_txt=a.answer_txt,
                                  correct_answer=a.correct_answer)
@@ -88,44 +61,63 @@ def create_quiz_user(quiz_id: int,
         topic_count += qty
             
     return quiz.id
-   
-def create_final(topics_selected:dict,StartTime:dt):
-    with create_app().app_context():
-        users = User.query.all()
-        for user in users:
-            quiz_id = create_quiz(topics_selected,StartTime,dt.now()+timedelta(hours=2),description='Final for {}'.format(user.first_name),user_id=user.id,multiple_retries=False)
-            print('Created quiz {} for {}'.format(quiz_id,user.first_name))
-           
 
-def create_quiz_all_users(section_name:str,
-                          quiz_header_id:int,silent=True
-    ):     
-    with create_app().app_context():
-        section = Sections.query.filter_by(section=section_name).first()
-        users = User.query.filter_by(section=section.id,role='student').all()
-        for user in users:
-            q = Quizzes.query.filter_by(quiz_header=quiz_header_id,user_id=user.id).first()
-            if not q:
-                quiz_id = create_quiz_user(quiz_header_id,user.id)
-                if not silent:
-                    print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
-
-    
 def create_quiz_users(quiz_header_id:int,users:list):
     
     for user in users:
         create_quiz_user(quiz_header_id,user[0])
 
 
+# deprecated   
+# def create_final(topics_selected:dict,StartTime:dt):
+#     with create_app().app_context():
+#         users = User.query.all()
+#         for user in users:
+#             quiz_id = create_quiz(topics_selected,StartTime,dt.now()+timedelta(hours=2),description='Final for {}'.format(user.first_name),user_id=user.id,multiple_retries=False)
+#             print('Created quiz {} for {}'.format(quiz_id,user.first_name))
+           
+#deprecated
+# def create_quiz_all_users(section_name:str,
+#                           quiz_header_id:int,silent=True
+#     ):     
+#     with create_app().app_context():
+#         section = Sections.query.filter_by(section=section_name).first()
+#         users = User.query.filter_by(section=section.id,role='student').all()
+#         for user in users:
+#             q = Quizzes.query.filter_by(quiz_header=quiz_header_id,user_id=user.id).first()
+#             if not q:
+#                 quiz_id = create_quiz_user(quiz_header_id,user.id)
+#                 if not silent:
+#                     print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
+
+# deprecated
+# def create_quiz(
+#     description: str,
+#     date_available: dt,
+#     date_due: dt,
+#     topics: dict,
+#     multiple_retries: bool=True,
+#     active: bool=True
+#     ):
+#     quiz_header = Quiz_Header(description=description,
+#                               date_available=date_available,
+#                               date_due=date_due,
+#                               multiple_retries=multiple_retries,
+#                               active=active)
+#     db.session.add(quiz_header)
+#     db.session.commit()
+#     for topic,qty in topics.items():
+#         quiz_topic = Quiz_Topics(quiz_header=quiz_header.id,
+#                                  topic=topic,
+#                                  number_of_questions=qty)
+#         db.session.add(quiz_topic)
+#     db.session.commit()
+    
+#     return quiz_header.id
+        
+ 
+
+
 if __name__ == '__main__':
-    topics_selected = {"NFT": 11}
-    quiz_id = create_quiz(
-                description= "NFT Quiz",
-                date_available= dt.now(),
-                date_due= dt.now()+timedelta(days=7),
-                topics = topics_selected,
-                multiple_retries=True,
-                active=True
-                )
-    create_quiz_all_users('SP23-Wednesday',quiz_id)
+    pass
 

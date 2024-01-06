@@ -55,7 +55,7 @@ def quiz_grade(quiz_id):
     
     if quiz is None or (quiz.user_id != current_user.id and not current_user.id == 1):
         return redirect(url_for("quiz.select_quiz"))
-    not_answered = Questions.query.filter_by(quiz_id=quiz.id,answer_chosen='').count()
+    not_answered = Questions.query.filter_by(quiz_id=quiz.id,answer_chosen=0).count()
     
     all_questions = Questions.query.filter_by(quiz_id=quiz.id).count()
 
@@ -93,7 +93,7 @@ def quiz_grade_post(quiz_id):
     question_answers = []
     for question in questions:
         q = {'question':{'display_order':question.display_order,'topic':question.topic,'question':question.question,'answer_chosen':question.answer_chosen,'is_correct':question.is_correct}}
-        answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
+        answers = Answers.query.filter_by(question_id=question.question_id).order_by(Answers.display_order).all()
         q['answers'] = []
         for answer in answers:
             q['answers'].append({'answer_id':answer.answer_id,'display_order':answer.display_order,'answer_txt':answer.answer_txt,'correct_answer':answer.correct_answer})
@@ -110,7 +110,7 @@ def quiz_display(quiz_id,question_number):
     question = Questions.query.filter_by(quiz_id=quiz.id,display_order=question_number).first()
     if question is None:
         return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=1))
-    answers = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id).order_by(Answers.display_order).all()
+    answers = Answers.query.filter_by(question_id=question.question_id).order_by(Answers.display_order).all()
     
     return render_template("quizzes/question.html",quiz=quiz,question=question,answers=answers,all_questions=all_questions)
     
@@ -121,7 +121,7 @@ def quiz_display_post(quiz_id,question_number):
     question = Questions.query.filter_by(quiz_id=quiz.id,display_order=question_number).first()
     number_of_questions = Questions.query.filter_by(quiz_id=quiz.id).count()
     answer_selected = request.form['answer_selected']
-    answer = Answers.query.filter_by(quiz_id=quiz.id,question_id=question.question_id,answer_id=answer_selected).first()
+    answer = Answers.query.filter_by(question_id=question.question_id,answer_id=answer_selected).first()
     question.answer_chosen = answer.answer_id
     question.is_correct = answer.correct_answer
     db.session.commit()

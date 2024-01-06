@@ -1,7 +1,6 @@
 from webproject import models
 from webproject import create_app, db
 from webproject.models import User, Sections, Quiz_Header
-from webproject.modules.quizzes import create_quiz, Topics
 from webproject.modules.ubemail import UBEmail
 from webproject.modules.quizzes import create_quiz_users
 from webproject.models import Quiz_DueDates,Quizzes,Grades,Submissions,DueDates,Sections,User,PasswordReset,Wallet

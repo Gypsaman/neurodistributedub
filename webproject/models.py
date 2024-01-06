@@ -175,6 +175,7 @@ class Quiz_Topics(db.Model):
     def __repr__(self):
         return f'topic {self.topic} number of questions {self.number_of_questions}'
     
+ 
 class Quizzes(db.Model):
     __tablename__ = 'quizzes'
     id = db.Column(db.Integer, primary_key=True)
@@ -188,12 +189,12 @@ class Quizzes(db.Model):
     
 class Questions(db.Model):
     __tablename__ = 'questions'
-    quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
-    question_id = db.Column(db.String(10),primary_key=True)
+    question_id = db.Column(db.Integer,primary_key=True)
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'))
     topic = db.Column(db.String(50))
     question = db.Column(db.String(500))
     display_order = db.Column(db.Integer)
-    answer_chosen = db.Column(db.String(20))
+    answer_chosen = db.Column(db.Integer)
     is_correct = db.Column(db.Boolean)
     
     def __repr__(self):
@@ -201,9 +202,8 @@ class Questions(db.Model):
     
 class Answers(db.Model):
     __tablename__ = 'answers'
-    quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'),primary_key=True)
-    question_id = db.Column(db.String(10),db.ForeignKey('questions.question_id'), primary_key=True )
-    answer_id = db.Column(db.String(10),primary_key=True)
+    answer_id = db.Column(db.Integer,primary_key=True)
+    question_id = db.Column(db.Integer,db.ForeignKey('questions.question_id'))
     display_order = db.Column(db.Integer)
     answer_txt = db.Column(db.String(100))
     correct_answer = db.Column(db.Boolean)
@@ -215,7 +215,7 @@ class Answers(db.Model):
     
 class QuestionBank(db.Model):
     __tablename__ = 'question_bank'
-    question_id = db.Column(db.String(10),primary_key=True)
+    question_id = db.Column(db.Integer,primary_key=True)
     topic = db.Column(db.String(50))
     question = db.Column(db.String(500))
     
@@ -224,11 +224,12 @@ class QuestionBank(db.Model):
     
 class AnswerBank(db.Model):
     __tablename__ = 'answer_bank'
-    question_id = db.Column(db.String(10),db.ForeignKey('questions.question_id'), primary_key=True )
-    answer_id = db.Column(db.String(10),primary_key=True)
+    answer_id = db.Column(db.Integer,primary_key=True)
+    question_id = db.Column(db.Integer,db.ForeignKey('questions.question_id'))
     answer_txt = db.Column(db.String(100))
     correct_answer = db.Column(db.Boolean)
     
     def __repr__(self):
         return f'id: {self.answer_id}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
     
+   
