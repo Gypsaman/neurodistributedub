@@ -1,0 +1,2163 @@
+{
+    "1": {
+        "question": "In encryption there are two main types of keys",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "1-0",
+                "answer_txt": "Symmetric for large data and Asymetric for small data",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "1-1",
+                "answer_txt": "Symmetric for small data and Asymetric for large data",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "1-2",
+                "answer_txt": "Hash for small data and cryptic for large data",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "1-3",
+                "answer_txt": "Hash for large data and cryptic for small data",
+                "correct_answer": false
+            }
+        ]
+    },
+    "2": {
+        "question": "Public Keys are ok to share with everyone while private keys are only to be shared with friends",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "2-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "2-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "3": {
+        "question": "RSA and Elliptical Curves are methods for generating private and public keys, encoding and decoding messages",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "3-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "3-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "4": {
+        "question": "With a key size of 128 bits, which one is more secured.",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "4-0",
+                "answer_txt": "Elliptic Curve",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "4-1",
+                "answer_txt": "RSA",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "4-2",
+                "answer_txt": "Both are equally secured",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "4-3",
+                "answer_txt": "None of these",
+                "correct_answer": false
+            }
+        ]
+    },
+    "5": {
+        "question": "Which is the formula for an Elliptical Curver",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "5-0",
+                "answer_txt": "y^2 = x^3 + ax + b",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "5-1",
+                "answer_txt": "y^3 = x^3 + ax + b",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "5-2",
+                "answer_txt": "y^2 = ax^2 + bx + c",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "5-3",
+                "answer_txt": "y^3 = ax^2 + bx + c",
+                "correct_answer": false
+            }
+        ]
+    },
+    "6": {
+        "question": "Hasse's Theorem states that",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "6-0",
+                "answer_txt": "Number of Points are in the range of (p+1) +- 2*sqrt(p)",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "6-1",
+                "answer_txt": "Number of Points are in the range of (p+1) +- 2p",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "6-2",
+                "answer_txt": "Number of Points equals p",
+                "correct_answer": false
+            }
+        ]
+    },
+    "7": {
+        "question": "A trap door function provides an easy way to decrypt",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "7-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "7-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "8": {
+        "question": "A Hash function provides a quick algorithm for a signature, can't be used for encryption",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "8-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "8-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "9": {
+        "question": "If the hash for \"1234\" is 0x975ae4f then the hash for \"1235\" is 0x975ae4g",
+        "topic": "Encryption",
+        "answers": [
+            {
+                "answer_id": "9-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "9-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "10": {
+        "question": "Blockchain was originally implemented by Haber and Stornetta in 1991 to",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "10-0",
+                "answer_txt": "Provide a way to timestamp electronic documents",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "10-1",
+                "answer_txt": "Create bitcoin",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "10-2",
+                "answer_txt": "Track employees",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "10-3",
+                "answer_txt": "Track payments received",
+                "correct_answer": false
+            }
+        ]
+    },
+    "11": {
+        "question": "A blockchain is a distributed ledger that is used to record transactions across many computers so that the record cannot be altered retroactively without the alteration of all subsequent blocks and the collusion of the network.",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "11-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "11-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "12": {
+        "question": "Proof of Work was a solution for stopping spam in emails during the 90s",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "12-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "12-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "13": {
+        "question": "Which of these did the Bitcoin paper address:",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "13-0",
+                "answer_txt": "Peer to Peer Network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "13-1",
+                "answer_txt": "Proof of Work",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "13-2",
+                "answer_txt": "Double Spending",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "13-3",
+                "answer_txt": "All of the above",
+                "correct_answer": true
+            }
+        ]
+    },
+    "14": {
+        "question": "In mining, NONCE means",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "14-0",
+                "answer_txt": "Number used Once",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "14-1",
+                "answer_txt": "Non Certified",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "14-2",
+                "answer_txt": "Number on Next Certification",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "14-3",
+                "answer_txt": "It has no meaning",
+                "correct_answer": false
+            }
+        ]
+    },
+    "15": {
+        "question": "The bitcoin blockchain implementation is the same as the ethereum implementation",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "15-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "15-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "16": {
+        "question": "In bitcoin, if I have an UTXO worth 1 BTC and send 0.5 BTC, the remaining 0.5 BTC is returned to me automatically",
+        "topic": "Blockchain",
+        "answers": [
+            {
+                "answer_id": "16-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "16-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "17": {
+        "question": "Choose what is missing to make this function return the id in the contract.\n\n\tfunction returnID() __________   ___________  returns(uint) {\n\t\treturn id;\n\t}",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "17-0",
+                "answer_txt": "public view",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "17-1",
+                "answer_txt": "private payable",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "17-2",
+                "answer_txt": "public payable",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "17-3",
+                "answer_txt": "private view",
+                "correct_answer": false
+            }
+        ]
+    },
+    "18": {
+        "question": "when a function is called a message is passed (msg).\nWhat data type is msg.sender",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "18-0",
+                "answer_txt": "address",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "18-1",
+                "answer_txt": "uint",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "18-2",
+                "answer_txt": "uint256",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "18-3",
+                "answer_txt": "bytes32",
+                "correct_answer": false
+            }
+        ]
+    },
+    "19": {
+        "question": "contract myContract {\n\tuint256 value;\n\tconstructor() {\n\tvalue = 20;\n\t}\n\tfunction viewValue() public view returns (uint256) {\n\treturn value;\n\t}\n}\n\nin this contract the constructor is called everytime viewValue is called",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "19-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "19-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "20": {
+        "question": "in the following function:\n\tfunction withdraw() public payable {\n\t\tpayable(msg.sender).transfer(address(this).balance);\n\t}",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "20-0",
+                "answer_txt": "Tranfers the money in the senders wallet to the contract",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "20-1",
+                "answer_txt": "Transfers the total balance in the contract to the sender",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "20-2",
+                "answer_txt": "Transfers what the sender has put in the contract to the sender",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "20-3",
+                "answer_txt": "Permits the sender to send money to the contract",
+                "correct_answer": false
+            }
+        ]
+    },
+    "22": {
+        "question": "What is web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "22-0",
+                "answer_txt": "A library used for interacting with Ethereum nodes using Python",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "22-1",
+                "answer_txt": "A web-based programming language ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "22-2",
+                "answer_txt": "A framework for building decentralized applications ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "22-3",
+                "answer_txt": "A programming language for building smart contracts",
+                "correct_answer": false
+            }
+        ]
+    },
+    "23": {
+        "question": "Which of the following is NOT a feature of web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "23-0",
+                "answer_txt": "Connecting to Ethereum nodes ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "23-1",
+                "answer_txt": "Building and sending transactions  ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "23-2",
+                "answer_txt": "Creating smart contracts",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "23-3",
+                "answer_txt": "Building web applications",
+                "correct_answer": true
+            }
+        ]
+    },
+    "24": {
+        "question": "What is a provider in web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "24-0",
+                "answer_txt": "A node that connects to the Ethereum network ",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "24-1",
+                "answer_txt": "A module used for building smart contracts ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "24-2",
+                "answer_txt": "A library used for connecting to the internet ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "24-3",
+                "answer_txt": "A function used for creating web applications",
+                "correct_answer": false
+            }
+        ]
+    },
+    "25": {
+        "question": "Which of the following is NOT a component of a smart contract",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "25-0",
+                "answer_txt": "State Variables",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "25-1",
+                "answer_txt": "Events",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "25-2",
+                "answer_txt": "Functions",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "25-3",
+                "answer_txt": "Transactions",
+                "correct_answer": true
+            }
+        ]
+    },
+    "26": {
+        "question": "What is the purpose of a contract address in web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "26-0",
+                "answer_txt": "To identify a specific instance of a smart contract on the Ethereum network",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "26-1",
+                "answer_txt": "To identify a specific Ethereum node on the network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "26-2",
+                "answer_txt": "To identify a specific transaction on the network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "26-3",
+                "answer_txt": "To identify a specific block on the networkactions",
+                "correct_answer": false
+            }
+        ]
+    },
+    "27": {
+        "question": "What is the purpose of a nonce in web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "27-0",
+                "answer_txt": "To prevent replay attacks on transactions",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "27-1",
+                "answer_txt": "To identify a specific block on the Ethereum network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "27-2",
+                "answer_txt": "To limit the amount of gas used by a transaction ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "27-3",
+                "answer_txt": "To identify a specific instance of a smart contract on the network",
+                "correct_answer": false
+            }
+        ]
+    },
+    "28": {
+        "question": "Which of the following is NOT a step in deploying a smart contract using web3.py? ",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "28-0",
+                "answer_txt": "Compiling the smart contract code",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "28-1",
+                "answer_txt": "Creating a Transaction to deploy the smart contract",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "28-2",
+                "answer_txt": "Deploying the smart contract to the Ethereum network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "28-3",
+                "answer_txt": "Writing a web application to interact with the smart contract",
+                "correct_answer": true
+            }
+        ]
+    },
+    "29": {
+        "question": "What is the default provider used by web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "29-0",
+                "answer_txt": "Infura",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "29-1",
+                "answer_txt": "Ganache",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "29-2",
+                "answer_txt": "Geth",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "29-3",
+                "answer_txt": "None of the above",
+                "correct_answer": true
+            }
+        ]
+    },
+    "30": {
+        "question": "How can you connect to a local Ethereum node using web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "30-0",
+                "answer_txt": "web3.Web3(HTTPProvider('http://localhost:8545')) ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "30-1",
+                "answer_txt": "web3.Web3(WebsocketProvider('ws://localhost:8546'))",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "30-2",
+                "answer_txt": "Getweb3.Web3(IPCProvider('/path/to/geth.ipc'))",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "30-3",
+                "answer_txt": "All ot these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "31": {
+        "question": "Which module in web3.py is used to interact with Ethereum accounts",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "31-0",
+                "answer_txt": "web3.eth",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "31-1",
+                "answer_txt": "web3.personal",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "31-2",
+                "answer_txt": "web3.net",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "31-3",
+                "answer_txt": "web3.txpool",
+                "correct_answer": false
+            }
+        ]
+    },
+    "32": {
+        "question": "How can you retrieve the balance of an Ethereum account using web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "32-0",
+                "answer_txt": "web3.eth.get_balance(account_address)",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "32-1",
+                "answer_txt": "web3.eth.get_transaction_count(account_address) ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "32-2",
+                "answer_txt": "web3.eth.send_transaction(transaction)",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "32-3",
+                "answer_txt": "None of These",
+                "correct_answer": false
+            }
+        ]
+    },
+    "33": {
+        "question": "How can you interact with a smart contract using web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "33-0",
+                "answer_txt": "Instantiate a Contract object using the contract ABI and contract address ",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "33-1",
+                "answer_txt": "Use the web3.eth module to call the smart contract function directly ",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "33-2",
+                "answer_txt": "Use the web3.personal module to interact with the smart contract",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "33-3",
+                "answer_txt": "None of These",
+                "correct_answer": false
+            }
+        ]
+    },
+    "34": {
+        "question": "Where can you store sensitive information such as private keys using web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "34-0",
+                "answer_txt": ".env file",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "34-1",
+                "answer_txt": "Use a global variable",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "34-2",
+                "answer_txt": "Use a constant in the code",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "34-3",
+                "answer_txt": "None of These",
+                "correct_answer": false
+            }
+        ]
+    },
+    "35": {
+        "question": "What do you use to sign a transaction using web3.py",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "35-0",
+                "answer_txt": "Your Metamask account",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "35-1",
+                "answer_txt": "Private Key",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "35-2",
+                "answer_txt": "Transaction Hash",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "35-3",
+                "answer_txt": "No need to sign a transaction",
+                "correct_answer": false
+            }
+        ]
+    },
+    "36": {
+        "question": "What is the chainid for Goerli Testnet",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "36-0",
+                "answer_txt": "1",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "36-1",
+                "answer_txt": "5",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "36-2",
+                "answer_txt": "1337",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "36-3",
+                "answer_txt": "8545",
+                "correct_answer": false
+            }
+        ]
+    },
+    "37": {
+        "question": "Running ganache-cli with the -d flag will start a blockchain with the same accounts and balances every time",
+        "topic": "Web3",
+        "answers": [
+            {
+                "answer_id": "37-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "37-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "38": {
+        "question": "What is eth-brownie?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "38-0",
+                "answer_txt": "A type of brownie made with Ethereum blockchain technology.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "38-1",
+                "answer_txt": "A development framework used for building Ethereum smart contracts.",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "38-2",
+                "answer_txt": "A popular cryptocurrency used for online transactions.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "38-3",
+                "answer_txt": "A type of dessert popular in the Ethereum community.",
+                "correct_answer": false
+            }
+        ]
+    },
+    "39": {
+        "question": "Which programming languages can be used with eth-brownie?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "39-0",
+                "answer_txt": "Python",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "39-1",
+                "answer_txt": "Java",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "39-2",
+                "answer_txt": "C++",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "39-3",
+                "answer_txt": "Ruby",
+                "correct_answer": false
+            }
+        ]
+    },
+    "40": {
+        "question": "What is the command to create a new brownie project?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "40-0",
+                "answer_txt": "brownie new",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "40-1",
+                "answer_txt": "brownie init",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "40-2",
+                "answer_txt": "brownie create",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "40-3",
+                "answer_txt": "brownie project",
+                "correct_answer": false
+            }
+        ]
+    },
+    "41": {
+        "question": "What is the command to compile your brownie project?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "41-0",
+                "answer_txt": "brownie compile",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "41-1",
+                "answer_txt": "brownie build",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "41-2",
+                "answer_txt": "brownie deploy",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "41-3",
+                "answer_txt": "brownie run",
+                "correct_answer": false
+            }
+        ]
+    },
+    "42": {
+        "question": "What is the purpose of the Brownie project structure?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "42-0",
+                "answer_txt": "To organize your code into logical modules and packages",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "42-1",
+                "answer_txt": "o store your smart contracts on the Ethereum blockchain.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "42-2",
+                "answer_txt": "To run automated tests on your code.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "42-3",
+                "answer_txt": "To deploy your smart contracts to the Ethereum network.",
+                "correct_answer": false
+            }
+        ]
+    },
+    "43": {
+        "question": "Which command is used to run a script using the eth-brownie console?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "43-0",
+                "answer_txt": "brownie run",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "43-1",
+                "answer_txt": "brownie test",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "43-2",
+                "answer_txt": "brownie console",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "43-3",
+                "answer_txt": "brownie compile",
+                "correct_answer": false
+            }
+        ]
+    },
+    "44": {
+        "question": "What is the purpose brownie accounts",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "44-0",
+                "answer_txt": "To manage the deployment of your smart contracts.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "44-1",
+                "answer_txt": "To interact with the Ethereum network and execute transactions.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "44-2",
+                "answer_txt": "To obtain addresses to work with smartcontracts.",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "44-3",
+                "answer_txt": "To perform code coverage analysis on your smart contracts",
+                "correct_answer": false
+            }
+        ]
+    },
+    "45": {
+        "question": "Which of the following is not a brownie command",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "45-0",
+                "answer_txt": "init",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "45-1",
+                "answer_txt": "compile",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "45-2",
+                "answer_txt": "run",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "45-3",
+                "answer_txt": "deploy",
+                "correct_answer": true
+            }
+        ]
+    },
+    "46": {
+        "question": "You can select network you want to run with --network flag",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "46-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "46-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "47": {
+        "question": "Which is not a valid folder in brownie project structure",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "47-0",
+                "answer_txt": "oracles",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "47-1",
+                "answer_txt": "contracts",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "47-2",
+                "answer_txt": "scripts",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "47-3",
+                "answer_txt": "tests",
+                "correct_answer": false
+            }
+        ]
+    },
+    "48": {
+        "question": "Does brownie permit the addition of custom networks?",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "48-0",
+                "answer_txt": "Yes",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "48-1",
+                "answer_txt": "No",
+                "correct_answer": false
+            }
+        ]
+    },
+    "49": {
+        "question": "MockV3Aggregator is used to test Chainlink price feeds in:",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "49-0",
+                "answer_txt": "Goerli Testnet",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "49-1",
+                "answer_txt": "Mainnet",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "49-2",
+                "answer_txt": "ganache-cli",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "49-3",
+                "answer_txt": "Sepolia Testnet",
+                "correct_answer": false
+            }
+        ]
+    },
+    "50": {
+        "question": "Which of these obtains last deployment of a contract named 'TestContract' in brownie",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "50-0",
+                "answer_txt": "TestContract.deployments[-1]",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "50-1",
+                "answer_txt": "TestContract.get_last_deployment()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "50-2",
+                "answer_txt": "address(TestContract)",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "50-3",
+                "answer_txt": "TestContract[-1]",
+                "correct_answer": true
+            }
+        ]
+    },
+    "51": {
+        "question": "A test in brownie should have which activites",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "51-0",
+                "answer_txt": "Arrange, Act, Assert",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "51-1",
+                "answer_txt": "Arrange, Calculate, Assert",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "51-2",
+                "answer_txt": "Arrange, Calculate, Test",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "51-3",
+                "answer_txt": "Initialize, Act, Test",
+                "correct_answer": false
+            }
+        ]
+    },
+    "52": {
+        "question": "You can set publish-source to True in all Networks",
+        "topic": "Brownie",
+        "answers": [
+            {
+                "answer_id": "52-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "52-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "53": {
+        "question": "What is the maximum amount of tokens an ERC20 contract can create?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "53-0",
+                "answer_txt": "2^256 - 1",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "53-1",
+                "answer_txt": "2^256",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "53-2",
+                "answer_txt": "2^128 - 1",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "53-3",
+                "answer_txt": "2^128",
+                "correct_answer": false
+            }
+        ]
+    },
+    "54": {
+        "question": "What function returns the amount of tokens owned by an account?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "54-0",
+                "answer_txt": "tokenBalance()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "54-1",
+                "answer_txt": "tokens()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "54-2",
+                "answer_txt": "balanceOf()",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "54-3",
+                "answer_txt": "tokenOfOwnerByIndex()",
+                "correct_answer": false
+            }
+        ]
+    },
+    "55": {
+        "question": "how can a contract create tokens?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "55-0",
+                "answer_txt": "With constructor",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "55-1",
+                "answer_txt": "With mint function",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "55-2",
+                "answer_txt": "Both of these",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "55-3",
+                "answer_txt": "None of these",
+                "correct_answer": false
+            }
+        ]
+    },
+    "56": {
+        "question": "Which of these is not a token standard",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "56-0",
+                "answer_txt": "ERC-20",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "56-1",
+                "answer_txt": "ERC-721",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "56-2",
+                "answer_txt": "ERC-22",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "56-3",
+                "answer_txt": "ERC-1155",
+                "correct_answer": false
+            }
+        ]
+    },
+    "57": {
+        "question": "Which of these functions must be implemented by an ERC-20 token contract?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "57-0",
+                "answer_txt": "name",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "57-1",
+                "answer_txt": "symbol",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "57-2",
+                "answer_txt": "transfer",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "57-3",
+                "answer_txt": "All of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "58": {
+        "question": "A shortcut to implement a token is:",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "58-0",
+                "answer_txt": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "58-1",
+                "answer_txt": "@openzeppelin/contracts/interfaces/IERC20.sol",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "58-2",
+                "answer_txt": "@chainlink/contracts/token/ERC20/ERC20.sol",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "58-3",
+                "answer_txt": "None of these",
+                "correct_answer": false
+            }
+        ]
+    },
+    "59": {
+        "question": "an allowance permits",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "59-0",
+                "answer_txt": "A spender to transfer tokens on behalf of the owner",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "59-1",
+                "answer_txt": "a user to get tokens regularly",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "59-2",
+                "answer_txt": "a regular payment of tokens",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "59-3",
+                "answer_txt": "Save part of your tokens for later",
+                "correct_answer": false
+            }
+        ]
+    },
+    "60": {
+        "question": "Which of these events need to be implemented by an ERC-20 token contract?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "60-0",
+                "answer_txt": "Transfer",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "60-1",
+                "answer_txt": "Mint",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "60-2",
+                "answer_txt": "Approve",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "60-3",
+                "answer_txt": "Return",
+                "correct_answer": false
+            }
+        ]
+    },
+    "61": {
+        "question": "in an ERC20 contract you can only implement the functions in the standard",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "61-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "61-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "62": {
+        "question": "How many decimal places can an ERC-20 token have?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "62-0",
+                "answer_txt": "18",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "62-1",
+                "answer_txt": "10",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "62-2",
+                "answer_txt": "8",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "62-3",
+                "answer_txt": "All of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "63": {
+        "question": "a Token contract must create a whole number of tokens (no decimals)",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "63-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "63-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "64": {
+        "question": "IPFS stands for:",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "64-0",
+                "answer_txt": "InterPlanetary File System",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "64-1",
+                "answer_txt": "InterPlanetary File Sharing",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "64-2",
+                "answer_txt": "InterPlanetary File Storage",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "64-3",
+                "answer_txt": "InterPlanetary File System Sharing",
+                "correct_answer": false
+            }
+        ]
+    },
+    "65": {
+        "question": "IPFS is a peer-to-peer network, which means that:",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "65-0",
+                "answer_txt": "there is no central server",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "65-1",
+                "answer_txt": "all nodes are equal",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "65-2",
+                "answer_txt": "nodes can connect to each other directly",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "65-3",
+                "answer_txt": "All of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "66": {
+        "question": "IPFS uses a content-addressable system, which means that:",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "66-0",
+                "answer_txt": "Files are grouped by their content",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "66-1",
+                "answer_txt": "You find files by the address of the server",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "66-2",
+                "answer_txt": "You find files by the name of the file",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "66-3",
+                "answer_txt": "You find files by the hash of the file",
+                "correct_answer": true
+            }
+        ]
+    },
+    "67": {
+        "question": "IPFS is a fault-tolerant protocol, which means that:",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "67-0",
+                "answer_txt": "it can continue to operate even if some nodes fail",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "67-1",
+                "answer_txt": "it can continue to operate even if some files are lost",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "67-2",
+                "answer_txt": "it can continue to operate even if some users are offline",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "67-3",
+                "answer_txt": "All of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "68": {
+        "question": "Which protocol does IPFS use to facilitate file transfers",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "68-0",
+                "answer_txt": "HTTP",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "68-1",
+                "answer_txt": "FTP",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "68-2",
+                "answer_txt": "BitTorrent",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "68-3",
+                "answer_txt": "All of these",
+                "correct_answer": false
+            }
+        ]
+    },
+    "69": {
+        "question": "IPFS can be used to host which type of content",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "69-0",
+                "answer_txt": "Only text-based content",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "69-1",
+                "answer_txt": "only image-based content",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "69-2",
+                "answer_txt": "Only binary content",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "69-3",
+                "answer_txt": "All of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "70": {
+        "question": "The file CID is:",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "70-0",
+                "answer_txt": "A multihash with the first 2 bytes determining hash type and digest size",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "70-1",
+                "answer_txt": "A multihash with the first 2 bytes determining node type and file content",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "70-2",
+                "answer_txt": "a unique URL showing location of the file",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "70-3",
+                "answer_txt": "All of these",
+                "correct_answer": false
+            }
+        ]
+    },
+    "71": {
+        "question": "IPFS is a fault-tolerant protocol that can continue to operate even if some nodes fail",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "71-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "71-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "72": {
+        "question": "IPFS is a decentralized protocol that allows for the peer-to-peer sharing of files. ",
+        "topic": "IPFS",
+        "answers": [
+            {
+                "answer_id": "72-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "72-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "73": {
+        "question": "Which of the following can be turned into an NFT?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "73-0",
+                "answer_txt": "Physical goods only",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "73-1",
+                "answer_txt": "Digital goods only",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "73-2",
+                "answer_txt": "Both physical and digital goods",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "73-3",
+                "answer_txt": "Neither physical nor digital goods",
+                "correct_answer": false
+            }
+        ]
+    },
+    "74": {
+        "question": "What does NFT stand for?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "74-0",
+                "answer_txt": "Non-Fungible Token",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "74-1",
+                "answer_txt": "National Football Team",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "74-2",
+                "answer_txt": "New File Transfer",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "74-3",
+                "answer_txt": "Not For Trade",
+                "correct_answer": false
+            }
+        ]
+    },
+    "75": {
+        "question": "Which of the following is an example of an ERC-721 project?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "75-0",
+                "answer_txt": "Augur",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "75-1",
+                "answer_txt": "MakerDAO",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "75-2",
+                "answer_txt": "CryptoKitties",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "75-3",
+                "answer_txt": "Chainlink",
+                "correct_answer": false
+            }
+        ]
+    },
+    "76": {
+        "question": "What is the purpose of the 'approve' function in ERC-721 transactions?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "76-0",
+                "answer_txt": "To grant permission to transfer tokens to another address",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "76-1",
+                "answer_txt": "To mint new tokens",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "76-2",
+                "answer_txt": "To set the value of a token",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "76-3",
+                "answer_txt": "To destroy tokens",
+                "correct_answer": false
+            }
+        ]
+    },
+    "77": {
+        "question": "What is the main difference between ERC-20 and ERC-721 tokens?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "77-0",
+                "answer_txt": "ERC-20 tokens are fungible, while ERC-721 tokens are non-fungible",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "77-1",
+                "answer_txt": "ERC-20 tokens can be traded on any blockchain network, while ERC-721 tokens can only be traded on the Ethereum network",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "77-2",
+                "answer_txt": "ERC-20 tokens have lower transaction fees than ERC-721 tokens",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "77-3",
+                "answer_txt": "ERC-20 tokens have better security features than ERC-721 tokens",
+                "correct_answer": true
+            }
+        ]
+    },
+    "78": {
+        "question": "What is stored in an NFT?",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "78-0",
+                "answer_txt": "a URI of the metadata",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "78-1",
+                "answer_txt": "A hash certify the authenticity of the NFT",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "78-2",
+                "answer_txt": "Binary data of the image",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "78-3",
+                "answer_txt": "Key to decipher Image",
+                "correct_answer": false
+            }
+        ]
+    },
+    "79": {
+        "question": "Which of these is not part of the metadata",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "79-0",
+                "answer_txt": "image",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "79-1",
+                "answer_txt": "attributes",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "79-2",
+                "answer_txt": "owner",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "79-3",
+                "answer_txt": "name",
+                "correct_answer": false
+            }
+        ]
+    },
+    "80": {
+        "question": "In the metadata what is contained in the attributes",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "80-0",
+                "answer_txt": "An array of dictionaries",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "80-1",
+                "answer_txt": "Tuples of attributes and values",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "80-2",
+                "answer_txt": "A dictionary of attributes and values",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "80-3",
+                "answer_txt": "A list of attributes and values",
+                "correct_answer": false
+            }
+        ]
+    },
+    "81": {
+        "question": "Which of these is not part of the ERC 721 standard",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "81-0",
+                "answer_txt": "balanceOf()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "81-1",
+                "answer_txt": "tokenURI()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "81-2",
+                "answer_txt": "_safeMint()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "81-3",
+                "answer_txt": "transfer()",
+                "correct_answer": true
+            }
+        ]
+    },
+    "82": {
+        "question": "You can copy the code for an existing NFT collection and deploy your own",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "82-0",
+                "answer_txt": "True",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "82-1",
+                "answer_txt": "False",
+                "correct_answer": false
+            }
+        ]
+    },
+    "83": {
+        "question": "The only place to trade NFTs is on OpenSea",
+        "topic": "NFT",
+        "answers": [
+            {
+                "answer_id": "83-0",
+                "answer_txt": "True",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "83-1",
+                "answer_txt": "False",
+                "correct_answer": true
+            }
+        ]
+    },
+    "84": {
+        "question": "Which keyword is used to declare a variable in Solidity?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "84-0",
+                "answer_txt": "let",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "84-1",
+                "answer_txt": "var",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "84-2",
+                "answer_txt": "declare",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "84-3",
+                "answer_txt": "None of these",
+                "correct_answer": true
+            }
+        ]
+    },
+    "85": {
+        "question": "What does the 'view' keyword indicate for a Solidity function?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "85-0",
+                "answer_txt": "It cannot modify state variables",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "85-1",
+                "answer_txt": "It is a payable function",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "85-2",
+                "answer_txt": "It is a constructor function",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "85-3",
+                "answer_txt": "It is a function to return a value",
+                "correct_answer": false
+            }
+        ]
+    },
+    "86": {
+        "question": "How is an array declared in Solidity?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "86-0",
+                "answer_txt": " array myArray;",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "86-1",
+                "answer_txt": "uint[] myArray;",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "86-2",
+                "answer_txt": "myArray = new array[];",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "86-3",
+                "answer_txt": "array myArray[];",
+                "correct_answer": false
+            }
+        ]
+    },
+    "87": {
+        "question": "In Solidity, what is the purpose of the 'modifier' keyword?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "87-0",
+                "answer_txt": "To define a function's return type",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "87-1",
+                "answer_txt": "To restrict access to certain functions",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "87-2",
+                "answer_txt": "To specify the gas limit for a function",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "87-3",
+                "answer_txt": "To define a function's visibility",
+                "correct_answer": false
+            }
+        ]
+    },
+    "88": {
+        "question": "Which Solidity keyword is used to define the constructor of a contract?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "88-0",
+                "answer_txt": "constructor",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "88-1",
+                "answer_txt": "init",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "88-2",
+                "answer_txt": "build",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "88-3",
+                "answer_txt": "main",
+                "correct_answer": false
+            }
+        ]
+    },
+    "89": {
+        "question": "In Solidity, how are events used?",
+        "topic": "Solidity",
+        "answers": [
+            {
+                "answer_id": "89-0",
+                "answer_txt": "To trigger specific functions",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "89-1",
+                "answer_txt": "To store data on the blockchain",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "89-2",
+                "answer_txt": "To log and notify external systems of specific occurrences",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "89-3",
+                "answer_txt": "To execute contract upgrades",
+                "correct_answer": false
+            }
+        ]
+    },
+    "90": {
+        "question": "What happens if you send ERC20 tokens to a smart contract that does not support the ERC20 standard?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "90-0",
+                "answer_txt": "The tokens are automatically returned to the sender.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "90-1",
+                "answer_txt": "The tokens are permanently lost. ",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "90-2",
+                "answer_txt": "The tokens are converted to Ether.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "90-3",
+                "answer_txt": "The smart contract automatically becomes ERC20-compliant.",
+                "correct_answer": false
+            }
+        ]
+    },
+    "91": {
+        "question": "How do smart contracts typically interact with ERC20 tokens to trigger actions?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "91-0",
+                "answer_txt": "They cannot interact with ERC20 tokens.",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "91-1",
+                "answer_txt": "By directly calling token transfer functions. ",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "91-2",
+                "answer_txt": "By sending Ether to the contract..",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "91-3",
+                "answer_txt": "By using HTTP requests.",
+                "correct_answer": false
+            }
+        ]
+    },
+    "92": {
+        "question": "Which of the following functions is used to allow another address to spend your ERC20 tokens on your behalf?",
+        "topic": "Tokens",
+        "answers": [
+            {
+                "answer_id": "92-0",
+                "answer_txt": "transfer().",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "92-1",
+                "answer_txt": "approve()",
+                "correct_answer": true
+            },
+            {
+                "answer_id": "92-2",
+                "answer_txt": "balanceOf()",
+                "correct_answer": false
+            },
+            {
+                "answer_id": "92-3",
+                "answer_txt": "mint()",
+                "correct_answer": false
+            }
+        ]
+    }
+}

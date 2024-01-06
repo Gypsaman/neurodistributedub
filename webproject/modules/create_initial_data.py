@@ -1,16 +1,17 @@
 from webproject import models
 from webproject import create_app, db
-from webproject.models import User, Sections
-from werkzeug.security import generate_password_hash
+from webproject.models import User, Sections, Quiz_Header
 from webproject.modules.quizzes import create_quiz, Topics
+from webproject.modules.ubemail import UBEmail
+from webproject.modules.quizzes import create_quiz_users
+from webproject.models import Quiz_DueDates,Quizzes,Grades,Submissions,DueDates,Sections,User,PasswordReset,Wallet
 
+from werkzeug.security import generate_password_hash
 import os
 import pandas as pd
 import hashlib
-from webproject.modules.ubemail import UBEmail
-
-from webproject.models import Quiz_DueDates,Quizzes,Grades,Submissions,DueDates,Sections,User,PasswordReset,Wallet
 import pandas as pd
+from sqlalchemy import text
 
 sections = ['SP24-Monday','SP24-Wednesday']
 SCHEDULE_FILE = 'e:\\Teaching\\CPS-570 BlockChain\\2024 Spring\\Class Topic Schedule.xlsx'
@@ -134,7 +135,7 @@ def create_users_from_roster(top=None):
                 
             )
             db.session.add(user)
-            send_new_user_email(user.first_name,user.email,pwd)
+            # send_new_user_email(user.first_name,user.email,pwd)
 
             
     db.session.commit()
@@ -167,7 +168,16 @@ def create_users():
     db.session.commit()
     create_users_from_roster()
 
-        
+def create_user_quizzes():
+    for qh in Quiz_Header.query.all():
+        quiz_header = qh.id
+        stmt = "SELECT user.id FROM user  left join "
+        stmt += f"(select quiz_header,user_id from Quizzes where quiz_header = {quiz_header})"
+        stmt += "on user.id = user_id where user_id is null"
+
+        users = list(db.session.execute(text(stmt)))
+
+        create_quiz_users(quiz_header,users)
         
        
 if __name__ == '__main__':
