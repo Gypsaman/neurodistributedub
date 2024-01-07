@@ -9,8 +9,8 @@
                 <label for="quizdescription">Quiz Name</label>
                 <select id="quizdescription" name="quiz_id" required>
                     {% for quiz in quizzes %}
-                        {% if quiz.Quiz_Header.multiple_retries or (quiz.Quiz_Header.multiple_retries  == False and quiz.Quizzes.grade == None) %}
-                            <option value="{{ quiz.Quizzes.id }}">{{ quiz.Quiz_Header.description }}</option>
+                        {% if quiz.multiple_retries or (quiz.multiple_retries  == False and quiz.grade == None) %}
+                            <option value="{{ quiz.quiz_id }}">{{ quiz.description }}</option>
                         {% endif %}
                     {% endfor %}
                 </select>

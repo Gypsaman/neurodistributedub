@@ -19,7 +19,14 @@ quiz = Blueprint("quiz", __name__)
 @quiz.route('/quizzes')
 @login_required
 def select_quiz():
-    quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id,Quiz_Header.active==True).all()
+    stmt = "SELECT quiz_header.multiple_retries, quiz_header.description, quizzes.id,quizzes.grade "
+    stmt += "from quiz_header INNER JOIN quizzes ON quiz_header.id = quizzes.quiz_header "
+    stmt += "INNER JOIN quiz_duedates on quiz_header.id = quiz_duedates.quiz_header and quiz_duedates.section = 1 "
+    stmt += "WHERE quizzes.user_id = 1 and quiz_header.active = 1 "
+    stmt += "ORDER BY quiz_duedates.date_due ASC"
+
+    quizzes = [{'multiple_retries':mr,'description':desc,'quiz_id':qid,'grade':grade} for mr,desc,qid,grade in db.session.execute(text(stmt))]
+    # quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id,Quiz_Header.active==True).all()
     return render_template("quizzes/quiz_select.html",quizzes=quizzes)
 
 @quiz.route('/quizzes',methods=['POST'])
@@ -40,7 +47,7 @@ def quiz_retake(quiz_id):
     # quiz.grade = None
     questions = Questions.query.filter_by(quiz_id=quiz.id).all()
     for question in questions:
-        question.answer_chosen = ''
+        question.answer_chosen = 0
         question.is_correct = None
     db.session.commit()
     return redirect(url_for("quiz.quiz_display",quiz_id=quiz_id,question_number=1))
