@@ -21,8 +21,8 @@ quiz = Blueprint("quiz", __name__)
 def select_quiz():
     stmt = "SELECT quiz_header.multiple_retries, quiz_header.description, quizzes.id,quizzes.grade "
     stmt += "from quiz_header INNER JOIN quizzes ON quiz_header.id = quizzes.quiz_header "
-    stmt += "INNER JOIN quiz_duedates on quiz_header.id = quiz_duedates.quiz_header and quiz_duedates.section = 1 "
-    stmt += "WHERE quizzes.user_id = 1 and quiz_header.active = 1 "
+    stmt += f"INNER JOIN quiz_duedates on quiz_header.id = quiz_duedates.quiz_header and quiz_duedates.section = {current_user.section} "
+    stmt += f"WHERE quizzes.user_id = {current_user.id} and quiz_header.active = 1 "
     stmt += "ORDER BY quiz_duedates.date_due ASC"
 
     quizzes = [{'multiple_retries':mr,'description':desc,'quiz_id':qid,'grade':grade} for mr,desc,qid,grade in db.session.execute(text(stmt))]
