@@ -33,6 +33,7 @@ def check_submissions():
                         grade=0
                         comments='No grader assigned'
                     else:
+                        print(submission_content)
                         grade,comments = call_grader(assignment.name.strip(),submission_content)
                     
                     grade,comments = update_if_late(submission.date_submitted,assignment.id,submission.user_id,grade,comments)

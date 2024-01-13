@@ -138,7 +138,22 @@ def create_users_from_roster(top=None):
 
             
     db.session.commit()
-    
+def check_user_to_roster():
+    roster_dir = './data/rosters'
+    for roster in os.listdir(roster_dir):
+        r_df = pd.read_csv(os.path.join(roster_dir,roster))
+        section_name = roster.split('.')[0]
+        roster_section = Sections.query.filter_by(section=section_name).first()
+        if not roster_section:
+            raise('Roster Filename needs to be a valid section')
+        print(roster_section.id)
+        for user in User.query.filter_by(section=roster_section.id).all():
+            if not r_df[r_df['Preferred Email'] == user.email].empty:
+                continue
+            else:
+                print(f'User {user.email} not found in roster')
+                # db.session.delete(user)
+        
 def create_users():
     section = Sections.query.filter_by(section=sections[0]).first() 
     if not User.query.filter_by(email='gypsaman@gmail.com').first():
