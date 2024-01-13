@@ -466,6 +466,7 @@ def ecc_grader(submission:str) -> tuple[int,str]:
 
     cwd = get_cwd()
     cwd = os.path.join(cwd,'graders','imports')
+    os.remove(os.path.join(cwd,'ECCIMPORT.py'))
     shutil.copy(submission,os.path.join(cwd,'ECCIMPORT.py'))
     points,comment = grade_ecc()
     
