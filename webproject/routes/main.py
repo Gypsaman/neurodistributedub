@@ -1,6 +1,6 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
 from flask_login import current_user
-from webproject.models import User,Wallet,Assets,Transactions,Assignments,Grades
+from webproject.models import User,Wallet,Assets,Assignments,Grades, Attendance
 from webproject.modules.web3_interface import get_eth_balance
 from webproject import db
 from flask_login import login_required
@@ -9,6 +9,17 @@ from datetime import datetime as dt
 
 main = Blueprint('main',__name__)
 
+
+@main.route('/attendance')
+def attendance():
+    return render_template('main/attendance.html')
+
+@main.route('/attendance',methods=["POST"])
+def attendance_post():
+    attendance = Attendance(user_id=current_user.id,date=dt.now())
+    db.session.add(attendance)
+    db.session.commit()
+    return redirect(url_for('dashb.dashboard'))
 @main.route('/')
 def index():
     return render_template('main/index.html')

@@ -232,4 +232,11 @@ class AnswerBank(db.Model):
     def __repr__(self):
         return f'id: {self.answer_id}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
     
-   
+class Attendance(db.Model):
+    __tablename__ = 'attendance'
+    id = db.Column(db.Integer,primary_key=True)
+    user_id = db.Column(db.Integer)
+    date = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return f'user_id: {self.user_id} date: {self.date.strftime("%m/%d/%Y")}'
