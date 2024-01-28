@@ -51,7 +51,7 @@ def verify_wallet(wallet_address):
 @login_required
 def wallet_post():
 
-    wallet_address = request.form.get('wallet_address')
+    wallet_address = request.form.get('walletaddress')
     
     valid, msg = verify_wallet(wallet_address)
     
