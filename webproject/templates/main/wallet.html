@@ -11,7 +11,7 @@
         {% endif %} {% endwith %}
         <div class="neuro-form-section">
             <h3>Wallet Info</h3> 
-            <button type="button" class="neuro-button-small" id="connect">Connect Metamask</button>
+            <!-- <button type="button" class="neuro-button-small" id="connect">Connect Metamask</button> -->
             <div class="">
                 <label for="walletaddress">Wallet Address</label>
                 <input name="walletaddress" id="walletaddress"
@@ -28,28 +28,28 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    window.walletAddress = null
-    const wallet_address = document.getElementById('walletaddress')
-    const connect_button = document.getElementById('connect')
-    async function checkInstalled() {
-        if (typeof window.ethereum !== 'undefined') {
-            console.log('MetaMask is installed!')
+<!-- <script type="text/javascript"> -->
+//     window.walletAddress = null
+//     const wallet_address = document.getElementById('walletaddress')
+//     const connect_button = document.getElementById('connect')
+//     async function checkInstalled() {
+//         if (typeof window.ethereum !== 'undefined') {
+//             console.log('MetaMask is installed!')
             
-        } else {
-            console.log('MetaMask is not installed!');
-        }
+//         } else {
+//             console.log('MetaMask is not installed!');
+//         }
 
-        connect_button.addEventListener('click', connect)
+//         connect_button.addEventListener('click', connect)
         
-    }
-    async function connect() {
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        window.walletAddress = accounts[0]
-        wallet_address.value = window.walletAddress
-        console.log(window.walletAddress)
-    }
+//     }
+//     async function connect() {
+//         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+//         window.walletAddress = accounts[0]
+//         wallet_address.value = window.walletAddress
+//         console.log(window.walletAddress)
+//     }
     
-    window.addEventListener('load', checkInstalled)
-</script>
+//     window.addEventListener('load', checkInstalled)
+<!-- // </script> -->
 {% endblock %}
