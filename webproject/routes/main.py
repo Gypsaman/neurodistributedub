@@ -5,17 +5,25 @@ from webproject.modules.web3_interface import get_eth_balance
 from webproject import db
 from flask_login import login_required
 from datetime import datetime as dt
+import hashlib
 
 
 main = Blueprint('main',__name__)
 
 
 @main.route('/attendance')
+@login_required
 def attendance():
     return render_template('main/attendance.html')
 
 @main.route('/attendance',methods=["POST"])
+@login_required
 def attendance_post():
+    code = request.form.get('attendance_code')
+    date = dt.strftime(dt.now(),'%Y-%m-%d') 
+    if code != hashlib.sha256(date.encode()).hexdigest()[:5]:
+        flash('Incorrect Attendance Code!')
+        return redirect(url_for('main.attendance'))
     attendance = Attendance(user_id=current_user.id,date=dt.now())
     db.session.add(attendance)
     db.session.commit()

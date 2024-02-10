@@ -239,4 +239,4 @@ class Attendance(db.Model):
     date = db.Column(db.DateTime)
     
     def __repr__(self):
-        return f'user_id: {self.user_id} date: {self.date.strftime("%m/%d/%Y")}'
+        return f'user_id: {self.user_id} date: {self.date.strftime("%m/%d/%Y %H:%M")}'

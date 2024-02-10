@@ -1,6 +1,20 @@
 {% extends 'base.html' %} {% block body %}
 <div class="neuro-content">
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %}
+    <div style="color:red">{{ messages[0] }}</div>
+
+    {% endif %} 
+    {% endwith %}
     <form class="neuro-login-form"  method="POST" action="/attendance">
+        <div class="">
+            <label for="attendance_code">Attendance Code</label>
+            <input name="attendance_code" 
+                type="text" 
+                size="10" 
+                required 
+                 >
+        </div>
        <button type="submit" class="neuro-button-main">I attended</button>
     </form>
 
