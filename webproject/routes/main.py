@@ -20,6 +20,9 @@ def attendance():
 @login_required
 def attendance_post():
     code = request.form.get('attendance_code')
+    if dt.strftime(dt.now(),"%M") > '10':
+        flash('Attendance code expired!')
+        return redirect(url_for('main.attendance'))
     date = dt.strftime(dt.now(),'%Y-%m-%d') 
     if code != hashlib.sha256(date.encode()).hexdigest()[:5]:
         flash('Incorrect Attendance Code!')
