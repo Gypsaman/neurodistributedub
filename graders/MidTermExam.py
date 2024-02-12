@@ -45,8 +45,6 @@ Requirements:
     - It must be accesible to everyone.
         '''
     
-exam_students = ["1184077","1187195","1170399","1172542","1172552","1197727","1167056","1198498","1188604"]
-
 exams = {
     1: {"Structure": {"name":"Student","properties":[{"name":"id","type":"uint256"},{"name":"name","type":"string"},{"name":"age","type":"uint256"}]},
         'variable':'student',
@@ -198,13 +196,11 @@ def get_exam(student_id):
     exam_no = exam_distribution[student_id]
     return exams[exam_no['exam_id']]
 
-def email_exams(participants):
+def email_exams(section):
    
     with create_app().app_context():
-        for user in User.query.filter_by(role='student').all():
-            if user.student_id not in participants:
-                continue
-            
+        for user in User.query.filter_by(role='student',section=section).all():
+
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
             email = UBEmail()
