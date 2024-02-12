@@ -319,6 +319,21 @@ def add_quiz_duedate_post():
     db.session.commit()
     return redirect(url_for('quiz.quiz_duedate',id=request.form['quiz']))
 
+@quiz.route("/quiz_due_date/update/<int:id>")
+@admin_required
+def update_quiz_duedate(id):
+    quiz_duedate = Quiz_DueDates.query.filter_by(id=id).first()
+    quiz = Quiz_Header.query.filter_by(id=quiz_duedate.quiz_header).first()
+    section = Sections.query.filter_by(id=quiz_duedate.section).first()
+    return render_template('quizzes/edit_quiz_duedate.html',quiz_duedate=quiz_duedate,section=section,quiz=quiz)
+
+@quiz.route("/quiz_due_date/update",methods=['POST'])
+@admin_required
+def update_quiz_duedate_post():
+    quiz_duedate = Quiz_DueDates.query.filter_by(id=request.form['quizid']).first()
+    quiz_duedate.date_due = dt.strptime(request.form['duedate'].replace('T',' '),'%Y-%m-%d %H:%M')
+    db.session.commit()
+    return redirect(url_for('quiz.quiz_duedate',id=quiz_duedate.quiz_header))
 
 @quiz.route('/generate_quizzes/<int:quiz_header>')
 @admin_required

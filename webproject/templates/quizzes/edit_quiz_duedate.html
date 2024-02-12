@@ -1,0 +1,37 @@
+{% extends 'admin_base.html' %} 
+{% block body %}
+<div class="neuro-content">
+    <h1>Add Due Date</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to
+        <a href="{{ url_for('main.profile') }}">Profile Page</a>
+    </div>
+    {% endif %} {% endwith %}
+
+    <div class="neuro-form-section">
+        <form class="neuro-form"  method="POST" action="/quiz_due_date/update">
+            <div class="neuro-form-entry-row">
+                <label for="quiz">Quiz Name</label>
+                <input  value="{{ quiz.description }}" name="quiz_name" readonly>
+                <input value="{{ quiz.id }}" name="quizid" type="hidden">
+            </div>
+
+            <div>
+                <label for= "section">Section</label>
+                <input value={{section.section}} readonly>
+                
+              </div>
+            <div class="neuro-form-entry-row">
+                <label for="duedate">Due Date</label>
+                <input type="datetime-local" id="duedate" name="duedate" value="{{quiz_duedate.date_due}}" required>
+            </div>
+            <div class="">
+                <button type="submit" class="neuro-button-main">Update</button>
+            </div>
+        </form>
+    </div>
+
+</div>>
+    
+{% endblock %}
