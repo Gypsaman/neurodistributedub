@@ -42,11 +42,9 @@ def final_grades_student(id):
       
 def publish_final_grades(type='Preview',email=False):
     grades = []
-    incomplete = ['1166070']
+
     with create_app().app_context():
         for user in User.query.filter_by(role='student').all():
-            if user.student_id not in incomplete:
-                continue
             final_grades = final_grades_student(user.id)
             msg,grade = build_grade_message(final_grades,user,type=type)
             if email:

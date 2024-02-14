@@ -157,7 +157,7 @@ def get_student_grades():
 def build_grades(get_grades=True):
     if get_grades:
         get_student_grades()
-    # grade_csv()
+    grade_csv()
 
 
 def grade_csv():
@@ -197,3 +197,33 @@ def grade_csv():
                     )
             data += "\n"
             f.write(data)
+
+
+def is_this_function_duplicate():
+    with create_app().app_context():
+        with open("grades.csv", "w") as f:
+            final_grades = final_grades_student(1)
+            header = []
+            for key in final_grades["Assignment"]:
+                header.append(key)
+            for key in final_grades["Midterm"]:
+                header.append(key)
+            for key in final_grades["Final"]:
+                header.append(key)
+            for key in final_grades["Extra Credit"]:
+                header.append(key)
+            f.write(f'section,student_id,email,{",".join(header)}\n')
+
+            for user in User.query.filter_by(role="student").all():
+                grades = []
+                final_grades = final_grades_student(user.id)
+                for key, item in final_grades["Assignment"].items():
+                    grades.append(item["score"])
+                for key, item in final_grades["Midterm"].items():
+                    grades.append(item["score"])
+                for key, item in final_grades["Final"].items():
+                    grades.append(item["score"])
+                for key, item in final_grades["Extra Credit"].items():
+                    grades.append(item["score"])
+                string = "".join([str(x) + "," for x in grades])
+                f.write(f"{user.section},e{user.student_id},{user.email},{string}\n")
