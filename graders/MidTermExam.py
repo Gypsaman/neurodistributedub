@@ -197,9 +197,11 @@ def get_exam(student_id):
     return exams[exam_no['exam_id']]
 
 def email_exams(section):
-   
+    Wednesday_retake = ['sgundek@my.bridgeport.edu','skasin@my.bridgeport.edu','lsank@my.bridgeport.edu']
     with create_app().app_context():
         for user in User.query.filter_by(role='student',section=section).all():
+            if user.email not in Wednesday_retake:
+                continue
 
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
