@@ -9,13 +9,13 @@ def deploy():
 
     load_dotenv()
 
-    with open("./SimpleStorage.sol", 'r') as file:  # change to path and name of newContract
+    with open("./graders/imports/newContract.sol", 'r') as file:  # change to path and name of newContract
         simple_storage_file = file.read()
 
     compiled_sol = compile_standard(
         {
             "language": "Solidity",
-            "sources": {"SimpleStorage.sol": {"content": simple_storage_file}},
+            "sources": {"newContract.sol": {"content": simple_storage_file}},
             "settings": {
                 "outputSelection": {
                     "*": {
@@ -24,16 +24,16 @@ def deploy():
                 }
             },
         },
-        solc_version="0.8.19"
+        solc_version="0.8.10"
     )
 
     with open("compiled_code.json", "w") as file:
         json.dump(compiled_sol, file)
 
-    # change references of SimpleStorage to newContract
+    # change references of newContract to newContract
 
-    bytecode = compiled_sol["contracts"]["SimpleStorage.sol"]["SimpleStorage"]["evm"]["bytecode"]["object"]
-    abi = compiled_sol["contracts"]["SimpleStorage.sol"]["SimpleStorage"]["abi"]
+    bytecode = compiled_sol["contracts"]["newContract.sol"]["newContract"]["evm"]["bytecode"]["object"]
+    abi = compiled_sol["contracts"]["newContract.sol"]["newContract"]["abi"]
 
     # make sure you have your .env file set up with these variables
     w3 = Web3(Web3.HTTPProvider(os.getenv("PROVIDER")))
