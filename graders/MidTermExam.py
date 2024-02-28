@@ -197,7 +197,7 @@ def get_exam(student_id):
     return exams[exam_no['exam_id']]
 
 def email_exams(section):
-    Wednesday_retake = ["lanyekere@my.bridgeport.edu","jputt@my.bridgeport.edu","shali@my.bridgeport.edu","mgurijala@my.bridgeport.edu","sgarik@my.bridgeport.edu","pyadalla@my.bridgeport.edu","pkandel@my.bridgeport.edu"]
+    Wednesday_retake = ["lanyekere@my.bridgeport.edu","jputt@my.bridgeport.edu","mgurijala@my.bridgeport.edu","sgarik@my.bridgeport.edu","pkandel@my.bridgeport.edu"]
     with create_app().app_context():
         for user in User.query.filter_by(role='student',section=section).all():
             if user.email not in Wednesday_retake:

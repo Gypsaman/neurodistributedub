@@ -14,7 +14,7 @@ from webproject.modules.grading import is_this_function_duplicate
 with create_app().app_context():
     build_exam_distribution()
 
-    email_exams(section=1)
+    email_exams(section=1)   
     # is_this_function_duplicate()
 
 
