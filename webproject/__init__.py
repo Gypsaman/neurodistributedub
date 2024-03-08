@@ -67,4 +67,7 @@ def create_app():
     from webproject.routes.quizzes import quiz as quiz_blueprint
     app.register_blueprint(quiz_blueprint)
 
+    from webproject.routes.api import api as api_blueprint
+    app.register_blueprint(api_blueprint)
+    
     return app

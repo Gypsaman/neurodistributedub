@@ -1,7 +1,16 @@
 from flask_login import UserMixin
 from webproject.modules.extensions import db
 from datetime import datetime
+import json
 
+
+def get_dict_from_string(dictstring:str) -> dict:
+    try:
+        dict = json.loads(dictstring)
+    except Exception as e:
+        dict = {}
+        
+    return dict
 
 class Sections(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -143,6 +152,20 @@ class Submissions(db.Model):
     
     def __repr__(self):
         return f'user_id: {self.user_id}, assignment: {self.assignment}, submission: {self.submission}, date_submitted: {self.date_submitted}, grade: {self.grade}, comment: {self.comment}'   
+    
+    def to_dict(self):
+        parsed_submission = get_dict_from_string(self.submission) if self.submission[0] == '{'  else self.submission
+        if 'abi' in parsed_submission:
+            parsed_submission['abi'] = get_dict_from_string(parsed_submission['abi'])
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "assignment": self.assignment,
+            "submission": parsed_submission,
+            "date_submitted": self.date_submitted,
+            "grade": self.grade,
+            "comment": self.comment
+        }
     
 class Quiz_Header(db.Model):
     __tablename__ = 'quiz_header'
