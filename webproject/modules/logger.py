@@ -11,7 +11,7 @@ class LogType(Enum):
     
     
 def Log(log_type, user, message):
-    with open("log.txt", "a") as f:
+    with open(".\logs\log.txt", "a") as f:
         f.write(f"{log_type.name},{dt.now().strftime('%Y-%m-%d %H:%M')},{user},{message}\n")
 
 if __name__ == "__main__":
