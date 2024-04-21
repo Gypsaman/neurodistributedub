@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 def initialize_dotenv():
     
-    load_dotenv(os.path.join(get_cwd(),".env"))
+    load_dotenv(os.path.join('\var\www\neurodistributedub',".env"))
     
 def get_cwd():
     cwd = os.getcwd()
