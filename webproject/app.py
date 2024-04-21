@@ -13,8 +13,8 @@ from datetime import timedelta
 initialize_dotenv()
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blockhain.db" #os.getenv("DATABASE")
+app.config["SECRET_KEY"] = "ABC" # os.getenv("SECRET_KEY")
 app.permanent_session_lifetime = timedelta(hours=3)
 
 
