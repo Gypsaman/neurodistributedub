@@ -21,7 +21,7 @@ letter_grades = {
 
 
 additional_extra_credit = []
-grade_portion = {"Assignment": 40 / 15, "Midterm": 15, "Final": 15, "Extra Credit": 2}
+grade_portion = {"Assignment": 40 / 16, "Midterm": 15, "Final": 15, "Extra Credit": 2}
 
 
 def get_letter_grades(score):
@@ -72,11 +72,11 @@ def final_grades_student(id):
 def publish_final_grades(type="Preview", email=False):
     grades = []
 
-    for user in User.query.filter_by(role="student").all():
-        if user.student_id == '1187694':
-            continue
+    for user in User.query.filter_by(role="student",section=1).all():
+        # if user.student_id == '1187694':
+        #     continue
         final_grades = final_grades_student(user.id)
-        msg, grade = final_grade_message(final_grades, user, grades_due='Dec 20, 2023',type=type)
+        msg, grade = final_grade_message(final_grades, user, grades_due='April 22, 2024',type=type)
         if email:
             email = UBEmail()
             email.send_email(user.email, "Final Grades", msg)
@@ -106,6 +106,7 @@ def final_grade_message(final_grades, user, grades_due, type="FINAL"):
     msg += "Assignments and Quizzes: 40%\n"
     msg += "Midterm: 30%\n"
     msg += "Final: 30%\n\n"
+    msg += "Extra Credit: 2%\n\n"
 
     msg += f"Your grades are as follows:\n\n"
 
