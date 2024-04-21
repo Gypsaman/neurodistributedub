@@ -19,7 +19,8 @@ with create_app().app_context():
     # is_this_function_duplicate()
     # course_evaluation_email()
     # check_submissions()
-    publish_final_grades(email=True)
+    # publish_final_grades(email=True)
+    build_grades()
 
 
 
