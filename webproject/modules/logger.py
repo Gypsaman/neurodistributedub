@@ -1,6 +1,7 @@
 from enum import Enum
 from datetime import datetime as dt
-
+from dotenv_util import get_cwd
+import os
 class LogType(Enum):
     LOGIN = 1
     PASSWORD = 2
@@ -11,7 +12,8 @@ class LogType(Enum):
     
     
 def Log(log_type, user, message):
-    with open("./logs/log.txt", "a") as f:
+    cwd = get_cwd()
+    with open(os.path.join(cwd,'logs','log.txt'), "a") as f:
         f.write(f"{log_type.name},{dt.now().strftime('%Y-%m-%d %H:%M')},{user},{message}\n")
 
 if __name__ == "__main__":
