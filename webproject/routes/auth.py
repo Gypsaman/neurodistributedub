@@ -4,7 +4,6 @@ from webproject.models import User, PasswordReset
 from flask_login import login_user, logout_user, current_user
 from webproject import db
 from flask_login import login_required
-from webproject.routes import admin_required
 from datetime import datetime as dt
 from datetime import timedelta
 import random
@@ -12,8 +11,6 @@ from webproject.modules.ubemail import UBEmail
 from webproject.modules.roster import open_roster_encrypted
 from webproject.modules.logger import LogType, Log
 from webproject.models import Sections
-import json
-import os
 
 
 auth = Blueprint('auth',__name__)
