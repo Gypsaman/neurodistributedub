@@ -8,6 +8,7 @@ from datetime import datetime as dt
 import os
 from os.path import join
 import json
+from webproject.modules.logger import LogType, Log
 
 from flask_login import login_required
 from webproject.routes import admin_required
@@ -115,6 +116,7 @@ def submission_select_post():
     table_creator.set_items_per_page(15)
     table_creator.create_view()
     table = table_creator.create(1)
+    Log(LogType.ASSIGNMENT,current_user.id,f'{assignment.name}')
     
     return render_template('assignments/submission.html',assignment=assignment,table=table,duedate=duedate,max_submission=max_submission)
     
