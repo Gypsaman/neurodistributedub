@@ -6,10 +6,10 @@ time.tzset()
 
 import sys
 #
-path = '/var/www/neurodistributedub'
+path = '/var/www/dna'
 if path not in sys.path:
     sys.path.append(path)
-path = '/var/www/neurodistributedub/venv/lib/python3.9/site-packages'
+path = '/var/www/dna/venv/lib/python3.12/site-packages'
 if path not in sys.path:
     sys.path.append(path)
 
