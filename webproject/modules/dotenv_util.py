@@ -1,9 +1,10 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 def initialize_dotenv():
+    pass
     
-    load_dotenv(os.path.join(get_cwd(),".env"))
+    # load_dotenv(os.path.join(get_cwd(),".env"))
     
 def get_cwd():
     cwd = os.getcwd()
