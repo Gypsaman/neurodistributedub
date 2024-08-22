@@ -14,8 +14,8 @@ def create_app():
     initialize_dotenv()
 
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blockhain.db"
-    app.config["SECRET_KEY"] = "ABC"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE')
+    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
     app.permanent_session_lifetime = timedelta(hours=3)
     
 
