@@ -182,7 +182,7 @@ def create_users():
     if not User.query.filter_by(email='cegarcia@my.bridgeport.edu').first():
         user = User(
             email='cegarcia@my.bridgeport.edu',
-            password=generate_password_hash('123',method='sha256'),
+            password=generate_password_hash('123',method='pbkdf2:sha256'),
             first_name='Cesar',
             last_name ='Garcia',
             student_id='553029',
