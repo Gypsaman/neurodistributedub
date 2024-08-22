@@ -1,9 +1,10 @@
 from webproject import models
 from webproject import create_app, db
-from webproject.models import User, Sections, Quiz_Header
+from webproject.models import User, Sections, Quiz_Header, Quiz_Topics, AnswerBank, QuestionBank, Assignments
 from webproject.modules.ubemail import UBEmail
 from webproject.modules.quizzes import create_quiz_users
 from webproject.models import Quiz_DueDates,Quizzes,Grades,Submissions,DueDates,Sections,User,PasswordReset,Wallet
+
 
 from werkzeug.security import generate_password_hash
 import os
@@ -11,46 +12,49 @@ import pandas as pd
 import hashlib
 import pandas as pd
 from sqlalchemy import text
+import json
 
-sections = ['SP24-Monday','SP24-Wednesday']
-SCHEDULE_FILE = 'e:\\Teaching\\CPS-570 BlockChain\\2024 Spring\\Class Topic Schedule.xlsx'
+sections = ['FA24-Monday']
+SCHEDULE_FILE = './data/Class Topic Schedule.xlsx'
 
-def delete_previous_data():
-
-    for due in Quiz_DueDates.query.all():
-        db.session.delete(due)
-    db.session.commit()
-    for quiz in Quizzes.query.all():
-        db.session.delete(quiz)
-    db.session.commit()
-    for grade in Grades.query.all():
-        db.session.delete(grade)
-    db.session.commit()
-    for sub in Submissions.query.all():
-        db.session.delete(sub)
-    db.session.commit()
-    for due in DueDates.query.all():
-        db.session.delete(due)
-    db.session.commit()
-    for user in User.query.all():
-        db.session.delete(user)
-    db.session.commit()
-    for section in Sections.query.all():
-        db.session.delete(section)
-    for wallet in Wallet.query.all():
-        db.session.delete(wallet)
-    db.session.commit()
-    for passwordreset in PasswordReset.query.all():
-        db.session.delete(passwordreset)
-    db.session.commit()
     
 def create_initial_data():
 
     with create_app().app_context():
-        delete_previous_data()
         create_sections()
         create_users()
+        import_assignments_quizzes()
         set_due_dates()
+
+def import_assignments_quizzes():
+    quiz_header = json.load(open('./data/quiz_header.json'))
+    quiz_topics = json.load(open('./data/quiz_topics.json'))
+    for qh in quiz_header:
+        qh_id = qh['id']
+        qh = Quiz_Header(**{key:value for key,value in qh.items() if key != 'id'})
+        db.session.add(qh)
+        db.session.commit()
+        db.session.refresh(qh)
+        for qt in [t for t in quiz_topics if t['quiz_header'] == qh_id]:
+            qt = Quiz_Topics(quiz_header=qh.id,topic=qt['topic'],number_of_questions=qt['number_of_questions'])
+            db.session.add(qt)
+        db.session.commit()
+    for assign in json.load(open('./data/assignments.json')):
+        assign = Assignments(**{key:value for key,value in assign.items() if key != 'id'})
+        db.session.add(assign)
+    db.session.commit()
+    answer_bank = json.load(open('./data/answer_bank.json'))
+    for question in json.load(open('./data/question_bank.json')):
+        question_id = question['question_id']
+        question = QuestionBank(**{key:value for key,value in question.items() if key != 'id'})
+        db.session.add(question)
+        db.session.commit()
+        db.session.refresh(question)
+        for answer in [a for a in answer_bank if a['question_id'] == question_id]:
+            curr_answer = {"question_id":question.question_id,"answer_txt":answer['answer_txt'],"correct_answer":answer['correct_answer']}
+            db.session.add(AnswerBank(**curr_answer))
+        db.session.commit()
+
         
 def create_sections():
     
@@ -70,9 +74,12 @@ def set_due_dates():
     for _,quiz in quizzes.iterrows():
         for idx,section in enumerate(sections):
             section_id = Sections.query.filter_by(section=section).first().id
+            quiz_header = Quiz_Header.query.filter_by(description=quiz['Description']).first()
+            if not quiz_header:
+                raise('Quiz Header not found in set_due_dates')
             if not section:
                 raise('Section not found in set_due_dates')
-            quiz_date = Quiz_DueDates(quiz_header=quiz['ID'],section=section_id, date_due=quiz[f'Section {idx+1}'])
+            quiz_date = Quiz_DueDates(quiz_header=quiz_header.id,section=section_id, date_due=quiz[f'Section {idx+1}'])
             db.session.add(quiz_date)
         
     db.session.commit()
@@ -80,9 +87,12 @@ def set_due_dates():
     for _,assign in assignments.iterrows():
         for idx,section in enumerate(sections):
             section_id = Sections.query.filter_by(section=section).first().id
+            assignment = Assignments.query.filter_by(name=assign['Description']).first()
+            if not assignment:
+                raise('Assignment not found in set_due_dates')
             if not section:
                 raise('Section not found in set_due_dates')
-            assign_date = DueDates(assignment=assign['ID'],section=section_id, duedate=assign[f'Section {idx+1}'])
+            assign_date = DueDates(assignment=assignment.id,section=section_id, duedate=assign[f'Section {idx+1}'])
             db.session.add(assign_date)
         
     db.session.commit()
@@ -161,7 +171,7 @@ def create_users():
             
         user = User(
             email='gypsaman@gmail.com',
-            password=generate_password_hash('123',method='sha256'),
+            password=generate_password_hash('123',method='pbkdf2:sha256'),
             first_name='Cesar',
             last_name ='Garcia',
             student_id='999999',

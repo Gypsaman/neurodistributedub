@@ -3,7 +3,7 @@ from flask_login import login_required,current_user
 from webproject.routes import admin_required
 
 from webproject import db
-from webproject.models import  User, Wallet, Assets, Assignments, Submissions, Grades, Sections
+from webproject.models import  User, Wallet,  Assignments, Submissions, Grades, Sections
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date, only_contract, round_to_2_decimals,round_to_0_decimals
 from webproject.modules.web3_interface import get_eth_balance
 
@@ -63,8 +63,8 @@ def create_dashboard(user_id,submission_page=1,grades_page=1,quiz_page=1):
     section = Sections.query.filter_by(id=user.section).first()
     wallet = Wallet.query.filter_by(user_id=user_id).first()
     ethbalance = get_eth_balance(wallet.wallet) if wallet is not None else 0
-    tokens = Assets.query.filter_by(user_id=user_id, asset_type=1).count()
-    nfts = Assets.query.filter_by(user_id=user_id, asset_type=2).count()
+    tokens = 0
+    nfts = 0
     assigments_count = Assignments.query.count()
     submissions_count = Submissions.query.filter_by(user_id=user_id).count()
     grades_count= Grades.query.filter_by(user_id=user_id).count()

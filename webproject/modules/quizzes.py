@@ -68,54 +68,6 @@ def create_quiz_users(quiz_header_id:int,users:list):
         create_quiz_user(quiz_header_id,user[0])
 
 
-# deprecated   
-# def create_final(topics_selected:dict,StartTime:dt):
-#     with create_app().app_context():
-#         users = User.query.all()
-#         for user in users:
-#             quiz_id = create_quiz(topics_selected,StartTime,dt.now()+timedelta(hours=2),description='Final for {}'.format(user.first_name),user_id=user.id,multiple_retries=False)
-#             print('Created quiz {} for {}'.format(quiz_id,user.first_name))
-           
-#deprecated
-# def create_quiz_all_users(section_name:str,
-#                           quiz_header_id:int,silent=True
-#     ):     
-#     with create_app().app_context():
-#         section = Sections.query.filter_by(section=section_name).first()
-#         users = User.query.filter_by(section=section.id,role='student').all()
-#         for user in users:
-#             q = Quizzes.query.filter_by(quiz_header=quiz_header_id,user_id=user.id).first()
-#             if not q:
-#                 quiz_id = create_quiz_user(quiz_header_id,user.id)
-#                 if not silent:
-#                     print('Created quiz {} for {}'.format(quiz_id,user.first_name))           
-
-# deprecated
-# def create_quiz(
-#     description: str,
-#     date_available: dt,
-#     date_due: dt,
-#     topics: dict,
-#     multiple_retries: bool=True,
-#     active: bool=True
-#     ):
-#     quiz_header = Quiz_Header(description=description,
-#                               date_available=date_available,
-#                               date_due=date_due,
-#                               multiple_retries=multiple_retries,
-#                               active=active)
-#     db.session.add(quiz_header)
-#     db.session.commit()
-#     for topic,qty in topics.items():
-#         quiz_topic = Quiz_Topics(quiz_header=quiz_header.id,
-#                                  topic=topic,
-#                                  number_of_questions=qty)
-#         db.session.add(quiz_topic)
-#     db.session.commit()
-    
-#     return quiz_header.id
-        
- 
 
 
 if __name__ == '__main__':

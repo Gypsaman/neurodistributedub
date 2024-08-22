@@ -48,13 +48,13 @@ def create_app():
 
     app.register_blueprint(nft_blueprint)
 
-    from webproject.routes.assets import assets as assets_blueprint
+    # from webproject.routes.assets import assets as assets_blueprint
 
-    app.register_blueprint(assets_blueprint)
+    # app.register_blueprint(assets_blueprint)
 
-    from webproject.routes.transactions import trans as trans_blueprint
+    # from webproject.routes.transactions import trans as trans_blueprint
 
-    app.register_blueprint(trans_blueprint)
+    # app.register_blueprint(trans_blueprint)
 
     from webproject.routes.assignments import assignments as assignments_blueprint
 

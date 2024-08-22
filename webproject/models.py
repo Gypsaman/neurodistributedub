@@ -19,6 +19,13 @@ class Sections(db.Model):
     
     def __repr__(self):
         return f'section: {self.section}, active: {self.active}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "section": self.section,
+            "active": self.active
+        }
 
 class User(UserMixin,db.Model):
     __tablename__ = 'User'
@@ -36,6 +43,17 @@ class User(UserMixin,db.Model):
     
     def __repr__(self):
         return f'email: {self.email}, first_name: {self.first_name}, last_name: {self.last_name}, student_id: {self.student_id}, section: {self.section}, role: {self.role} '
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "student_id": self.student_id,
+            "section": self.section,
+            "role": self.role
+        }
 
 class PasswordReset(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +68,13 @@ class PasswordReset(db.Model):
     
     def __repr__(self):
         return f'password_phrase: {self.password_phrase}, phrase_expires: {self.phrase_expires}'
+    
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "password_phrase": self.password_phrase,
+            "phrase_expires": self.phrase_expires
+        }
 
 class Wallet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -60,46 +85,13 @@ class Wallet(db.Model):
     def __repr__(self):
         return f'student_id: {self.user_id}, wallet: {self.wallet}, privatekey: {self.privatekey}'
     
-class Assets(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    asset_type = db.Column(db.Integer)
-    network = db.Column(db.String(10))
-    asset_address = db.Column(db.Integer,unique=True)
-    time_added = db.Column(db.DateTime)
-    assignment = db.Column(db.Integer)
-    
-    def __repr__(self):
-        return f'student_id: {self.user_id}, asset_type: {self.asset_type}, network: {self.network}, asset_address: {self.asset_address}, time_added: {self.time_added}, assignment: {self.assignment}'
-    
-class Transactions(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    wallet = db.Column(db.Integer)
-    blockNumber = db.Column(db.Integer)
-    timeStamp = db.Column(db.DateTime)
-    hash = db.Column(db.Integer)
-    nonce = db.Column(db.Integer)
-    blockHash = db.Column(db.Integer)
-    transactionIndex = db.Column(db.Integer)
-    trans_from = db.Column(db.Integer)
-    trans_to = db.Column(db.Integer)
-    value = db.Column(db.Integer)
-    gas =  db.Column(db.Integer)
-    gasPrice = db.Column(db.Integer)
-    isError = db.Column(db.Boolean)
-    txreceipt_status = db.Column(db.Boolean)
-    input = db.Column(db.String)
-    contractAddress = db.Column(db.Integer)
-    cumulativeGasUsed = db.Column(db.Integer)
-    gasUsed = db.Column(db.Integer)
-    confirmations = db.Column(db.String)
-    methodId = db.Column(db.String)
-    functionName = db.Column(db.String)
-    
-    
-    def __repr__(self):
-        return f'wallet: {self.wallet}, blockNumber: {self.blockNumber}, timeStamp: {self.timeStamp}, hash: {self.hash}, from: {self.trans_from}, to: {self.trans_to}'
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "wallet": self.wallet,
+            "privatekey": self.privatekey
+        }
     
     
 class Assignments(db.Model):
@@ -116,6 +108,17 @@ class Assignments(db.Model):
     def __repr__(self):
         return f'name: {self.name}, inputtype: {self.inputtype}, grader: {self.grader}, active: {self.active}'
     
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "inputtype": self.inputtype,
+            "grader": self.grader,
+            "active": self.active,
+            "grade_category": self.grade_category,
+            "retries": self.retries
+        }
+    
 class DueDates(db.Model):
     __tablename__ = 'due_dates'
     id = db.Column(db.Integer, primary_key=True)
@@ -125,6 +128,14 @@ class DueDates(db.Model):
     
     def __repr__(self):
         return f'assignment: {self.assignment}, section: {self.section}, duedate: {self.duedate}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "assignment": self.assignment,
+            "section": self.section,
+            "duedate": self.duedate
+        }
     
 
 class Grades(db.Model):
@@ -138,6 +149,15 @@ class Grades(db.Model):
    
     def __repr__(self):
         return f'assignment: {self.assignment}, grade: {self.grade}, dategraded: {self.dategraded}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "assignment": self.assignment,
+            "grade": self.grade,
+            "dategraded": self.dategraded
+        }
     
     
 class Submissions(db.Model):
@@ -178,6 +198,15 @@ class Quiz_Header(db.Model):
     def __repr__(self):
         return f'id: {self.id} description: {self.description} multiple retires {self.multiple_retries} active {self.active}'
     
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "multiple_retries": self.multiple_retries,
+            "grade_category": self.grade_category,
+            "active": self.active
+        }
+    
 class Quiz_DueDates(db.Model):
     __tablename__ = 'quiz_duedates'
     id = db.Column(db.Integer, primary_key=True)
@@ -188,6 +217,14 @@ class Quiz_DueDates(db.Model):
     def __repr__(self):
         return f'id: {self.id} quiz_header: {self.quiz_header} section: {self.section} date due: {self.date_due}'
     
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "quiz_header": self.quiz_header,
+            "section": self.section,
+            "date_due": self.date_due
+        }
+    
 class Quiz_Topics(db.Model):
     __tablename__ = 'quiz_topics'
     id = db.Column(db.Integer, primary_key=True)
@@ -197,6 +234,14 @@ class Quiz_Topics(db.Model):
     
     def __repr__(self):
         return f'topic {self.topic} number of questions {self.number_of_questions}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "quiz_header": self.quiz_header,
+            "topic": self.topic,
+            "number_of_questions": self.number_of_questions
+        }
     
  
 class Quizzes(db.Model):
@@ -209,6 +254,15 @@ class Quizzes(db.Model):
     
     def __repr__(self):
         return f'quiz_header: {self.quiz_header}, user_id: {self.user_id}, submitted: {self.submitted}, grade: {self.grade}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "quiz_header": self.quiz_header,
+            "user_id": self.user_id,
+            "submitted": self.submitted,
+            "grade": self.grade
+        }
     
 class Questions(db.Model):
     __tablename__ = 'questions'
@@ -223,6 +277,17 @@ class Questions(db.Model):
     def __repr__(self):
         return f'id: {self.question_id} topic: {self.topic}  question: {self.question} display order: {self.display_order} answer chosen: {self.answer_chosen} correct: {self.is_correct}'
     
+    def to_dict(self):
+        return {
+            "question_id": self.question_id,
+            "quiz_id": self.quiz_id,
+            "topic": self.topic,
+            "question": self.question,
+            "display_order": self.display_order,
+            "answer_chosen": self.answer_chosen,
+            "is_correct": self.is_correct
+        }
+    
 class Answers(db.Model):
     __tablename__ = 'answers'
     answer_id = db.Column(db.Integer,primary_key=True)
@@ -233,6 +298,15 @@ class Answers(db.Model):
     
     def __repr__(self):
         return f'id: {self.answer_id}, Display Order: {self.display_order}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
+    
+    def to_dict(self):
+        return {
+            "answer_id": self.answer_id,
+            "question_id": self.question_id,
+            "display_order": self.display_order,
+            "answer_txt": self.answer_txt,
+            "correct_answer": self.correct_answer
+        }
     
 
     
@@ -245,6 +319,13 @@ class QuestionBank(db.Model):
     def __repr__(self):
         return f'id: {self.question_id} topic: {self.topic}  question: {self.question} '
     
+    def to_dict(self):
+        return {
+            "question_id": self.question_id,
+            "topic": self.topic,
+            "question": self.question
+        }
+    
 class AnswerBank(db.Model):
     __tablename__ = 'answer_bank'
     answer_id = db.Column(db.Integer,primary_key=True)
@@ -255,6 +336,14 @@ class AnswerBank(db.Model):
     def __repr__(self):
         return f'id: {self.answer_id}, Text: {self.answer_txt}, Correct Answer? :{self.correct_answer}'
     
+    def to_dict(self):
+        return {
+            "answer_id": self.answer_id,
+            "question_id": self.question_id,
+            "answer_txt": self.answer_txt,
+            "correct_answer": self.correct_answer
+        }
+    
 class Attendance(db.Model):
     __tablename__ = 'attendance'
     id = db.Column(db.Integer,primary_key=True)
@@ -263,3 +352,10 @@ class Attendance(db.Model):
     
     def __repr__(self):
         return f'user_id: {self.user_id} date: {self.date.strftime("%m/%d/%Y %H:%M")}'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "date": self.date.strftime("%m/%d/%Y %H:%M")
+        }

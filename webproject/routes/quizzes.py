@@ -345,7 +345,7 @@ def generate_quizzes(quiz_header):
     users = list(db.session.execute(text(stmt)))
 
     if len(users) == 0:
-        return redirect(url_for('quiz.quiz_duedate',id=quiz_header))
+        return redirect(url_for('quiz.student_quizzes',quiz_header=quiz_header,page_num=1))
     create_quiz_users(quiz_header,users[:10])
     return redirect(url_for('quiz.generate_quizzes',quiz_header=quiz_header))
     

@@ -1,4 +1,4 @@
-from grade_foundry import setup_repo, cleanup_repo, run_forge_test
+from graders.grade_foundry import setup_repo, cleanup_repo, run_forge_test
 
 def gradeFinal(submission):
     base_path = './graders/currsubmission'

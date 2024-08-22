@@ -1,6 +1,6 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
 from flask_login import current_user
-from webproject.models import User,Wallet,Assets,Assignments,Grades, Attendance
+from webproject.models import User,Wallet,Assignments,Grades, Attendance
 from webproject.modules.web3_interface import get_eth_balance
 from webproject import db
 from flask_login import login_required
@@ -111,8 +111,8 @@ def profile():
     usr_email = current_user.email
     curr_usr = User.query.filter_by(email=usr_email).first()
     wallet = Wallet.query.filter_by(user_id=current_user.id).first()
-    tokens = Assets.query.filter_by(user_id=curr_usr.id, asset_type=1).count()
-    nfts = Assets.query.filter_by(user_id=curr_usr.id, asset_type=2).count()
+    tokens = 0
+    nfts = 0
     
     eth_balance = f'{get_eth_balance(wallet.wallet):0.4f}' if wallet else 0
     
