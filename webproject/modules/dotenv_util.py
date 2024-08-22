@@ -8,6 +8,6 @@ def initialize_dotenv():
     
 def get_cwd():
     cwd = os.getcwd()
-    cwd = '/var/www/neurodistributedub' if cwd == '/' else cwd
-    cwd = os.path.join(cwd,'neurodistributedub') if cwd.endswith('neurodistributed') else cwd
+    cwd = '/var/www/dna' if cwd == '/' else cwd
+    # cwd = os.path.join(cwd,'neurodistributedub') if cwd.endswith('neurodistributed') else cwd
     return cwd
