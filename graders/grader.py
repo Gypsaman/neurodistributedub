@@ -15,16 +15,11 @@ STOREPATH = os.getenv("STOREPATH")
 myaccount = os.getenv("MYWALLET")
 
 
-def check_ganache_cli_running() -> bool:
-    w3 = Web3(Web3.HTTPProvider(os.getenv("GANACHE_PROVIDER")))
-    my_address = os.getenv("GANACHE_ACCOUNT")
+def check_anvil_running() -> None:
+    w3 = Web3(Web3.HTTPProvider(os.getenv("ANVIL_PROVIDER")))
+    my_address = os.getenv("ANVIL_ACCOUNT")
     if not w3.is_connected():
-        # raise Exception("Ganache-cli is not running")
-        return False
-    if w3.eth.get_balance(my_address) == 0:
-        # raise Exception("No funds in Ganache-cli account")
-        return False
-    return True
+        raise Exception("ANVIL is not running")
 
 def get_dict_from_string(dictstring:str) -> dict:
     try:
@@ -281,6 +276,7 @@ def payUB_Grader(Address_ABI) -> tuple[int,str]:
 
 def web3_grader(submission:str) -> tuple[int,str]:
     
+    check_anvil_running()
     if submission.endswith('.pdf'):
         return 0, 'Submission must be a python file, not a pdf'
     
@@ -303,11 +299,11 @@ def web3_grader(submission:str) -> tuple[int,str]:
     code = code.replace(contract_location[0],contract_path)
     solcx_location = re.findall('solc_version=[\'"]([0-9\.]*)[\'"]',code)
     code = code.replace(solcx_location[0],"0.8.10")
-    if check_ganache_cli_running():
-        code = code.replace("PROVIDER","GANACHE_PROVIDER")
-        code = code.replace("CHAINID","GANACHE_CHAINID")
-        code = code.replace("ACCOUNT","GANACHE_ACCOUNT")
-        code = code.replace("PRIVATE_KEY","GANACHE_PRIVATE_KEY")
+
+    code = code.replace("PROVIDER","ANVIL_PROVIDER")
+    code = code.replace("CHAINID","ANVIL_CHAINID")
+    code = code.replace("ACCOUNT","ANVIL_ACCOUNT")
+    code = code.replace("PRIVATE_KEY","ANVIL_PRIVATE_KEY")
     
     with open(os.path.join(cwd,'StudentDeploy.py'),'w') as f:
         f.write(code)
