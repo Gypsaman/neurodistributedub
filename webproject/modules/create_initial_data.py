@@ -134,7 +134,7 @@ def create_users_from_roster(top=None):
 
             user = User(
                 email = student['Preferred Email'],
-                password=generate_password_hash(pwd,method='pbkdf2sha256'),
+                password=generate_password_hash(pwd,method='pbkdf2:sha256'),
                 first_name= firstname,
                 last_name = lastname,
                 student_id = student['Student ID'],
