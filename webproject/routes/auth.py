@@ -70,7 +70,7 @@ def register_post():
         'last_name' : request.form.get('lastname'),
         'student_id' : request.form.get('studentid'),
         'section' : request.form.get('sectionid'),
-        'password' : generate_password_hash(request.form.get('password'),method='sha256'),
+        'password' : generate_password_hash(request.form.get('password'),method='pbkdf2sha256'),
         'role'  : 'admin' if email=='gypsaman@gmail.com' else 'student'
     }
     if record['student_id'] not in roster:
@@ -148,7 +148,7 @@ def password_update_post(id):
         return redirect(url_for('auth.password_update',id=id))
     pwdreset = PasswordReset.query.filter_by(password_phrase=id).first()
     user = User.query.filter_by(id=pwdreset.user_id).first()
-    user.password = generate_password_hash(request.form.get('new_password'),method='sha256')
+    user.password = generate_password_hash(request.form.get('new_password'),method='pbkdf2sha256')
 
     db.session.delete(pwdreset)
     
