@@ -31,6 +31,7 @@ def attendance_post():
     db.session.add(attendance)
     db.session.commit()
     return redirect(url_for('dashb.dashboard'))
+
 @main.route('/')
 def index():
     return render_template('main/index.html')

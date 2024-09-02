@@ -102,7 +102,7 @@ def send_new_user_email(first_name,email_addr,pwd):
     body = f'Dear {first_name},\n\n'
     body += 'Welcome to CPSC-570, Blockchain & Crypto Currency Technology.\n'
     body += 'In this course we will be utilizing a web interface for assignments and quizzes.\n\n'
-    body += '    Please follow the link: www.neurodistributed.com.\n\n'
+    body += '    Please follow the link: crypto.neurodna.xyz.\n\n'
     body += f'Your user name is your email address and your password is "{pwd}".  You may change your password at any time.\n\n'
     body += 'I have populated your first name and last name, you may change these as needed.\n\n'
     body += 'If you have any questions, feel free to contact me.\n\n'
@@ -113,7 +113,6 @@ def send_new_user_email(first_name,email_addr,pwd):
     
 def create_users_from_roster(top=None):
     roster_dir = './data/rosters'
-    email_body = ''
     for roster in os.listdir(roster_dir):
         r_df = pd.read_csv(os.path.join(roster_dir,roster))
         section_name = roster.split('.')[0]
