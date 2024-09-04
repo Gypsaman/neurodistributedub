@@ -36,28 +36,11 @@ def save_data(query, filename):
 #     for model in models:
 #         save_data(model[0], model[1])
 
-
+from webproject.models import User,Sections
 with create_app().app_context():
-    # for q in Quizzes.query.all():
-    #     print(q.to_dict())
-    # for q in Questions.query.all():
-    #     print(q.to_dict())
-    # quiz = Quizzes.query.filter_by(id=2).first()
-    # all_questions = Questions.query.filter_by(quiz_id=quiz.id).all()
-    # question = Questions.query.filter_by(quiz_id=quiz.id,display_order=1).first()
+    for section in Sections.query.all():
+        print(section.to_dict())
 
-    # answers = Answers.query.filter_by(question_id=question.question_id).order_by(Answers.display_order).all()
-    # print(answers)
-    # quiz_header = 2
-    # stmt = "SELECT user.id FROM user  left join "
-    # stmt += f"(select quiz_header,user_id from Quizzes where quiz_header = {quiz_header})"
-    # stmt += "on user.id = user_id where user_id is null"
-    
-    # users = list(db.session.execute(text(stmt)))
-    # create_quiz_users(2,users)
-#     print(len(users))
-    db.create_all()
+# from webproject.modules.create_initial_data import create_initial_data
 
-from webproject.modules.create_initial_data import create_initial_data
-
-create_initial_data()
+# create_initial_data()

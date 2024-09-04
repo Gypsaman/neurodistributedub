@@ -175,12 +175,33 @@ def users(page_num):
         "role": Field(None, "Role"),
     }
 
-    table_creator = TableCreator("User", fields, actions=["Edit"],domain="/admin/user/")
+    table_creator = TableCreator("User", fields, actions=["Edit"],domain="admin/user/")
     table_creator.join("Sections", "user.section == Sections.id")
     table_creator.set_items_per_page(12)
     table_creator.create_view()
     table = table_creator.create(page_num)
     return render_template("admin/users.html", table=table,users=users)
+
+
+@admin.route("/admin/user/update/<int:id>")
+@admin_required
+def user_update(id):
+    user = User.query.filter_by(id=id).first()
+    sections = Sections.query.all()
+    return render_template("admin/user_update.html", user=user,sections=sections,count=len(sections))
+
+@admin.route("/admin/user/update/<int:id>",methods=['POST'])
+@admin_required
+def user_update_post(id):
+    user = User.query.filter_by(id=id).first()
+    user.first_name = request.form['first_name']
+    user.last_name = request.form['last_name']
+    user.email = request.form['email']
+    user.student_id = request.form['student_id']
+    user.section = request.form['section']
+    user.role = request.form['role']
+    db.session.commit()
+    return redirect(url_for('admin.users',page_num=1))
 
 @admin.route("/admin/grade-history/<string:section>")
 def grade_history_section(section):

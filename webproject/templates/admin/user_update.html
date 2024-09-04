@@ -1,0 +1,56 @@
+{% extends 'admin_base.html' %}
+
+{% block body %}
+<div class="neuro-content">
+    <h1>Edit User</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to
+        <a href="{{ url_for('main.profile') }}">Profile Page</a>
+    </div>
+    {% endif %} {% endwith %}
+    <div class="neuro-form-section">
+
+        <form class="neuro-form"  method="POST" action="/admin/user/update/{{user.id}}">
+            <div class="neuro-form-entry-row">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" value=" {{ user.first_name}}" required>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" value=" {{ user.last_name}}" required>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for="assignmentName">email</label>
+                <input type="email" id="email" name="email" value=" {{ user.email}}" required>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for="student_id">Student Id</label>
+                <input type="text" id="student_id" name="student_id" value=" {{ user.student_id}}" required>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for ="section" >Section</label>
+                <select id="section" name="section" required style="min-width:200px">
+                    {% for section in sections %}
+                    <option value="{{ section.id }}" {% if user.section_id == section.id %}selected{% endif %}>{{ section.section }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="neuro-form-entry-row">
+                <label for="role">Role</label>
+                <input id="role" name="role" value=" {{ user.role }}" required>
+            </div>
+            
+            <div class="neuro-form-entry-row">
+                <button type="submit" class="neuro-button-main">Update</button>
+                <buttom type="button" class="neuro-button-main" onclick="window.location.href='/admin/user/1'">
+                    Cancel
+                </button>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
