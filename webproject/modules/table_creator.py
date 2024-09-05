@@ -2,6 +2,7 @@ from webproject import db
 import json
 import pandas as pd
 from sqlalchemy import text
+from flask import url_for
 
 def round_to_2_decimals(value):
     if value is None:
@@ -140,7 +141,7 @@ class TableCreator:
                 
                 self.id = item[0]
                 if "Edit" in self.actions:
-                    html += f'<a href="/{self.domain}update/{self.id}"><img src="\static\imgs\pen.svg"></a>'
+                    html += f'<a href="/{self.domain}update/{self.id}"><img src="/static/imgs/pen.svg"></a>'
                 if "Delete" in self.actions:
                     html += f'<a href="/{self.domain}delete/{self.id}" onclick="return confirm(\'Are you sure you want to delete?\')"><img src="\static\imgs\\trash.svg"></a>'
                 if "View" in self.actions:
