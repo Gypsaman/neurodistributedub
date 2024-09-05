@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,flash,url_for
+from flask import Blueprint,render_template,request,redirect,flash,url_for,send_from_directory
 from flask_login import current_user
 from webproject.models import User,Wallet,Assignments,Grades, Attendance
 from webproject.modules.web3_interface import get_eth_balance
@@ -6,6 +6,7 @@ from webproject import db
 from flask_login import login_required
 from datetime import datetime as dt
 import hashlib
+import os
 
 
 main = Blueprint('main',__name__)
@@ -35,6 +36,23 @@ def attendance_post():
 @main.route('/')
 def index():
     return render_template('main/index.html')
+
+@main.route('/resources')
+@login_required
+def resources():
+    slides = os.listdir('webproject/static/classdocs/slides')
+    videos = os.listdir('webproject/static/classdocs/videos')
+    return render_template('main/resources.html',slides=slides,videos=videos)
+
+@main.route('/resources/slides/<path:filename>')
+@login_required
+def view_slides(filename):
+    return send_from_directory('static/classdocs/slides',filename)
+
+@main.route('/resources/videos/<path:filename>')
+@login_required
+def view_videos(filename):
+    return send_from_directory('static/classdocs/videos',filename)
 
 @main.route('/wallet')
 @login_required
