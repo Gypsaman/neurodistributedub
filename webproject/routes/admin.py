@@ -21,8 +21,8 @@ def admin_welcome():
 @admin.route("/admin/cwd")
 @admin_required
 def show_cwd():
-    cwd = os.getcwd()
-    return render_template("admin/cwd.html",cwd=cwd)
+    cwd = os.listdir()
+    return render_template("admin/cwd.html",cwd=cwd[0])
 
 @admin.route("/admin/submissionselect")
 @admin_required
