@@ -41,8 +41,8 @@ def index():
 @login_required
 def resources():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    slides = os.listdir(os.path.join(current_dir,'webproject/static/classdocs/slides'))
-    videos = os.listdir(os.path.join(current_dir,'webproject/static/classdocs/videos'))
+    slides = os.listdir(os.path.join(current_dir,'static/classdocs/slides'))
+    videos = os.listdir(os.path.join(current_dir,'static/classdocs/videos'))
     return render_template('main/resources.html',slides=slides,videos=videos)
 
 @main.route('/resources/slides/<path:filename>')
