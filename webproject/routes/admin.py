@@ -21,7 +21,7 @@ def admin_welcome():
 @admin.route("/admin/cwd")
 @admin_required
 def show_cwd():
-    current_dir = os.path.dirname(os.path.join(os.path.abspath(__file__),'static/classdocs'))
+    current_dir = os.path.dirname(os.path.join(os.path.abspath(__file__),'static','classdocs'))
     cwd = os.listdir(current_dir)
     return render_template("admin/cwd.html",cwd=cwd[0])
 
