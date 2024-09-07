@@ -21,9 +21,10 @@ def admin_welcome():
 @admin.route("/admin/cwd")
 @admin_required
 def show_cwd():
-    current_dir = os.path.dirname(os.path.join(os.path.abspath(__file__),'static','classdocs'))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
     cwd = os.listdir(current_dir)
-    return render_template("admin/cwd.html",cwd=cwd[0])
+    return render_template("admin/cwd.html",cwd=cwd)
 
 @admin.route("/admin/submissionselect")
 @admin_required
