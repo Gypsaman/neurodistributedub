@@ -8,6 +8,7 @@ from webproject.routes import admin_required
 from datetime import datetime as dt
 from webproject.modules.quizzes import Topics
 from webproject.modules.logger import LogType, Log
+import os
 
 admin = Blueprint("admin", __name__)
 
@@ -17,6 +18,11 @@ admin = Blueprint("admin", __name__)
 def admin_welcome():
     return render_template("admin/admin.html")
 
+@admin.route("/admin/cwd")
+@admin_required
+def show_cwd():
+    cwd = os.get_cwd()
+    return render_template("admin/cwd.html",cwd=cwd)
 
 @admin.route("/admin/submissionselect")
 @admin_required
