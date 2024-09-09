@@ -3,4 +3,4 @@ venv/
 webproject/static/classdocs/
 __pycache__
 data/
-
+.env
