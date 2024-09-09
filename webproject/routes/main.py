@@ -62,6 +62,7 @@ def resources_select():
 @login_required
 def resources_select_post():
     class_name = request.form['class']
+    return redirect(url_for('main.resources',class_name=class_name))
 
 @main.route('/resources/slides/<class_name>/<path:filename>')
 @login_required

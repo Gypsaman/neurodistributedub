@@ -13,7 +13,7 @@
                 <p>Here are the class slides:</p>
                 <ul>
                     {% for slide in slides %}
-                        <li><a href="{{ url_for('main.view_slides',filename=slide) }}">{{slide.split('.')[0]}}</a></li>
+                        <li><a href="{{ url_for('main.view_slides',filename=slide,class_name=class_name) }}">{{slide.split('.')[0]}}</a></li>
                     {% endfor %}
 
                 </ul>
@@ -22,7 +22,7 @@
                 <p>Here are the class videos:</p>
                 <ul>
                     {% for video in videos %}
-                        <li><a href="{{ url_for('main.view_videos',filename=video) }}">{{video.split('.')[0]}}</a></li>
+                        <li><a href="{{ url_for('main.view_videos',filename=video,class_name=class_name) }}">{{video.split('.')[0]}}</a></li>
                     {% endfor %}
 
                 </ul>

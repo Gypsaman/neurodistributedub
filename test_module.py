@@ -36,10 +36,9 @@ def save_data(query, filename):
 #     for model in models:
 #         save_data(model[0], model[1])
 
-from webproject.models import User,Sections
+# from webproject.models import User,Sections
 with create_app().app_context():
-    for section in Sections.query.all():
-        print(section.to_dict())
+    db.create_all()
 
 # from webproject.modules.create_initial_data import create_initial_data
 
