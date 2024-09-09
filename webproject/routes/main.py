@@ -12,7 +12,7 @@ import os
 main = Blueprint('main',__name__)
 classes = [
     '01-Cryptography',
-    # '02-Blockchain',
+    '02-Blockchain',
     # '03-Smart Contracts',
     # '04-Solidity Language',
     # '05-Oracles',
