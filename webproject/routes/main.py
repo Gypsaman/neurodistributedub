@@ -10,6 +10,15 @@ import os
 
 
 main = Blueprint('main',__name__)
+classes = [
+    '01-Cryptography',
+    # '02-Blockchain',
+    # '03-Smart Contracts',
+    # '04-Solidity Language',
+    # '05-Oracles',
+    # '06-Web3.py',
+    # '07-Foundry'
+]
 
 
 @main.route('/attendance')
@@ -37,23 +46,32 @@ def attendance_post():
 def index():
     return render_template('main/index.html')
 
-@main.route('/resources')
+@main.route('/resources/<class_name>')
 @login_required
-def resources():
+def resources(class_name):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    slides = os.listdir(os.path.join(current_dir,'static/classdocs/slides'))
-    videos = os.listdir(os.path.join(current_dir,'static/classdocs/videos'))
-    return render_template('main/resources.html',slides=slides,videos=videos)
+    slides = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'slides'))
+    videos = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'videos'))
+    return render_template('main/resources.html',slides=slides,videos=videos,class_name=class_name)
+@main.route('/resources/select')
+@login_required
+def resources_select():
+    return render_template('main/resources_select.html',classes=classes )
 
-@main.route('/resources/slides/<path:filename>')
+@main.route('/resources/select',methods=['POST'])
+@login_required
+def resources_select_post():
+    class_name = request.form['class']
+
+@main.route('/resources/slides/<class_name>/<path:filename>')
 @login_required
 def view_slides(filename):
-    return send_from_directory('static/classdocs/slides',filename)
+    return send_from_directory('static/classdocs',class_name,'slides',filename)
 
-@main.route('/resources/videos/<path:filename>')
+@main.route('/resources/videos/<class_name>/<path:filename>')
 @login_required
 def view_videos(filename):
-    return send_from_directory('static/classdocs/videos',filename)
+    return send_from_directory('static/classdocs',class_name,'videos',filename)
 
 @main.route('/wallet')
 @login_required
