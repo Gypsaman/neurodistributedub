@@ -52,6 +52,8 @@ def resources(class_name):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     slides = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'slides'))
     videos = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'videos'))
+    slides.sort()
+    videos.sort()
     return render_template('main/resources.html',slides=slides,videos=videos,class_name=class_name)
 @main.route('/resources/select')
 @login_required
