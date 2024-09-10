@@ -22,7 +22,7 @@ content = {
         ],
         "videos":[]
 
-    }
+    },
     "Smart contracts":{
         "slides":[],
         "videos":[]
