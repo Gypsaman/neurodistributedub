@@ -70,13 +70,13 @@ def resources_select_post():
 @login_required
 def view_slides(filename):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return send_from_directory(os.path.join(current_dir,'classdocs'),filename)
+    return send_from_directory(os.path.join(current_dir,'classdocs/files'),filename)
 
 @main.route('/resources/videos/<path:filename>')
 @login_required
 def view_videos(filename):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return send_from_directory(os.path.join(current_dir,'classdocs'),filename)
+    return send_from_directory(os.path.join(current_dir,'classdocs/files'),filename)
 
 @main.route('/wallet')
 @login_required
