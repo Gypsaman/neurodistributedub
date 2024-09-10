@@ -2,6 +2,7 @@ from flask import Blueprint,render_template,request,redirect,flash,url_for,send_
 from flask_login import current_user
 from webproject.models import User,Wallet,Assignments,Grades, Attendance
 from webproject.modules.web3_interface import get_eth_balance
+from webproject.classdocs.content import content
 from webproject import db
 from flask_login import login_required
 from datetime import datetime as dt
@@ -49,15 +50,14 @@ def index():
 @main.route('/resources/<class_name>')
 @login_required
 def resources(class_name):
-    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    slides = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'slides'))
-    videos = os.listdir(os.path.join(current_dir,'static/classdocs',class_name,'videos'))
-    slides.sort()
-    videos.sort()
+    slides = content[class_name]['slides']
+    videos = content[class_name]['videos']
     return render_template('main/resources.html',slides=slides,videos=videos,class_name=class_name)
+
 @main.route('/resources/select')
 @login_required
 def resources_select():
+    classes = content.keys()
     return render_template('main/resources_select.html',classes=classes )
 
 @main.route('/resources/select',methods=['POST'])
@@ -66,17 +66,17 @@ def resources_select_post():
     class_name = request.form['class']
     return redirect(url_for('main.resources',class_name=class_name))
 
-@main.route('/resources/slides/<class_name>/<path:filename>')
+@main.route('/resources/slides/<path:filename>')
 @login_required
-def view_slides(class_name,filename):
+def view_slides(filename):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return send_from_directory(os.path.join(current_dir,'static/classdocs',class_name,'slides'),filename)
+    return send_from_directory(os.path.join(current_dir,'classdocs'),filename)
 
-@main.route('/resources/videos/<class_name>/<path:filename>')
+@main.route('/resources/videos/<path:filename>')
 @login_required
-def view_videos(class_name,filename):
+def view_videos(filename):
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return send_from_directory(os.path.join(current_dir,'static/classdocs',class_name,'videos'),filename)
+    return send_from_directory(os.path.join(current_dir,'classdocs'),filename)
 
 @main.route('/wallet')
 @login_required
