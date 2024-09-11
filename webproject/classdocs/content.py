@@ -13,50 +13,67 @@ content = {
             "filename": "Elliptic Curve.mp4" },
             {"description":"Hashing",
             "filename":"Hashing.mp4"}
-        ]
+        ],
+        "resources":[]
     },
     "Blockchain": {
         "slides": [
             {"description": "Blockchain",
             "filename":"02-Blockchain.pdf"}
         ],
-        "videos":[]
+        "videos":[],
+        "resources":[]
 
     },
     "Smart contracts":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "Solidity Programming & Oracles":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "Contract Factory Oracle practice":{
-        "slides":[],
-        "videos":[]
+        "slides":[
+            {"description":"Oracles",
+            "filename":"05-Oracles.pdf"}
+        ],
+        "videos":[],
+        "resources":[
+            {"description":"My ID Homework Template",
+            "filename":"myID_Homework.sol"}
+        ]
     },
     "Web3.py":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "Foundry":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "Mocks and Testing":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "IPFS and Tokens":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "NFT":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
     "NFT – Contract Interaction":{
         "slides":[],
-        "videos":[]
+        "videos":[],
+        "resources":[]
     },
 }

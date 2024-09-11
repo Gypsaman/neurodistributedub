@@ -10,7 +10,7 @@
         <h1>Resources for {{class_name}}</h1>
         <div class="neuro-flex-row" >
             <div style=" margin-right: 10px; min-width: 300px;">
-                <p>Here are the class slides:</p>
+                <h2>Slides and Resources:</h2>
                 <ul>
                     {% for slide in slides %}
                         <li><a href="{{ url_for('main.view_slides',filename=slide['filename']) }}">{{slide['description']}}</a></li>
@@ -19,7 +19,7 @@
                 </ul>
             </div>
             <div style=" margin-right: 10px; min-width: 300px;">
-                <p>Here are the class videos:</p>
+                <h2>Class Videos:</h2>
                 <ul>
                     {% for video in videos %}
                         <li><a href="{{ url_for('main.view_videos',filename=video['filename']) }}">{{video['description']}}</a></li>

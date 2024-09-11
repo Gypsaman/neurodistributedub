@@ -50,7 +50,7 @@ def index():
 @main.route('/resources/<class_name>')
 @login_required
 def resources(class_name):
-    slides = content[class_name]['slides']
+    slides = content[class_name]['slides']+content[class_name]['resources']
     videos = content[class_name]['videos']
     return render_template('main/resources.html',slides=slides,videos=videos,class_name=class_name)
 

@@ -15,7 +15,7 @@ from webproject.modules.quizzes import create_quiz_users
 
 import os
 from sqlalchemy import text
-
+from graders.check_submissions import check_submissions
     
 def save_data(query, filename):
     with open(os.path.join('./data',filename), 'w') as f:
@@ -38,7 +38,7 @@ def save_data(query, filename):
 
 # from webproject.models import User,Sections
 with create_app().app_context():
-    db.create_all()
+    check_submissions()
 
 # from webproject.modules.create_initial_data import create_initial_data
 
