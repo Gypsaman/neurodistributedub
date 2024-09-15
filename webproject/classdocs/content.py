@@ -28,6 +28,8 @@ content = {
             "filename":"Blockchain_Bitcoin.mp4"},
             {"description": "Blockchain Mining",
             "filename":"BlockchainMining.mp4"},
+            {"description": "Ethereum Blockchain",
+            "filename":"ethereum_blockchain.mp4"},
             {"description": "Package Installation",
             "filename":"package_installation.mp4"}
 
