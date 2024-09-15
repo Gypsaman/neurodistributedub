@@ -19,9 +19,19 @@ content = {
     "Blockchain": {
         "slides": [
             {"description": "Blockchain",
-            "filename":"02-Blockchain.pdf"}
+            "filename":"02-Blockchain.pdf"},
+            {"description":"Package Installation",
+            "filename":"02-package_installation.pdf"}
         ],
-        "videos":[],
+        "videos":[
+            {"description": "Blockchain and Bitcoin",
+            "filename":"Blockchain_Bitcoin.mp4"},
+            {"description": "Blockchain Mining",
+            "filename":"BlockchainMining.mp4"},
+            {"description": "Package Installation",
+            "filename":"package_installation.mp4"}
+
+        ],
         "resources":[]
 
     },
