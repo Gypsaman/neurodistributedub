@@ -38,8 +38,16 @@ content = {
 
     },
     "Smart contracts":{
-        "slides":[],
-        "videos":[],
+        "slides":[
+            {"description": "Smart Contracts",
+            "filename":"03-smartcontracts.pdf"}
+        ],
+        "videos":[
+            {"description": "Smart Contracts",
+            "filename":"smart_contracts.mp4"},
+            {"Description": "Metamask",
+            "filename":"metamask.mp4"}
+        ],
         "resources":[]
     },
     "Solidity Programming & Oracles":{
