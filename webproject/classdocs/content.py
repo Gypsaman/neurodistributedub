@@ -45,9 +45,9 @@ content = {
         "videos":[
             {"description": "Smart Contracts",
             "filename":"smart_contracts.mp4"},
-            {"Description": "Metamask and Infura",
+            {"description": "Metamask and Infura",
             "filename":"Metamask_Infura.mp4"},
-            {"Description": "Remix Demo",
+            {"description": "Remix Demo",
             "filename": "remix.mp4"}
         ],
         "resources":[]

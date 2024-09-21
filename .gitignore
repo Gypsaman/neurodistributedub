@@ -7,3 +7,4 @@ data/
 logs/
 webproject/classdocs/files/
 classdocs/__pycache__
+test_module.py
