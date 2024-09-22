@@ -48,7 +48,9 @@ content = {
             {"description": "Metamask and Infura",
             "filename":"Metamask_Infura.mp4"},
             {"description": "Remix Demo",
-            "filename": "remix.mp4"}
+            "filename": "remix.mp4"},
+            {"description":"Wallet Assignment",
+            "filename":"wallet.mp4"}
         ],
         "resources":[]
     },
