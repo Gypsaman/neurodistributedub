@@ -55,8 +55,20 @@ content = {
         "resources":[]
     },
     "Solidity Programming & Oracles":{
-        "slides":[],
-        "videos":[],
+        "slides":[
+            {"description":"Solidity Language",
+            "filename":"04-solidity_lang.pdf"},
+            {"description":"Oracles",
+            "filename":"05-oracles.pdf"}
+        ],
+        "videos":[
+            {"description":"Solidity Language",
+            "filename":"solidity_lang.mp4"},
+            {"description":"Oracles",
+            "filename": "oracles.mp4"},
+            {"description":"PayUB Contract",
+            "filename":"payub.mp4"}
+        ],
         "resources":[]
     },
     "Contract Factory Oracle practice":{
