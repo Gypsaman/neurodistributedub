@@ -59,7 +59,7 @@ content = {
             {"description":"Solidity Language",
             "filename":"04-solidity_lang.pdf"},
             {"description":"Oracles",
-            "filename":"05-oracles.pdf"}
+            "filename":"05-Oracles.pdf"}
         ],
         "videos":[
             {"description":"Solidity Language",
