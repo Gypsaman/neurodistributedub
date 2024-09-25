@@ -247,12 +247,12 @@ def payUB_Grader(Address_ABI) -> tuple[int,str]:
     if payUB is None:
         return 0, 'Not a valid contract address'
     
-    grade = 45
+    grade = 55
     comment = ''
     ab_functions = get_abi_functions(UB_abi)
-    for func in ['addBill','viewBill','withdraw','payBill','getConversionRate','getPrice']:
+    for func in ['addBill','viewBill','withdraw','payBill']:
         if func not in ab_functions:
-            comment +=  f'{func} function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+            comment +=  f'{func} function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct\n'
             continue
         grade += 5
 

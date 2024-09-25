@@ -60,10 +60,8 @@ nft_abi = [
 ]
 
 def get_provider(network):
-    if network == 'goerli':
-        return os.getenv("PROVIDER")
-    if network == 'sepolia':
-        return os.getenv("PROVIDER_SEPOLIA")
+
+    return os.getenv("PROVIDER").format(network)
     
 
 def get_nft_uri(token_addr, top=10, network="sepolia"):
