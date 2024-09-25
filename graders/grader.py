@@ -244,30 +244,30 @@ def payUB_Grader(Address_ABI) -> tuple[int,str]:
     if not is_wallet:
         return 0, 'This contract was not created by your wallet'
 
-    ab_functions = get_abi_functions(UB_abi)
-    for func in ['viewBill','billsToPay']:
-        if func not in ab_functions:
-            return 0, f'{func} function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
-
     if payUB is None:
         return 0, 'Not a valid contract address'
-
-    try:
-        billtopay = payUB.functions.billsToPay(myaccount).call()
-    except:
-        billtopay = -1
+    
+    grade = 45
+    comment = ''
+    ab_functions = get_abi_functions(UB_abi)
+    for func in ['addBill','viewBill','withdraw','payBill','getConversionRate','getPrice']:
+        if func not in ab_functions:
+            comment +=  f'{func} function not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+            continue
+        grade += 5
 
     try:
         mybill = payUB.functions.viewBill().call({"from":Web3.to_checksum_address(myaccount)})
     except:
         mybill = -1
     
-    grade, comment = 75, f'Bill to {myaccount} is not correct'
     
-    if billtopay == 500 and mybill == 500:
-        grade,comment = 100,'Homework is correct'
-    if billtopay == 500 and mybill != 500:
-        grade,comment = 85,'viewBill function does not return correct value'
+    if mybill == 500:
+        grade += 25
+    else:
+        comment += f'Bill to student {myaccount} should be 500'
+    
+    comment = 'Homework is Correct' if grade == 100 else comment
     
     return grade,comment
 
