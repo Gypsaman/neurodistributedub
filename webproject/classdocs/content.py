@@ -67,7 +67,11 @@ content = {
             {"description":"Oracles",
             "filename": "oracles.mp4"},
             {"description":"PayUB Contract",
-            "filename":"payub.mp4"}
+            "filename":"payub.mp4"},
+            {"description":"How to Submit Honmework",
+            "filename":"address_abi_submission.mp4"},
+            {"description":"Add Holesky Testnet",
+            "filename":"add_holesky.mp4"}
         ],
         "resources":[]
     },
