@@ -77,13 +77,14 @@ content = {
     },
     "Contract Factory Oracle practice":{
         "slides":[
-            {"description":"Oracles",
-            "filename":"05-Oracles.pdf"}
         ],
-        "videos":[],
+        "videos":[
+            {"description":"ID Bureau Part 1",
+             "filename":"IDBureau_1.mp4"},
+            {"description":"ID Bureau Part 2",
+             "filename":"IDBureau_2.mp4"},
+        ],
         "resources":[
-            {"description":"My ID Homework Template",
-            "filename":"myID_Homework.sol"}
         ]
     },
     "Web3.py":{
