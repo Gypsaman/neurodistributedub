@@ -188,7 +188,7 @@ contract Midterm {10}
 def write_all_programs():
     for exam_no in exams.keys():
         program = create_program(exam_no)
-        with open(f'./graders/midterm_{exam_no}.sol','w') as f:
+        with open(f'./graders/MidTermPrograms/midterm_{exam_no}.sol','w') as f:
             f.write(program)
     
 def get_exam(student_id):
@@ -197,19 +197,19 @@ def get_exam(student_id):
     return exams[exam_no['exam_id']]
 
 def email_exams(section):
-    Wednesday_retake = ["lanyekere@my.bridgeport.edu","jputt@my.bridgeport.edu","mgurijala@my.bridgeport.edu","sgarik@my.bridgeport.edu","pkandel@my.bridgeport.edu"]
-    with create_app().app_context():
-        for user in User.query.filter_by(role='student',section=section).all():
-            if user.email not in Wednesday_retake:
-                continue
 
+    with create_app().app_context():
+        for user in User.query.filter_by(role='admin',section=section).all():
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
             email = UBEmail()
             body = f'{user.first_name},\n\n{instructions}'
             email.send_email(user.email,f'Mid Term Exam',body)
             
-            
+
+"""
+this function was a one time use.
+
 def email_exam_date():            
     with open('zero_midterms_details.csv','r') as f:
         data = f.readlines()
@@ -242,7 +242,7 @@ def email_exam_date():
             
             '''
             email.send_email(line[1],'Mid Term Exam - Redo',body)
-
+"""          
 if __name__ == '__main__':
     print('MidTermExam.py is meant to be used as module')
     # not_included = ['1069829','1172523','1213915','1212697','1182733','1172732']

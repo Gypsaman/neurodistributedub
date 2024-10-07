@@ -87,6 +87,14 @@ content = {
         "resources":[
         ]
     },
+    "Midterm":{
+        "slides":[],
+        "videos":[
+            {"description": "Attendace for Midterm",
+             "filename":"attendance.mp4"},
+        ],
+        "resources":[]
+    },
     "Web3.py":{
         "slides":[],
         "videos":[],

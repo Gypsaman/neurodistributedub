@@ -168,44 +168,49 @@ def MidTerm_Grader(Address_ABI:str) -> tuple[int,str]:
     exam = get_exam(student_id)
     
     constructor = get_constructor(abi)
-    if constructor is None:
-        return 0, 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
-
-    if len(constructor['inputs']) == len(exam['Structure']['properties']):
-        for idx,inp in enumerate(constructor['inputs']):
-            if inp['type'] != exam['Structure']['properties'][idx]['type']:
-                return 0, 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
-            
-    else:
-        return 0, 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
-
+    grade = 70
     msg = ''
+
+    if constructor is None:
+        msg += 'Constructor not defined in ABI\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    if len(constructor['inputs']) != len(exam['Structure']['properties']):
+        msg += 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+
+    for idx,inp in enumerate(constructor['inputs']):
+        if inp['type'] != exam['Structure']['properties'][idx]['type']:
+            msg += 'Constructor does not have the correct parameters\nMake sure you have supplied a valid ABI and the functions are spelled correctly and capitlization is correct'
+        
+
     functions_to_verify = [exam['get_function'],exam['variable'],exam['update_function']]
+
     for func in functions_to_verify:
         if func not in get_abi_functions(abi):
             msg += f"{func} function not defined or not public\nMake sure it is spelled correctly and capitlization is correct"
-    if msg != '':
-        return 0, msg
-    
+        else:
+            grade += 5
+    # grade == 55 here
     try:
         midterm.functions[exam['update_function']](100).call({'from':myaccount})
-        return 85, f'Updates function is not restricted to owner'
-    
+        msg +=  f'Updates function is not restricted to owner'
     except Exception as e:
         if 'execution reverted' not in e.args[0]:
-            return 0, f'Error in updates function\n{str(e)}'
+            msg +=  f'Error in updates function\n{str(e)}'
+        else:
+            grade += 5
 
     try:
         value = midterm.functions[exam['get_function']]().call({"from":myaccount})
+        grade += 5
     except Exception as e:
-        return 75, f"getValue function does not run correctly\nError:\n{str(e)}"
+        msg += f"getValue function does not run correctly\nError:\n{str(e)}"
 
     if len(value) != len(exam['Structure']['properties']):
-        return 75, "value does not return correct number of elements"
+        msg += "value does not return correct number of elements"
+    grade += 5
     
     
-    
-    return 100, f'Great work on your mid term exam!!'
+    return grade, f'Great work on your mid term exam!!' if msg == '' else msg
 
 def MyID_Grader(Address_ABI) -> tuple[int,str]:
 
