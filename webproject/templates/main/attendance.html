@@ -6,12 +6,13 @@
 
     {% endif %} 
     {% endwith %}
+
     <form class="neuro-login-form"  method="POST" action="/attendance">
         <div class="">
             <label for="attendance_code">Attendance Code</label>
             <input name="attendance_code" 
                 type="text" 
-                size="10" 
+                size="5" 
                 required 
                  >
         </div>
@@ -19,4 +20,5 @@
     </form>
 
 </div>
+
 {% endblock %}

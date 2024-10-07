@@ -1,5 +1,6 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for,send_from_directory
 from flask_login import current_user
+from webproject.routes import admin_required
 from webproject.models import User,Wallet,Assignments,Grades, Attendance
 from webproject.modules.web3_interface import get_eth_balance
 from webproject.classdocs.content import content
@@ -8,6 +9,7 @@ from flask_login import login_required
 from datetime import datetime as dt
 import hashlib
 import os
+from flask import jsonify
 
 
 main = Blueprint('main',__name__)
@@ -21,6 +23,23 @@ classes = [
     # '07-Foundry'
 ]
 
+@main.route('/AttendanceCodeValue')
+@admin_required
+def attendance_code_value():
+    date = dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%S')[:-1]
+    code = hashlib.sha256(date.encode()).hexdigest()[:5]
+    return jsonify({'code':code})
+
+@main.route('/attendance_code')
+@admin_required
+def attendance_code():
+    return render_template('main/attendance_code.html')
+
+# """
+# <meta http-equiv="refresh" content="5">
+# <h1>Attendance Code: {}</h1>
+# <h2>{}</h2>""".format(code,dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%s'))
+
 
 @main.route('/attendance')
 @login_required
@@ -31,12 +50,13 @@ def attendance():
 @login_required
 def attendance_post():
     code = request.form.get('attendance_code')
-    if dt.strftime(dt.now(),"%M") > '20':
-        flash('Attendance code expired!')
-        return redirect(url_for('main.attendance'))
-    date = dt.strftime(dt.now(),'%Y-%m-%d') 
-    if code != hashlib.sha256(date.encode()).hexdigest()[:5]:
-        flash('Incorrect Attendance Code!')
+    # if dt.strftime(dt.now(),"%M") > '20':
+    #     flash('Attendance code expired!')
+    #     return redirect(url_for('main.attendance'))
+    date = dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%S')[:-1]
+    hash = hashlib.sha256(date.encode()).hexdigest()[:5]
+    if code != hash:
+        flash(f'Incorrect Attendance Code!{code}-{hash}')
         return redirect(url_for('main.attendance'))
     attendance = Attendance(user_id=current_user.id,date=dt.now())
     db.session.add(attendance)

@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block body %}
+<div class="neuro-content">
+
+<h2>Attendance Code:</h2>
+<h1><span id="value">Loading...</span></h1>
+
+</div>
+<script>
+    // Function to fetch data and update the content
+    function fetchData() {
+        fetch('/AttendanceCodeValue')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('value').textContent = data.code;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Fetch new data every 5 seconds
+    setInterval(fetchData, 3000);
+
+    // Fetch data when the page loads for the first time
+    fetchData();
+</script>
+{% endblock %}
