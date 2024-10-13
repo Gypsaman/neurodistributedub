@@ -10,25 +10,41 @@ from datetime import datetime as dt
 import hashlib
 import os
 from flask import jsonify
+from sqlalchemy import text
+import json 
+from graders.MidTermExam import email_exams
 
 
 main = Blueprint('main',__name__)
-classes = [
-    '01-Cryptography',
-    '02-Blockchain',
-    # '03-Smart Contracts',
-    # '04-Solidity Language',
-    # '05-Oracles',
-    # '06-Web3.py',
-    # '07-Foundry'
-]
+
+def email_midtermexam():
+    if not Assignments.query.filter_by(name='Mid Term').first().active:
+        return
+    exam_distribution = json.load(open('./graders/exam_distribution.json','r'))
+    exam_data = exam_distribution[current_user.student_id]
+    if exam_data['emailed']:
+        return
+
+    email_exams(current_user.section,current_user.student_id)
+    exam_distribution[current_user.student_id]['emailed'] = True
+    json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
+
+
 
 @main.route('/AttendanceCodeValue')
 @admin_required
 def attendance_code_value():
     date = dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%S')[:-1]
     code = hashlib.sha256(date.encode()).hexdigest()[:5]
-    return jsonify({'code':code})
+    today = dt.today().date()
+    date_format = "%Y-%m-%d"
+    print(today.strftime(date_format))
+    stmt = "SELECT user.id, date FROM user  left join "
+    stmt += f"(select user_id, max(date) as date from attendance where date > '{today.strftime(date_format)}' group by user_id) as att "
+    stmt += "on user.id = user_id where date is null and user.role = 'student'"
+
+    users = list(db.session.execute(text(stmt)))
+    return jsonify({'code':code,'NotAttended':len(users)})
 
 @main.route('/attendance_code')
 @admin_required
@@ -50,17 +66,16 @@ def attendance():
 @login_required
 def attendance_post():
     code = request.form.get('attendance_code')
-    # if dt.strftime(dt.now(),"%M") > '20':
-    #     flash('Attendance code expired!')
-    #     return redirect(url_for('main.attendance'))
+
     date = dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%S')[:-1]
     hash = hashlib.sha256(date.encode()).hexdigest()[:5]
     if code != hash:
-        flash(f'Incorrect Attendance Code!{code}-{hash}')
+        flash(f'Incorrect Attendance Code!{code}')
         return redirect(url_for('main.attendance'))
     attendance = Attendance(user_id=current_user.id,date=dt.now())
     db.session.add(attendance)
     db.session.commit()
+    email_midtermexam()
     return redirect(url_for('dashb.dashboard'))
 
 @main.route('/')

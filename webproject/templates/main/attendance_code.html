@@ -3,6 +3,7 @@
 
 <h2>Attendance Code:</h2>
 <h1><span id="value">Loading...</span></h1>
+<h2>Students Not Attended: <span id="notattended">Loading..</span></h2>
 
 </div>
 <script>
@@ -12,11 +13,12 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('value').textContent = data.code;
+                document.getElementById('notattended').textContent = data.NotAttended;
             })
             .catch(error => console.error('Error:', error));
     }
 
-    // Fetch new data every 5 seconds
+    // Fetch new data every 3 seconds
     setInterval(fetchData, 3000);
 
     // Fetch data when the page loads for the first time

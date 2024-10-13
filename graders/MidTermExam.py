@@ -1,4 +1,4 @@
-from webproject.models import User
+from webproject.models import User, Assignments
 from webproject.modules.ubemail import UBEmail
 from webproject import db, create_app
 import random
@@ -113,12 +113,13 @@ def get_instructions(exam):
         exam['get_function']
     )
 
-def build_exam_distribution():
-    
+def build_exam_distribution(exam:str):
+    if exam not in ['Mid Term','Final Project']:
+        raise ValueError('exam must be either "Mid Term" or "Final Project"')
     exam_distribution = {}
     with create_app().app_context():
         for user in User.query.all():
-            exam_distribution[user.student_id] = {"exam_id":random.randint(1,len(exams)),"email":user.email,"name":user.last_name}
+            exam_distribution[user.student_id] = {"exam":exam,"exam_id":random.randint(1,len(exams)),"email":user.email,"name":user.last_name,"emailed":False}
     json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
                 
 def create_program(exam: int) -> str:
@@ -196,10 +197,10 @@ def get_exam(student_id):
     exam_no = exam_distribution[student_id]
     return exams[exam_no['exam_id']]
 
-def email_exams(section):
+def email_exams(section,student):
 
     with create_app().app_context():
-        for user in User.query.filter_by(role='admin',section=section).all():
+        for user in User.query.filter_by(student_id=student,section=section).all():
             exam = get_exam(user.student_id)
             instructions = get_instructions(exam)
             email = UBEmail()
