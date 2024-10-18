@@ -18,6 +18,10 @@
                 {% if assignment.inputtype == "file" %}
                     <input type="file" name="submission" required>
                 {% endif %}
+                {% if assignment.inputtype == "url" %}
+                    <label for="submission">URL</label>
+                    <input type="url" name="submission" placeholder="Enter URL here" required>
+                {% endif %}
                 {% if assignment.inputtype.startswith("address") %}
                     <label for="submission">Submission</label>
                     <input type="text" name="submission" 

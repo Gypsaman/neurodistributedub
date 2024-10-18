@@ -20,6 +20,7 @@
                 <select id="inputtype" name="inputtype" required style="min-width:200px">
                     <option value="address" {% if assignment.inputtype == 'address' %}selected{% endif %}>Address</option>
                     <option value="address_abi" {% if assignment.inputtype == 'address_abi' %}selected{% endif %}>Address with ABI</option>
+                    <option value="url" {% if assignment.inputtype == 'url' %}selected{% endif %}>Url</option>
                     <option value="text" {% if assignment.inputtype == 'text' %}selected{% endif %}>Text</option>
                     <option value="file" {% if assignment.inputtype == 'file' %}selected{% endif %}>File</option>
                     <option value="none" {% if assignment.inputtype == 'none' %}selected{% endif %}>None</option>

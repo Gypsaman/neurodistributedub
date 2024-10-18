@@ -51,12 +51,6 @@ def attendance_code_value():
 def attendance_code():
     return render_template('main/attendance_code.html')
 
-# """
-# <meta http-equiv="refresh" content="5">
-# <h1>Attendance Code: {}</h1>
-# <h2>{}</h2>""".format(code,dt.strftime(dt.now(),'%Y-%m-%d %H:%M:%s'))
-
-
 @main.route('/attendance')
 @login_required
 def attendance():
