@@ -7,3 +7,6 @@
 [submodule "graders/currsubmission/foundry/lib/chainlink"]
 	path = graders/currsubmission/foundry/lib/chainlink
 	url = https://github.com/smartcontractkit/chainlink
+[submodule "graders/currsubmission/foundry/lib/openzeppelin-contracts"]
+	path = graders/currsubmission/foundry/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
