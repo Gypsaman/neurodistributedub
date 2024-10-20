@@ -139,7 +139,13 @@ def submission_post(submission_id):
         if wallet is None:
             wallet = ""
             
-        submission = json.dumps({'contract':contract,'abi':abi,'wallet':wallet,'network':network,'user_id':{"system_id":current_user.id,"student_id":current_user.student_id}})
+        submission = json.dumps({
+            'contract':contract,
+            'abi':abi,
+            'wallet':wallet,
+            'network':network,
+            'user_id':{"system_id":current_user.id,"student_id":current_user.student_id}
+        })
     else:
         submission = request.form['submission']
         

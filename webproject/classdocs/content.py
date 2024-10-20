@@ -96,9 +96,24 @@ content = {
         "resources":[]
     },
     "Web3.py":{
-        "slides":[],
-        "videos":[],
-        "resources":[]
+        "slides":[
+            {"description":"Fallback Attack",
+             "filename":"06-fallback.mp4"}
+            {"description":"Web3.py",
+             "filename":"06-web3py.pdf"}
+        ],
+        "videos":[{
+            "description":"Fallback Attack",
+            "filename":"fallback.mp4"},
+            {"description":"Web3.py",
+             "filename":"web3py.mp4"},
+        }],
+        "resources":[
+            {"description":"Github Tutorial",
+             "filename":"Github.mp4"},
+             {"description":"Github Submission",
+              "filename":"git_submission.mp4"}
+        ]
     },
     "Foundry":{
         "slides":[],
