@@ -1,3 +1,6 @@
 [submodule "graders/currsubmission/foundry/lib/forge-std"]
 	path = graders/currsubmission/foundry/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "graders/currsubmission/foundry/lib/NetworkConfig"]
+	path = graders/currsubmission/foundry/lib/NetworkConfig
+	url = https://github.com/Gypsaman/NetworkConfig
