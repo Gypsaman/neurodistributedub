@@ -4,3 +4,6 @@
 [submodule "graders/currsubmission/foundry/lib/NetworkConfig"]
 	path = graders/currsubmission/foundry/lib/NetworkConfig
 	url = https://github.com/Gypsaman/NetworkConfig
+[submodule "graders/currsubmission/foundry/lib/chainlink"]
+	path = graders/currsubmission/foundry/lib/chainlink
+	url = https://github.com/smartcontractkit/chainlink
