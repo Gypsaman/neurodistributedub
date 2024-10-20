@@ -98,16 +98,17 @@ content = {
     "Web3.py":{
         "slides":[
             {"description":"Fallback Attack",
-             "filename":"06-fallback.mp4"}
+             "filename":"06-fallback.mp4"},
             {"description":"Web3.py",
              "filename":"06-web3py.pdf"}
         ],
-        "videos":[{
+        "videos":[
+            {
             "description":"Fallback Attack",
             "filename":"fallback.mp4"},
             {"description":"Web3.py",
              "filename":"web3py.mp4"},
-        }],
+        ],
         "resources":[
             {"description":"Github Tutorial",
              "filename":"Github.mp4"},
