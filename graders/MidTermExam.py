@@ -120,7 +120,7 @@ def build_exam_distribution(exam:str):
     with create_app().app_context():
         for user in User.query.all():
             exam_distribution[user.student_id] = {"exam":exam,"exam_id":random.randint(1,len(exams)),"email":user.email,"name":user.last_name,"emailed":False}
-    json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
+    json.dump(exam_distribution,open('../graders/exam_distribution.json','w'))
                 
 def create_program(exam: int) -> str:
     
