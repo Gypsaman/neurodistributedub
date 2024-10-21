@@ -84,7 +84,7 @@ def grade_web3(repo,program_file):
 
     else:
         msg = "Error: Contract Address not found in output\n" + result
-    # cleanup_repo(base_path)
+    cleanup_repo(base_path)
     return grade, msg if msg > '' else 'Assignment is correct'
 
 
