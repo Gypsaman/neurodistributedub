@@ -20,7 +20,7 @@ main = Blueprint('main',__name__)
 def email_midtermexam():
     if not Assignments.query.filter_by(name='Mid Term').first().active:
         return
-    exam_distribution = json.load(open('./graders/exam_distribution.json','r'))
+    exam_distribution = json.load(open('../graders/exam_distribution.json','r'))
     exam_data = exam_distribution[current_user.student_id]
     if exam_data['emailed']:
         return
