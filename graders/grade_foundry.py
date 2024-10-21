@@ -8,8 +8,8 @@ def setup_repo(base_path,repo):
     subprocess.run(['git', 'clone',repo, os.path.join(base_path,'homework')])
     source_dirs = ['src','test','script']
     for source in source_dirs:
-        shutil.rmtree(os.path.join(base_path,'assignment',source),ignore_errors=True)
-        shutil.copytree(os.path.join(base_path,'homework',source),os.path.join(base_path,'assignment',source))
+        shutil.rmtree(os.path.join(base_path,'foundry',source),ignore_errors=True)
+        shutil.copytree(os.path.join(base_path,'homework',source),os.path.join(base_path,'foundry',source))
     
 def cleanup_repo(base_path):
 
@@ -19,7 +19,7 @@ def run_forge_test():
     
     
     cwd = os.getcwd()
-    os.chdir('./graders/currsubmission/assignment')
+    os.chdir('./graders/currsubmission/foundry')
     result = subprocess.run(['forge','test','--match-path','payUB.t.sol'],stdout=subprocess.PIPE)
     os.chdir(cwd)
     return result

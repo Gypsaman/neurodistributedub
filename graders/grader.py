@@ -277,68 +277,13 @@ def payUB_Grader(Address_ABI) -> tuple[int,str]:
     return grade,comment
 
 def web3_grader(submission:str) -> tuple[int,str]:
+    from graders.grade_web3 import grade_web3
     
     check_anvil_running()
-    if submission.endswith('.pdf'):
-        return 0, 'Submission must be a python file, not a pdf'
-    
-    import importlib
-    
-    cwd = get_cwd()
-    cwd = os.path.join(cwd,'graders','imports')
-    
-    
-    with open(submission,'r') as f:
-        code = f.read()
-        
-    contract_path = os.path.join(cwd,'newContract.sol').replace('\\','\\\\')
-    
-    contract_location = re.findall('[\\\\/\.a-zA-Z0-9_]*\.sol',code)
-    
-    if not contract_location:
-        return 0, 'Submission must have a contract file'
-    
-    code = code.replace(contract_location[0],contract_path)
-    solcx_location = re.findall('solc_version=[\'"]([0-9\.]*)[\'"]',code)
-    code = code.replace(solcx_location[0],"0.8.10")
+    grade, msg = grade_web3(submission,'./src/Interact.py')
 
-    code = code.replace("PROVIDER","ANVIL_PROVIDER")
-    code = code.replace("CHAINID","ANVIL_CHAINID")
-    code = code.replace("ACCOUNT","ANVIL_ACCOUNT")
-    code = code.replace("PRIVATE_KEY","ANVIL_PRIVATE_KEY")
-    
-    with open(os.path.join(cwd,'StudentDeploy.py'),'w') as f:
-        f.write(code)
-        
-        
-    
-    import graders.imports.StudentDeploy as StudentDeploy
-        
-    try:
-        
-        importlib.reload(StudentDeploy)
-        
-    except Exception as e:
-        error_msg = str(e).replace('StudentDeploy.py','')
-        if 'from' in error_msg:
-            error_msg = error_msg[:error_msg.find('from')]
-        return 0, f"Submission does not compile correctly or deploy function not defined.\nError:\n{error_msg} "
-    
-    try:
-        contract = StudentDeploy.deploy()
-    except Exception as e:
-        return 0, f"deploy function does not run correctly\n{str(e)}"
-    
-
-    p = re.compile('0x[a-zA-Z0-9]{40}')
-
-    regex = p.search(contract)
-    
-    if regex is None:
-        return 75, f"deploy function does not return a valid contract address"
-    
-    
-    return 100, f"Contract address is correct"
+                
+    return grade, msg
     
 
 def wallet_grader(submission:str) -> tuple[int,str] :
@@ -453,3 +398,6 @@ def call_grader(assignment:str,submission:str) -> tuple[int,str]:
    return graders[assignment](submission)
     
     
+
+if __name__ == '__main__':
+    web3_grader('https://github.com/Gypsaman/web3-tutorial.git')
