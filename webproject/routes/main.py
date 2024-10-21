@@ -27,7 +27,7 @@ def email_midtermexam():
 
     email_exams(current_user.section,current_user.student_id)
     exam_distribution[current_user.student_id]['emailed'] = True
-    json.dump(exam_distribution,open('./graders/exam_distribution.json','w'))
+    json.dump(exam_distribution,open('/var/www/dna/graders/exam_distribution.json','w'))
 
 
 
