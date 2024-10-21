@@ -118,7 +118,7 @@ def password_reset():
         db.session.commit()
         
         email = UBEmail()
-        body = f'Your password reset link is http://crypto.neurodna.com/passwordupdate/{password_phrase}'
+        body = f'Your password reset link is http://crypto.neurodna.xyz/passwordupdate/{password_phrase}'
         body += f'\n\nThis link will expire in 5 minutes'
         
         email.send_email(user.email,'Password Reset',body)
