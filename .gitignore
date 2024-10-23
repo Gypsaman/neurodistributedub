@@ -9,3 +9,4 @@ webproject/classdocs/files/
 classdocs/__pycache__
 test_module.py
 graders/currsubmission/
+graders/exam_distribution.json
