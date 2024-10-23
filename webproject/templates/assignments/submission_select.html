@@ -2,6 +2,12 @@
 
 {% block body %}
 <div class="neuro-content">
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %}
+    <div style="color:red">{{ messages[0] }}</div>
+
+    {% endif %} 
+    {% endwith %}
     <h1>Select Assignment</h1>
     <div class="neuro-form-section">
         <form action="/submissionselect" method="POST" class="neuro-form">

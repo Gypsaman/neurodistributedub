@@ -3,6 +3,7 @@ import werkzeug
 from flask_login import current_user
 from webproject.models import User,Wallet,Assignments,Grades,Submissions, DueDates, Sections
 from webproject.modules.table_creator import TableCreator, Field,timestamp_to_date,short_hash,wei_to_eth,asset_type_string, true_false
+from graders.github import check_duplicate_repo
 from webproject import db
 from datetime import datetime as dt
 import os
@@ -126,18 +127,24 @@ def submission_post(submission_id):
 
     assignment = Assignments.query.filter_by(id=submission_id).first()
     submission = ''
+
     if assignment.inputtype == 'file':
         file_data = request.files['submission']
         file_name = werkzeug.utils.secure_filename(f'{submission_id}_{current_user.id}_{dt.now().strftime("%Y%m%d%H%M%S")}_{file_data.filename}')
         file_data.save(join(UPLOADPATH,file_name))
         submission=file_name
+
     elif assignment.inputtype == 'address_abi':
         contract = request.form['submission']
         abi = request.form['abi']
         network = request.form['network']
         wallet = Wallet.query.filter_by(user_id=current_user.id).first().wallet
         if wallet is None:
-            wallet = ""
+            flash('You do not have a wallet setup, Cannot submit')
+            return redirect(url_for('assignments.submission_select'))
+        if wallet == contract:
+            flash('You cannot submit your wallet address. You need to submit the contract address')
+            return redirect(url_for('assignments.submission_select'))
             
         submission = json.dumps({
             'contract':contract,
@@ -146,9 +153,19 @@ def submission_post(submission_id):
             'network':network,
             'user_id':{"system_id":current_user.id,"student_id":current_user.student_id}
         })
+
+    elif assignment.inputtype == 'Github Repository':
+        submission = request.form['submission']
+        if not submission.startswith('https://github.com'):
+            flash('You need to submit a Github Repository: https://github.com/username/repo')
+            return redirect(url_for('assignments.submission_select'))
+        if check_duplicate_repo(submission_id,submission,current_user.id):
+            flash('You have are submitting a repository used by another student')
+            return redirect(url_for('assignments.submission_select'))
+        
     else:
         submission = request.form['submission']
-        
+
     record = {
         "user_id":current_user.id,
         "assignment":submission_id,

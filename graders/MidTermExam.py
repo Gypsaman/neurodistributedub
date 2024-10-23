@@ -193,7 +193,7 @@ def write_all_programs():
             f.write(program)
     
 def get_exam(student_id):
-    exam_distribution = json.load(open('/var/www/dna/graders/exam_distribution.json','r'))
+    exam_distribution = json.load(open('./graders/exam_distribution.json','r'))
     exam_no = exam_distribution[student_id]
     return exams[exam_no['exam_id']]
 
