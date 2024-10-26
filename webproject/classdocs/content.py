@@ -97,15 +97,10 @@ content = {
     },
     "Web3.py":{
         "slides":[
-            {"description":"Fallback Attack",
-             "filename":"06-fallback.mp4"},
             {"description":"Web3.py",
              "filename":"06-web3py.pdf"}
         ],
         "videos":[
-            {
-            "description":"Fallback Attack",
-            "filename":"fallback.mp4"},
             {"description":"Web3.py",
              "filename":"web3py.mp4"},
         ],
@@ -117,8 +112,23 @@ content = {
         ]
     },
     "Foundry":{
-        "slides":[],
-        "videos":[],
+        "slides":[
+            {"description":"Foundry",
+             "filename":"07-Foundry_development.pdf"},
+            {"description":"Fallback Attack",
+             "filename":"06-fallback.mp4"},
+        ],
+        "videos":[
+            {"description":"Foundry Overview",
+             "filename":"foundry_overview.mp4"},
+             {"description":"Foundry Walkthrough",
+              "filename":"foundry_walkthrough.mp4"},
+            {"description":"Fallback Attack",
+            "filename":"fallback.mp4"},
+            {"description":"Foundry Windows",
+             "filename":"foundry_windows.mp4"},
+        
+        ],
         "resources":[]
     },
     "Mocks and Testing":{
