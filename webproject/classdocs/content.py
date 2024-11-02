@@ -125,7 +125,7 @@ content = {
              "filename":"foundry_overview.mp4"},
              {"description":"Foundry Walkthrough",
               "filename":"foundry_walkthrough.mp4"},
-            {"description":"Fallback and Receive Functions,
+            {"description":"Fallback and Receive Functions",
             "filename":"fallback_receive.mp4"},
             {"description":"Re-entrancy Attack",
              "filename":"07-Reentrancy.mp4"},
