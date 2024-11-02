@@ -116,7 +116,7 @@ content = {
             {"description":"Foundry",
              "filename":"07-Foundry_development.pdf"},
             {"description":"Fallback and Receive Functions",
-             "filename":"07-fallback_receive.mp4"},
+             "filename":"07-fallback_receive.pdf"},
              {"description":"Re-entrancy Attack",
               "filename":"07-Reentrancy.pdf"},
         ],
