@@ -26,34 +26,51 @@ def create_initial_data():
         import_assignments_quizzes()
         set_due_dates()
 
-def import_assignments_quizzes():
-    quiz_header = json.load(open('./data/quiz_header.json'))
-    quiz_topics = json.load(open('./data/quiz_topics.json'))
-    for qh in quiz_header:
-        qh_id = qh['id']
-        qh = Quiz_Header(**{key:value for key,value in qh.items() if key != 'id'})
-        db.session.add(qh)
+# def import_assignments_quizzes():
+#     quiz_header = json.load(open('./data/quiz_header.json'))
+#     quiz_topics = json.load(open('./data/quiz_topics.json'))
+#     for qh in quiz_header:
+#         qh_id = qh['id']
+#         qh = Quiz_Header(**{key:value for key,value in qh.items() if key != 'id'})
+#         db.session.add(qh)
+#         db.session.commit()
+#         db.session.refresh(qh)
+#         for qt in [t for t in quiz_topics if t['quiz_header'] == qh_id]:
+#             qt = Quiz_Topics(quiz_header=qh.id,topic=qt['topic'],number_of_questions=qt['number_of_questions'])
+#             db.session.add(qt)
+#         db.session.commit()
+#     for assign in json.load(open('./data/assignments.json')):
+#         assign = Assignments(**{key:value for key,value in assign.items() if key != 'id'})
+#         db.session.add(assign)
+#     db.session.commit()
+#     import_questions_answers()
+
+# def import_questions_answers():
+#     answer_bank = json.load(open('./data/answer_bank.json'))
+#     for question in json.load(open('./data/question_bank.json')):
+#         question_id = question['question_id']
+#         question = QuestionBank(**{key:value for key,value in question.items() if key != 'id'})
+#         db.session.add(question)
+#         db.session.commit()
+#         db.session.refresh(question)
+#         for answer in [a for a in answer_bank if a['question_id'] == question_id]:
+#             curr_answer = {"question_id":question.question_id,"answer_txt":answer['answer_txt'],"correct_answer":answer['correct_answer']}
+#             db.session.add(AnswerBank(**curr_answer))
+#         db.session.commit()
+
+def import_quizzes():
+    questions = json.load(open('./data/foundry_questions.json'))
+    for question in questions:
+        question_bank = QuestionBank(**{key:value for key,value in question.items() if key != 'answers'})
+        db.session.add(question_bank)
         db.session.commit()
-        db.session.refresh(qh)
-        for qt in [t for t in quiz_topics if t['quiz_header'] == qh_id]:
-            qt = Quiz_Topics(quiz_header=qh.id,topic=qt['topic'],number_of_questions=qt['number_of_questions'])
-            db.session.add(qt)
+        db.session.refresh(question_bank)
+        for answer in question['answers']:
+            answer_bank = AnswerBank(**{key:value for key,value in answer.items() if key != 'topic'})
+            answer_bank.question_id = question_bank.question_id
+            db.session.add(answer_bank)
         db.session.commit()
-    for assign in json.load(open('./data/assignments.json')):
-        assign = Assignments(**{key:value for key,value in assign.items() if key != 'id'})
-        db.session.add(assign)
-    db.session.commit()
-    answer_bank = json.load(open('./data/answer_bank.json'))
-    for question in json.load(open('./data/question_bank.json')):
-        question_id = question['question_id']
-        question = QuestionBank(**{key:value for key,value in question.items() if key != 'id'})
-        db.session.add(question)
-        db.session.commit()
-        db.session.refresh(question)
-        for answer in [a for a in answer_bank if a['question_id'] == question_id]:
-            curr_answer = {"question_id":question.question_id,"answer_txt":answer['answer_txt'],"correct_answer":answer['correct_answer']}
-            db.session.add(AnswerBank(**curr_answer))
-        db.session.commit()
+
 
         
 def create_sections():
