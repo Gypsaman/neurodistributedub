@@ -11,6 +11,7 @@ from webproject.modules.dotenv_util import get_cwd,initialize_dotenv
 servers = {
     "UB":  { "emailServer": "smtp.office365.com", "emailPort": 587, "emailAccount": "cegarcia@bridgeport.edu","password_source":"UBPassword"},
     "DNA": { "emailServer": "smtp.ionos.com", "emailPort": 587, "emailAccount": "cesar@distributedneuralapplications.com","password_source":"NeuroEmail"}
+    "LOFT": {"emailServer": "smtp.privateemail.com", "emailPort": 587, "emailAccount":"loft@neurodna.xyz","password_source":"LOFTPassword"}
 }
 initialize_dotenv()
 
