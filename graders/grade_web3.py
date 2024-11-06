@@ -80,7 +80,7 @@ def grade_web3(repo,program_file):
     
     result = run_test(program_file)
     if 'Error' in result or result =="":
-        msg = 'Error in running Assignment\n' + result
+        msg += 'Error in running Assignment\n' + result
         return grade, msg
     
     grade += 20
