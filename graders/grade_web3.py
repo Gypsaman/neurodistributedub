@@ -79,7 +79,7 @@ def grade_web3(repo,program_file):
     grade, msg = check_components(base_path,program_file)
     
     result = run_test(program_file)
-    if 'Error' in result:
+    if 'Error' in result or result =="":
         msg = 'Error in running Assignment\n' + result
         return grade, msg
     
