@@ -3,16 +3,24 @@ import os
 import shutil
 import re
 from web3 import Web3
+import stat
+import sys
 
 def setup_repo(base_path,repo):
 
     result = subprocess.run(['git', 'clone',repo, os.path.join(base_path,'python')],stdout=subprocess.PIPE)
     if result.returncode != 0:
         raise Exception("Could not clone Repository")
-    
-def cleanup_repo(base_path):
+    if os.path.exists(os.path.join(base_path,'python','venv')):
+        shutil.rmtree(os.path.join(base_path,'python','venv'),onerror=on_rm_error)
 
-    shutil.rmtree(os.path.join(base_path,'python'),ignore_errors=True)
+
+def on_rm_error(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)  # Change the permission to writable
+    func(path) 
+def cleanup_repo(base_path):
+    if os.path.exists(os.path.join(base_path,'python')):
+        shutil.rmtree(os.path.join(base_path,'python'),onerror=on_rm_error)
 
 def run_test(python_file):
     
@@ -20,7 +28,12 @@ def run_test(python_file):
     os.chdir('./graders/currsubmission/python')
     if not os.path.exists(python_file):
         return f"Error:{python_file} not found"
-    result = subprocess.run(['python',python_file],stdout=subprocess.PIPE)
+    # result = subprocess.run(['python',python_file],stdout=subprocess.PIPE)
+    try:
+        result = subprocess.run([sys.executable, python_file], stdout=subprocess.PIPE)
+    except Exception as e:
+        os.chdir(cwd)
+        return e
     os.chdir(cwd)
     return result.stdout.decode('utf-8')
 
