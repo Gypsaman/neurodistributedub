@@ -91,12 +91,18 @@ def grade_web3(repo,program_file):
     if regex:
         contract_address = regex.group()
         grade += 10
-        value = connection.eth.get_storage_at(contract_address,0)
-        if int.from_bytes(value) == 5341:
-            grade += 20
+
+
 
     else:
         msg += "Error: Contract Address not found in output\n" + result
+    
+    value = connection.eth.get_storage_at(contract_address,0)
+    if int.from_bytes(value) == 5341:
+        grade += 20
+    else:
+        msg += 'Value not equal to 5341'
+        
     cleanup_repo(base_path)
     return grade, msg if msg > '' else 'Assignment is correct'
 
