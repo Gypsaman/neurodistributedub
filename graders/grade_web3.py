@@ -42,12 +42,12 @@ def check_components(base_path,program_file):
     base_path = os.path.join(base_path,'python')
     if not os.path.exists(os.path.join(base_path,program_file)):
         msg =  f"Error: {program_file} not found"
-    else:
-        grade += 10
+        return grade,msg
+    grade += 10
     if os.path.exists(os.path.join(base_path,'.env')):
         msg = f".env included in Repository.  Your funds will be stolen."
-    else:
-        grade += 10
+        return grade,msg
+    grade += 10
     with open(os.path.join(base_path,program_file),'r') as f:
         content = f.read()
         for component in ['ANVIL_ACCOUNT','ANVIL_PRIVATE_KEY','LOCAL_PROVIDER']:
@@ -77,6 +77,9 @@ def grade_web3(repo,program_file):
         return grade,msg
     
     grade, msg = check_components(base_path,program_file)
+    
+    if grade == 0:
+        return grade,msg
     
     result = run_test(program_file)
     if 'Error' in result or result =="":
