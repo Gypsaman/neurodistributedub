@@ -43,11 +43,10 @@ def check_components(base_path,program_file):
     if not os.path.exists(os.path.join(base_path,program_file)):
         msg =  f"Error: {program_file} not found"
         return grade,msg
-    grade += 10
     if os.path.exists(os.path.join(base_path,'.env')):
         msg = f".env included in Repository.  Your funds will be stolen."
         return grade,msg
-    grade += 10
+    grade += 20
     with open(os.path.join(base_path,program_file),'r') as f:
         content = f.read()
         for component in ['ANVIL_ACCOUNT','ANVIL_PRIVATE_KEY','LOCAL_PROVIDER']:
