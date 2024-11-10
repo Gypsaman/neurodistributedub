@@ -1,9 +1,11 @@
-from graders.grade_foundry import setup_repo, cleanup_repo, run_forge_test
+from graders.foundry_grader import setup_repo, cleanup_repo, run_forge
 
 def gradeFinal(submission):
     base_path = './graders/currsubmission'
     setup_repo(base_path,submission)
-    result = run_forge_test()
+    
+    # the following needs to be modified to reflect what we want to run.
+    result = run_forge('script','script/Books.s.sol')
     grade = 30
 
     # these need to be refactored to a test.

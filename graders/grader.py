@@ -6,7 +6,7 @@ import os
 import numpy as np
 from webproject.modules.dotenv_util import get_cwd
 import re
-from graders.grade_foundry import grade_foundry
+from graders.grade_foundry_homework import grade_foundry
 from graders.grade_final import gradeFinal
 from graders.MidTermExam import get_exam
 
@@ -17,7 +17,6 @@ myaccount = os.getenv("MYWALLET")
 
 def check_anvil_running() -> None:
     w3 = Web3(Web3.HTTPProvider(os.getenv("ANVIL_PROVIDER")))
-    my_address = os.getenv("ANVIL_ACCOUNT")
     if not w3.is_connected():
         raise Exception("ANVIL is not running")
 

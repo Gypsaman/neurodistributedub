@@ -137,7 +137,12 @@ content = {
     },
     "Mocks and Testing":{
         "slides":[],
-        "videos":[],
+        "videos":[
+            {"description":"PayUB Foundry",
+             "filename":"08-foundry_payub.mp4"},
+             {"description":"Working with Mocks",
+              "filename":"08-mocks.mp4"},
+        ],
         "resources":[]
     },
     "IPFS and Tokens":{
