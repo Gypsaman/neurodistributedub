@@ -32,7 +32,7 @@ def email_midtermexam():
 @main.route('/environment')
 def environment():
 
-    return f'{os.getcwd()}'
+    return f'{os.listdir()}'
 
 @main.route('/AttendanceCodeValue')
 @admin_required
