@@ -1,6 +1,8 @@
 from graders.foundry_grader import foundry_grader
 import os
 from web3 import Web3
+from webproject.modules.dotenv_util import initialize_dotenv
+initialize_dotenv()
 
 PROVIDER = os.getenv('LOCAL_PROVIDER')
 PRIVATE_KEY = os.getenv('ANVIL_PRIVATE_KEY')
