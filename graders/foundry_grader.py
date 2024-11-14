@@ -70,7 +70,7 @@ def foundry_grader(repo,components):
 
     if 'MasterTest' in components:
         content = components['MasterTest']
-        shutil.copy(f'/var/www/dna/graders/foundry_tests/{content['file']}',f'var/www/dna/graders/currsubmission/foundry/test/{content["file"]}')
+        shutil.copy(f'/var/www/dna/graders/foundry_tests/{content['file']}',f'/var/www/dna/graders/currsubmission/foundry/test/{content["file"]}')
 
     results = {}
 
