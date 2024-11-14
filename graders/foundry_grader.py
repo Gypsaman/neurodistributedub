@@ -8,7 +8,7 @@ from web3 import Web3
 
 def compile_project():
     cwd = os.getcwd()
-    os.chdir('./graders/currsubmission/foundry')
+    os.chdir('/var/www/dna/graders/currsubmission/foundry')
     result = subprocess.run(['forge','build'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     os.chdir(cwd)
     output = result.stderr if result.returncode  else result.stdout
@@ -17,7 +17,7 @@ def compile_project():
 def run_forge(command,source,run_options=None):
     
     cwd = os.getcwd()
-    os.chdir('./graders/currsubmission/foundry')
+    os.chdir('/var/www/dna/graders/currsubmission/foundry')
     forge_process = ['forge',command,source] 
     if run_options:
         forge_process += run_options
