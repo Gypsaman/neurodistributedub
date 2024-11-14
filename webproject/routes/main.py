@@ -32,10 +32,7 @@ def email_midtermexam():
 @main.route('/environment')
 def environment():
 
-    PROVIDER = os.getenv('LOCAL_PROVIDER')
-    PRIVATE_KEY = os.getenv('ANVIL_PRIVATE_KEY')
-
-    return f'{PROVIDER} {PRIVATE_KEY}'
+    return f'{os.getcwd()}'
 
 @main.route('/AttendanceCodeValue')
 @admin_required
