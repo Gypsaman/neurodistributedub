@@ -61,7 +61,7 @@ def foundry_grader(repo,components):
     grade, msg = 0, ''
     destination = 'homework'
 
-    base_path = './graders/currsubmission'
+    base_path = '/var/www/dna/graders/currsubmission'
     if not repo:
         return 0, "No Repository Provided"
     
@@ -70,7 +70,7 @@ def foundry_grader(repo,components):
 
     if 'MasterTest' in components:
         content = components['MasterTest']
-        shutil.copy(f'./graders/foundry_tests/{content['file']}',f'./graders/currsubmission/foundry/test/{content["file"]}')
+        shutil.copy(f'/var/www/dna/graders/foundry_tests/{content['file']}',f'var/www/dna/graders/currsubmission/foundry/test/{content["file"]}')
 
     results = {}
 
