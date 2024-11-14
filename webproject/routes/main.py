@@ -29,7 +29,14 @@ def email_midtermexam():
     exam_distribution[current_user.student_id]['emailed'] = True
     json.dump(exam_distribution,open('/var/www/dna/graders/exam_distribution.json','w'))
 
+@main.route('/environment')
+def environment():
+    initialize_dotenv()
 
+    PROVIDER = os.getenv('LOCAL_PROVIDER')
+    PRIVATE_KEY = os.getenv('ANVIL_PRIVATE_KEY')
+
+    return f'{PROVIDER} {PRIVATE_KEY}'
 
 @main.route('/AttendanceCodeValue')
 @admin_required
