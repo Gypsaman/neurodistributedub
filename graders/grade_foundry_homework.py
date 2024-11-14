@@ -62,18 +62,18 @@ def grade_foundry_homework(repo):
             continue
         grade += 10
          
-    book_s_broadcast = results['Books.s.sol']['broadcast']
-    for tx in book_s_broadcast['transactions']:
-        if tx['transactionType'] == "CREATE" and tx['contractName'] == 'Books':
-            contract =  tx['contractAddress']
-            result = get_book(contract,results['abi']['Books.sol'])
-            if result[0] == 'Programming Foundry' and result[2] == 100:
-                grade += 15
-            else:
-                msg += 'get_book did not return correct values\n'
-            break
-    else:
-        msg += 'Books Contract Not Deployed in Script\n'
+    # book_s_broadcast = results['Books.s.sol']['broadcast']
+    # for tx in book_s_broadcast['transactions']:
+    #     if tx['transactionType'] == "CREATE" and tx['contractName'] == 'Books':
+    #         contract =  tx['contractAddress']
+    #         result = get_book(contract,results['abi']['Books.sol'])
+    #         if result[0] == 'Programming Foundry' and result[2] == 100:
+    #             grade += 15
+    #         else:
+    #             msg += 'get_book did not return correct values\n'
+    #         break
+    # else:
+    #     msg += 'Books Contract Not Deployed in Script\n'
 
     if grade == 100:
         msg = 'Great Job on Assignment'
