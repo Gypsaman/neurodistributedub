@@ -8,7 +8,7 @@ from web3 import Web3
 
 def compile_project():
     cwd = os.getcwd()
-    os.chdir('/var/www/dna/graders/currsubmission/foundry')
+    os.chdir('./graders/currsubmission/foundry')
     result = subprocess.run(['forge','build'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     os.chdir(cwd)
     output = result.stderr if result.returncode  else result.stdout
@@ -17,7 +17,7 @@ def compile_project():
 def run_forge(command,source,run_options=None):
     
     cwd = os.getcwd()
-    os.chdir('/var/www/dna/graders/currsubmission/foundry')
+    os.chdir('./graders/currsubmission/foundry')
     forge_process = ['forge',command,source] 
     if run_options:
         forge_process += run_options
@@ -61,7 +61,7 @@ def foundry_grader(repo,components):
     grade, msg = 0, ''
     destination = 'homework'
 
-    base_path = '/var/www/dna/graders/currsubmission'
+    base_path = './graders/currsubmission'
     if not repo:
         return 0, "No Repository Provided"
     
@@ -70,7 +70,7 @@ def foundry_grader(repo,components):
 
     if 'MasterTest' in components:
         content = components['MasterTest']
-        shutil.copy(f'/var/www/dna/graders/foundry_tests/{content['file']}',f'/var/www/dna/graders/currsubmission/foundry/test/{content["file"]}')
+        shutil.copy(f'./graders/foundry_tests/{content['file']}',f'./graders/currsubmission/foundry/test/{content["file"]}')
 
     results = {}
 
