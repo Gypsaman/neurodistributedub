@@ -135,7 +135,7 @@ content = {
         ],
         "resources":[]
     },
-    "Mocks and Testing":{
+    "PayUB Foundry and Mocks":{
         "slides":[],
         "videos":[
             {"description":"PayUB Foundry",

@@ -144,8 +144,6 @@ def get_student_grades():
         all_students = {}
 
         for user in User.query.filter_by(role="student").all():
-            if user.email == "sagurra@my.bridgeport.edu":
-                print(user.student_id)
             final_grades = final_grades_student(user.id)
             final_grades["email"] = user.email
             final_grades["section"] = user.section
