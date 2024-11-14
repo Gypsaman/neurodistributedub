@@ -83,7 +83,7 @@ def foundry_grader(repo,components):
     for component,content in components.items():
         if content['run']['execute']:
             results[component] = run_forge(content['run']['type'],content['run']['source'],content['run']['run_options'])
-            # results[component]['broadcast'] = get_broadcast(component,base_path)
+            results[component]['broadcast'] = get_broadcast(component,base_path)
 
     cleanup_repo(base_path,destination)
 
