@@ -31,7 +31,6 @@ def email_midtermexam():
 
 @main.route('/environment')
 def environment():
-    initialize_dotenv()
 
     PROVIDER = os.getenv('LOCAL_PROVIDER')
     PRIVATE_KEY = os.getenv('ANVIL_PRIVATE_KEY')
