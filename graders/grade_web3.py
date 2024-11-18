@@ -90,19 +90,18 @@ def grade_web3(repo,program_file):
 
     p = re.compile('0x[a-zA-Z0-9]{40}')
 
-    regex = p.search(result)
-    if regex:
-        contract_address = regex.group()
+    # regex = p.search(result)
+    addresses = p.findall(result)
+    if addresses:
         grade += 10
-
-
-
     else:
         msg += "Error: Contract Address not found in output\n" + result
-    
-    value = connection.eth.get_storage_at(contract_address,0)
-    if int.from_bytes(value) == 5341:
-        grade += 20
+
+    for contract_address in addresses:
+        value = connection.eth.get_storage_at(contract_address,0)
+        if int.from_bytes(value) == 5341:
+            grade += 20
+            break
     else:
         msg += 'Value not equal to 5341'
         

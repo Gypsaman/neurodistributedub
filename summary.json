@@ -214,8 +214,8 @@
                 "grade_portion": 2.5
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 93.75,
+                "grade_portion": 2.34375
             }
         },
         "Midterm": {
@@ -854,8 +854,8 @@
                 "grade_portion": 1.2386363636363633
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.375
             }
         },
         "Midterm": {
