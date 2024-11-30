@@ -145,9 +145,20 @@ content = {
         ],
         "resources":[]
     },
-    "IPFS and Tokens":{
-        "slides":[],
-        "videos":[],
+    "Tokens":{
+        "slides":[{
+            "description":"Tokens",
+            "filename":"09-Tokens.pdf"
+        }],
+        "videos":[
+            {"description":"Tokens",
+             "filename": "09-Tokens.mp4"
+            },
+            {"description":"Token Implementation",
+            "filename":"09-token_impl.mp4"},
+            {"description":"Working with Tokens",
+            "filename":"09-Working_Tokens.mp4"}
+        ],
         "resources":[]
     },
     "NFT":{
