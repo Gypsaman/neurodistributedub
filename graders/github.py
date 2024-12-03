@@ -21,7 +21,8 @@ def setup_repo(base_path,repo,destination):
     source_dirs = ['src','test','script']
     for source in source_dirs:
         shutil.rmtree(os.path.join(base_path,'foundry',source),ignore_errors=True)
-        shutil.copytree(os.path.join(base_path,destination,source),os.path.join(base_path,'foundry',source))
+        if os.path.exists(os.path.join(base_path,destination,source)):
+            shutil.copytree(os.path.join(base_path,destination,source),os.path.join(base_path,'foundry',source))
     shutil.rmtree(os.path.join(base_path,'foundry','out'),ignore_errors=True)
     shutil.rmtree(os.path.join(base_path,'foundry','cache'),ignore_errors=True)
     shutil.rmtree(os.path.join(base_path,'foundry','broadcast'),ignore_errors=True)
