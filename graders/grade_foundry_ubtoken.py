@@ -27,7 +27,7 @@ homework_components = {
                 },
     }
 }   
-def grade_foundry_UBToken(repo):
+def grade_foundry_ubtoken(repo):
 
     grade,msg = 0,''
 
