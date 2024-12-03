@@ -22,7 +22,10 @@ def setup_repo(base_path,repo,destination):
     for source in source_dirs:
         shutil.rmtree(os.path.join(base_path,'foundry',source),ignore_errors=True)
         shutil.copytree(os.path.join(base_path,destination,source),os.path.join(base_path,'foundry',source))
-    
+    shutil.rmtree(os.path.join(base_path,'foundry','out'),ignore_errors=True)
+    shutil.rmtree(os.path.join(base_path,'foundry','cache'),ignore_errors=True)
+    shutil.rmtree(os.path.join(base_path,'foundry','broadcast'),ignore_errors=True)
+
 def on_rm_error(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)  # Change the permission to writable
     func(path) 
