@@ -7,7 +7,7 @@ import numpy as np
 from webproject.modules.dotenv_util import get_cwd
 import re
 from graders.grade_foundry_homework import grade_foundry_homework
-from graders.grade_foundry_UBToken import grade_foundry_ubtoken
+from graders.grade_foundry_ubtoken import grade_foundry_ubtoken
 from graders.grade_final import gradeFinal
 from graders.MidTermExam import get_exam
 
