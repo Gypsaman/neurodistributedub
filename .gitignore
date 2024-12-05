@@ -10,3 +10,5 @@ classdocs/__pycache__
 test_module.py
 graders/currsubmission/
 graders/exam_distribution.json
+grade_details.csv
+summary.json
