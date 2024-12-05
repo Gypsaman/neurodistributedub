@@ -58,21 +58,24 @@ def check_components(base_path,components):
     return  msg,ABIs
 
 def foundry_grader(repo,components):
-    grade, msg = 0, ''
+    results = {}
     destination = 'homework'
 
     base_path = './graders/currsubmission'
     if not repo:
-        return 0, "No Repository Provided"
+        results['error'] = "No Repository Provided"
+        return results
     
     cleanup_repo(base_path,destination)
-    setup_repo(base_path,repo,destination)
+    if not setup_repo(base_path,repo,destination):
+        results['error'] = "Error Cloning Repository. Did you provide the correct URL?"
+        return results
 
     if 'MasterTest' in components:
         content = components['MasterTest']
         shutil.copy(f'./graders/foundry_tests/{content['file']}',f'./graders/currsubmission/foundry/test/{content["file"]}')
 
-    results = {}
+
 
     results['compile'] = compile_project()
     

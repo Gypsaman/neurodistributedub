@@ -43,6 +43,8 @@ def grade_foundry_homework(repo):
     grade,msg = 0,''
 
     results = foundry_grader(repo, homework_components)
+    if 'error' in results:
+        return grade,results['error']
 
     if results['compile']['return_code'] != 0:
         return grade,results['compile']['result']
@@ -63,6 +65,9 @@ def grade_foundry_homework(repo):
         grade += 10
          
     book_s_broadcast = results['Books.s.sol']['broadcast']
+    if not book_s_broadcast:
+        msg += 'No Broadcast Found\n'
+        return grade,msg
     for tx in book_s_broadcast['transactions']:
         if tx['transactionType'] == "CREATE" and tx['contractName'] == 'Books':
             contract =  tx['contractAddress']

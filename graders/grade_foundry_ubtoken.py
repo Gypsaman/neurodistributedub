@@ -32,6 +32,8 @@ def grade_foundry_ubtoken(repo):
     grade,msg = 0,''
 
     results = foundry_grader(repo, homework_components)
+    if 'error' in results:
+        return grade,results['error']
 
     if results['compile']['return_code'] != 0:
         return grade,results['compile']['result']
@@ -52,7 +54,10 @@ def grade_foundry_ubtoken(repo):
         grade += 20
          
     book_s_broadcast = results['UBToken.s.sol']['broadcast']
-    account = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+    if not book_s_broadcast:
+        msg += 'No Broadcast Found\n'
+        return grade,msg
+    account = "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc"
     for tx in book_s_broadcast['transactions']:
         if tx['transactionType'] == "CREATE" and tx['contractName'] == 'UBToken':
             contract =  tx['contractAddress']
@@ -74,4 +79,4 @@ def grade_foundry_ubtoken(repo):
 def get_balance(contract,abi,account):
     w3 = Web3(Web3.HTTPProvider(PROVIDER))
     contract = w3.eth.contract(address=Web3.to_checksum_address(contract),abi=abi)
-    return contract.functions.balanceOf("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc").call()
+    return contract.functions.balanceOf(account).call()
