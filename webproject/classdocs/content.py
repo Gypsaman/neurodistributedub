@@ -162,8 +162,20 @@ content = {
         "resources":[]
     },
     "NFT":{
-        "slides":[],
-        "videos":[],
+        "slides":[
+            {"description":"NFT Overview",
+            "filename":"11-NFTs.pdf"}
+        ],
+        "videos":[{
+            "description":"IPFS",
+            "filename":"11-ipfs.mp4"
+        },
+        {"description":"NFT Overview",
+        "filename":"11-NFT Overview.mp4",
+        },
+        {"description":"NFT Implementation",
+        "filename":"11-NFT_impl.mp4"}
+        ],
         "resources":[]
     },
     "NFT – Contract Interaction":{
