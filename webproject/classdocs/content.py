@@ -178,9 +178,5 @@ content = {
         ],
         "resources":[]
     },
-    "NFT – Contract Interaction":{
-        "slides":[],
-        "videos":[],
-        "resources":[]
-    },
+
 }
