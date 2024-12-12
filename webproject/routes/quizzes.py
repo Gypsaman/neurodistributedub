@@ -16,9 +16,19 @@ from sqlalchemy import text
 quiz = Blueprint("quiz", __name__)
 
 def eliminate_attendance_quiz():
-    if Attendance.query.filter(Attendance.user_id==1,Attendance.date >= dt.strptime("2024-12-16","%Y-%m-%d")).first():
-        return None
-    return 'Final'
+    omitt = None
+    exams = ['Midterm Exam','Final']
+    for exam in exams:
+        sql  = 'Select date_due from quiz_duedates inner join quiz_header on quiz_duedates.quiz_header = quiz_header.id '
+        sql += f" Where quiz_duedates.section = {current_user.section} and quiz_header.description == '{exam}'"
+        due_date = db.session.execute(text(sql)).first()
+        due_date = dt.strptime(due_date[0][:10],"%Y-%m-%d")
+        if not Attendance.query.filter(Attendance.user_id==current_user.id,Attendance.date >= due_date).first():
+            if not omitt:
+                omitt = [exam]
+            else:
+                omitt.append(exam)
+    return omitt
 
 @quiz.route('/quizzes')
 @login_required
@@ -34,7 +44,7 @@ def select_quiz():
 
     attendance_quiz = eliminate_attendance_quiz()
     if attendance_quiz:
-        quizzes = [q for q in quizzes if q['description'] != attendance_quiz]
+        quizzes = [q for q in quizzes if q['description'] not in attendance_quiz]
 
     return render_template("quizzes/quiz_select.html",quizzes=quizzes)
 
