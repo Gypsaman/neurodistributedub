@@ -41,7 +41,7 @@ def attendance_code_value():
     code = hashlib.sha256(date.encode()).hexdigest()[:5]
     today = dt.today().date()
     date_format = "%Y-%m-%d"
-    print(today.strftime(date_format))
+
     stmt = "SELECT user.id, date FROM user  left join "
     stmt += f"(select user_id, max(date) as date from attendance where date > '{today.strftime(date_format)}' group by user_id) as att "
     stmt += "on user.id = user_id where date is null and user.role = 'student'"

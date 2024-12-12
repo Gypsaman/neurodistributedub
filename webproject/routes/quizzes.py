@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from webproject import db
 from webproject.modules.table_creator import Field, TableCreator, timestamp_to_date,round_to_2_decimals
-from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates, Sections
+from webproject.models import Quizzes, Questions, Answers, Quiz_Header, Quiz_Topics, Quiz_DueDates, Sections, Attendance
 from webproject.modules.quizzes import Topics
 
 from webproject.routes import admin_required
@@ -15,10 +15,15 @@ from sqlalchemy import text
 
 quiz = Blueprint("quiz", __name__)
 
+def eliminate_attendance_quiz():
+    if Attendance.query.filter(Attendance.user_id==1,Attendance.date >= dt.strptime("2024-12-16","%Y-%m-%d")).first():
+        return None
+    return 'Final'
 
 @quiz.route('/quizzes')
 @login_required
 def select_quiz():
+
     stmt = "SELECT quiz_header.multiple_retries, quiz_header.description, quizzes.id,quizzes.grade "
     stmt += "from quiz_header INNER JOIN quizzes ON quiz_header.id = quizzes.quiz_header "
     stmt += f"INNER JOIN quiz_duedates on quiz_header.id = quiz_duedates.quiz_header and quiz_duedates.section = {current_user.section} "
@@ -26,7 +31,11 @@ def select_quiz():
     stmt += "ORDER BY quiz_duedates.date_due ASC"
 
     quizzes = [{'multiple_retries':mr,'description':desc,'quiz_id':qid,'grade':grade} for mr,desc,qid,grade in db.session.execute(text(stmt))]
-    # quizzes = db.session.query(Quizzes,Quiz_Header).join(Quiz_Header).filter(Quizzes.user_id==current_user.id,Quiz_Header.active==True).all()
+
+    attendance_quiz = eliminate_attendance_quiz()
+    if attendance_quiz:
+        quizzes = [q for q in quizzes if q['description'] != attendance_quiz]
+
     return render_template("quizzes/quiz_select.html",quizzes=quizzes)
 
 @quiz.route('/quizzes',methods=['POST'])
