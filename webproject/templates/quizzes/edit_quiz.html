@@ -28,10 +28,18 @@
                 <label for="grade_category">Grade Category</label>
                 
                 <select id="grade_category" name="grade_category" required>
-                    <option value="Assignment" >Assignment</option>
-                    <option value="Midterm">Midterm</option>
-                    <option value="Final">Final</option>
-                    <option value="Extra Credit">Extra Credit</option>
+                    <option value="Assignment" 
+                        {% if quiz.grade_category=="Assignment" %}selected{%endif%}>
+                        Assignment</option>
+                    <option value="Midterm"
+                    {% if quiz.grade_category=="Midterm" %}selected{%endif%}>
+                        Midterm</option>
+                    <option value="Final"
+                    {% if quiz.grade_category=="Final" %}selected{%endif%}>
+                        Final</option>
+                    <option value="Extra Credit"
+                    {% if quiz.grade_category=="Extra Credit" %}selected{%endif%}>
+                        Extra Credit</option>
                 </select>
             </div>
             <div class="neuro-form-entry-row">
