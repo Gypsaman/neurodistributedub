@@ -1,14 +1,6 @@
 {
     "553029": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 0,
                 "grade_portion": 0.0
@@ -33,10 +25,6 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "BlockChain-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
@@ -54,6 +42,18 @@
                 "grade_portion": 0.0
             },
             "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             }
@@ -69,7 +69,7 @@
             }
         },
         "Final": {
-            "Final Project": {
+            "Final-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             }
@@ -81,61 +81,61 @@
     },
     "1232008": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -149,9 +149,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 97.5,
+                "grade_portion": 29.25
             }
         },
         "Extra Credit": {},
@@ -161,21 +161,13 @@
     },
     "1225871": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -193,29 +185,37 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Introduction-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 93.75,
-                "grade_portion": 2.34375
+                "grade_portion": 2.678571428571429
+            },
+            "Tokens-Quiz": {
+                "score": 87.85714285714286,
+                "grade_portion": 2.510204081632653
+            },
+            "IPFS-Quiz": {
+                "score": 88.88888888888889,
+                "grade_portion": 2.5396825396825395
+            },
+            "NFTs-Quiz": {
+                "score": 81.81818181818183,
+                "grade_portion": 2.337662337662338
             }
         },
         "Midterm": {
@@ -229,9 +229,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 92.5,
+                "grade_portion": 27.75
             }
         },
         "Extra Credit": {},
@@ -241,61 +241,61 @@
     },
     "1233730": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 75,
-                "grade_portion": 1.875
+                "grade_portion": 2.142857142857143
             },
             "myID": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -309,9 +309,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 92.5,
+                "grade_portion": 27.75
             }
         },
         "Extra Credit": {},
@@ -321,61 +321,61 @@
     },
     "1225532": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 70,
-                "grade_portion": 1.75
+                "grade_portion": 2.0
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -389,9 +389,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 92.5,
+                "grade_portion": 27.75
             }
         },
         "Extra Credit": {},
@@ -401,61 +401,61 @@
     },
     "1211194": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Encryption-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -469,9 +469,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -481,61 +481,61 @@
     },
     "1226178": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "myID": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -549,9 +549,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -561,61 +561,61 @@
     },
     "1197032": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -629,9 +629,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 90,
+                "grade_portion": 27.0
             }
         },
         "Extra Credit": {},
@@ -641,61 +641,61 @@
     },
     "1213213": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -709,9 +709,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -721,61 +721,61 @@
     },
     "1227618": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "myID": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Solidity-Quiz": {
                 "score": 72.72727272727273,
-                "grade_portion": 1.8181818181818183
+                "grade_portion": 2.077922077922078
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -789,9 +789,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -801,61 +801,61 @@
     },
     "1199047": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 64,
-                "grade_portion": 1.6
+                "grade_portion": 1.8285714285714287
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74,
+                "grade_portion": 2.1142857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
-                "score": 55,
-                "grade_portion": 1.375
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 39.44444444444444,
-                "grade_portion": 0.986111111111111
+                "grade_portion": 1.126984126984127
             },
             "BlockChain-Quiz": {
                 "score": 52.14285714285714,
-                "grade_portion": 1.3035714285714284
+                "grade_portion": 1.4897959183673468
             },
             "Solidity-Quiz": {
                 "score": 49.54545454545454,
-                "grade_portion": 1.2386363636363633
+                "grade_portion": 1.4155844155844153
             },
             "foundry-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
+            },
+            "Tokens-Quiz": {
+                "score": 85.71428571428571,
+                "grade_portion": 2.4489795918367347
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 76.81818181818183,
+                "grade_portion": 2.194805194805195
             }
         },
         "Midterm": {
@@ -869,9 +869,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 85,
+                "grade_portion": 25.5
             }
         },
         "Extra Credit": {},
@@ -881,21 +881,13 @@
     },
     "1227109": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -913,29 +905,37 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 83.88888888888889,
-                "grade_portion": 2.0972222222222223
+                "grade_portion": 2.3968253968253967
             },
             "BlockChain-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 82.75,
-                "grade_portion": 2.06875
+                "grade_portion": 2.3642857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -949,9 +949,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -961,21 +961,13 @@
     },
     "1260406": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 60,
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -983,39 +975,47 @@
             },
             "web3_py": {
                 "score": 75,
-                "grade_portion": 1.875
+                "grade_portion": 2.142857142857143
             },
             "foundry": {
                 "score": 0,
                 "grade_portion": 0.0
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 50,
+                "grade_portion": 1.4285714285714286
             },
             "Introduction-Quiz": {
-                "score": 80,
-                "grade_portion": 2.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 85.71428571428571,
-                "grade_portion": 2.142857142857143
+                "grade_portion": 2.4489795918367347
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1029,9 +1029,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -1041,29 +1041,21 @@
     },
     "1223357": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 39,
-                "grade_portion": 0.9750000000000001
+                "grade_portion": 1.1142857142857143
             },
             "foundry": {
                 "score": 0,
@@ -1073,29 +1065,37 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Introduction-Quiz": {
                 "score": 29,
-                "grade_portion": 0.725
+                "grade_portion": 0.8285714285714285
             },
             "Encryption-Quiz": {
                 "score": 77.88888888888889,
-                "grade_portion": 1.9472222222222222
+                "grade_portion": 2.2253968253968255
             },
             "BlockChain-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Solidity-Quiz": {
                 "score": 90.9090909090909,
-                "grade_portion": 2.2727272727272725
+                "grade_portion": 2.5974025974025974
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 81.25,
+                "grade_portion": 2.3214285714285716
+            },
+            "Tokens-Quiz": {
+                "score": 80.71428571428571,
+                "grade_portion": 2.3061224489795915
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 67.72727272727273,
+                "grade_portion": 1.9350649350649354
             }
         },
         "Midterm": {
@@ -1109,9 +1109,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 82.5,
+                "grade_portion": 24.75
             }
         },
         "Extra Credit": {},
@@ -1121,61 +1121,61 @@
     },
     "1214540": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "myID": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1189,9 +1189,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -1201,61 +1201,61 @@
     },
     "1207502": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1269,9 +1269,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -1281,61 +1281,61 @@
     },
     "1210878": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1349,9 +1349,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 97.5,
+                "grade_portion": 29.25
             }
         },
         "Extra Credit": {},
@@ -1361,21 +1361,13 @@
     },
     "1221971": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -1393,29 +1385,37 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1429,9 +1429,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -1441,61 +1441,61 @@
     },
     "1233331": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1509,9 +1509,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -1521,61 +1521,61 @@
     },
     "1177777": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 60,
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74,
+                "grade_portion": 2.1142857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 74.71428571428571,
-                "grade_portion": 1.8678571428571429
+                "grade_portion": 2.1346938775510202
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 81.81818181818183,
+                "grade_portion": 2.337662337662338
             }
         },
         "Midterm": {
@@ -1589,73 +1589,73 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
         "email": "samamid@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0xa9eA6cCC7Fa4AcC43Cb59F89Fd4980422fDddfEc"
+        "wallet": "0x05aF0381F0f6604040f3652027Dee81c661261ad"
     },
     "1182365": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1669,9 +1669,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 87.5,
+                "grade_portion": 26.25
             }
         },
         "Extra Credit": {},
@@ -1681,61 +1681,61 @@
     },
     "1214147": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "myID": {
                 "score": 0,
                 "grade_portion": 0.0
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 5,
+                "grade_portion": 0.14285714285714288
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 14,
+                "grade_portion": 0.4
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -1749,9 +1749,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 97.5,
+                "grade_portion": 29.25
             }
         },
         "Extra Credit": {},
@@ -1761,61 +1761,61 @@
     },
     "1202415": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 64,
-                "grade_portion": 1.6
+                "grade_portion": 1.8285714285714287
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74,
+                "grade_portion": 2.1142857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -1829,9 +1829,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -1841,61 +1841,61 @@
     },
     "1226742": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "myID": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1909,9 +1909,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 90,
+                "grade_portion": 27.0
             }
         },
         "Extra Credit": {},
@@ -1921,21 +1921,13 @@
     },
     "1201835": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "myID": {
                 "score": 0,
@@ -1946,36 +1938,44 @@
                 "grade_portion": 0.0
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74,
+                "grade_portion": 2.1142857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 69,
-                "grade_portion": 1.7249999999999999
+                "grade_portion": 1.9714285714285713
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 80.71428571428571,
-                "grade_portion": 2.017857142857143
+                "grade_portion": 2.3061224489795915
             },
             "Solidity-Quiz": {
                 "score": 63.63636363636363,
-                "grade_portion": 1.5909090909090908
+                "grade_portion": 1.8181818181818181
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 57.5,
+                "grade_portion": 1.6428571428571428
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -1989,9 +1989,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 62.5,
+                "grade_portion": 18.75
             }
         },
         "Extra Credit": {},
@@ -2001,61 +2001,61 @@
     },
     "1217457": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "myID": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2069,9 +2069,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 90,
+                "grade_portion": 27.0
             }
         },
         "Extra Credit": {},
@@ -2081,61 +2081,61 @@
     },
     "1191536": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "myID": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 14,
+                "grade_portion": 0.4
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2149,9 +2149,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 92.5,
+                "grade_portion": 27.75
             }
         },
         "Extra Credit": {},
@@ -2161,21 +2161,13 @@
     },
     "1222012": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -2193,29 +2185,37 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2229,9 +2229,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 90,
+                "grade_portion": 27.0
             }
         },
         "Extra Credit": {},
@@ -2241,61 +2241,61 @@
     },
     "1222998": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 75,
-                "grade_portion": 1.875
+                "grade_portion": 2.142857142857143
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 82.75,
+                "grade_portion": 2.3642857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 87.85714285714286,
+                "grade_portion": 2.510204081632653
+            },
+            "IPFS-Quiz": {
+                "score": 83.88888888888889,
+                "grade_portion": 2.3968253968253967
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -2309,9 +2309,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 90,
+                "grade_portion": 27.0
             }
         },
         "Extra Credit": {},
@@ -2321,61 +2321,61 @@
     },
     "1212086": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 69,
-                "grade_portion": 1.7249999999999999
+                "grade_portion": 1.9714285714285713
             },
             "Encryption-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "BlockChain-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2389,9 +2389,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
@@ -2401,61 +2401,61 @@
     },
     "1220695": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "myID": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2469,9 +2469,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -2481,61 +2481,61 @@
     },
     "1059099": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "foundry": {
                 "score": 90,
-                "grade_portion": 2.25
+                "grade_portion": 2.5714285714285716
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 90.9090909090909,
-                "grade_portion": 2.2727272727272725
+                "grade_portion": 2.5974025974025974
             },
             "foundry-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
+            },
+            "Tokens-Quiz": {
+                "score": 92.85714285714286,
+                "grade_portion": 2.653061224489796
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -2549,9 +2549,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 95,
+                "grade_portion": 28.5
             }
         },
         "Extra Credit": {},
@@ -2561,61 +2561,61 @@
     },
     "1236882": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 60,
-                "grade_portion": 1.5
+                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 65,
-                "grade_portion": 1.625
+                "grade_portion": 1.8571428571428572
             },
             "web3_py": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Introduction-Quiz": {
                 "score": 65,
-                "grade_portion": 1.625
+                "grade_portion": 1.8571428571428572
             },
             "Encryption-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
                 "score": 85,
-                "grade_portion": 2.125
+                "grade_portion": 2.4285714285714284
             },
             "Solidity-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
             },
             "foundry-Quiz": {
                 "score": 93.75,
-                "grade_portion": 2.34375
+                "grade_portion": 2.678571428571429
+            },
+            "Tokens-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "IPFS-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "NFTs-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -2629,9 +2629,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 92.5,
+                "grade_portion": 27.75
             }
         },
         "Extra Credit": {},
@@ -2641,61 +2641,61 @@
     },
     "1214729": {
         "Assignment": {
-            "SHA256": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "ECC Curve": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
             "Wallet": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
                 "score": 64,
-                "grade_portion": 1.6
+                "grade_portion": 1.8285714285714287
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74,
+                "grade_portion": 2.1142857142857143
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "nft": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Encryption-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "BlockChain-Quiz": {
                 "score": 100,
-                "grade_portion": 2.5
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
                 "score": 95,
-                "grade_portion": 2.375
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
                 "score": 89,
-                "grade_portion": 2.225
+                "grade_portion": 2.542857142857143
+            },
+            "Tokens-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "IPFS-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "NFTs-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
@@ -2709,9 +2709,9 @@
             }
         },
         "Final": {
-            "Final Project": {
-                "score": 0,
-                "grade_portion": 0.0
+            "Final-Quiz": {
+                "score": 100,
+                "grade_portion": 30.0
             }
         },
         "Extra Credit": {},
