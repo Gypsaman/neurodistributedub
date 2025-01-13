@@ -85,14 +85,21 @@ def add_assignment():
         return redirect(url_for('assignments.assingments',page_num=1))
     return render_template('assignments/assignments_add.html')
 
-
+@assignments.route('/assignments/delete/<int:id>')
+@admin_required
+def del_assigment(id):
+    assgnm = Assignments.query.filter_by(id=id).first()
+    if assgnm:
+        db.session.delete(assgnm)
+        db.session.commit()
+    return redirect(url_for('assignments.assingments',page_num=1))
 
 
 @assignments.route('/submissionselect')
 @login_required
 def submission_select():
 
-    assignments = Assignments.query.filter_by(active=True).all()
+    assignments = Assignments.query.filter(Assignments.active==True,Assignments.inputtype != "none").all()
     
     return render_template('assignments/submission_select.html',assignments=assignments)
 

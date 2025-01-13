@@ -17,6 +17,38 @@ import json
 sections = ['FA24-Monday']
 SCHEDULE_FILE = './data/Class Topic Schedule.xlsx'
 
+def clearn_db_last_semester(section):
+    for quiz in Quizzes.query.all():
+        for question in Questions.query.filter_by(quiz_id=quiz.id).all():
+            for answer in Answers.query.filter_by(question_id=question.question_id).all():
+                db.session.delete(answer)
+            db.session.delete(question)
+        db.session.delete(quiz)
+        db.session.commit()
+    for sub in Submissions.query.all():
+        db.session.delete(sub)
+    db.session.commit()
+    for grade in Grades.query.all():
+        db.session.delete(grade)
+    db.session.commit()
+    for w in Wallet.query.all():
+        db.session.delete(w)
+    db.session.commit()
+    for user in User.query.all():
+        if user.id < 3:
+            continue
+        db.session.delete(user)
+    db.session.commit()
+    for section in Sections.query.all():
+        print(section)
+        section.section = section
+    db.session.commit()
+    for pr in PasswordReset.query.all():
+        db.session.delete(pr)
+    db.session.commit()
+    for att in Attendance.query.all():
+        db.session.delete(att)
+    db.session.commit()
     
 def create_initial_data():
 
@@ -126,7 +158,7 @@ def send_new_user_email(first_name,email_addr,pwd):
     body += 'Cesar Garcia'
     
     email = UBEmail()
-    email.send_email(email_addr,'Assignment and Quiz Web Site',body)
+    email.send_email(email_addr,'Assignment and Quiz Web Site',body,carboncopy='gypsaman@gmail.com')
     
 def create_users_from_roster(top=None):
     roster_dir = './data/rosters'

@@ -1,6 +1,7 @@
 import ssl
 from email.message import EmailMessage
 import smtplib
+import imaplib
 import json
 import time
 import os
@@ -50,6 +51,13 @@ class UBEmail:
 
             em.set_content(body)
             self.mailserver.sendmail(self.emailAccount,recipients,em.as_string())
+
+            try:
+                with imaplib.IMAP4_SSL('mail.privateemail.com') as imap:
+                    imap.login(self.emailAccount, self.password)
+                    status, response = imap.append("Sent", '\\Seen',imaplib.Time2Internaldate(time.localtime()), em.as_bytes())
+            except Exception as e:
+                print(f"Error: {e}")
             
             
     def bulk_email(self,emails: List[Dict[str,str]])-> None:
