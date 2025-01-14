@@ -73,7 +73,7 @@ def attendance_post():
     db.session.add(attendance)
     db.session.commit()
     # email_midtermexam()
-    return redirect(url_for('dashb.dashboard'))
+    return render_template('main/attendance_registered.html')
 
 @main.route('/')
 def index():
