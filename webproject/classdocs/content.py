@@ -52,7 +52,10 @@ content = {
             {"description":"Wallet Assignment",
             "filename":"wallet.mp4"}
         ],
-        "resources":[]
+        "resources":[
+            {"description": "Wallet Assignment",
+            "filename": "assign-wallet.pdf"}
+        ]
     },
     "Solidity Programming & Oracles":{
         "slides":[
@@ -73,7 +76,10 @@ content = {
             {"description":"Add Holesky Testnet",
             "filename":"add_holesky.mp4"}
         ],
-        "resources":[]
+        "resources":[
+            {"description": "PayUB Assignment",
+            "filename": "assign-payub.pdf"}
+        ]
     },
     "Contract Factory Oracle practice":{
         "slides":[
@@ -85,6 +91,8 @@ content = {
              "filename":"IDBureau_2.mp4"},
         ],
         "resources":[
+            {"description":"ID Bureau Assignment",
+            "filename":"assign-idbureau.pdf"}
         ]
     },
     "Midterm":{
@@ -108,7 +116,9 @@ content = {
             {"description":"Github Tutorial",
              "filename":"Github.mp4"},
              {"description":"Github Submission",
-              "filename":"git_submission.mp4"}
+              "filename":"git_submission.mp4"},
+              {"description":"Web3 Assignment",
+              "filename": "assign-web3.pdf"}
         ]
     },
     "Foundry":{
@@ -133,7 +143,10 @@ content = {
              "filename":"foundry_windows.mp4"},
         
         ],
-        "resources":[]
+        "resources":[
+            {"description":"Foundry Assignment",
+              "filename": "assign-foundry.pdf"}
+        ]
     },
     "PayUB Foundry and Mocks":{
         "slides":[],
@@ -159,7 +172,10 @@ content = {
             {"description":"Working with Tokens",
             "filename":"09-Working_Tokens.mp4"}
         ],
-        "resources":[]
+        "resources":[
+            {"description":"Token Assignment",
+              "filename": "assign-token.pdf"}
+        ]
     },
     "NFT":{
         "slides":[
@@ -176,7 +192,10 @@ content = {
         {"description":"NFT Implementation",
         "filename":"11-NFT_impl.mp4"}
         ],
-        "resources":[]
+        "resources":[
+            {"description":"NFT Assignment",
+              "filename": "assign-nft.pdf"}
+        ]
     },
 
 }
