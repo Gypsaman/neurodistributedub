@@ -1,7 +1,5 @@
 instance/
 venv/
-webproject/static/classdocs/
-__pycache__
 data/
 .env
 logs/
@@ -12,3 +10,4 @@ graders/currsubmission/
 graders/exam_distribution.json
 grade_details.csv
 summary.json
+__pycache__

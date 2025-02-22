@@ -145,10 +145,11 @@ def submission_post(submission_id):
         contract = request.form['submission']
         abi = request.form['abi']
         network = request.form['network']
-        wallet = Wallet.query.filter_by(user_id=current_user.id).first().wallet
-        if wallet is None:
+        wallet_record = Wallet.query.filter_by(user_id=current_user.id).first()
+        if wallet_record is None:
             flash('You do not have a wallet setup, Cannot submit')
             return redirect(url_for('assignments.submission_select'))
+        wallet = wallet_record.wallet
         if wallet == contract:
             flash('You cannot submit your wallet address. You need to submit the contract address')
             return redirect(url_for('assignments.submission_select'))
