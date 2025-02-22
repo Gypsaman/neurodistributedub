@@ -17,6 +17,8 @@ class Sections(db.Model):
     section = db.Column(db.String(10), unique=True)
     active = db.Column(db.Boolean)
     
+
+
     def __repr__(self):
         return f'section: {self.section}, active: {self.active}'
     
@@ -126,6 +128,8 @@ class DueDates(db.Model):
     section = db.Column(db.Integer,db.ForeignKey('sections.id'))
     duedate = db.Column(db.DateTime)
     
+    sectioninfo = db.relationship('Sections', lazy='joined')
+
     def __repr__(self):
         return f'assignment: {self.assignment}, section: {self.section}, duedate: {self.duedate}'
     
@@ -194,6 +198,9 @@ class Quiz_Header(db.Model):
     multiple_retries = db.Column(db.Boolean)
     grade_category = db.Column(db.String(50))
     active = db.Column(db.Boolean)
+
+    duedates = db.relationship('Quiz_DueDates', backref='quiz', lazy='joined')
+    topics = db.relationship('Quiz_Topics', backref='quiz', lazy='joined')
     
     def __repr__(self):
         return f'id: {self.id} description: {self.description} multiple retires {self.multiple_retries} active {self.active}'
@@ -204,7 +211,9 @@ class Quiz_Header(db.Model):
             "description": self.description,
             "multiple_retries": self.multiple_retries,
             "grade_category": self.grade_category,
-            "active": self.active
+            "active": self.active,
+            "duedates": [duedate.to_dict() for duedate in self.duedates],
+            "topics": [topic.to_dict() for topic in self.topics]
         }
     
 class Quiz_DueDates(db.Model):
@@ -213,6 +222,8 @@ class Quiz_DueDates(db.Model):
     quiz_header = db.Column(db.Integer, db.ForeignKey('quiz_header.id'))
     section = db.Column(db.Integer,db.ForeignKey('sections.id'))
     date_due = db.Column(db.DateTime)
+
+    sectioninfo = db.relationship('Sections', lazy='joined')
     
     def __repr__(self):
         return f'id: {self.id} quiz_header: {self.quiz_header} section: {self.section} date due: {self.date_due}'
@@ -221,7 +232,8 @@ class Quiz_DueDates(db.Model):
         return {
             "id": self.id,
             "quiz_header": self.quiz_header,
-            "section": self.section,
+            "section_id": self.section,
+            "section": self.sectioninfo.section,
             "date_due": self.date_due
         }
     
@@ -349,6 +361,7 @@ class Attendance(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer)
     date = db.Column(db.DateTime)
+    # description = db.Column(db.String(50))
     
     def __repr__(self):
         return f'user_id: {self.user_id} date: {self.date.strftime("%m/%d/%Y %H:%M")}'

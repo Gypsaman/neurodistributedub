@@ -25,7 +25,7 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "BlockChain-Quiz": {
+            "Encryption-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             },
@@ -33,7 +33,7 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "Encryption-Quiz": {
+            "BlockChain-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             },
@@ -45,11 +45,11 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "Tokens-Quiz": {
+            "IPFS-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "IPFS-Quiz": {
+            "Tokens-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             },
@@ -62,52 +62,43 @@
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
             }
         },
-        "Final": {
-            "Final-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
-            }
-        },
+        "Final": {},
         "Extra Credit": {},
         "email": "cegarcia@my.bridgeport.edu",
         "section": 1,
         "wallet": ""
     },
-    "1232008": {
+    "1225368": {
         "Assignment": {
             "Wallet": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "web3_py": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
+                "score": 0,
+                "grade_portion": 0.0
             },
             "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "Encryption-Quiz": {
                 "score": 100,
@@ -122,52 +113,43 @@
                 "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
             },
             "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             }
         },
         "Midterm": {
             "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
+                "score": 0,
+                "grade_portion": 0
             }
         },
-        "Final": {
-            "Final-Quiz": {
-                "score": 97.5,
-                "grade_portion": 29.25
-            }
-        },
+        "Final": {},
         "Extra Credit": {},
-        "email": "jamgoth@my.bridgeport.edu",
+        "email": "dbaria@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0x5d11aa0c1240a11b9f7137b34d62a88071267598"
+        "wallet": "0x54D42f375a27ab9008Af362198bf67eaD11EF0Db"
     },
-    "1225871": {
+    "1083070": {
         "Assignment": {
             "Wallet": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
+                "score": 0,
+                "grade_portion": 0.0
             },
             "myID": {
                 "score": 0,
@@ -186,110 +168,456 @@
                 "grade_portion": 0.0
             },
             "Introduction-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Solidity-Quiz": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
-            "foundry-Quiz": {
-                "score": 93.75,
-                "grade_portion": 2.678571428571429
+            "Encryption-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
-            "Tokens-Quiz": {
-                "score": 87.85714285714286,
-                "grade_portion": 2.510204081632653
+            "BlockChain-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Solidity-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
             },
             "IPFS-Quiz": {
-                "score": 88.88888888888889,
-                "grade_portion": 2.5396825396825395
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
             },
             "NFTs-Quiz": {
-                "score": 81.81818181818183,
-                "grade_portion": 2.337662337662338
+                "score": 0,
+                "grade_portion": 0.0
             }
         },
         "Midterm": {
             "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 90,
-                "grade_portion": 13.5
+                "score": 0,
+                "grade_portion": 0
             }
         },
-        "Final": {
-            "Final-Quiz": {
-                "score": 92.5,
-                "grade_portion": 27.75
-            }
-        },
+        "Final": {},
         "Extra Credit": {},
-        "email": "nanare@my.bridgeport.edu",
+        "email": "yhassan@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0x71F58EE90aEE403Bf93C9798E45aC36D2deE6b1a"
+        "wallet": "0xBa87267E9B266278b1abfE97eBB3411168c69e60"
     },
-    "1233730": {
+    "1210853": {
+        "Assignment": {
+            "Wallet": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "PayUB": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "myID": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "web3_py": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Encryption-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "BlockChain-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Solidity-Quiz": {
+                "score": 54.54545454545454,
+                "grade_portion": 1.5584415584415583
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
+        "Midterm": {
+            "Mid Term": {
+                "score": 0,
+                "grade_portion": 0
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "tkalva@my.bridgeport.edu",
+        "section": 1,
+        "wallet": ""
+    },
+    "1224094": {
         "Assignment": {
             "Wallet": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 75,
-                "grade_portion": 2.142857142857143
+                "score": 0,
+                "grade_portion": 0.0
             },
             "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
+                "score": 0,
+                "grade_portion": 0.0
             },
             "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
+                "score": 0,
+                "grade_portion": 0.0
             },
             "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
                 "score": 89,
                 "grade_portion": 2.542857142857143
             },
+            "Encryption-Quiz": {
+                "score": 89,
+                "grade_portion": 2.542857142857143
+            },
+            "BlockChain-Quiz": {
+                "score": 85.71428571428571,
+                "grade_portion": 2.4489795918367347
+            },
+            "Solidity-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
+        "Midterm": {
+            "Mid Term": {
+                "score": 0,
+                "grade_portion": 0
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "sakollu@my.bridgeport.edu",
+        "section": 1,
+        "wallet": "0x1b660115920102bf0ff437e00b0e2393be6fb224"
+    },
+    "1228460": {
+        "Assignment": {
+            "Wallet": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "PayUB": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "myID": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "web3_py": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
             "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
                 "score": 95,
                 "grade_portion": 2.7142857142857144
             },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
             "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
+        "Midterm": {
+            "Mid Term": {
+                "score": 0,
+                "grade_portion": 0
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "amasth@my.bridgeport.edu",
+        "section": 1,
+        "wallet": "0x46B3494EF5eD73FcDBD8438c50E403112a2cB568"
+    },
+    "1214924": {
+        "Assignment": {
+            "Wallet": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "PayUB": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "myID": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "web3_py": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Encryption-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "BlockChain-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Solidity-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
+        "Midterm": {
+            "Mid Term": {
+                "score": 0,
+                "grade_portion": 0
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "afreenmo@my.bridgeport.edu",
+        "section": 1,
+        "wallet": ""
+    },
+    "1229998": {
+        "Assignment": {
+            "Wallet": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "PayUB": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "myID": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "web3_py": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "Encryption-Quiz": {
+                "score": 95,
+                "grade_portion": 2.7142857142857144
+            },
+            "BlockChain-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Solidity-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "foundry-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "IPFS-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Tokens-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "NFTs-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
+        "Midterm": {
+            "Mid Term": {
+                "score": 0,
+                "grade_portion": 0
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "drouthu@my.bridgeport.edu",
+        "section": 1,
+        "wallet": "0xDc8cFb65040fFd5115998607Edcb46fa3f075494"
+    },
+    "1181752": {
+        "Assignment": {
+            "Wallet": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "PayUB": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "myID": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "web3_py": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "foundry": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "token": {
+                "score": 0,
+                "grade_portion": 0.0
+            },
+            "Introduction-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Encryption-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "BlockChain-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
+            },
+            "Solidity-Quiz": {
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
-            "Tokens-Quiz": {
+            "IPFS-Quiz": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
-            "IPFS-Quiz": {
+            "Tokens-Quiz": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
@@ -302,592 +630,23 @@
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
             }
         },
-        "Final": {
-            "Final-Quiz": {
-                "score": 92.5,
-                "grade_portion": 27.75
-            }
-        },
+        "Final": {},
         "Extra Credit": {},
-        "email": "abraganca@my.bridgeport.edu",
+        "email": "khshah@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0x73D8294701861ae21ce5E25aA98FB0A07785e0F0"
+        "wallet": "0x86CA65755377CAAD6959ddD0EcEe1661D0a1bF8c"
     },
-    "1225532": {
+    "1227921": {
         "Assignment": {
             "Wallet": {
                 "score": 100,
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 70,
-                "grade_portion": 2.0
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 90,
-                "grade_portion": 13.5
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 92.5,
-                "grade_portion": 27.75
-            }
-        },
-        "Extra Credit": {},
-        "email": "sbuchi@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x57033c98066fb73ff4f6538730933dc36b0be973"
-    },
-    "1211194": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Encryption-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "gchala@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x619b9fc6824f0337b5bba9b0405a67de2aa60957"
-    },
-    "1226178": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 85,
-                "grade_portion": 12.75
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "srcheruku@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x63D473579Ec25a699BB0eD09463E0D10f9E8D259"
-    },
-    "1197032": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 90,
-                "grade_portion": 27.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "pdevu@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xB385B29656F20E523d51674038b25066AFb46164"
-    },
-    "1213213": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "kdodda@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x19066de4433AA63DD1603d4525848189B574866B"
-    },
-    "1227618": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "myID": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Solidity-Quiz": {
-                "score": 72.72727272727273,
-                "grade_portion": 2.077922077922078
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "rgunukula@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xA4A1d9C420C4DC1ec4a94936c809e28035Ebe1F7"
-    },
-    "1199047": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 64,
-                "grade_portion": 1.8285714285714287
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 74,
-                "grade_portion": 2.1142857142857143
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 39.44444444444444,
-                "grade_portion": 1.126984126984127
-            },
-            "BlockChain-Quiz": {
-                "score": 52.14285714285714,
-                "grade_portion": 1.4897959183673468
-            },
-            "Solidity-Quiz": {
-                "score": 49.54545454545454,
-                "grade_portion": 1.4155844155844153
-            },
-            "foundry-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Tokens-Quiz": {
-                "score": 85.71428571428571,
-                "grade_portion": 2.4489795918367347
-            },
-            "IPFS-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
-            },
-            "NFTs-Quiz": {
-                "score": 76.81818181818183,
-                "grade_portion": 2.194805194805195
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 80,
-                "grade_portion": 12.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 85,
-                "grade_portion": 25.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "sagurra@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xB038E0f416a5DEd5495dCE83eDfADbf4dF416303"
-    },
-    "1227109": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
             },
             "myID": {
                 "score": 0,
@@ -906,468 +665,59 @@
                 "grade_portion": 0.0
             },
             "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 83.88888888888889,
-                "grade_portion": 2.3968253968253967
-            },
-            "BlockChain-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 82.75,
-                "grade_portion": 2.3642857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "dijammula@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x62eC653E46501c13DE2925dbCBc25637a42b08C1"
-    },
-    "1260406": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "web3_py": {
-                "score": 75,
-                "grade_portion": 2.142857142857143
-            },
-            "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "token": {
-                "score": 50,
-                "grade_portion": 1.4285714285714286
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 85.71428571428571,
-                "grade_portion": 2.4489795918367347
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "smunir@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x7a06910a33d6e7ceC27CDa9991F1c5C1D8EB2869"
-    },
-    "1223357": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 39,
-                "grade_portion": 1.1142857142857143
-            },
-            "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "token": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "Introduction-Quiz": {
-                "score": 29,
-                "grade_portion": 0.8285714285714285
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "Encryption-Quiz": {
                 "score": 77.88888888888889,
                 "grade_portion": 2.2253968253968255
             },
             "BlockChain-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
+                "score": 85.71428571428571,
+                "grade_portion": 2.4489795918367347
             },
             "Solidity-Quiz": {
-                "score": 90.9090909090909,
-                "grade_portion": 2.5974025974025974
+                "score": 0,
+                "grade_portion": 0.0
             },
             "foundry-Quiz": {
-                "score": 81.25,
-                "grade_portion": 2.3214285714285716
-            },
-            "Tokens-Quiz": {
-                "score": 80.71428571428571,
-                "grade_portion": 2.3061224489795915
+                "score": 0,
+                "grade_portion": 0.0
             },
             "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 67.72727272727273,
-                "grade_portion": 1.9350649350649354
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 90,
-                "grade_portion": 13.5
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 82.5,
-                "grade_portion": 24.75
-            }
-        },
-        "Extra Credit": {},
-        "email": "dkammili@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x17cF2A0A85E7e8Bb65fAb7eb47945168CC13Aee8"
-    },
-    "1214540": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             }
         },
         "Midterm": {
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
-            },
-            "Midterm Exam-Quiz": {
+            }
+        },
+        "Final": {},
+        "Extra Credit": {},
+        "email": "hvarala@my.bridgeport.edu",
+        "section": 1,
+        "wallet": "0xFD928b52Dc19f585f7dF06311B653619aA9a7935"
+    },
+    "1041753": {
+        "Assignment": {
+            "Wallet": {
                 "score": 0,
                 "grade_portion": 0.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "hkank@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x5A6265a5575f633955A6bfC3d99c1cf7454D1169"
-    },
-    "1207502": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "nkollip@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xBe573d5c3bbd60e2AE43cBfAcee8103845551BeA"
-    },
-    "1210878": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 97.5,
-                "grade_portion": 29.25
-            }
-        },
-        "Extra Credit": {},
-        "email": "yakonda@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xd25c93c476615E03271deF90a60101D7e581065a"
-    },
-    "1221971": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
+                "score": 0,
+                "grade_portion": 0.0
             },
             "myID": {
                 "score": 0,
@@ -1385,1338 +735,45 @@
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
             "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "skoyadi@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x3Ed0b002D60559FDe6502811e95D589d55A60168"
-    },
-    "1233331": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "rmaddip@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x721706b1C46A96014c3a729CF60b378eE1b781FE"
-    },
-    "1177777": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 74,
-                "grade_portion": 2.1142857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 74.71428571428571,
-                "grade_portion": 2.1346938775510202
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 81.81818181818183,
-                "grade_portion": 2.337662337662338
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "samamid@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x05aF0381F0f6604040f3652027Dee81c661261ad"
-    },
-    "1182365": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 87.5,
-                "grade_portion": 26.25
-            }
-        },
-        "Extra Credit": {},
-        "email": "kavyamun@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x5fd108b1d90bb2B5C493D3b99f488E44f376f91A"
-    },
-    "1214147": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "myID": {
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "web3_py": {
-                "score": 5,
-                "grade_portion": 0.14285714285714288
-            },
-            "foundry": {
-                "score": 14,
-                "grade_portion": 0.4
-            },
-            "token": {
+            "BlockChain-Quiz": {
                 "score": 95,
                 "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
             },
             "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 97.5,
-                "grade_portion": 29.25
-            }
-        },
-        "Extra Credit": {},
-        "email": "dpallapu@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x7A99995A3F409b6D06bFb51dE9f05Cce49C901BA"
-    },
-    "1202415": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 64,
-                "grade_portion": 1.8285714285714287
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 74,
-                "grade_portion": 2.1142857142857143
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "vpatnam@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x1661a0a43E8E4829277cC72428FbE4165aA445D2"
-    },
-    "1226742": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 90,
-                "grade_portion": 27.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "cpotta@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x07A322F858608f4595F46495Bd7d7Bffb0d0Fa0C"
-    },
-    "1201835": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "myID": {
                 "score": 0,
                 "grade_portion": 0.0
             },
-            "web3_py": {
+            "foundry-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
-            },
-            "foundry": {
-                "score": 74,
-                "grade_portion": 2.1142857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 69,
-                "grade_portion": 1.9714285714285713
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 80.71428571428571,
-                "grade_portion": 2.3061224489795915
-            },
-            "Solidity-Quiz": {
-                "score": 63.63636363636363,
-                "grade_portion": 1.8181818181818181
-            },
-            "foundry-Quiz": {
-                "score": 57.5,
-                "grade_portion": 1.6428571428571428
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
             },
             "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 70,
-                "grade_portion": 10.5
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 62.5,
-                "grade_portion": 18.75
-            }
-        },
-        "Extra Credit": {},
-        "email": "spuvvada@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xd56A7df447961d6df7322e59b7f045b2F894858B"
-    },
-    "1217457": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "myID": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
+                "score": 0,
+                "grade_portion": 0.0
             },
             "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 75,
-                "grade_portion": 11.25
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 90,
-                "grade_portion": 27.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "csammeta@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x0f3d7A75582B63911D5821bc85e4F4bD10AF7Fd6"
-    },
-    "1191536": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "myID": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 14,
-                "grade_portion": 0.4
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 92.5,
-                "grade_portion": 27.75
-            }
-        },
-        "Extra Credit": {},
-        "email": "saseela@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x9cfF21Fcd3E72D6CE44690289573eA043c1Bf267"
-    },
-    "1222012": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
-            },
-            "token": {
                 "score": 0,
                 "grade_portion": 0.0
             },
             "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 90,
-                "grade_portion": 27.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "ysiddula@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xAa7CadF9ea2ddB3d8FB8Ed14E3a6FEEf309431F6"
-    },
-    "1222998": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 75,
-                "grade_portion": 2.142857142857143
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 82.75,
-                "grade_portion": 2.3642857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 87.85714285714286,
-                "grade_portion": 2.510204081632653
-            },
-            "IPFS-Quiz": {
-                "score": 83.88888888888889,
-                "grade_portion": 2.3968253968253967
-            },
-            "NFTs-Quiz": {
                 "score": 95,
                 "grade_portion": 2.7142857142857144
             }
         },
         "Midterm": {
             "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
+                "score": 0,
+                "grade_portion": 0
             }
         },
-        "Final": {
-            "Final-Quiz": {
-                "score": 90,
-                "grade_portion": 27.0
-            }
-        },
+        "Final": {},
         "Extra Credit": {},
-        "email": "ssunnam@my.bridgeport.edu",
+        "email": "thorodri@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0x159252fDD59B0c883D35Cc5708bB5b23faEa87aA"
-    },
-    "1212086": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 69,
-                "grade_portion": 1.9714285714285713
-            },
-            "Encryption-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "BlockChain-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "riathapa@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x755d3e4f02C717B15aE391d3Fe32d2A3D0092629"
-    },
-    "1220695": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "myID": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 85,
-                "grade_portion": 12.75
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "vthuma@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xC2Ee6e2F552Db1b0B84e4990Ab961C6d7e2130B9"
-    },
-    "1059099": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "myID": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "web3_py": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "foundry": {
-                "score": 90,
-                "grade_portion": 2.5714285714285716
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 90.9090909090909,
-                "grade_portion": 2.5974025974025974
-            },
-            "foundry-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Tokens-Quiz": {
-                "score": 92.85714285714286,
-                "grade_portion": 2.653061224489796
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 90,
-                "grade_portion": 13.5
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 95,
-                "grade_portion": 28.5
-            }
-        },
-        "Extra Credit": {},
-        "email": "ptidou@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xa7697413a078EF6d92d55939a35E855c4F762Ed2"
-    },
-    "1236882": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 60,
-                "grade_portion": 1.7142857142857142
-            },
-            "myID": {
-                "score": 65,
-                "grade_portion": 1.8571428571428572
-            },
-            "web3_py": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "token": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "Introduction-Quiz": {
-                "score": 65,
-                "grade_portion": 1.8571428571428572
-            },
-            "Encryption-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "BlockChain-Quiz": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "Solidity-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "foundry-Quiz": {
-                "score": 93.75,
-                "grade_portion": 2.678571428571429
-            },
-            "Tokens-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "IPFS-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "NFTs-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 85,
-                "grade_portion": 12.75
-            },
-            "Midterm Exam-Quiz": {
-                "score": 95,
-                "grade_portion": 14.25
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 92.5,
-                "grade_portion": 27.75
-            }
-        },
-        "Extra Credit": {},
-        "email": "jitummala@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0xfE1392a78c13B281d8524B430708E01165F462a6"
-    },
-    "1214729": {
-        "Assignment": {
-            "Wallet": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "PayUB": {
-                "score": 64,
-                "grade_portion": 1.8285714285714287
-            },
-            "myID": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "web3_py": {
-                "score": 85,
-                "grade_portion": 2.4285714285714284
-            },
-            "foundry": {
-                "score": 74,
-                "grade_portion": 2.1142857142857143
-            },
-            "token": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Introduction-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Encryption-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "BlockChain-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "Solidity-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "foundry-Quiz": {
-                "score": 89,
-                "grade_portion": 2.542857142857143
-            },
-            "Tokens-Quiz": {
-                "score": 100,
-                "grade_portion": 2.857142857142857
-            },
-            "IPFS-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            },
-            "NFTs-Quiz": {
-                "score": 95,
-                "grade_portion": 2.7142857142857144
-            }
-        },
-        "Midterm": {
-            "Mid Term": {
-                "score": 100,
-                "grade_portion": 15.0
-            },
-            "Midterm Exam-Quiz": {
-                "score": 100,
-                "grade_portion": 15.0
-            }
-        },
-        "Final": {
-            "Final-Quiz": {
-                "score": 100,
-                "grade_portion": 30.0
-            }
-        },
-        "Extra Credit": {},
-        "email": "cvenn@my.bridgeport.edu",
-        "section": 1,
-        "wallet": "0x4CA0363738446c1a84AfFC2F558cbC9f37ebEdDA"
+        "wallet": ""
     }
 }

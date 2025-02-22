@@ -144,9 +144,6 @@ def course_evaluation_email():
 
 def get_student_grades():
     with create_app().app_context():
-        for assgn in Assignments.query.all():
-            assgn.name = assgn.name.strip()
-        db.session.commit()
         all_students = {}
 
         for user in User.query.filter_by(role="student").all():
