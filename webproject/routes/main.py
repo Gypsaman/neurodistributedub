@@ -72,7 +72,7 @@ def attendance_post():
     attendance = Attendance(user_id=current_user.id,date=dt.now())
     db.session.add(attendance)
     db.session.commit()
-    # email_midtermexam()
+    email_midtermexam()
     return render_template('main/attendance_registered.html')
 
 @main.route('/')
