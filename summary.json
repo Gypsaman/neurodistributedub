@@ -62,6 +62,10 @@
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
             }
         },
         "Final": {},
@@ -131,8 +135,12 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 100,
+                "grade_portion": 15.0
             }
         },
         "Final": {},
@@ -148,8 +156,8 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 70,
+                "grade_portion": 2.0
             },
             "myID": {
                 "score": 0,
@@ -180,8 +188,8 @@
                 "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
                 "score": 0,
@@ -202,8 +210,12 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 100,
+                "grade_portion": 15.0
             }
         },
         "Final": {},
@@ -215,12 +227,12 @@
     "1210853": {
         "Assignment": {
             "Wallet": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
                 "score": 0,
@@ -251,8 +263,8 @@
                 "grade_portion": 2.857142857142857
             },
             "Solidity-Quiz": {
-                "score": 54.54545454545454,
-                "grade_portion": 1.5584415584415583
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
                 "score": 0,
@@ -273,15 +285,19 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 95,
+                "grade_portion": 14.25
             }
         },
         "Final": {},
         "Extra Credit": {},
         "email": "tkalva@my.bridgeport.edu",
         "section": 1,
-        "wallet": ""
+        "wallet": "0x4471F2B0c2ee8050925fe5B8155b3537BE6baD4D"
     },
     "1224094": {
         "Assignment": {
@@ -322,37 +338,41 @@
                 "grade_portion": 2.4489795918367347
             },
             "Solidity-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 93.75,
+                "grade_portion": 2.678571428571429
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 90.9090909090909,
+                "grade_portion": 2.5974025974025974
             }
         },
         "Midterm": {
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 90,
+                "grade_portion": 13.5
             }
         },
         "Final": {},
         "Extra Credit": {},
         "email": "sakollu@my.bridgeport.edu",
         "section": 1,
-        "wallet": "0x1b660115920102bf0ff437e00b0e2393be6fb224"
+        "wallet": "0x1B660115920102bF0fF437e00B0e2393BE6fb224"
     },
     "1228460": {
         "Assignment": {
@@ -361,8 +381,8 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 70,
+                "grade_portion": 2.0
             },
             "myID": {
                 "score": 0,
@@ -415,8 +435,12 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 100,
+                "grade_portion": 15.0
             }
         },
         "Final": {},
@@ -428,12 +452,12 @@
     "1214924": {
         "Assignment": {
             "Wallet": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
                 "score": 0,
@@ -452,20 +476,20 @@
                 "grade_portion": 0.0
             },
             "Introduction-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 45,
+                "grade_portion": 1.2857142857142858
             },
             "Encryption-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "BlockChain-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 74.71428571428571,
+                "grade_portion": 2.1346938775510202
             },
             "Solidity-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
                 "score": 0,
@@ -488,13 +512,17 @@
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 100,
+                "grade_portion": 15.0
             }
         },
         "Final": {},
         "Extra Credit": {},
         "email": "afreenmo@my.bridgeport.edu",
         "section": 1,
-        "wallet": ""
+        "wallet": "0xF1C3e8C082A876a45B7305bE0fDa61c7eDa7d6dB"
     },
     "1229998": {
         "Assignment": {
@@ -503,8 +531,8 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
                 "score": 0,
@@ -557,8 +585,12 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 95,
+                "grade_portion": 14.25
             }
         },
         "Final": {},
@@ -574,12 +606,12 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
                 "score": 0,
@@ -628,8 +660,12 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 95,
+                "grade_portion": 14.25
             }
         },
         "Final": {},
@@ -677,30 +713,34 @@
                 "grade_portion": 2.4489795918367347
             },
             "Solidity-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 93.75,
+                "grade_portion": 2.678571428571429
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
             "Mid Term": {
                 "score": 0,
                 "grade_portion": 0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 100,
+                "grade_portion": 15.0
             }
         },
         "Final": {},
@@ -712,12 +752,12 @@
     "1041753": {
         "Assignment": {
             "Wallet": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 54,
+                "grade_portion": 1.542857142857143
             },
             "myID": {
                 "score": 0,
@@ -766,14 +806,18 @@
         },
         "Midterm": {
             "Mid Term": {
-                "score": 0,
-                "grade_portion": 0
+                "score": 100,
+                "grade_portion": 15.0
+            },
+            "Midterm Exam-Quiz": {
+                "score": 90,
+                "grade_portion": 13.5
             }
         },
         "Final": {},
         "Extra Credit": {},
         "email": "thorodri@my.bridgeport.edu",
         "section": 1,
-        "wallet": ""
+        "wallet": "0xcda7A598090a4e5eD1f013B3aa447866FBC8C5FA"
     }
 }
