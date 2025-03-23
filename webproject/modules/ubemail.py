@@ -55,7 +55,7 @@ class UBEmail:
             try:
                 with imaplib.IMAP4_SSL('mail.privateemail.com') as imap:
                     imap.login(self.emailAccount, self.password)
-                    status, response = imap.append("Sent", '\\Seen',imaplib.Time2Internaldate(time.localtime()), em.as_bytes())
+                    status, response = imap.append("Sent/ub", '\\Seen',imaplib.Time2Internaldate(time.localtime()), em.as_bytes())
             except Exception as e:
                 print(f"Error: {e}")
             
