@@ -48,11 +48,13 @@ def grade_foundry_homework(repo):
 
     if results['compile']['return_code'] != 0:
         return grade,results['compile']['result']
-    msg += 'Compiled Successfully'
+    msg += 'Compiled Successfully\n'
     grade += 25
 
     if results['components']:
-        return grade,results['components']
+        msg += 'Required Components missing\n'
+        msg += f'\t{results['components']}\n'
+        return grade, msg
     msg += '\nAll Components Found'
     grade += 30
 

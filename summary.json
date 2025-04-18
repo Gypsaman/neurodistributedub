@@ -68,7 +68,12 @@
                 "grade_portion": 0.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "cegarcia@my.bridgeport.edu",
         "section": 1,
@@ -85,20 +90,20 @@
                 "grade_portion": 2.857142857142857
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 95,
@@ -117,20 +122,20 @@
                 "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -143,7 +148,12 @@
                 "grade_portion": 15.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "dbaria@my.bridgeport.edu",
         "section": 1,
@@ -160,20 +170,20 @@
                 "grade_portion": 2.0
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 50,
+                "grade_portion": 1.4285714285714286
             },
             "Introduction-Quiz": {
                 "score": 100,
@@ -192,16 +202,16 @@
                 "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "IPFS-Quiz": {
                 "score": 0,
                 "grade_portion": 0.0
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
                 "score": 0,
@@ -218,7 +228,12 @@
                 "grade_portion": 15.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "yhassan@my.bridgeport.edu",
         "section": 1,
@@ -235,20 +250,20 @@
                 "grade_portion": 2.7142857142857144
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
                 "score": 100,
@@ -267,20 +282,20 @@
                 "grade_portion": 2.7142857142857144
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 93.75,
+                "grade_portion": 2.678571428571429
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -293,7 +308,12 @@
                 "grade_portion": 14.25
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "tkalva@my.bridgeport.edu",
         "section": 1,
@@ -306,16 +326,16 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 64,
+                "grade_portion": 1.8285714285714287
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 39,
+                "grade_portion": 1.1142857142857143
             },
             "foundry": {
                 "score": 0,
@@ -368,7 +388,12 @@
                 "grade_portion": 13.5
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "sakollu@my.bridgeport.edu",
         "section": 1,
@@ -385,8 +410,8 @@
                 "grade_portion": 2.0
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 70,
+                "grade_portion": 2.0
             },
             "web3_py": {
                 "score": 0,
@@ -417,20 +442,20 @@
                 "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -443,7 +468,12 @@
                 "grade_portion": 15.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "amasth@my.bridgeport.edu",
         "section": 1,
@@ -460,24 +490,24 @@
                 "grade_portion": 2.7142857142857144
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 95,
+                "grade_portion": 2.7142857142857144
             },
             "foundry": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Introduction-Quiz": {
-                "score": 45,
-                "grade_portion": 1.2857142857142858
+                "score": 85,
+                "grade_portion": 2.4285714285714284
             },
             "Encryption-Quiz": {
                 "score": 85,
@@ -518,7 +548,12 @@
                 "grade_portion": 15.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "afreenmo@my.bridgeport.edu",
         "section": 1,
@@ -535,8 +570,8 @@
                 "grade_portion": 2.7142857142857144
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 80,
+                "grade_portion": 2.285714285714286
             },
             "web3_py": {
                 "score": 0,
@@ -567,20 +602,20 @@
                 "grade_portion": 2.857142857142857
             },
             "foundry-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 89,
+                "grade_portion": 2.542857142857143
             },
             "IPFS-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "Tokens-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "NFTs-Quiz": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             }
         },
         "Midterm": {
@@ -593,7 +628,12 @@
                 "grade_portion": 14.25
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "drouthu@my.bridgeport.edu",
         "section": 1,
@@ -614,16 +654,16 @@
                 "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 50,
+                "grade_portion": 1.4285714285714286
             },
             "foundry": {
                 "score": 0,
                 "grade_portion": 0.0
             },
             "token": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 25,
+                "grade_portion": 0.7142857142857143
             },
             "Introduction-Quiz": {
                 "score": 100,
@@ -668,7 +708,12 @@
                 "grade_portion": 14.25
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "khshah@my.bridgeport.edu",
         "section": 1,
@@ -681,16 +726,16 @@
                 "grade_portion": 2.857142857142857
             },
             "PayUB": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 64,
+                "grade_portion": 1.8285714285714287
             },
             "myID": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 100,
+                "grade_portion": 2.857142857142857
             },
             "web3_py": {
-                "score": 0,
-                "grade_portion": 0.0
+                "score": 39,
+                "grade_portion": 1.1142857142857143
             },
             "foundry": {
                 "score": 0,
@@ -743,7 +788,12 @@
                 "grade_portion": 15.0
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "hvarala@my.bridgeport.edu",
         "section": 1,
@@ -814,7 +864,12 @@
                 "grade_portion": 13.5
             }
         },
-        "Final": {},
+        "Final": {
+            "Final-Quiz": {
+                "score": 0,
+                "grade_portion": 0.0
+            }
+        },
         "Extra Credit": {},
         "email": "thorodri@my.bridgeport.edu",
         "section": 1,
